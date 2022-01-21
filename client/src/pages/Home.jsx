@@ -1,6 +1,8 @@
 import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import Footer from "../components/Footer.jsx";
+import MuestraProduct from "../components/MuestraProduct.jsx";
 import {getProducts, getProductByCategory} from '../actions/actionProducts.js'
 import { useNavigate } from 'react-router-dom';
 import estilos from '../css/Home.module.css';
@@ -25,6 +27,11 @@ export default function Home () {
 
     return (
         <div>
+
+            <h1>Aca va el home con las CATEGORIAS, no los PRODUCTOS</h1>
+            <MuestraProduct/>
+            <Footer/>
+        </div>
 
         <h1>Aca va el home con las CATEGORIAS, no los PRODUCTOS</h1>
 

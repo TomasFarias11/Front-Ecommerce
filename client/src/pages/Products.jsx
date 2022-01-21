@@ -29,14 +29,37 @@ export default function Products() {
 
                 <div style={{width:250}} >
                     <h4>inicio</h4> 
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+
+                    <div class="btn-group" style={{flexDirection: "column"}} role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" style={{margin:10}}  data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                        </button>
+                        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" style={{margin:10}}  data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                        </button>
+                        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" style={{margin:10}}  data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                        </button>
+                        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" style={{margin:10}}  data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+                        <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+                        </ul>
+                    </div>
+                    </div>
+                    
                     <h4>filtrados</h4> 
+                    <h5></h5>
                 </div>
 
 
             </div>
 
 
-            <div className="container" style={{ marginTop: 60, padding: 41 } } >
+            <div className="container" style={{ marginTop: 60, padding: 100 } } >
                 {/* <h1>{products? products[0].name : "iPhone"}</h1> */}
                 <div className="row row-cols-0 row-cols-md-3 g-5"   >
                     {

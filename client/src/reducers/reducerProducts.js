@@ -2,7 +2,7 @@ import {
     GET_PRODUCTS,
     GET_PRODUCT_BY_NAME,
     GET_PRODUCT_BY_ID,
-    GET_IPHONE
+    GET_PRODUCT_BY_CATEGORY
 } from '../actions/actionProducts'
 
 
@@ -10,8 +10,7 @@ const initialState2={
 	products:[],
     allProducts: [],
     productId: [],
-    iphone: [],
-	
+    
 }
 
 export default function reducerProducts(state=initialState2, action){
@@ -38,15 +37,10 @@ export default function reducerProducts(state=initialState2, action){
                 productId: action.payload
             }
 
-        case GET_IPHONE:
-            const products = state.products
-            let iphoneCat = []
-            products.filter((e) => e.name.includes('iphone') ? iphoneCat.push(e) : console.log('hola'))
-
-
+        case GET_PRODUCT_BY_CATEGORY:
             return {
                 ...state,
-                iphone: state.iphone.concat(iphoneCat)
+                products: action.payload
             }
 		default:
 			return state;

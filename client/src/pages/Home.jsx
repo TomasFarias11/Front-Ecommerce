@@ -2,6 +2,8 @@ import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getProducts} from '../actions/actionProducts.js'
+import Footer from "../components/Footer.jsx";
+import MuestraProduct from "../components/MuestraProduct.jsx";
 
 export default function Home () {
 
@@ -15,6 +17,11 @@ export default function Home () {
     console.log('estos son los productos', products)
 
     return (
-        <h1>Aca va el home con las CATEGORIAS, no los PRODUCTOS</h1>
+        <div>
+            <h1>Aca va el home con las CATEGORIAS, no los PRODUCTOS</h1>
+            <MuestraProduct/>
+            <Footer/>
+        </div>
+        
     )
 }

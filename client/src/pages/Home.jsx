@@ -27,16 +27,7 @@ export default function Home () {
 
     return (
         <div>
-
-            <h1>Aca va el home con las CATEGORIAS, no los PRODUCTOS</h1>
-            <MuestraProduct/>
-            <Footer/>
-        </div>
-
-        <h1>Aca va el home con las CATEGORIAS, no los PRODUCTOS</h1>
-
         <div className="row">
-            
             <div className="row" style={{padding:14}}>
                 <div className="col col-lg-2" >
                     <div className={estilos.styleCards}>
@@ -71,6 +62,7 @@ export default function Home () {
                         </div>
                     </div>
                 </div>
+                </div>
             </div>
             <div className="row">
                 <div className="col col-lg-2">
@@ -104,8 +96,10 @@ export default function Home () {
                     </div>
                 </div>
             </div>
-        </div>
-
+            <div>
+                {/* <MuestraProduct/> */}
+                <Footer/>
+            </div>
         </div>
     )
 }

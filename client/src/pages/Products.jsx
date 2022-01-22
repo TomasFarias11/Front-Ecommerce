@@ -1,22 +1,15 @@
 import React from "react";
-import {useEffect} from 'react';
+// import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {getProductByCategory} from '../actions/actionProducts.js'
+// import {getProductByCategory} from '../actions/actionProducts.js'
 
 export default function Products (category) {
 
     const dispatch = useDispatch();
     const products = useSelector((state) => state.firstRed.products)
-
-
-    // useEffect(() => 
-    //     dispatch(getProductByCategory(category))
-    // ,[])
-
     console.log('estos son los productos', products)
 
     return (
-
         <div className="container">   
             <div className="" style={{
                 position: "fixed",
@@ -27,7 +20,6 @@ export default function Products (category) {
                 padding: 20,
                 background: "rgb(232 232 242)",
             }}>
-
                 <div style={{width:250}} >
                     <h4>inicio</h4> 
                     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -51,15 +43,10 @@ export default function Products (category) {
                         </ul>
                     </div>
                     </div>
-                    
                     <h4>filtrados</h4> 
                     <h5></h5>
                 </div>
-
-
             </div>
-
-
             <div className="container" style={{ marginTop: 60, padding: 100 } } >
                 {/* <h1>{products? products[0].name : "iPhone"}</h1> */}
                 <div className="row row-cols-0 row-cols-md-3 g-5"   >
@@ -76,12 +63,8 @@ export default function Products (category) {
                             </div>
                         )
                     }
-
-
                 </div>
             </div>
-
-
         </div>
     )
 }

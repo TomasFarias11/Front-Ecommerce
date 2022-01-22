@@ -98,7 +98,6 @@ export default function Home () {
             </div>
             <div>
                 {/* <MuestraProduct/> */}
-                <Footer/>
             </div>
         </div>
     )

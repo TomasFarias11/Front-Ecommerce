@@ -67,7 +67,7 @@ export default function Products (category) {
                         products.map(e =>
                             <div className="col" key={e.id}>
                                 <div className="card" >
-                                    <img src="https://i.postimg.cc/SK600jXG/OIP.jpg" className="card-img-top" alt={e.image} style={{padding:"30 0"}} />
+                                    <img src= {e.image !== 'not found' ? e.image : "https://i.postimg.cc/SK600jXG/OIP.jpg"} className="card-img-top" alt={e.image} style={{padding:"30 0", height:'230px'}} />
                                     <div className="card-body">
                                         <h5 className="card-title">{e.name}</h5>
                                         <p className="card-text">{e.category}  ${e.price}</p>

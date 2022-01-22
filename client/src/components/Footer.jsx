@@ -1,6 +1,20 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {getProducts, getProductByCategory} from '../actions/actionProducts.js'
+import { Link } from "react-router-dom";
 
 const Footer = () =>{
+
+  const dispatch = useDispatch();
+  const Navigate = useNavigate();
+  const handleClick = (e) => {
+    e.preventDefault();
+    dispatch(getProductByCategory(e.target.value))
+    Navigate("/products/category")
+}
+
+
     return(
         <div>
             {/* <h1>Soy el footer</h1> */}
@@ -66,7 +80,8 @@ const Footer = () =>{
                   Products
                 </h6>
                 <p>
-                  <a href="#!" className="text-reset">Iphone</a>
+                      <a href="#!" className="text-reset">iPhone</a>
+                      {/* <input type="hidden" /> */}
                 </p>
                 <p>
                   <a href="#!" className="text-reset">Watch</a>

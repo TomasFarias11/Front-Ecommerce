@@ -4,7 +4,7 @@ import NotFound from "./pages/NotFound"
 import Home from "./pages/Home";
 import Details from "./pages/Details";
 import Products from "./pages/Products";
-import Footer from "./components/Footer.jsx";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
       <Route exact path="/products" element={<Home/>}/>
       <Route exact path="/products/details/:id" render = {({match}) => <Details props={match.params.id} />}/>
       <Route exact path="/products/category" element={<Products/>}/>
+      
       </Routes>
       <Footer/>
     </div>

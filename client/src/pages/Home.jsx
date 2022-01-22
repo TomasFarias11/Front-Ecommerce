@@ -2,6 +2,7 @@ import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Footer from "../components/Footer.jsx";
+import CardCarrusel from "../components/CardCarrusel.jsx";
 import MuestraProduct from "../components/MuestraProduct.jsx";
 import {getProducts, getProductByCategory} from '../actions/actionProducts.js'
 import { useNavigate } from 'react-router-dom';
@@ -27,6 +28,9 @@ export default function Home () {
 
     return (
         <div>
+        <div>
+              <CardCarrusel/>
+        </div>
         <div className="row">
             <div className="row" style={{padding:14}}>
                 <div className="col col-lg-4" >
@@ -96,8 +100,11 @@ export default function Home () {
                     </div>
                 </div>
             </div>
+            
             <div>
                 {/* <MuestraProduct/> */}
+                <Footer/>
+
             </div>
         </div>
     )

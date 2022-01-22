@@ -33,7 +33,7 @@ export function getProductByName (name) {
 
 export function getProductById (id) {
     return async function (dispatch) {
-        let product = await axios.get(`http://localhost:3001/products/details/${id}`)
+        let product = await axios.get(`http://localhost:3001/products/detail/${id}`)
         return dispatch({
             type: "GET_PRODUCT_BY_ID",
             payload: product.data

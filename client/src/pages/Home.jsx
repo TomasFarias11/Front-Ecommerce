@@ -32,7 +32,7 @@ export default function Home () {
                 <div className="col col-lg-4" >
                     <div className={estilos.styleCards}>
 
-                    <img src="https://i.blogs.es/da8cbb/iphone-13-pro/1366_2000.jpg" className="card-img-top" alt="Fissure in Sandstone" height='350px'/>
+                    <img src="https://i.postimg.cc/3rf39xcy/IMG-6998.jpg" className="card-img-top" alt="Fissure in Sandstone" height='350px'/>
                         <div className="card-body">
                             <h5 className="card-title">iPhone</h5>
                             <p className="card-text">Un salto al siguiente nivel.</p>

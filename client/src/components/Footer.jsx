@@ -98,7 +98,7 @@ const Footer = () =>{
                 </p>
                 <p>
                   <Link to="/products/category">
-                      <a href="#!" className="text-reset" onClick={() => dispatch(getProductByCategory("tv"))}>TV and Home</a>
+                      <a href="#!" className="text-reset" onClick={() => dispatch(getProductByCategory("tv"))}>TV & Home</a>
                   </Link>
                 </p>
               </div>

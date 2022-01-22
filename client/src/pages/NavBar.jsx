@@ -2,8 +2,14 @@ import React from "react";
 //import Search from "./search";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
+import {useDispatch} from 'react-redux';
+import {getProductByCategory} from '../actions/actionProducts.js'
+
 
 function NavBar() {
+    const dispatch = useDispatch()
+
+    
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark h6 sticky-top">
@@ -31,33 +37,33 @@ function NavBar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
             <li className="nav-item">
-                <Link style={{ textDecoration: 'none', color: 'white' }} to="/products">
-                    <a className="nav-link" aria-current="page" href=" "> Mac </a>
+                <Link style={{ textDecoration: 'none', color: 'white' }} to="/products/category">
+                    <a className="nav-link" aria-current="page" href=" " onClick={() => dispatch(getProductByCategory("macbook"))}> Mac </a>
                 </Link>
             </li>
             <li className="nav-item">
-                <Link style={{ textDecoration: 'none', color: 'white' }} to="/products">
-                    <a className="nav-link" aria-current="page" href=" "> iPad </a>
+                <Link style={{ textDecoration: 'none', color: 'white' }} to="/products/category">
+                    <a className="nav-link" aria-current="page" href=" " onClick={() => dispatch(getProductByCategory("ipad"))}> iPad </a>
                 </Link>
             </li>
             <li className="nav-item">
-                <Link style={{ textDecoration: 'none', color: 'white' }} to="/products">
-                    <a className="nav-link" aria-current="page" href=" "> iPhone </a>
+                <Link style={{ textDecoration: 'none', color: 'white' }} to="/products/category">
+                    <a className="nav-link" aria-current="page" href=" " onClick={() => dispatch(getProductByCategory("iphone"))}> iPhone </a>
                 </Link>
             </li>
             <li className="nav-item">
-                <Link style={{ textDecoration: 'none', color: 'white' }} to="/products">
-                    <a className="nav-link" aria-current="page" href=" "> Watch </a>
+                <Link style={{ textDecoration: 'none', color: 'white' }} to="/products/category">
+                    <a className="nav-link" aria-current="page" href=" " onClick={() => dispatch(getProductByCategory("watch"))}> Watch </a>
                 </Link>
             </li>
             <li className="nav-item">
-                <Link style={{ textDecoration: 'none', color: 'white' }} to="/products">
-                    <a className="nav-link" aria-current="page" href=" "> AirPods </a>
+                <Link style={{ textDecoration: 'none', color: 'white' }} to="/products/category">
+                    <a className="nav-link" aria-current="page" href=" " onClick={() => dispatch(getProductByCategory("airpods"))}> AirPods </a>
                 </Link>
             </li>
             <li className="nav-item">
-                <Link style={{ textDecoration: 'none', color: 'white' }} to="/products">
-                    <a className="nav-link" aria-current="page" href=" "> TV & Home </a>
+                <Link style={{ textDecoration: 'none', color: 'white' }} to="/products/category">
+                    <a className="nav-link" aria-current="page" href=" " onClick={() => dispatch(getProductByCategory("tv"))}> TV & Home </a>
                 </Link>
             </li>
 

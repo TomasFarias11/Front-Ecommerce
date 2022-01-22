@@ -1,9 +1,7 @@
 import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import Footer from "../components/Footer.jsx";
 import CardCarrusel from "../components/CardCarrusel.jsx";
-import MuestraProduct from "../components/MuestraProduct.jsx";
 import {getProducts, getProductByCategory} from '../actions/actionProducts.js'
 import { useNavigate } from 'react-router-dom';
 import estilos from '../css/Home.module.css';
@@ -93,7 +91,7 @@ export default function Home () {
                     <div className={estilos.styleCards}>
                         <img src="https://ar.oneclickstore.com/wp-content/uploads/2021/11/Apple_TV_4K_PDP_Image_Position-1_USBC_LAES_R1_v1.jpg" className="card-img-top" alt="Fissure in Sandstone" height='350px'/>
                         <div className="card-body">
-                            <h5 className="card-title">Tv and Home</h5>
+                            <h5 className="card-title">TV & Home</h5>
                             <p className="card-text">Streaming en 4K.</p>
                             <button value='tv' className="btn btn-outline-secondary rounded-pill" onClick={(e) => handleClick(e)}>Ver mas...</button>
                         </div>

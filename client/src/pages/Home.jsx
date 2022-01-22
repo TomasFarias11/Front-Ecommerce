@@ -2,6 +2,7 @@ import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Footer from "../components/Footer.jsx";
+import CardCarrusel from "../components/CardCarrusel.jsx";
 import MuestraProduct from "../components/MuestraProduct.jsx";
 import {getProducts, getProductByCategory} from '../actions/actionProducts.js'
 import { useNavigate } from 'react-router-dom';
@@ -95,6 +96,10 @@ export default function Home () {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div>
+                {/* <MuestraProduct/> */}
+                <CardCarrusel/>
             </div>
             <div>
                 {/* <MuestraProduct/> */}

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {getProducts, getProductByCategory} from '../actions/actionProducts.js'
 import { Link } from "react-router-dom";
+import Style from "../css/Footer.module.css"
 
 const Footer = () =>{
 
@@ -79,18 +80,26 @@ const Footer = () =>{
                 <h6 className="text-uppercase fw-bold mb-4">
                   Products
                 </h6>
+                
                 <p>
-                      <a href="#!" className="text-reset">iPhone</a>
-                      {/* <input type="hidden" /> */}
+                  <Link to="/products/category">
+                      <a href="#!" className="text-reset" onClick={() => dispatch(getProductByCategory("iphone"))}>iPhone</a>
+                  </Link>
                 </p>
                 <p>
-                  <a href="#!" className="text-reset">Watch</a>
+                  <Link to="/products/category">
+                      <a href="#!" className="text-reset" onClick={() => dispatch(getProductByCategory("watch"))}>Watch</a>
+                  </Link>
                 </p>
                 <p>
-                  <a href="#!" className="text-reset">Airpods</a>
+                  <Link to="/products/category">
+                      <a href="#!" className="text-reset" onClick={() => dispatch(getProductByCategory("airpods"))}>AirPods</a>
+                  </Link>
                 </p>
                 <p>
-                  <a href="#!" className="text-reset">TV and Home</a>
+                  <Link to="/products/category">
+                      <a href="#!" className="text-reset" onClick={() => dispatch(getProductByCategory("tv"))}>TV and Home</a>
+                  </Link>
                 </p>
               </div>
               {/* Grid column */}

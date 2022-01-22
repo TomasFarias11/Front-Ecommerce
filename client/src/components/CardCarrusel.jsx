@@ -41,16 +41,16 @@ const CardCarrusel = () =>{
 	},[dispatch])
     
     return(<>
-        <div className="container">
+        <div className="container" style={{padding: "15px"}}>
             <div className="row">
                 {currentProduct.map((e)=>{
                     return(<div className="col-3" key={e.id}>
                         <div className="card">
                             <Link to={`/products/details/${e.id}`}>
-                                <img src={e.image} alt="" className="card-img-top"/>
+                                <img src={e.image} alt="" className="card-img-top" height="300px"/>
                             </Link>
                             <div class="card-body">
-                                <h4>{e.name}</h4>
+                                <h5>{e.name}</h5>
                                 <p class="card-text">Price: {e.price}</p>
                                 <p class="card-text">Amount: {e.stock}</p>
                             </div>
@@ -62,14 +62,16 @@ const CardCarrusel = () =>{
             </div>
             <nav class="position-absolute start-50 translate-middle-x" aria-label="Page navigation example">
                 {currentPage ? (
-                    <ul class="pagination">
-                        <li class="page-item">
-                        <button  class="page-link" aria-label="Previous" aria-hidden="true" onClick={handelprev}>&laquo;</button>
-                        </li>
-                        <li class="page-item">
-                        <button  class="page-link" aria-hidden="true" aria-label="Next" onClick={handelnext}>&raquo;</button>
-                        </li>
-                    </ul>
+                    <div>
+                        <ul class="pagination" style={{padding: "15px"}}>
+                            <li class="page-item">
+                            <button  class="page-link" aria-label="Previous" aria-hidden="true" onClick={handelprev}>&laquo;</button>
+                            </li>
+                            <li class="page-item">
+                            <button  class="page-link" aria-hidden="true" aria-label="Next" onClick={handelnext}>&raquo;</button>
+                            </li>
+                        </ul>
+                    </div>
                 ): null}  
             </nav>
         </div>

@@ -2,6 +2,7 @@ import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getProductByCategory} from '../actions/actionProducts.js'
+import { Link } from "react-router-dom";
 
 export default function Products (category) {
 
@@ -118,7 +119,7 @@ export default function Products (category) {
                                             <div className="card-body">
                                                 <h5 className="card-title">{e.name}</h5>
                                                 <p className="card-text">{e.category}  ${e.price}</p>
-                                                <button className="btn btn-outline-secondary rounded-pill">ver mas..</button>
+                                                <button className="btn btn-outline-secondary rounded-pill"><Link to={`/products/details/${e.id}`}>ver más...</Link></button>
                                             </div>
                                         </div>
                                     </div>

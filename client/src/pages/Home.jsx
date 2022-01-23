@@ -30,7 +30,7 @@ export default function Home () {
               <CardCarrusel/>
         </div>
         <div className="row">
-            <div className="row" style={{padding:14}}>
+            <div className="row" style={{padding:50}}>
                 <div className="col col-lg-4" >
                     <div className={estilos.styleCards}>
 
@@ -66,7 +66,7 @@ export default function Home () {
                 </div>
                 </div>
             </div>
-            <div className="row" style={{padding:14}}>
+            <div className="row" style={{padding:50}}>
                 <div className="col col-lg-4">
                     <div className={estilos.styleCards}>
                         <img src="https://cdn.ipadizate.com/2020/12/airpods-max-en-colores.jpg" className="card-img-top" alt="Fissure in Sandstone" height='350px'/>

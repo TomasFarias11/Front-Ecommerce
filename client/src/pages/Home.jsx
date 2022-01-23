@@ -16,7 +16,7 @@ export default function Home () {
         dispatch(getProducts())
     ,[])
 
-    console.log('estos son los productos', products)
+    // console.log('estos son los productos', products)
 
     const handleClick = (e) => {
         e.preventDefault();

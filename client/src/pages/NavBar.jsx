@@ -14,12 +14,13 @@ function NavBar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark h6 sticky-top">
       <div className="container-fluid">
-        <Link to="/products">
+        <Link to="/products" >
             <a className="navbar-brand h1 $headings-font-weight" href=" ">
             <img
                 src="https://i.postimg.cc/qRkkh295/igroup-nav-2.png"
                 alt="iGroup-logo"
                 width="170" height="80"
+                className = 'animate__animated animate__jackInTheBox'
                 />
             </a>
         </Link>

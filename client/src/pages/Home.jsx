@@ -21,7 +21,7 @@ export default function Home () {
     const handleClick = (e) => {
         e.preventDefault();
         dispatch(getProductByCategory(e.target.value))
-        Navigate("/products/category")
+        Navigate(`/category/${e.target.value}`)
     }
 
     return (

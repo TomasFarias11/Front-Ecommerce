@@ -48,7 +48,7 @@ const CardCarrusel = () =>{
                     return(
                     <div className="col-3 animate__animated animate__slideInRight" key={e.id} >
                         <div className="card ">
-                            <Link to={`/products/details/${e.id}`}>
+                            <Link to={`/details/${e.id}`}>
                                 <img src={e.image} alt="" className="card-img-top" height="300px"/>
                             </Link>
                             <div class="card-body">
@@ -63,7 +63,7 @@ const CardCarrusel = () =>{
                 })
             : allProducts.map((e)=>{
                 <div className="card">
-                            <Link to={`/products/details/${e.id}`}>
+                            <Link to={`/details/${e.id}`}>
                                 <img src={e.image} alt="" className="card-img-top" height="300px"/>
                             </Link>
                             <div class="card-body">

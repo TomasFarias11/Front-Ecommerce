@@ -119,7 +119,7 @@ const Products = ({reducerProducts, orderAZ, orderZA, minPrice, maxPrice}) => {
                                             <div className="card-body">
                                                 <h5 className="card-title">{e.name}</h5>
                                                 <p className="card-text">{e.category}  ${e.price}</p>
-                                                <button className="btn btn-outline-secondary rounded-pill"><Link to={`/products/details/${e.id}`}>ver más...</Link></button>
+                                                <button className="btn btn-outline-secondary rounded-pill"><Link to={`/details/${e.id}`}>ver más...</Link></button>
                                             </div>
                                         </div>
                                     </div>

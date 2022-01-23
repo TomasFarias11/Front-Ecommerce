@@ -14,8 +14,9 @@ const CardCarrusel = () =>{
 	const indexOfLastProduct = currentPage * countriesPerPage;
 	const indexOfFirstProduct = indexOfLastProduct - countriesPerPage;
 	const currentProduct = allProducts.slice(indexOfFirstProduct,indexOfLastProduct);
+    console.log('estos son los de jose', currentProduct)
 
-    const handelprev=()=>{
+    const handleprev=()=>{
         var pagina=Math.ceil(allProducts.length/countriesPerPage);
 		if(currentPage===1){
             setCurrentPage(pagina)
@@ -25,7 +26,7 @@ const CardCarrusel = () =>{
         }
 	};
 
-    const handelnext=()=>{
+    const handlenext=()=>{
         var pagina=Math.ceil(allProducts.length/countriesPerPage);
 		if(currentPage===pagina){
             pagina=1;
@@ -36,16 +37,17 @@ const CardCarrusel = () =>{
         }
 	};
 
-    useEffect(()=>{
-		dispatch(getProducts())
-	},[dispatch])
+    // useEffect(()=>{
+	// 	Array.isArray(currentProduct) && currentProduct.length === 0 ? allProducts.map((e) => currentProduct.push(e)) : console.log('hola')
+	// },[dispatch])
     
     return(<>
         <div className="container" style={{padding: "15px"}}>
-            <div className="row">
-                {currentProduct.map((e)=>{
-                    return(<div className="col-3" key={e.id}>
-                        <div className="card">
+            <div className="row animate__animated animate__slideInRight">
+                {currentProduct ? currentProduct.map((e)=>{
+                    return(
+                    <div className="col-3 animate__animated animate__slideInRight" key={e.id} >
+                        <div className="card ">
                             <Link to={`/products/details/${e.id}`}>
                                 <img src={e.image} alt="" className="card-img-top" height="300px"/>
                             </Link>
@@ -58,17 +60,30 @@ const CardCarrusel = () =>{
                         </div>
                     </div>
                     )
-                })}
+                })
+            : allProducts.map((e)=>{
+                <div className="card">
+                            <Link to={`/products/details/${e.id}`}>
+                                <img src={e.image} alt="" className="card-img-top" height="300px"/>
+                            </Link>
+                            <div class="card-body">
+                                <h5>{e.name}</h5>
+                                <p class="card-text">Price: {e.price}</p>
+                                <p class="card-text">Amount: {e.stock}</p>
+                            </div>
+                            <button type="button" class="btn btn-outline-primary">Añadir al carrito</button>
+                        </div>
+            })}
             </div>
             <nav class="position-absolute start-50 translate-middle-x" aria-label="Page navigation example">
                 {currentPage ? (
                     <div>
                         <ul class="pagination" style={{padding: "15px"}}>
                             <li class="page-item">
-                            <button  class="page-link" aria-label="Previous" aria-hidden="true" onClick={handelprev}>&laquo;</button>
+                            <button  class="page-link" aria-label="Previous" aria-hidden="true" onClick={handleprev}>&laquo;</button>
                             </li>
                             <li class="page-item">
-                            <button  class="page-link" aria-hidden="true" aria-label="Next" onClick={handelnext}>&raquo;</button>
+                            <button  class="page-link" aria-hidden="true" aria-label="Next" onClick={handlenext}>&raquo;</button>
                             </li>
                         </ul>
                     </div>

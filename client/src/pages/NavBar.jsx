@@ -12,7 +12,7 @@ function NavBar() {
     
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark h6 sticky-top">
+    <nav className="navbar navbar-expand-lg navbar-dark  h6 sticky-top" style={{background: "#111111"}}>
       <div className="container-fluid">
         <Link to="/products" >
             <a className="navbar-brand h1 $headings-font-weight" href=" ">

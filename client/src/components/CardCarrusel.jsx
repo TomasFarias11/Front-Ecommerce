@@ -17,7 +17,7 @@ const CardCarrusel = () =>{
     console.log('estos son los de jose', currentProduct)
 
     const handleprev=()=>{
-        var pagina=Math.ceil(allProducts.length/countriesPerPage);
+        var pagina=Math.ceil(allProducts.length / countriesPerPage);
 		if(currentPage===1){
             setCurrentPage(pagina)
         }else{
@@ -27,7 +27,7 @@ const CardCarrusel = () =>{
 	};
 
     const handlenext=()=>{
-        var pagina=Math.ceil(allProducts.length/countriesPerPage);
+        var pagina=Math.ceil(allProducts.length / countriesPerPage);
 		if(currentPage===pagina){
             pagina=1;
             setCurrentPage(pagina)
@@ -61,19 +61,21 @@ const CardCarrusel = () =>{
                     </div>
                     )
                 })
-            : allProducts.map((e)=>{
-                <div className="card">
-                            <Link to={`/products/details/${e.id}`}>
-                                <img src={e.image} alt="" className="card-img-top" height="300px"/>
-                            </Link>
-                            <div class="card-body">
-                                <h5>{e.name}</h5>
-                                <p class="card-text">Price: {e.price}</p>
-                                <p class="card-text">Amount: {e.stock}</p>
-                            </div>
-                            <button type="button" class="btn btn-outline-primary">Añadir al carrito</button>
-                        </div>
-            })}
+            : setCurrentPage(Math.ceil(allProducts.length / countriesPerPage))
+            // allProducts.map((e)=>{
+            //     <div className="card">
+            //                 <Link to={`/products/details/${e.id}`}>
+            //                     <img src={e.image} alt="" className="card-img-top" height="300px"/>
+            //                 </Link>
+            //                 <div class="card-body">
+            //                     <h5>{e.name}</h5>
+            //                     <p class="card-text">Price: {e.price}</p>
+            //                     <p class="card-text">Amount: {e.stock}</p>
+            //                 </div>
+            //                 <button type="button" class="btn btn-outline-primary">Añadir al carrito</button>
+            //             </div>
+            // })
+            }
             </div>
             <nav class="position-absolute start-50 translate-middle-x" aria-label="Page navigation example">
                 {currentPage ? (

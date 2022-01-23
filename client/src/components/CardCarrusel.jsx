@@ -32,6 +32,7 @@ const CardCarrusel = () =>{
             pagina=1;
             setCurrentPage(pagina)
         }else{
+
             pagina=currentPage+1;
             setCurrentPage(pagina)
         }

@@ -48,7 +48,7 @@ const CardCarrusel = () =>{
                     return(
                     <div className="col-3 animate__animated animate__slideInRight" key={e.id} >
                         <div className="card ">
-                            <Link to={`/products/details/${e.id}`}>
+                            <Link to={`/details/${e.id}`}>
                                 <img src={e.image} alt="" className="card-img-top" height="300px"/>
                             </Link>
                             <div class="card-body">
@@ -61,21 +61,19 @@ const CardCarrusel = () =>{
                     </div>
                     )
                 })
-            : setCurrentPage(Math.ceil(allProducts.length / countriesPerPage))
-            // allProducts.map((e)=>{
-            //     <div className="card">
-            //                 <Link to={`/products/details/${e.id}`}>
-            //                     <img src={e.image} alt="" className="card-img-top" height="300px"/>
-            //                 </Link>
-            //                 <div class="card-body">
-            //                     <h5>{e.name}</h5>
-            //                     <p class="card-text">Price: {e.price}</p>
-            //                     <p class="card-text">Amount: {e.stock}</p>
-            //                 </div>
-            //                 <button type="button" class="btn btn-outline-primary">Añadir al carrito</button>
-            //             </div>
-            // })
-            }
+            : allProducts.map((e)=>{
+                <div className="card">
+                            <Link to={`/details/${e.id}`}>
+                                <img src={e.image} alt="" className="card-img-top" height="300px"/>
+                            </Link>
+                            <div class="card-body">
+                                <h5>{e.name}</h5>
+                                <p class="card-text">Price: {e.price}</p>
+                                <p class="card-text">Amount: {e.stock}</p>
+                            </div>
+                            <button type="button" class="btn btn-outline-primary">Añadir al carrito</button>
+                        </div>
+            })}
             </div>
             <nav class="position-absolute start-50 translate-middle-x" aria-label="Page navigation example">
                 {currentPage ? (

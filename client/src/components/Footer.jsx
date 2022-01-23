@@ -9,10 +9,12 @@ const Footer = () =>{
 
   const dispatch = useDispatch();
   const Navigate = useNavigate();
+
+  
   const handleClick = (e) => {
     e.preventDefault();
     dispatch(getProductByCategory(e.target.value))
-    Navigate("/products/category")
+    Navigate(`/category/${e.target.value}`)
 }
 
 
@@ -81,23 +83,23 @@ const Footer = () =>{
                   Products
                 </h6>
                 
-                <p>
-                  <Link to="/products/category">
-                      <a href="#!" className="text-reset" onClick={() => dispatch(getProductByCategory("iphone"))}>iPhone</a>
+                <p >
+                  <Link to="/category/iphone" >
+                      <p href="#!" className="text-reset" onClick={() => dispatch(getProductByCategory("iphone"))}>iPhone</p>
                   </Link>
                 </p>
                 <p>
-                  <Link to="/products/category">
+                  <Link to="/category/watch">
                       <a href="#!" className="text-reset" onClick={() => dispatch(getProductByCategory("watch"))}>Watch</a>
                   </Link>
                 </p>
                 <p>
-                  <Link to="/products/category">
+                  <Link to="/category/airpods">
                       <a href="#!" className="text-reset" onClick={() => dispatch(getProductByCategory("airpods"))}>AirPods</a>
                   </Link>
                 </p>
                 <p>
-                  <Link to="/products/category">
+                  <Link to="/category/tv">
                       <a href="#!" className="text-reset" onClick={() => dispatch(getProductByCategory("tv"))}>TV & Home</a>
                   </Link>
                 </p>

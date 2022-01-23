@@ -25,15 +25,15 @@ export default function Home () {
     }
 
     return (
-        <div>
-        <div>
+        <div >
+        <div className="container" >
               <CardCarrusel/>
         </div>
-        <div className="row">
-            <div className="row" style={{padding:50}}>
+        <div className="container" style={{display: "flex", flexDirection: "column"  }} >
+        {/* <div className="row"> */}
+            <div className="row" style={{padding:10}}>
                 <div className="col col-lg-4" >
                     <div className={estilos.styleCards}>
-
                     <img src="https://i.postimg.cc/3rf39xcy/IMG-6998.jpg" className="card-img-top" alt="Fissure in Sandstone" height='350px'/>
                         <div className="card-body">
                             <h5 className="card-title">iPhone</h5>
@@ -65,8 +65,9 @@ export default function Home () {
                     </div>
                 </div>
                 </div>
-            </div>
-            <div className="row" style={{padding:50}}>
+            {/* </div> */}
+            
+            <div className="row" style={{padding:10}}>
                 <div className="col col-lg-4">
                     <div className={estilos.styleCards}>
                         <img src="https://cdn.ipadizate.com/2020/12/airpods-max-en-colores.jpg" className="card-img-top" alt="Fissure in Sandstone" height='350px'/>
@@ -97,6 +98,7 @@ export default function Home () {
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     )

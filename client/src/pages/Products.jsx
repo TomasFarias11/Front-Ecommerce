@@ -1,20 +1,38 @@
 import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {getProductByCategory} from '../actions/actionProducts.js'
+import { orderAZ, orderZA, minPrice, maxPrice } from '../actions/actionProducts.js'
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { connect } from 'react-redux'
 
-export default function Products (category) {
+const Products = ({reducerProducts, orderAZ, orderZA, minPrice, maxPrice}) => {
 
     const dispatch = useDispatch();
-    const products = useSelector((state) => state.firstRed.products)
+    const productsx = reducerProducts
+
+    /* const [a,setA] = useState([])
+    useEffect(()=>{
+        setA(...a,products)
+    },[products])
 
 
+    const c =()=>{
+        const d = a.sort((prev, post) => {
+            if (prev.name < post.name) return -1;
+            else if (prev.name > post.name) return 1;
+            else return 0
+        });
+        setA(...a,[])
+        setA(...a,d)
+    } */
     // useEffect(() => 
     //     dispatch(getProductByCategory(category))
     // ,[])
 
-    console.log('estos son los productos', products)
+    console.log('estos son los productos', productsx)
+    //console.log('esto es a',a)
+    console.log('esto es b',reducerProducts)
 
     return (
         
@@ -53,37 +71,19 @@ export default function Products (category) {
                         </div> */}
 
                         <div className="dropdown">
-                            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown button
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a className="dropdown-item" href="#">Action</a></li>
-                                <li><a className="dropdown-item" href="#">Another action</a></li>
-                                <li><a className="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
+                        <button type="button" class="btn btn-outline-secondary" onClick={()=>orderAZ()}>Orden  A...Z</button>
                         </div>
                         <br/>
                         <div className="dropdown">
-                            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown button
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a className="dropdown-item" href="#">Action</a></li>
-                                <li><a className="dropdown-item" href="#">Another action</a></li>
-                                <li><a className="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
+                        <button type="button" class="btn btn-outline-secondary" onClick={()=>orderZA()}>Orden  Z...A</button>
                         </div>
-
                         <br/>
                         <div className="dropdown">
-                            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown button
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a className="dropdown-item" href="#">Action</a></li>
-                                <li><a className="dropdown-item" href="#">Another action</a></li>
-                                <li><a className="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
+                        <button type="button" class="btn btn-outline-secondary" onClick={()=>minPrice()}>Precio min...max</button>
+                        </div>
+                        <br/>
+                        <div className="dropdown">
+                        <button type="button" class="btn btn-outline-secondary" onClick={()=>maxPrice()}>Precio max...min</button>
                         </div>
 
                     </div>
@@ -112,7 +112,7 @@ export default function Products (category) {
                         {/* <h1>{products? products[0].name : "iPhone"}</h1> */}
                         <div className="row row-cols-0 row-cols-md-3 g-5 mask" Style="background-color: #FAFAFA"    >
                             {
-                                products.map(e =>
+                                reducerProducts.map(e =>
                                     <div className="col" key={e.id}>
                                         <div className="card" >
                                             <img src={e.image !== 'not found' ? e.image : "https://i.postimg.cc/SK600jXG/OIP.jpg"} className="card-img-top img-fluid" alt={e.image} style={{padding:"30 0", height: "300px"}} />
@@ -135,3 +135,14 @@ export default function Products (category) {
         </div>
     )
 }
+
+const mapStateToProps = (state) => {
+    return {
+        reducerProducts: state.firstRed.products,
+    };
+};
+
+const wrapper = connect(mapStateToProps,{ orderAZ, orderZA, minPrice, maxPrice });
+const component = wrapper(Products);
+
+export default component;

@@ -5,6 +5,10 @@ export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME"
 export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID"
 export const GET_IPHONE = "GET_IPHONE"
 export const GET_PRODUCT_BY_CATEGORY = "GET_PRODUCT_BY_CATEGORY"
+export const ORDERAZ = "ORDER_AZ";
+export const ORDERZA = "ORDER_ZA";
+export const MIN_PRICE = "MIN_PRICE";
+export const MAX_PRICE = "MAX_PRICE";
 
 export function getProducts () {
     return async function (dispatch) {
@@ -51,3 +55,13 @@ export function getProductByCategory (category) {
         })
     }
 }
+
+/* Order (A-Z) */
+export const orderAZ = () => { return { type: ORDERAZ } }
+
+/* Order (Z-A) */
+export const orderZA = () => { return { type: ORDERZA } }
+
+export const minPrice = () => { return { type: MIN_PRICE } }
+
+export const maxPrice = () => { return { type: MAX_PRICE } }

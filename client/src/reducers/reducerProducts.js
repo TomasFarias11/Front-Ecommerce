@@ -99,10 +99,15 @@ export default function reducerProducts(state=initialState2, action){
                     ...state,
                     reviews: action.payload 
                 }
-            // case POST_REVIEW:
-            //     return {
-            //         ...state,
-            //     }
+            case POST_REVIEW:
+                return {
+                    ...state,
+                }
+            case PUT_REVIEW:
+                return {
+                    ...state,
+                    
+                }
 
 		default:
 			return state;

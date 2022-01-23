@@ -3,11 +3,13 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getProductById} from "../actions/actionProducts.js";
 import {useEffect} from "react";
 import { useParams } from "react-router";
+import Reviews from "../components/Reviews.jsx"
 
 export default function Details () {
 
     const dispatch = useDispatch()
     const productId = useSelector((state) => state.firstRed.productId)
+    
 
     const {id}=useParams();
 
@@ -57,7 +59,11 @@ export default function Details () {
         <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src={productId.image} role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"/>
       </div>
     </div>
+    <hr class="featurette-divider"/>
     </div>
+
+{/* aca estan las reviews*/}
+    <Reviews id={id} />
     </>  
     )
 }

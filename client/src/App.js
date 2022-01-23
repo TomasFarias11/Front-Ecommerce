@@ -15,7 +15,7 @@ function App() {
       <Route exact path="/" element={<Landing/>}/>
       <Route exact path="*" element={<NotFound/>}/>
       <Route exact path="/products" element={<Home/>}/>
-      <Route exact path="/products/details/:id" render = {({match}) => <Details props={match.params.id} />}/>
+      <Route exact path="/products/details/:id" element={<Details/>}/>
       <Route exact path="/products/category" element={<Products/>}/>
       
       </Routes>

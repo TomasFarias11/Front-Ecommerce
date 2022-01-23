@@ -10,14 +10,14 @@ const CardCarrusel = () =>{
     const dispatch = useDispatch()
 
     const[currentPage, setCurrentPage]=useState(1);
-	const[countriesPerPage, setCountriesPerPage]=useState(4);
-	const indexOfLastProduct = currentPage * countriesPerPage;
-	const indexOfFirstProduct = indexOfLastProduct - countriesPerPage;
+	const[productsPerPage, setProductsPerPage]=useState(4);
+	const indexOfLastProduct = currentPage * productsPerPage;
+	const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
 	const currentProduct = allProducts.slice(indexOfFirstProduct,indexOfLastProduct);
     console.log('estos son los de jose', currentProduct)
 
     const handleprev=()=>{
-        var pagina=Math.ceil(allProducts.length / countriesPerPage);
+        var pagina=Math.ceil(allProducts.length / productsPerPage);
 		if(currentPage===1){
             setCurrentPage(pagina)
         }else{
@@ -27,12 +27,13 @@ const CardCarrusel = () =>{
 	};
 
     const handlenext=()=>{
-        var pagina=Math.ceil(allProducts.length / countriesPerPage);
+        var pagina=Math.ceil(allProducts.length / productsPerPage);
 		if(currentPage===pagina){
             pagina=1;
             setCurrentPage(pagina)
         }else{
-            var pagina=currentPage+1;
+
+            pagina=currentPage+1;
             setCurrentPage(pagina)
         }
 	};

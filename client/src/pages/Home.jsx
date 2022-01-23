@@ -5,6 +5,7 @@ import CardCarrusel from "../components/CardCarrusel.jsx";
 import {getProducts, getProductByCategory} from '../actions/actionProducts.js'
 import { useNavigate } from 'react-router-dom';
 import estilos from '../css/Home.module.css';
+import CarrouselMain from "../components/CarrouselMain.jsx"
 
 export default function Home () {
 
@@ -26,9 +27,12 @@ export default function Home () {
 
     return (
         <div >
-        <div className="container" >
-              <CardCarrusel/>
-        </div>
+            <div>
+              <CarrouselMain/>
+            </div>
+            <div className="container" >
+                <CardCarrusel/>
+            </div>
         <div className="container" style={{display: "flex", flexDirection: "column"  }} >
         {/* <div className="row"> */}
             <div className="row" style={{padding:10}}>

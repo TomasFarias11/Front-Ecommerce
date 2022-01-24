@@ -1,5 +1,5 @@
 import {Route, Routes} from "react-router-dom";
-import Landing from "./pages/Landing";
+import ProductsBySearch from "./pages/ProductsBySearch";
 import NotFound from "./pages/NotFound"
 import Home from "./pages/Home";
 import Details from "./pages/Details";
@@ -17,7 +17,7 @@ function App() {
       <Route exact path="/" element={<Home/>}/>
       <Route exact path="/details/:id" element={<Details/>}/>
       <Route exact path="/category/:category" element={<Products/>}/>
-      
+      <Route exact path="/search" element={<ProductsBySearch/>}/>
       </Routes>
       <Footer/>
     </div>

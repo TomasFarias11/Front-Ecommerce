@@ -3,8 +3,10 @@ import swal from 'sweetalert';
 import { useEffect, useState } from "react";
 import {putReview , postReview , getReviews} from '../actions/actionProducts'
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 export default function Reviews ({id}) {
+  const Navigate = useNavigate();
 
     const reviews = useSelector((state) => state.firstRed.reviews)
     const product = useSelector((state) => state.firstRed.productId)
@@ -20,7 +22,7 @@ export default function Reviews ({id}) {
     const handleSubmit = (e) => {
         if (reviews) {
           if (reviews && reviews.filter(e => e.review.userId === 1).length > 0) {
-            // e.preventDefault()
+            e.preventDefault()
             // console.log(review.filter(e => e.review.userId === 1));
             // console.log('1');
             dispatch(putReview(product && product.id, 1, input));
@@ -31,12 +33,13 @@ export default function Reviews ({id}) {
           } else {
             // console.log('2');
             // console.log(review && review.map(e => e.review.userId === 1));
-            // e.preventDefault()
+            e.preventDefault()
             dispatch(postReview(product && product.id,1, input))
             setInput({
               calification: '',
               commentary: '',
             })
+
           }
         } else {
           e.preventDefault()

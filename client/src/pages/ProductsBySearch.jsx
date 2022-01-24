@@ -73,7 +73,7 @@ const ProductsBySearch = ({reducerProducts, orderAZ, orderZA, minPrice, maxPrice
 
 const mapStateToProps = (state) => {
     return {
-        reducerProducts: state.firstRed.products,
+        reducerProducts: state.firstRed.productsSearch,
     };
 };
 

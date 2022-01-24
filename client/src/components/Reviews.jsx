@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 
 export default function Reviews ({id}) {
-  const Navigate = useNavigate();
 
     const reviews = useSelector((state) => state.firstRed.reviews)
     const product = useSelector((state) => state.firstRed.productId)
@@ -39,7 +38,6 @@ export default function Reviews ({id}) {
               calification: '',
               commentary: '',
             })
-
           }
         } else {
           e.preventDefault()

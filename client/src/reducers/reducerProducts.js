@@ -19,7 +19,8 @@ const initialState2={
     allProducts: [],
     productId: [],
     productsByCategory:[],
-    reviews: []
+    reviews: [],
+    productsSearch:[]
 }
 
 export default function reducerProducts(state=initialState2, action){
@@ -38,7 +39,7 @@ export default function reducerProducts(state=initialState2, action){
         case GET_PRODUCT_BY_NAME:
             return {
                 ...state,
-                products: action.payload
+                productsSearch: action.payload
             }
 
         case GET_PRODUCT_BY_ID:

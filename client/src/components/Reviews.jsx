@@ -3,6 +3,7 @@ import swal from 'sweetalert';
 import { useEffect, useState } from "react";
 import {putReview , postReview , getReviews} from '../actions/actionProducts'
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 
 export default function Reviews ({id}) {
 
@@ -46,6 +47,7 @@ export default function Reviews ({id}) {
             timer: 1500,
           })
         }
+        Navigate(`/details/${product.id}`)
       }
       
       useEffect(() => {

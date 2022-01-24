@@ -54,60 +54,68 @@ export default function Reviews ({id}) {
       
 
     return(<>
-    
-    <div class="container">
-  <div class="be-comment-block">
-    <div class="be-comment">
-      <div class="be-comment-content">
-      {reviews.length > 0 ?
+
+
+    <div class="container">{/* la clase container ocupa el 80% de la pantalla y siempre esta centrada*/}
+      <div class="row">{/* row es para colocar todo el contenido en filas*/}
+        <div class="col-6 mx-auto">{/*col-6 indica que es una columna y su tamaño es de 6. luego el margin auto para que se centre*/}
+          <div>
+            <form class="row" style={{justifyContent:"space-between"}} onSubmit={(e) => handleSubmit(e)}>
+              <textarea class="form-control" style={{marginBottom:20}} type='text' placeholder="comentario..." rows="3"  value={input.commentary} onChange={e => setInput({ ...input, commentary: e.target.value })}></textarea>
+              <div style={{marginBottom:20}} class="btn-group col-3" >{/*agrupa los botones*/}
+                <label style={{marginRight:20}}>Calificacion</label>
+                <input class="form-input" type='number' max={5} min={0} placeholder="1" value={input.calification} onChange={e => setInput({ ...input, calification: e.target.value })} />
+              </div>
+              <div className="col-3 text-end" style={{marginLeft:50}} >
+              <button class="btn btn-primary">Comentar</button>
+              </div>
+            </form>
+          </div>
+          <hr class="featurette-divider"/>
+          <div>
+            {reviews.length > 0 ?
               reviews.map((re) => (
                 <div>
-                      <div class="be-img-comment">	
-        <a href="blog-detail-2.html">
-          {/* <img src={re.user.image ? re.user.image : "https://media.istockphoto.com/vectors/man-avatar-profile-male-face-icon-vector-illustration-vector-id1142192538"} alt="" class="be-ava-comment"/> */}
-        </a>
-      </div>
-  
-                <div className="review-colomn" >
-                  <div  >
-                    <h5>Calificacion: {re.calification ? re.calification : 0}</h5>
+                  <div class="be-img-comment">	
+                    <a href="blog-detail-2.html">
+                      {/* <img src={re.user.image ? re.user.image : "https://media.istockphoto.com/vectors/man-avatar-profile-male-face-icon-vector-illustration-vector-id1142192538"} alt="" class="be-ava-comment"/> */}
+                    </a>
                   </div>
-                <span class="be-comment-name">
-                  <h4 href="blog-detail-2.html">Nombre de usuario: {re.username ? re.username : "username123"}</h4>
-                </span>
-                <p class="be-comment-text">Comentario: {re.commentary}</p>
-                </div> 
-              </div>
+                  <div className="review-colomn" >
+                  <span class="be-comment-name">
+                      <h4 href="blog-detail-2.html">Nombre de usuario: {re.username ? re.username : "username123"}</h4>
+                    </span>
+                    <div>
+                      <h5>Calificacion: {re.calification ? re.calification : 0}</h5>
+                    </div>
+                    
+                    <p class="be-comment-text"><b>Comentario:</b> {re.commentary}</p>
+                  </div> 
+                </div>
               )) 
-            : <h2>No hay comentarios</h2>
-            }
-  
+            :  null 
+            }{/*<h2>No hay comentarios</h2>*/}
+            </div>
+            
+          
+        </div>
       </div>
     </div>
-    <form class="form-block" onSubmit={(e) => handleSubmit(e)}>
-      <div class="row">
-        <div class="col-xs-12">									
-          <div class="form-group">
-          <input class="form-input" type='number' max={5} min={0} placeholder="valoration" value={input.calification} onChange={e => setInput({ ...input, calification: e.target.value })}></input>
-            <textarea class="form-input" type='text' placeholder="comentario..." value={input.commentary} onChange={e => setInput({ ...input, commentary: e.target.value })}></textarea>
-          </div>
-        </div>
-        <button class="btn btn-primary pull-right">Submit</button>
-      </div>
-    </form>
-  </div>
-  </div>
-        {/* <div className="container">
-            <div class="row justify-content-center">
-                <div class="col-6">
-                    <div class="mb-3  d-flex justify-content-end flex-wrap" >
-                        <h2>Comentarios</h2>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style={{marginBottom:20}}></textarea>
-                        <button class="btn btn-primary">Agregar Comentario</button>
-                    </div>
-                </div>
-            </div>
-        </div>fin del div className="container" */}
+
     </>
     )
 }
+
+{/*{
+    "id": 1,
+    "username": "tomass11",
+    "email": "to@gmail.com",
+    "password": "$2a$10$IwXcOZQGn5ci34p4IdYE7eru4oDPdFr58WogPs74gv7Y1g8qvvjjO",
+    "name": "Tomas",
+    "lastName": "Farias",
+    "address": "siempreviva 123",
+    "image": "",
+    "admin": true,
+    "updatedAt": "2022-01-24T15:46:43.283Z",
+    "createdAt": "2022-01-24T15:46:43.283Z"
+} */}

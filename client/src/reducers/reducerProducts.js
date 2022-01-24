@@ -9,8 +9,7 @@ import {
     ORDERAZ,
     ORDERZA,
     MIN_PRICE,
-    MAX_PRICE,
-    minPrice
+    MAX_PRICE
 } from '../actions/actionProducts'
 
 
@@ -36,11 +35,11 @@ export default function reducerProducts(state=initialState2, action){
                 allProducts: state.allProducts.concat(action.payload)
             }
 
-        case GET_PRODUCT_BY_NAME:
+        /* case GET_PRODUCT_BY_NAME:
             return {
                 ...state,
                 products: action.payload
-            }
+            } */
 
         case GET_PRODUCT_BY_ID:
             return {

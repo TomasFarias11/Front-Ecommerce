@@ -9,9 +9,9 @@ function SearchBar() {
   const dispatch = useDispatch()
   const [name, setName] = useState('')
 
-  // useEffect(() => {
-  //   dispatch(getProductByName(name))
-  // }, [dispatch, name],)
+  useEffect(() => {
+    dispatch(getProductByName(name))
+  }, [dispatch, name],)
 
   const handleChange = (e) => {
     setName(e.target.value);
@@ -22,7 +22,6 @@ function SearchBar() {
     if (name) {
         dispatch(getProductByName(name));
         Navigate(`/search`)
-        setName('')
     }
   };
 

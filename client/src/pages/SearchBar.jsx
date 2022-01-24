@@ -8,10 +8,12 @@ function SearchBar() {
   const Navigate = useNavigate()
   const dispatch = useDispatch()
   const [name, setName] = useState('')
-  useEffect(() => {
-    dispatch(getProductByName(name))
-    Navigate(`/search`)
-  }, [dispatch, name])
+
+  // useEffect(() => {
+  //   dispatch(getProductByName(name))
+  //   Navigate(`/search`)
+  // }, [name])
+
   const handleChange = (e) => {
     setName(e.target.value);
   };
@@ -19,6 +21,8 @@ function SearchBar() {
     e.preventDefault();
     if (name) {
         dispatch(getProductByName(name));
+        Navigate(`/search`)
+        setName('')
     }
   };
 

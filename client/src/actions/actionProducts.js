@@ -1,4 +1,5 @@
 import axios from "axios";
+import swal from 'sweetalert';
 
 export const GET_PRODUCTS = "GET_PRODUCTS"
 export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME"
@@ -33,21 +34,39 @@ export function getProducts () {
 
 export function getProductByName (name) {
     return async function (dispatch) {
-        let product = await axios.get(`http://localhost:3001/products?name=${name}`)
-        return dispatch({
-            type: "GET_PRODUCT_BY_NAME",
-            payload: product.data
-        })
+        try {
+            let product = await axios.get(`http://localhost:3001/products?name=${name}`)
+            return dispatch({
+                type: "GET_PRODUCT_BY_NAME",
+                payload: product.data
+            })
+        } catch (err) {
+            swal("No se encontraron productos con el nombre ingresado", {
+                buttons: false,
+                icon: 'error',
+                timer: 1500,
+              })
+        }
+
     }
 }
 
 export function getProductById (id) {
     return async function (dispatch) {
-        let product = await axios.get(`http://localhost:3001/products/detail/${id}`)
-        return dispatch({
-            type: "GET_PRODUCT_BY_ID",
-            payload: product.data
-        })
+        try {
+
+            let product = await axios.get(`http://localhost:3001/products/detail/${id}`)
+            return dispatch({
+                type: "GET_PRODUCT_BY_ID",
+                payload: product.data
+            })
+        } catch (err) {
+                swal("No se encontraron los detalles del producto", {
+                    buttons: false,
+                    icon: 'error',
+                    timer: 1500,
+                  })
+        }
     }
 }
 

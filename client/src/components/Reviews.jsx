@@ -17,6 +17,7 @@ export default function Reviews ({id}) {
         calification: '',
         commentary: ''
     })
+    const Navigate = useNavigate()
 
     const handleSubmit = (e) => {
         if (reviews) {

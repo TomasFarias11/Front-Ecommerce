@@ -39,7 +39,7 @@ export default function reducerProducts(state=initialState2, action){
         case GET_PRODUCT_BY_NAME:
             return {
                 ...state,
-                productsSearch: action.payload
+                products: action.payload
             }
 
         case GET_PRODUCT_BY_ID:

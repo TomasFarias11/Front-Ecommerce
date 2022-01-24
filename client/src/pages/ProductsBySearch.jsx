@@ -6,16 +6,20 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { connect } from 'react-redux'
 
-const Products = ({reducerProducts, orderAZ, orderZA, minPrice, maxPrice}) => {
+const ProductsBySearch = ({reducerProducts, orderAZ, orderZA, minPrice, maxPrice}) => {
 
     const dispatch = useDispatch();
     const productsx = reducerProducts
+
+    console.log('estos son los productos', productsx)
+    console.log('esto es b',reducerProducts)
 
     return (
         
         <div className="row">
             <div className="col-lg-3">
-                <div className="container-sm" style={{ padding: 20 } }>   
+
+                <div className="container-sm " style={{ padding: 20 } }>   
                     <div >
                         <div className="dropdown">
                         <button type="button" class="btn btn-outline-secondary" onClick={()=>orderAZ()}>Orden  A...Z</button>
@@ -35,10 +39,13 @@ const Products = ({reducerProducts, orderAZ, orderZA, minPrice, maxPrice}) => {
                     </div>
                 </div>
             </div>
+
+
+
                 <div className=" card col-lg-8">
                     <div className="container-sm bg-image hover-overlay ripple" data-mdb-ripple-color="light" style={{ padding: 20 } } >
                         {/* <h1>{products? products[0].name : "iPhone"}</h1> */}
-                        <div className="row row-cols-0 row-cols-md-3 g-5 mask animate__animated animate__bounceIn" Style="background-color: #FAFAFA"    >
+                        <div className="row row-cols-0 row-cols-md-3 g-5 mask" Style="background-color: #FAFAFA"    >
                             {
                                 reducerProducts.map(e =>
                                     <div className="col" key={e.id}>
@@ -71,6 +78,6 @@ const mapStateToProps = (state) => {
 };
 
 const wrapper = connect(mapStateToProps,{ orderAZ, orderZA, minPrice, maxPrice });
-const component = wrapper(Products);
+const component = wrapper(ProductsBySearch);
 
 export default component;

@@ -19,7 +19,8 @@ const initialState2={
     allProducts: [],
     productId: [],
     productsByCategory:[],
-    reviews: []
+    reviews: [],
+    productsSearch:[]
 }
 
 export default function reducerProducts(state=initialState2, action){

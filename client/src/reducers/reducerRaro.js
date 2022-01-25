@@ -1,10 +1,13 @@
-
-const initialState={
-	countries:[],
+import store from '../store'
+// const initialState={
+// 	countries:[],
 	
-}
+// }
 
-export default function reducer(state=initialState, action){
+// console.log(store.getState())
+
+export default function reducer(state=[], action){
+	console.log(state)
 	switch(action.type){
 		default:
 			return state;

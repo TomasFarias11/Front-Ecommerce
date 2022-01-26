@@ -6,6 +6,7 @@ export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME"
 export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID"
 export const GET_IPHONE = "GET_IPHONE"
 export const GET_PRODUCT_BY_CATEGORY = "GET_PRODUCT_BY_CATEGORY" 
+export const SET_PRODUCTS = "SET_PRODUCTS"
 
 //  ------  ACA ESTA LOS CASE DE LAS REVIEW
 export const GET_REVIEWS = "GET_REVIEWS"
@@ -128,3 +129,13 @@ export function getReviews (id) {
     }
 }
 
+export function setProducts (payload) {
+    return async function (dispatch) {
+        try {
+            return dispatch({type: SET_PRODUCTS, payload})
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+}

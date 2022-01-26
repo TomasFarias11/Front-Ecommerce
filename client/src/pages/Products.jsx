@@ -1,16 +1,27 @@
 import React from "react";
-// import {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import { orderAZ, orderZA, minPrice, maxPrice } from '../actions/actionProducts.js'
+import { orderAZ, orderZA, minPrice, maxPrice, setProducts } from '../actions/actionProducts.js'
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import { connect } from 'react-redux'
+import { useEffect } from "react";
 
-const Products = ({reducerProducts, orderAZ, orderZA, minPrice, maxPrice}) => {
+const Products = ({reducerProducts, orderAZ, orderZA, minPrice, maxPrice, setProducts}) => {
+    
+    useEffect(()=>{
+        reducerProducts.length < JSON.parse(window.localStorage.getItem('productos')).length && reducerProducts.length ===0 ? 
+        setProducts(JSON.parse(window.localStorage.getItem('productos'))) :
+        JSON.parse(window.localStorage.getItem('productos'))
+    },[reducerProducts])
 
-    const dispatch = useDispatch();
-    const productsx = reducerProducts
-
+    useEffect(()=>{
+        const data = window.localStorage.getItem('productos')
+        if (data){
+            window.localStorage.setItem('productos', data)
+        }
+    },[])
+    useEffect(()=> {
+        window.localStorage.setItem('productos',JSON.stringify(reducerProducts))
+    })
+    
     return (
         
         <div className="row">
@@ -58,19 +69,17 @@ const Products = ({reducerProducts, orderAZ, orderZA, minPrice, maxPrice}) => {
                         </div>
                     </div>
                 </div>
-
-
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        reducerProducts: state.firstRed.products,
+        reducerProducts: state.firstRed.productsByCategory,
     };
 };
 
-const wrapper = connect(mapStateToProps,{ orderAZ, orderZA, minPrice, maxPrice });
+const wrapper = connect(mapStateToProps,{ orderAZ, orderZA, minPrice, maxPrice, setProducts });
 const component = wrapper(Products);
 
 export default component;

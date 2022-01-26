@@ -8,6 +8,7 @@ import NavBar from "./pages/NavBar";
 import Footer from "./components/Footer";
 
 function App() {
+  JSON.parse(window.localStorage.getItem('productos'))?.length > 0 ? window.localStorage.getItem('productos') : window.localStorage.setItem('productos',JSON.stringify([]))
   return (
     <div className="App">
       <NavBar />

@@ -6,6 +6,10 @@ import {Link} from "react-router-dom";
 
 const CardCarrusel = () =>{
 
+    useEffect(() => 
+        dispatch(getProducts())        
+    ,[])
+
     const allProducts = useSelector((state) => state.firstRed.products) // me traigo todo los productos
     const dispatch = useDispatch()
 

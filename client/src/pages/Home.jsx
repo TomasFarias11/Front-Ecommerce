@@ -11,17 +11,22 @@ export default function Home () {
 
     const dispatch = useDispatch();
     const Navigate = useNavigate();
-    const products = useSelector((state) => state.firstRed.products);
+    const products = useSelector((state) => state.firstRed.productsByCategory);
 
-    useEffect(() => 
-        dispatch(getProducts())
-    ,[])
+    /* useEffect(() => 
+        dispatch(getProducts())        
+    ,[]) */
+
+    // useEffect(()=> {
+    //     window.localStorage.setItem('productos',JSON.stringify(products))
+    // })
 
     // console.log('estos son los productos', products)
 
     const handleClick = (e) => {
         e.preventDefault();
         dispatch(getProductByCategory(e.target.value))
+        /* window.localStorage.setItem('productos', JSON.stringify(products)) */
         Navigate(`/category/${e.target.value}`)
     }
 

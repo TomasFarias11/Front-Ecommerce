@@ -9,9 +9,15 @@ function SearchBar() {
   const dispatch = useDispatch()
   const [name, setName] = useState('')
 
+  /* useEffect(()=> {
+    localStorage.setItem('products', name)
+        let a = localStorage.getItem('products')
+        console.log('aaaaaaa', a)
+  }) */
+
   useEffect(() => {
     dispatch(getProductByName(name))
-  }, [dispatch, name],)
+  }, [dispatch, name],console.log('NAME', name))
 
   const handleChange = (e) => {
     setName(e.target.value);

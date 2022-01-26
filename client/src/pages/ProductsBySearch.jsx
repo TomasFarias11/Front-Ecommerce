@@ -1,18 +1,15 @@
 import React from "react";
 // import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { orderAZ, orderZA, minPrice, maxPrice } from '../actions/actionProducts.js'
+import { orderAZ, orderZA, minPrice, maxPrice,getProductByName } from '../actions/actionProducts.js'
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { connect } from 'react-redux'
+import { useEffect } from "react";
 
-const ProductsBySearch = ({reducerProducts, orderAZ, orderZA, minPrice, maxPrice}) => {
+const ProductsBySearch = ({reducerProducts, orderAZ, orderZA, minPrice, maxPrice, getProductByName}) => {
+    const [ pro, setPro] = useState([])
 
-    const dispatch = useDispatch();
-    const productsx = reducerProducts
-
-    console.log('estos son los productos', productsx)
-    console.log('esto es b',reducerProducts)
 
     return (
         
@@ -47,7 +44,7 @@ const ProductsBySearch = ({reducerProducts, orderAZ, orderZA, minPrice, maxPrice
                         {/* <h1>{products? products[0].name : "iPhone"}</h1> */}
                         <div className="row row-cols-0 row-cols-md-3 g-5 mask" Style="background-color: #FAFAFA"    >
                             {
-                                reducerProducts.map(e =>
+                                pro.map(e =>
                                     <div className="col" key={e.id}>
                                         <div className="card animate__animated animate__bounceIn" >
                                             <img src={e.image !== 'not found' ? e.image : "https://i.postimg.cc/SK600jXG/OIP.jpg"} className="card-img-top img-fluid" alt={e.image} style={{padding:"30 0", height: "300px"}} />

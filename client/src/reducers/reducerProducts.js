@@ -9,7 +9,8 @@ import {
     ORDERAZ,
     ORDERZA,
     MIN_PRICE,
-    MAX_PRICE
+    MAX_PRICE,
+    SET_PRODUCTS
 } from '../actions/actionProducts'
 
 
@@ -19,11 +20,12 @@ const initialState2={
     productId: [],
     productsByCategory:[],
     reviews: [],
-    productsSearch:[]
+    productsByCategory:[]
 }
 
 export default function reducerProducts(state=initialState2, action){
     let productsAux = state.products.map(p => p);
+    let productsAux2 = state.productsByCategory.map(p => p);
 	switch(action.type){
         case GET_PRODUCTS:
             state.products.length = 0;
@@ -50,47 +52,47 @@ export default function reducerProducts(state=initialState2, action){
         case GET_PRODUCT_BY_CATEGORY:
             return {
                 ...state,
-                products: action.payload
+                productsByCategory: action.payload
             }
             case ORDERAZ: /* A-Z */
-            const orderAZ = productsAux.sort((prev, post) => {
+            const orderAZ = productsAux2.sort((prev, post) => {
                 if (prev.name < post.name) return -1;
                 else if (prev.name > post.name) return 1;
                 else return 0
             });
             return {
                 ...state,
-                products: orderAZ,
+                productsByCategory: orderAZ,
             }
             case ORDERZA: /* A-Z */
-            const orderZA = productsAux.sort((prev, post) => {
+            const orderZA = productsAux2.sort((prev, post) => {
                 if (prev.name < post.name) return 1;
                 else if (prev.name > post.name) return -1;
                 else return 0
             });
             return {
                 ...state,
-                products: orderZA,
+                productsByCategory: orderZA,
             }
             case MIN_PRICE: /* A-Z */
-            const minPrice = productsAux.sort((prev, post) => {
+            const minPrice = productsAux2.sort((prev, post) => {
                 if (prev.price < post.price) return -1;
                 else if (prev.price > post.price) return 1;
                 else return 0
             });
             return {
                 ...state,
-                products: minPrice,
+                productsByCategory: minPrice,
             }
             case MAX_PRICE: /* A-Z */
-            const maxPrice = productsAux.sort((prev, post) => {
+            const maxPrice = productsAux2.sort((prev, post) => {
                 if (prev.price < post.price) return 1;
                 else if (prev.price > post.price) return -1;
                 else return 0
             });
             return {
                 ...state,
-                products: maxPrice,
+                productsByCategory: maxPrice,
             }
 
             //  -------      ESTOS SON LAS CASE REVIEW
@@ -108,6 +110,11 @@ export default function reducerProducts(state=initialState2, action){
                     ...state,
                     
                 }
+            case SET_PRODUCTS:
+                return {
+                    ...state,
+                    productsByCategory: action.payload
+                    }
 
 		default:
 			return state;

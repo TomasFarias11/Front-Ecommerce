@@ -79,7 +79,9 @@ const CardCarrusel = () =>{
                             </div>
                             <div>
                                 {cart.some((c) => e.name === c.name) ? 
-                                <h1>AGREGADO!</h1>
+                                <div class="alert alert-warning" role="alert">
+                                Agregado al carrito
+                                </div>
                                 :
                             <button type="button" value={e.id} class="btn btn-outline-primary" onClick={(e) => handleClick(e)}>Añadir al carrito</button>
                             }
@@ -107,6 +109,7 @@ const CardCarrusel = () =>{
                             </div>
                         </div>
             })}
+            
             </div>
             <nav class="position-absolute start-50 translate-middle-x" aria-label="Page navigation example">
                 {currentPage ? (

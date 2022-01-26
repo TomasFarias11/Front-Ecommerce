@@ -32,7 +32,7 @@ const LoginScreen = () => {
   };
   
   return <form onSubmit={e => handleLocalLogin(e)} >
-  <div className="container">
+  <div className="containerr">
     <div class="vh-100">
       <div class="container-fluid">
         <div class="row">

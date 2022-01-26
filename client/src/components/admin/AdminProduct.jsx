@@ -8,20 +8,14 @@ function AdminProduct() {
         <div className="container-sm" style={{ padding: 20 } }>   
             <div >
                 <div className="dropdown">
-                <Link to="/admin/create">
-                <button type="button" class="btn btn-outline-secondary" >Crear Producto</button>
+                <Link to="/admin/addProduct">
+                <button type="button" class="btn btn-outline-secondary" >Agregar Productos</button>
                 </Link>
                 </div>
                 <br/>
                 <div className="dropdown">
-                <Link to="/admin/edit">
-                <button type="button" class="btn btn-outline-secondary" >Editar Producto</button>
-                </Link>
-                </div>
-                <br/>
-                <div className="dropdown">
-                <Link to="/admin/delete">
-                <button type="button" class="btn btn-outline-secondary" >Eliminar Producto</button>
+                <Link to="/admin/addCategory">
+                <button type="button" class="btn btn-outline-secondary" >Agregar Categoria</button>
                 </Link>
                 </div>
             </div>

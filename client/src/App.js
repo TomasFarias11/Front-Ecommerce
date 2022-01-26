@@ -7,10 +7,10 @@ import Admin from "./pages/Admin";
 import Products from "./pages/Products";
 import NavBar from "./pages/NavBar";
 import Footer from "./components/Footer";
-import CreateProduct from "./components/admin/CreateProduct"
-import DeleteProduct from "./components/admin/DeleteProduct"
+import AddProduct from "./components/admin/AddProduct"
 import EditProduct from "./components/admin/EditProduct"
 import AdminProduct from "./components/admin/AdminProduct"
+import AddCategory from "./components/admin/AddCategory"
 
 function App() {
   return (
@@ -22,9 +22,9 @@ function App() {
       <Route exact path="/" element={<Home/>}/>
       <Route exact path="/admin" element={<Admin/>}/>
       <Route exact path="/admin/product" element={<AdminProduct/>}/>
-      <Route exact path="/admin/create" element={<CreateProduct/>}/>
+      <Route exact path="/admin/addProduct" element={<AddProduct/>}/>
+      <Route exact path="/admin/addCategory" element={<AddCategory/>}/>
       <Route exact path="/admin/edit" element={<EditProduct/>}/>
-      <Route exact path="/admin/delete" element={<DeleteProduct/>}/>
       <Route exact path="/details/:id" element={<Details/>}/>
       <Route exact path="/category/:category" element={<Products/>}/>
       <Route exact path="/search" element={<ProductsBySearch/>}/>

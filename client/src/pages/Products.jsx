@@ -11,16 +11,12 @@ const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts})
         setProducts(JSON.parse(window.localStorage.getItem('productos'))) :
         JSON.parse(window.localStorage.getItem('productos'))
     },[products])
-    // const dispatch = useDispatch();
+
     const formato = new Intl.NumberFormat('de-DE', {
         // style: 'currency',
         // currency: 'USD',
         // minimumFractionDigits: 3,
     })
-
-    // useEffect(()=>{
-        
-    // },[products])
 
     useEffect(()=>{
         const data = window.localStorage.getItem('productos')
@@ -28,6 +24,7 @@ const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts})
             window.localStorage.setItem('productos', data)
         }
     },[])
+    
     useEffect(()=> {
         window.localStorage.setItem('productos',JSON.stringify(products))
     })

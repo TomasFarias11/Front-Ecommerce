@@ -1,7 +1,7 @@
 import React from "react";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {addToCart} from '../actions/actionProducts.js'
+import {addToCart, getProducts} from '../actions/actionProducts.js'
 import {Link} from "react-router-dom";
 import swal from 'sweetalert';
 

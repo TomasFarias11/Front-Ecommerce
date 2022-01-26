@@ -29,8 +29,6 @@ const initialState2={
     productId: [],
     productsByCategory:[],
     reviews: [],
-    productsByCategory:[]
-    productsSearch:[],
     cart: [],
     cartNav: false
 }
@@ -151,7 +149,7 @@ export default function reducerProducts(state=initialState2, action){
             case SET_PRODUCTS:
                 return {
                     ...state,
-                    products: action.payload
+                    productsByCategory: action.payload
                 }
             case SET_CARTNAV_ON:
                 return {

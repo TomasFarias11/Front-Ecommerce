@@ -17,11 +17,6 @@ export default function Home () {
     const cart = useSelector((state) => state.firstRed.cart);
     
 
-    useEffect(() => 
-        dispatch(getProducts())
-        
-    ,[])
-
     useEffect(()=>{
         cart.length > JSON.parse(window.localStorage.getItem('carrito')).length || cart.length < JSON.parse(window.localStorage.getItem('carrito')).length? window.localStorage.setItem('carrito', JSON.stringify(cart)) : window.localStorage.setItem('carrito', JSON.stringify(cart))
     },[cart])

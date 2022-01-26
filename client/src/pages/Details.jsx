@@ -63,7 +63,7 @@ export default function Details() {
           {/* {productId.stock > 0 ? (<label><b>Cantidad:</b> <input type="number" min="1" max={productId.stock} placeholder="1" /></label>) : null} */}
           {/* boton el svg es la imagen del carrito */}
           <div>
-              {cart.some((c) => productId.name === c.name) ? 
+              {cart.some((c) => productId.id === c.id) ? 
               <div class="alert alert-warning" role="alert">
               Agregado al carrito
               </div>
@@ -88,7 +88,7 @@ export default function Details() {
         </div>
         {/* en este div se ingresa la img */}
         <div class="col-md-5 order-md-1">
-          <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src={productId.image} role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false" />
+          <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="940px" height="1112px" src={productId.image} role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false" />
         </div>
       </div>
       <hr class="featurette-divider" />

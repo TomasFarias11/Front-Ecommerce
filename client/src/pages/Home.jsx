@@ -52,7 +52,7 @@ export default function Home () {
                 </div>
                 <div className="col col-lg-4">
                     <div className={estilos.styleCards}>
-                        <img src="https://photos5.appleinsider.com/gallery/30181-49348-four-ipad-choices-xl.jpg" className="card-img-top" alt="Fissure in Sandstone" height='350px'/>
+                        <img src="https://i.postimg.cc/x1d3fn8y/New-i-Pad-Air-y-i-Pad-Mini-Photo-Room-2.png" className="card-img-top" alt="Fissure in Sandstone" height='350px'/>
                         <div className="card-body">
                             <h5 className="card-title">iPad</h5>
                             <p className="card-text">Tu mundo a todo color.</p>

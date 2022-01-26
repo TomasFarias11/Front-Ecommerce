@@ -5,6 +5,7 @@ import { orderAZ, orderZA, minPrice, maxPrice } from '../actions/actionProducts.
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { connect } from 'react-redux'
+import {addToCart,} from '../actions/actionCart.js'
 
 const Products = ({reducerProducts, orderAZ, orderZA, minPrice, maxPrice}) => {
 

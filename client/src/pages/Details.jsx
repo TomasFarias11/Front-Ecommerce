@@ -4,22 +4,42 @@ import {getProductById} from "../actions/actionProducts.js";
 import {useEffect} from "react";
 import { useParams } from "react-router";
 import Reviews from "../components/Reviews.jsx"
+import {addToCart, setCartOff} from '../actions/actionProducts.js'
+import swal from 'sweetalert';
 
 export default function Details () {
 
     const dispatch = useDispatch()
     const productId = useSelector((state) => state.firstRed.productId)
+    const cart = useSelector((state) => state.firstRed.cart)
     
+    const handleClick = (e) => {
+      e.preventDefault();
+      dispatch(addToCart(productId.id))
+      window.localStorage.setItem('carrito', JSON.stringify(cart))
+      dispatch(setCartOff())
+      swal("Agregado al carrito!", {
+        buttons: false,
+        icon: 'success',
+        timer: 1500,
+      });
+    }
 
     const {id}=useParams();
 
 
-    console.log(productId)
+    // console.log('el carrito', cart)
 
     useEffect(() => {
         dispatch(getProductById(id))
     },[dispatch])
-    
+
+
+    useEffect(() =>
+      // window.localStorage.getItem('carrito') ? window.localStorage.getItem('carrito') :   
+      window.localStorage.setItem('carrito', JSON.stringify(cart))   
+    ,[cart])
+
     return(<>
      <div className="container">
     <div class="row featurette">
@@ -38,7 +58,7 @@ export default function Details () {
         {productId.stock>0 ? (<p><b>Stock:</b> {productId.stock} </p>) : (<p><b>Stock:</b> Exhausted </p>) }
         {productId.stock>0 ? (<label><b>Cantidad:</b> <input type="number" min="1" max={productId.stock} placeholder="1"/></label> ) : null }
         {/* boton el svg es la imagen del carrito */}
-        <button type="submit" class="btn btn-primary" style={{margin: "0 40px 13px"}}>
+        <button type="submit" class="btn btn-primary" onClick = {(e) => handleClick(e)} style={{margin: "0 40px 13px"}}>
         <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"

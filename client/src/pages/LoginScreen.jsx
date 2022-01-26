@@ -1,7 +1,7 @@
 import React from 'react';
 import GoogleButton from "react-google-button";
 // import {Link} from "react-router-dom"
-import { googleLogin  } from "../actions/actionUser"
+import { googleLogin, localLoginUser  } from "../actions/actionUser"
 import { useDispatch } from "react-redux";
 import "../css/LoginScreen.css"
 import { useState } from 'react';
@@ -9,20 +9,29 @@ import { useState } from 'react';
 const LoginScreen = () => {
   
   const [input,setInput] = useState({
-    username: '',
+    email: '',
     password: '',
 });
   const dispatch = useDispatch();
   const local = window.localStorage.getItem('login')
 
-  console.log(local, "este es mi local storage")   //  <--- console,LOG
- console.log(input, "este es el valor del input")
- 
+//   console.log(local, "este es mi local storage")   //  <--- console,LOG
+//  console.log(input, "este es el valor del input")
+  const handleLocalLogin = (e) => {
+    e.preventDefault();
+    dispatch(localLoginUser(input))
+    setInput({
+      email: '',
+      password: '',
+    })
+  } 
+
+
   const handleGoogleLogin = () => {
     dispatch(googleLogin());
   };
   
-  return <form >
+  return <form onSubmit={e => handleLocalLogin(e)} >
   <div className="container">
     <div class="vh-100">
       <div class="container-fluid">
@@ -45,10 +54,10 @@ const LoginScreen = () => {
                   <input
                     type="text"
                     class="form-control mb-2"
-                    placeholder="Username"
-                    value={input.username}
+                    placeholder="email"
+                    value={input.email}
                     onChange={(e) =>
-                      setInput({ ...input, username: e.target.value })
+                      setInput({ ...input, email: e.target.value })
                     }
                     required        
                   />

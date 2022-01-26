@@ -65,7 +65,7 @@ const CardCarrusel = () =>{
     useEffect(()=>{
         cart.length > JSON.parse(window.localStorage.getItem('carrito')).length ? window.localStorage.setItem('carrito', JSON.stringify(cart)) : window.localStorage.getItem('carrito')
     },[cart])
-    
+       
     return(<>
         <div className="container" style={{padding: "15px"}}>
             <div className="row animate__animated animate__slideInRight">

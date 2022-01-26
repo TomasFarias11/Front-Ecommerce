@@ -78,28 +78,23 @@ function NavBar() {
                 <a className="nav-link dropdown-toggle" href=" " id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Admin </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li>
-                        <Link to="/products">
-                            <a className="dropdown-item" href=" "> Opcion 1 </a>
+                        <Link to="/admin">
+                            <a className="dropdown-item" href=" "> Perfil</a>
                         </Link>
                     </li>
                     <li>
-                        <Link to="/products">
-                            <a className="dropdown-item" href=" "> Opcion 2 </a>
+                        <Link to="/admin/product">
+                            <a className="dropdown-item" href=" "> Productos </a>
                         </Link>
                     </li>
                     <li>
-                        <Link to="/products">
-                            <a className="dropdown-item" href=" "> Opcion 3 </a>
+                        <Link to="/">
+                            <a className="dropdown-item" href=" ">Ordenes</a>
                         </Link>
                     </li>
                     <li>
-                        <Link to="/products">
-                            <a className="dropdown-item" href=" "> Opcion 4 </a>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/products">
-                            <a className="dropdown-item" href=" "> Opcion 5 </a>
+                        <Link to="/">
+                            <a className="dropdown-item" href=" "> Usuarios </a>
                         </Link>
                     </li>
                 </ul>

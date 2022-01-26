@@ -3,12 +3,12 @@ import {composeWithDevTools} from "redux-devtools-extension";
 import { combineReducers } from "redux";
 import Thunk from "redux-thunk";
 import reducerProducts from "../reducers/reducerProducts";
-import reducerRaro from "../reducers/reducerRaro";
+import reducerAdmin from "../reducers/reducerAdmin";
 import reduceSearch from "../reducers/reduceSearch";
 
 const reducers = combineReducers({
     firstRed: reducerProducts, 
-    secondRed: reducerRaro,
+    secondRed: reducerAdmin,
     thirdRed: reduceSearch
 })
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(Thunk)));

@@ -25,12 +25,6 @@ export default function Cart () {
         // minimumFractionDigits: 3,
     })
     
-    // useEffect(() =>
-    //     window.localStorage.getItem('carrito')
-    // ,[cartStorage])
-    // useEffect(()=>{
-    //     cart.length > JSON.parse(window.localStorage.getItem('carrito')).length || cart.length < JSON.parse(window.localStorage.getItem('carrito')).length? window.localStorage.setItem('carrito', JSON.stringify(cart)) : window.localStorage.getItem('carrito')
-    // },[cart])
 
     const handleDeleteAll = (e) =>  {
         e.preventDefault()
@@ -60,6 +54,7 @@ export default function Cart () {
                                 price = {e.price}
                                 image = {e.image}
                                 quantity = {e.quantity}
+                                stock = {e.stock}
                                 />
                             </div>
                             )

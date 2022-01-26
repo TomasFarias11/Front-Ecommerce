@@ -9,9 +9,7 @@ export default function Reviews ({id}) {
 
     const reviews = useSelector((state) => state.firstRed.reviews)
     const product = useSelector((state) => state.firstRed.productId)
-    // console.log('reviews', reviews)
-    // console.log('id del prod', product)
-    // const user = useSelector((state) => state.firstRed.user)
+
     const dispatch = useDispatch()
     const [input, setInput] = useState({
         calification: '',

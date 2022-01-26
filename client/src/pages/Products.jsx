@@ -1,15 +1,15 @@
 import React from "react";
-import {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+// import {useEffect} from 'react';
+import {useDispatch} from 'react-redux';
 import { orderAZ, orderZA, minPrice, maxPrice } from '../actions/actionProducts.js'
 import { Link } from "react-router-dom";
-import { useState } from "react";
+// import { useState } from "react";
 import { connect } from 'react-redux'
-import {addToCart,} from '../actions/actionCart.js'
+// import {addToCart,} from '../actions/actionCart.js'
 
 const Products = ({reducerProducts, orderAZ, orderZA, minPrice, maxPrice}) => {
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const products = reducerProducts
     const formato = new Intl.NumberFormat('de-DE', {
         // style: 'currency',

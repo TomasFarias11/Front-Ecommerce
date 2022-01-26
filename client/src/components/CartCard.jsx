@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import '../css/CartCard.module.css'
 import swal from 'sweetalert';
 
-export default function CartCard ({id, name, price, image, quantity}) {
+export default function CartCard ({id, name, price, image, quantity, stock}) {
 
     const dispatch = useDispatch()
     const cartStorage = window.localStorage.getItem('carrito')
@@ -21,7 +21,6 @@ export default function CartCard ({id, name, price, image, quantity}) {
         e.preventDefault();
         dispatch(delCart(id))
         window.localStorage.setItem('carrito', JSON.stringify(cart))
-        // dispatch(setCartOff())
         swal("Articulo eliminado con exito!", {
             buttons: false,
             icon: 'success',
@@ -29,10 +28,6 @@ export default function CartCard ({id, name, price, image, quantity}) {
           });
 
     }
-
-    // useEffect(()=>{
-    //     cart.length < JSON.parse(window.localStorage.getItem('carrito')).length ? window.localStorage.setItem('carrito', JSON.stringify(cart)) : window.localStorage.getItem('carrito')
-    // },[cart])
 
     useEffect(()=>{
         cart.length > JSON.parse(window.localStorage.getItem('carrito')).length || cart.length < JSON.parse(window.localStorage.getItem('carrito')).length? window.localStorage.setItem('carrito', JSON.stringify(cart)) : window.localStorage.getItem('carrito')
@@ -59,7 +54,7 @@ export default function CartCard ({id, name, price, image, quantity}) {
                         <h4 className="name-cart">{name}</h4>        
                         <div className="quantity">
                         {/* <h3 className="price">US{formato.format(price)}</h3> */}
-                        <h5>${formato.format(price)} x <input type="number" min='1' max='30' value={quantity} onChange={handleQuantity} className='price'/>u = ${formato.format((price * quantity))}</h5>
+                        <h5>${formato.format(price)} x <input type="number" min='1' max={stock} value={quantity} onChange={handleQuantity} className='price'/>u = ${formato.format((price * quantity))}</h5>
                         </div>
                     </div>
                 </div>

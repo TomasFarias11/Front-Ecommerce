@@ -3,7 +3,7 @@ import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import CardCarrusel from "../components/CardCarrusel.jsx";
 import {getProducts, getProductByCategory, setCart} from '../actions/actionProducts.js'
-import {getProducts1} from '../actions/actionCart.js'
+// import {getProducts1} from '../actions/actionCart.js'
 import { useNavigate } from 'react-router-dom';
 import estilos from '../css/Home.module.css';
 import CarrouselMain from "../components/CarrouselMain.jsx"
@@ -15,27 +15,17 @@ export default function Home () {
     const Navigate = useNavigate();
     const products = useSelector((state) => state.firstRed.products);
     const cart = useSelector((state) => state.firstRed.cart);
-    // const cart = JSON.parse(window.localStorage.getItem('carrito'))
     
 
     useEffect(() => 
         dispatch(getProducts())
-        // dispatch(getProducts1())
-        // cart.length === 0 ? window.localStorage.setItem('carrito', JSON.stringify([])) : window.localStorage.getItem('carrito')
-
+        
     ,[])
 
     useEffect(()=>{
         cart.length > JSON.parse(window.localStorage.getItem('carrito')).length || cart.length < JSON.parse(window.localStorage.getItem('carrito')).length? window.localStorage.setItem('carrito', JSON.stringify(cart)) : window.localStorage.setItem('carrito', JSON.stringify(cart))
     },[cart])
-    // useEffect(() =>
-    //     cart.length === 0 && JSON.parse(window.localStorage.getItem('carrito'))?.length >= 0 ? setCart(JSON.parse(window.localStorage.getItem('carrito'))) : 
-    //     cart.length > 0 ? window.localStorage.setItem('carrito', JSON.stringify(cart)) : window.localStorage.setItem('carrito', JSON.stringify([]))
-    // ,[cart])
-
-    // useEffect(()=>{
-        
-    // },[products])
+   
 
     const handleClick = (e) => {
         e.preventDefault();

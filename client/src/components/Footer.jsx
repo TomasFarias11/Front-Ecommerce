@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {getProducts, getProductByCategory} from '../actions/actionProducts.js'
+import {getProductByCategory} from '../actions/actionProducts.js'
 import { Link } from "react-router-dom";
 import Style from "../css/Footer.module.css"
 

@@ -13,20 +13,9 @@ export default function Home () {
     const Navigate = useNavigate();
     const products = useSelector((state) => state.firstRed.productsByCategory);
 
-    /* useEffect(() => 
-        dispatch(getProducts())        
-    ,[]) */
-
-    // useEffect(()=> {
-    //     window.localStorage.setItem('productos',JSON.stringify(products))
-    // })
-
-    // console.log('estos son los productos', products)
-
     const handleClick = (e) => {
         e.preventDefault();
         dispatch(getProductByCategory(e.target.value))
-        /* window.localStorage.setItem('productos', JSON.stringify(products)) */
         Navigate(`/category/${e.target.value}`)
     }
 
@@ -39,7 +28,6 @@ export default function Home () {
                 <CardCarrusel/>
             </div>
         <div className="container" style={{display: "flex", flexDirection: "column"  }} >
-        {/* <div className="row"> */}
             <div className="row" style={{padding:10}}>
                 <div className="col col-lg-4" >
                     <div className={estilos.styleCards}>
@@ -74,7 +62,6 @@ export default function Home () {
                     </div>
                 </div>
                 </div>
-            {/* </div> */}
             
             <div className="row" style={{padding:10}}>
                 <div className="col col-lg-4">

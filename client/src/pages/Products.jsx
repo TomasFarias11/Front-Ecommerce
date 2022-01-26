@@ -1,10 +1,17 @@
 import React from "react";
-import { orderAZ, orderZA, minPrice, maxPrice, setProducts } from '../actions/actionProducts.js'
+import { orderAZ, orderZA, minPrice, maxPrice, setProducts, addToCart } from '../actions/actionProducts.js'
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
 import { useEffect } from "react";
+import {useDispatch, useSelector} from "react-redux";
+import swal from 'sweetalert';
 
-const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts}) => {
+
+const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts, addToCart}) => {
+
+    // const dispatch = useDispatch()
+    const cart = useSelector((state) => state.firstRed.cart)
+    console.log('este es el carrito', cart);
     
     useEffect(()=>{
         products.length < JSON.parse(window.localStorage.getItem('productos')).length && products.length ===0 ? 
@@ -28,6 +35,18 @@ const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts})
     useEffect(()=> {
         window.localStorage.setItem('productos',JSON.stringify(products))
     })
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        console.log(e.target.value)
+        addToCart(e.target.value)
+        window.localStorage.setItem('carrito', JSON.stringify(cart))
+        swal("Agregado al carrito!", {
+            buttons: false,
+            icon: 'success',
+            timer: 1500,
+        });
+      }
     
     return (
         
@@ -65,8 +84,18 @@ const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts})
                                                 <h5 className="card-title">{e.name}</h5>
                                                 <p className="card-text">{e.category}  ${formato.format(e.price)}</p>
                                                 <Link to={`/details/${e.id}`}>
-                                                    <button className="btn btn-outline-secondary rounded-pill">ver más...</button>
+                                                    <button className="btn btn-outline-secondary rounded-pill">Ver más...</button>
                                                 </Link>
+                                                <div>
+                                                    {console.log('products', products)}
+                                                    {cart.some((c) => e.name === c.name) ? 
+                                                    <div class="alert alert-warning" role="alert">
+                                                        Agregado al carrito
+                                                    </div>
+                                                    : 
+                                                    <button style={{margin: "10px 0px"}} type="button" value={e.id} class="btn btn-outline-secondary rounded-pill" onClick={(e) => handleClick(e)}>Añadir al carrito</button>
+                                                    }
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -81,11 +110,11 @@ const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts})
 
 const mapStateToProps = (state) => {
     return {
-        products: state.firstRed.productsByCategory,
+        products: state.firstRed.products,
     };
 };
 
-const wrapper = connect(mapStateToProps,{ orderAZ, orderZA, minPrice, maxPrice, setProducts });
+const wrapper = connect(mapStateToProps,{ orderAZ, orderZA, minPrice, maxPrice, setProducts, addToCart });
 const component = wrapper(Products);
 
 export default component;

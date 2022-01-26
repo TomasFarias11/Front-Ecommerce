@@ -85,7 +85,6 @@ export function getProductById (id) {
 export function getProductByCategory (category) {
     return async function (dispatch) {
         let products = await axios.get(`http://localhost:3001/products/category/${category}`)
-        console.log('estos son los productos filtrados', products)
         return dispatch({
             type: "GET_PRODUCT_BY_CATEGORY",
             payload: products.data

@@ -11,7 +11,7 @@ export default function Cart () {
     const cart = useSelector((state) => state.firstRed.cart)
     const cartStorage = JSON.parse(window.localStorage.getItem('carrito'))
     const cartNav = useSelector((state) => state.firstRed.cartNav)
-    console.log('este es el carrito',cart)
+    // console.log('este es el carrito',cart)
 
     let total = 0;
     let totalQuantity = 0

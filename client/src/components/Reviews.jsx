@@ -9,9 +9,7 @@ export default function Reviews ({id}) {
 
     const reviews = useSelector((state) => state.firstRed.reviews)
     const product = useSelector((state) => state.firstRed.productId)
-    // console.log('reviews', reviews)
-    console.log('id del prod', product)
-    // const user = useSelector((state) => state.firstRed.user)
+
     const dispatch = useDispatch()
     const [input, setInput] = useState({
         calification: '',
@@ -108,17 +106,3 @@ export default function Reviews ({id}) {
     </>
     )
 }
-
-{/*{
-    "id": 1,
-    "username": "tomass11",
-    "email": "to@gmail.com",
-    "password": "$2a$10$IwXcOZQGn5ci34p4IdYE7eru4oDPdFr58WogPs74gv7Y1g8qvvjjO",
-    "name": "Tomas",
-    "lastName": "Farias",
-    "address": "siempreviva 123",
-    "image": "",
-    "admin": true,
-    "updatedAt": "2022-01-24T15:46:43.283Z",
-    "createdAt": "2022-01-24T15:46:43.283Z"
-} */}

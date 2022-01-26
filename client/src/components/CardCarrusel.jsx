@@ -1,7 +1,7 @@
 import React from "react";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getProducts, addToCart, setCartOff, setCartOn} from '../actions/actionProducts.js'
+import {addToCart} from '../actions/actionProducts.js'
 import {Link} from "react-router-dom";
 import swal from 'sweetalert';
 
@@ -10,6 +10,11 @@ const CardCarrusel = () =>{
     const allProducts = useSelector((state) => state.firstRed.products) // me traigo todo los productos
     const dispatch = useDispatch()
     const cart = useSelector((state) => state.firstRed.cart)
+    const formato = new Intl.NumberFormat('de-DE', {
+        // style: 'currency',
+        // currency: 'USD',
+        // minimumFractionDigits: 3,
+    })
 
     const[currentPage, setCurrentPage]=useState(1);
 	const[productsPerPage, setProductsPerPage]=useState(4);
@@ -69,10 +74,16 @@ const CardCarrusel = () =>{
                             </Link>
                             <div class="card-body">
                                 <h5>{e.name}</h5>
-                                <p class="card-text">Price: {e.price}</p>
-                                <p class="card-text">Amount: {e.stock}</p>
+                                <p class="card-text">Precio: {formato.format(e.price)}</p>
+                                <p class="card-text">Stock: {e.stock}</p>
                             </div>
+                            <div>
+                                {cart.some((c) => e.name === c.name) ? 
+                                <h1>AGREGADO!</h1>
+                                :
                             <button type="button" value={e.id} class="btn btn-outline-primary" onClick={(e) => handleClick(e)}>Añadir al carrito</button>
+                            }
+                            </div>
                         </div>
                     </div>
                     )
@@ -87,7 +98,13 @@ const CardCarrusel = () =>{
                                 <p class="card-text">Price: {e.price}</p>
                                 <p class="card-text">Amount: {e.stock}</p>
                             </div>
+                            <div>
+                                {cart.find((c) => e.id === c.id) ? 
+                                <input type="text">Ya esta agregado al carrito</input>
+                                :
                             <button type="button" value={e.id} class="btn btn-outline-primary" onClick={(e) => handleClick(e)}>Añadir al carrito</button>
+                            }
+                            </div>
                         </div>
             })}
             </div>

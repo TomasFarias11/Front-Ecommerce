@@ -14,7 +14,7 @@ function App() {
   // console.log('ESTE ES EK PU*TO LOCALSTORAGTE', window.localStorage.getItem('carrito'));
   JSON.parse(window.localStorage.getItem('carrito'))?.length > 0 ? JSON.parse(window.localStorage.getItem('carrito')): window.localStorage.setItem('carrito', JSON.stringify([]))
   dispatch(setCart(JSON.parse(window.localStorage.getItem('carrito'))))
-
+  JSON.parse(window.localStorage.getItem('productos'))?.length > 0 ? JSON.parse(window.localStorage.getItem('productos')): window.localStorage.setItem('productos', JSON.stringify([]))
   return (
     <div className="App">
       <NavBar />

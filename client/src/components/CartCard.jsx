@@ -11,6 +11,11 @@ export default function CartCard ({id, name, price, image, quantity}) {
     const dispatch = useDispatch()
     const cartStorage = window.localStorage.getItem('carrito')
     const cart = useSelector((state) => state.firstRed.cart)
+    const formato = new Intl.NumberFormat('de-DE', {
+        // style: 'currency',
+        // currency: 'USD',
+        // minimumFractionDigits: 3,
+    })
 
     const handleOnClick = (e) => {
         e.preventDefault();
@@ -54,7 +59,7 @@ export default function CartCard ({id, name, price, image, quantity}) {
                         <h4 className="name-cart">{name}</h4>        
                         <div className="quantity">
                         {/* <h3 className="price">US{formato.format(price)}</h3> */}
-                        <h5>${price} x <input type="number" min='1' max='30' value={quantity} onChange={handleQuantity} className='price'/>u = ${(price * quantity)}</h5>
+                        <h5>${formato.format(price)} x <input type="number" min='1' max='30' value={quantity} onChange={handleQuantity} className='price'/>u = ${formato.format((price * quantity))}</h5>
                         </div>
                     </div>
                 </div>

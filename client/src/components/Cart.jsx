@@ -15,7 +15,7 @@ export default function Cart () {
 
     let total = 0;
     let totalQuantity = 0
-    cartStorage.length > 0 && cartStorage.map((e) => {
+    cart.length > 0 && cart.map((e) => {
         total = total + (e.price * e.quantity);
         totalQuantity = Number(totalQuantity) + Number(e.quantity)
     })

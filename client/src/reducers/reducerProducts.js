@@ -17,7 +17,8 @@ import {
     SET_CART,
     SET_CARTNAV_ON,
     SET_CARTNAV_OFF,
-    QUANTITY_ITEM
+    QUANTITY_ITEM,
+    SET_PRODUCTS
 } from '../actions/actionProducts'
 
 
@@ -143,6 +144,11 @@ export default function reducerProducts(state=initialState2, action){
                     return {
                         ...state,
                         cart: action.payload
+                    }
+                case SET_PRODUCTS:
+                    return {
+                        ...state,
+                        products: action.payload
                     }
                 case SET_CARTNAV_ON:
                     return {

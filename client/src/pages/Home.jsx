@@ -33,7 +33,9 @@ export default function Home () {
     //     cart.length > 0 ? window.localStorage.setItem('carrito', JSON.stringify(cart)) : window.localStorage.setItem('carrito', JSON.stringify([]))
     // ,[cart])
 
-
+    // useEffect(()=>{
+        
+    // },[products])
 
     const handleClick = (e) => {
         e.preventDefault();

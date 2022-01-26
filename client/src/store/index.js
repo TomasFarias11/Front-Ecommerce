@@ -5,7 +5,7 @@ import Thunk from "redux-thunk";
 import reducerProducts from "../reducers/reducerProducts";
 import reducerUserData from "../reducers/reducerUserData";
 import reduceSearch from "../reducers/reduceSearch";
-import reducerCart from "../reducers/reducerCart";
+// import reducerCart from "../reducers/reducerCart";
 
 const reducers = combineReducers({
     firstRed: reducerProducts, 

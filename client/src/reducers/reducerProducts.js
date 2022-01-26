@@ -26,7 +26,6 @@ const initialState2={
 	products:[],
     allProducts: [],
     productId: [],
-    productsByCategory:[],
     reviews: [],
     cart: [],
     cartNav: false
@@ -62,7 +61,6 @@ export default function reducerProducts(state=initialState2, action){
             return {
                 ...state,
                 products: action.payload
-                // productsByCategory: action.payload
             }
             case ORDERAZ: /* A-Z */
             const orderAZ = productsAux2.sort((prev, post) => {
@@ -73,7 +71,6 @@ export default function reducerProducts(state=initialState2, action){
             return {
                 ...state,
                 products: orderAZ
-                // productsByCategory: orderAZ,
             }
             case ORDERZA: /* A-Z */
             const orderZA = productsAux2.sort((prev, post) => {
@@ -84,7 +81,6 @@ export default function reducerProducts(state=initialState2, action){
             return {
                 ...state,
                 products: orderZA
-                // productsByCategory: orderZA,
             }
             case MIN_PRICE: /* A-Z */
             const minPrice = productsAux2.sort((prev, post) => {
@@ -106,7 +102,6 @@ export default function reducerProducts(state=initialState2, action){
             return {
                 ...state,
                 products: maxPrice
-                // productsByCategory: maxPrice,
             }
 
             //  -------      ESTOS SON LAS CASE REVIEW

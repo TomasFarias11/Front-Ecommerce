@@ -19,6 +19,7 @@ import {
     SET_CARTNAV_OFF,
     QUANTITY_ITEM,
     SET_PRODUCTS
+
 } from '../actions/actionProducts'
 
 
@@ -46,11 +47,11 @@ export default function reducerProducts(state=initialState2, action){
                 allProducts: state.allProducts.concat(action.payload)
             }
 
-        case GET_PRODUCT_BY_NAME:
+        /* case GET_PRODUCT_BY_NAME:
             return {
                 ...state,
                 products: action.payload
-            }
+            } */
 
         case GET_PRODUCT_BY_ID:
             return {

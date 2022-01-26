@@ -78,7 +78,7 @@ const CardCarrusel = () =>{
                             </Link>
                             <div class="card-body">
                                 <h5>{e.name}</h5>
-                                <p class="card-text">Precio: {formato.format(e.price)}</p>
+                                <p class="card-text">Precio: ${formato.format(e.price)}</p>
                                 <p class="card-text">Stock: {e.stock}</p>
                             </div>
                             <div>
@@ -105,8 +105,10 @@ const CardCarrusel = () =>{
                                 <p class="card-text">Amount: {e.stock}</p>
                             </div>
                             <div>
-                                {cart.find((c) => e.id === c.id) ? 
-                                <input type="text">Ya esta agregado al carrito</input>
+                                {cart.some((c) => e.name === c.name) ? 
+                                <div class="alert alert-warning" role="alert">
+                                Agregado al carrito
+                                </div>
                                 :
                             <button type="button" value={e.id} class="btn btn-outline-primary" onClick={(e) => handleClick(e)}>Añadir al carrito</button>
                             }

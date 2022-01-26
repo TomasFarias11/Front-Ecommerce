@@ -5,7 +5,8 @@ export const GET_PRODUCTS = "GET_PRODUCTS"
 export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME"
 export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID"
 export const GET_IPHONE = "GET_IPHONE"
-export const GET_PRODUCT_BY_CATEGORY = "GET_PRODUCT_BY_CATEGORY" 
+export const GET_PRODUCT_BY_CATEGORY = "GET_PRODUCT_BY_CATEGORY"
+export const SET_PRODUCTS = "SET_PRODUCTS"
 
 //  ------  ACA ESTA LOS CASE DE LAS REVIEW
 export const GET_REVIEWS = "GET_REVIEWS"
@@ -16,6 +17,18 @@ export const ORDERAZ = "ORDER_AZ";
 export const ORDERZA = "ORDER_ZA";
 export const MIN_PRICE = "MIN_PRICE";
 export const MAX_PRICE = "MAX_PRICE";
+
+// ------ CARRITO
+
+
+export const ADD_CART = "ADD_CART"
+export const DEL_CART = 'DEL_CART'
+export const DEL_ALL_CART = 'DEL_ALL_CART'
+export const MOD_CART = 'MOD_CART'
+export const QUANTITY_ITEM = 'QUANTITY_ITEM'
+export const SET_CART = 'SET_CART'
+export const SET_CARTNAV_ON = 'SET_CARTNAV_ON'
+export const SET_CARTNAV_OFF = 'SET_CARTNAV_OFF'
 
 export function getProducts () {
     return async function (dispatch) {
@@ -128,3 +141,94 @@ export function getReviews (id) {
     }
 }
 
+
+export function addToCart (id) {
+    return async function (dispatch) {
+        try {
+            dispatch({
+                type: ADD_CART,
+                payload: id
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}
+
+export function delCart(id){
+    return async function (dispatch){
+        try {
+            return dispatch({
+                type: DEL_CART,
+                payload: id
+            })
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+}
+
+export function delAllCart () {
+    return async function (dispatch) {
+        try {
+            return dispatch({
+                type: DEL_ALL_CART
+            })
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+}
+
+export const quantity_item = (payload) => dispatch => {
+    try {
+        return dispatch({type:QUANTITY_ITEM, payload})
+    } catch (err){
+        console.log(err)
+    }
+}
+
+export function setCart (payload) {
+    return async function (dispatch) {
+        try {
+            return dispatch({type: SET_CART, payload})
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+}
+
+export function setProducts (payload) {
+    return async function (dispatch) {
+        try {
+            return dispatch({type: SET_PRODUCTS, payload})
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+} 
+
+export function setCartOn () {
+    return async function (dispatch) {
+        try {
+            return dispatch({type: SET_CARTNAV_ON})
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}
+
+export function setCartOff () {
+    return async function (dispatch) {
+        try {
+            return dispatch({type: SET_CARTNAV_OFF})
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+}

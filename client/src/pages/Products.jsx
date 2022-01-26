@@ -1,15 +1,25 @@
 import React from "react";
-// import {useEffect} from 'react';
+import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { orderAZ, orderZA, minPrice, maxPrice } from '../actions/actionProducts.js'
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { connect } from 'react-redux'
+import {addToCart,} from '../actions/actionCart.js'
 
 const Products = ({reducerProducts, orderAZ, orderZA, minPrice, maxPrice}) => {
 
     const dispatch = useDispatch();
-    const productsx = reducerProducts
+    const products = reducerProducts
+    const formato = new Intl.NumberFormat('de-DE', {
+        // style: 'currency',
+        // currency: 'USD',
+        // minimumFractionDigits: 3,
+    })
+
+    // useEffect(()=>{
+        
+    // },[products])
 
     return (
         
@@ -46,7 +56,7 @@ const Products = ({reducerProducts, orderAZ, orderZA, minPrice, maxPrice}) => {
                                             <img src={e.image !== 'not found' ? e.image : "https://i.postimg.cc/SK600jXG/OIP.jpg"} className="card-img-top img-fluid" alt={e.image} style={{padding:"30 0", height: "300px"}} />
                                             <div className="card-body">
                                                 <h5 className="card-title">{e.name}</h5>
-                                                <p className="card-text">{e.category}  ${e.price}</p>
+                                                <p className="card-text">{e.category}  ${formato.format(e.price)}</p>
                                                 <Link to={`/details/${e.id}`}>
                                                     <button className="btn btn-outline-secondary rounded-pill">ver más...</button>
                                                 </Link>

@@ -1,15 +1,28 @@
 import React from "react";
-//import Search from "./search";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
-import {useDispatch} from 'react-redux';
-import {getProductByCategory} from '../actions/actionProducts.js'
+import {useDispatch, useSelector} from 'react-redux';
+import {getProductByCategory, setCartOn, setCartOff} from '../actions/actionProducts.js'
+import Cart from "../components/Cart.jsx"
 
 
 function NavBar() {
     const dispatch = useDispatch()
+    // const [cartOnScreen, setCartOnScreen] = useState(false)
+    const cartOnScreen = useSelector((state) => state.firstRed.cartNav)
 
-    
+
+const handleClick = (e) => {
+    e.preventDefault();
+    if (cartOnScreen === false) {
+        dispatch(setCartOn())
+    } else {
+        dispatch(setCartOff())
+    }
+}
+
+console.log('aparece o no', cartOnScreen)
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark  h6 sticky-top" style={{background: "#111111"}}>
@@ -119,8 +132,7 @@ function NavBar() {
             </li>
           </ul>
           <li className="nav-link" onClick="">
-          <Link to="/products">
-              <button type="button" className="btn btn-secondary position-relative">
+              <button type="button" className="btn btn-secondary position-relative" onClick={(e) => handleClick(e)}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -134,9 +146,19 @@ function NavBar() {
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 </span>
               </button>
-            </Link>
           </li>
           <SearchBar />
+          <div>
+              {cartOnScreen &&
+            //   <div className="row animate__animated animate__slideInRight">
+                <Cart/>
+            //   </div>
+            //   : 
+            //   <div className="row animate__animated animate__slideOutRight">
+            //     <Cart/>
+            //   </div>
+            }
+          </div>
         </div>
       </div>
     </nav>

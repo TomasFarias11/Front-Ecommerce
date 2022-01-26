@@ -4,12 +4,15 @@ import { combineReducers } from "redux";
 import Thunk from "redux-thunk";
 import reducerProducts from "../reducers/reducerProducts";
 import reducerAdmin from "../reducers/reducerAdmin";
+import reducerUserData from "../reducers/reducerUserData";
 import reduceSearch from "../reducers/reduceSearch";
+// import reducerCart from "../reducers/reducerCart";
 
 const reducers = combineReducers({
     firstRed: reducerProducts, 
-    secondRed: reducerAdmin,
-    thirdRed: reduceSearch
+    secondRed: reducerUserData,
+    thirdRed: reduceSearch,
+    fourthRed: reducerAdmin
 })
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(Thunk)));
 

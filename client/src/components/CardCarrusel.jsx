@@ -1,20 +1,31 @@
 import React from "react";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getProducts} from '../actions/actionProducts.js'
+import {addToCart, getProducts} from '../actions/actionProducts.js'
 import {Link} from "react-router-dom";
+import swal from 'sweetalert';
 
 const CardCarrusel = () =>{
 
+    useEffect(() => 
+        dispatch(getProducts())        
+    ,[])
+
     const allProducts = useSelector((state) => state.firstRed.products) // me traigo todo los productos
     const dispatch = useDispatch()
+    const cart = useSelector((state) => state.firstRed.cart)
+    const formato = new Intl.NumberFormat('de-DE', {
+        // style: 'currency',
+        // currency: 'USD',
+        // minimumFractionDigits: 3,
+    })
 
     const[currentPage, setCurrentPage]=useState(1);
 	const[productsPerPage, setProductsPerPage]=useState(4);
 	const indexOfLastProduct = currentPage * productsPerPage;
 	const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
 	const currentProduct = allProducts.slice(indexOfFirstProduct,indexOfLastProduct);
-    console.log('estos son los de jose', currentProduct)
+    // console.log('estos son los de jose', currentProduct)
 
     const handleprev=()=>{
         var pagina=Math.ceil(allProducts.length / productsPerPage);
@@ -38,9 +49,22 @@ const CardCarrusel = () =>{
         }
 	};
 
-    // useEffect(()=>{
-	// 	Array.isArray(currentProduct) && currentProduct.length === 0 ? allProducts.map((e) => currentProduct.push(e)) : console.log('hola')
-	// },[dispatch])
+    const handleClick = (e) => {
+        e.preventDefault();
+        dispatch(addToCart(e.target.value))
+        window.localStorage.setItem('carrito', JSON.stringify(cart))
+        // dispatch(setCartOff())
+        swal("Agregado al carrito!", {
+            buttons: false,
+            icon: 'success',
+            timer: 1500,
+        });
+        // dispatch(setCartOn())
+      }
+
+    useEffect(()=>{
+        cart.length > JSON.parse(window.localStorage.getItem('carrito')).length ? window.localStorage.setItem('carrito', JSON.stringify(cart)) : window.localStorage.getItem('carrito')
+    },[cart])
     
     return(<>
         <div className="container" style={{padding: "15px"}}>
@@ -54,10 +78,18 @@ const CardCarrusel = () =>{
                             </Link>
                             <div class="card-body">
                                 <h5>{e.name}</h5>
-                                <p class="card-text">Price: {e.price}</p>
-                                <p class="card-text">Amount: {e.stock}</p>
+                                <p class="card-text">Precio: {formato.format(e.price)}</p>
+                                <p class="card-text">Stock: {e.stock}</p>
                             </div>
-                            <button type="button" class="btn btn-outline-primary">Añadir al carrito</button>
+                            <div>
+                                {cart.some((c) => e.name === c.name) ? 
+                                <div class="alert alert-warning" role="alert">
+                                Agregado al carrito
+                                </div>
+                                :
+                            <button type="button" value={e.id} class="btn btn-outline-primary" onClick={(e) => handleClick(e)}>Añadir al carrito</button>
+                            }
+                            </div>
                         </div>
                     </div>
                     )
@@ -72,9 +104,16 @@ const CardCarrusel = () =>{
                                 <p class="card-text">Price: {e.price}</p>
                                 <p class="card-text">Amount: {e.stock}</p>
                             </div>
-                            <button type="button" class="btn btn-outline-primary">Añadir al carrito</button>
+                            <div>
+                                {cart.find((c) => e.id === c.id) ? 
+                                <input type="text">Ya esta agregado al carrito</input>
+                                :
+                            <button type="button" value={e.id} class="btn btn-outline-primary" onClick={(e) => handleClick(e)}>Añadir al carrito</button>
+                            }
+                            </div>
                         </div>
             })}
+            
             </div>
             <nav class="position-absolute start-50 translate-middle-x" aria-label="Page navigation example">
                 {currentPage ? (

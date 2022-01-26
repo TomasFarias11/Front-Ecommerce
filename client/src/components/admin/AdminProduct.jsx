@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import {useSelector} from 'react-redux';
 
 function AdminProduct() {
+
+    const products = useSelector((state) => state.firstRed.products);
+
+    console.log(products)
+
   return (
     <div className="row">
     <div className="col-lg-3">

@@ -2,22 +2,25 @@ import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import CardCarrusel from "../components/CardCarrusel.jsx";
-import {getProducts, getProductByCategory} from '../actions/actionProducts.js'
+import {getProducts, getProductByCategory, setCart} from '../actions/actionProducts.js'
+// import {getProducts1} from '../actions/actionCart.js'
 import { useNavigate } from 'react-router-dom';
 import estilos from '../css/Home.module.css';
 import CarrouselMain from "../components/CarrouselMain.jsx"
+
 
 export default function Home () {
 
     const dispatch = useDispatch();
     const Navigate = useNavigate();
-    const products = useSelector((state) => state.firstRed.products);
+    const products = useSelector((state) => state.firstRed.productsByCategory);
+    const cart = useSelector((state) => state.firstRed.cart);
+    
 
-    useEffect(() => 
-        dispatch(getProducts())
-    ,[])
-
-    // console.log('estos son los productos', products)
+    useEffect(()=>{
+        cart.length > JSON.parse(window.localStorage.getItem('carrito')).length || cart.length < JSON.parse(window.localStorage.getItem('carrito')).length? window.localStorage.setItem('carrito', JSON.stringify(cart)) : window.localStorage.setItem('carrito', JSON.stringify(cart))
+    },[cart])
+   
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -34,7 +37,6 @@ export default function Home () {
                 <CardCarrusel/>
             </div>
         <div className="container" style={{display: "flex", flexDirection: "column"  }} >
-        {/* <div className="row"> */}
             <div className="row" style={{padding:10}}>
                 <div className="col col-lg-4" >
                     <div className={estilos.styleCards}>
@@ -69,7 +71,6 @@ export default function Home () {
                     </div>
                 </div>
                 </div>
-            {/* </div> */}
             
             <div className="row" style={{padding:10}}>
                 <div className="col col-lg-4">

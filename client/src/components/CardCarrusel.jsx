@@ -7,6 +7,10 @@ import swal from 'sweetalert';
 
 const CardCarrusel = () =>{
 
+    useEffect(() => 
+        dispatch(getProducts())        
+    ,[])
+
     const allProducts = useSelector((state) => state.firstRed.products) // me traigo todo los productos
     const dispatch = useDispatch()
     const cart = useSelector((state) => state.firstRed.cart)

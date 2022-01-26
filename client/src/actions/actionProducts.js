@@ -5,7 +5,7 @@ export const GET_PRODUCTS = "GET_PRODUCTS"
 export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME"
 export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID"
 export const GET_IPHONE = "GET_IPHONE"
-export const GET_PRODUCT_BY_CATEGORY = "GET_PRODUCT_BY_CATEGORY"
+export const GET_PRODUCT_BY_CATEGORY = "GET_PRODUCT_BY_CATEGORY" 
 export const SET_PRODUCTS = "SET_PRODUCTS"
 
 //  ------  ACA ESTA LOS CASE DE LAS REVIEW
@@ -34,7 +34,6 @@ export function getProducts () {
     return async function (dispatch) {
         try {
             let products = await axios.get("http://localhost:3001/products");
-            // console.log('la accion', products.data);
             return dispatch({
                 type: "GET_PRODUCTS",
                 payload: products.data
@@ -141,7 +140,6 @@ export function getReviews (id) {
     }
 }
 
-
 export function addToCart (id) {
     return async function (dispatch) {
         try {
@@ -200,7 +198,6 @@ export function setCart (payload) {
         }
     }
 }
-
 export function setProducts (payload) {
     return async function (dispatch) {
         try {
@@ -210,7 +207,7 @@ export function setProducts (payload) {
             console.log(err)
         }
     }
-} 
+}
 
 export function setCartOn () {
     return async function (dispatch) {

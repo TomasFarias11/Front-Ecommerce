@@ -12,8 +12,8 @@ import {
     MAX_PRICE,
     minPrice,
     ADD_CART,
-	DEL_CART,
-	DEL_ALL_CART,
+	  DEL_CART,
+	  DEL_ALL_CART,
     SET_CART,
     SET_CARTNAV_ON,
     SET_CARTNAV_OFF,
@@ -29,6 +29,7 @@ const initialState2={
     productId: [],
     productsByCategory:[],
     reviews: [],
+    productsByCategory:[]
     productsSearch:[],
     cart: [],
     cartNav: false
@@ -36,6 +37,7 @@ const initialState2={
 
 export default function reducerProducts(state=initialState2, action){
     let productsAux = state.products.map(p => p);
+    let productsAux2 = state.productsByCategory.map(p => p);
 	switch(action.type){
         case GET_PRODUCTS:
             state.products.length = 0;
@@ -62,47 +64,47 @@ export default function reducerProducts(state=initialState2, action){
         case GET_PRODUCT_BY_CATEGORY:
             return {
                 ...state,
-                products: action.payload
+                productsByCategory: action.payload
             }
             case ORDERAZ: /* A-Z */
-            const orderAZ = productsAux.sort((prev, post) => {
+            const orderAZ = productsAux2.sort((prev, post) => {
                 if (prev.name < post.name) return -1;
                 else if (prev.name > post.name) return 1;
                 else return 0
             });
             return {
                 ...state,
-                products: orderAZ,
+                productsByCategory: orderAZ,
             }
             case ORDERZA: /* A-Z */
-            const orderZA = productsAux.sort((prev, post) => {
+            const orderZA = productsAux2.sort((prev, post) => {
                 if (prev.name < post.name) return 1;
                 else if (prev.name > post.name) return -1;
                 else return 0
             });
             return {
                 ...state,
-                products: orderZA,
+                productsByCategory: orderZA,
             }
             case MIN_PRICE: /* A-Z */
-            const minPrice = productsAux.sort((prev, post) => {
+            const minPrice = productsAux2.sort((prev, post) => {
                 if (prev.price < post.price) return -1;
                 else if (prev.price > post.price) return 1;
                 else return 0
             });
             return {
                 ...state,
-                products: minPrice,
+                productsByCategory: minPrice,
             }
             case MAX_PRICE: /* A-Z */
-            const maxPrice = productsAux.sort((prev, post) => {
+            const maxPrice = productsAux2.sort((prev, post) => {
                 if (prev.price < post.price) return 1;
                 else if (prev.price > post.price) return -1;
                 else return 0
             });
             return {
                 ...state,
-                products: maxPrice,
+                productsByCategory: maxPrice,
             }
 
             //  -------      ESTOS SON LAS CASE REVIEW
@@ -120,60 +122,60 @@ export default function reducerProducts(state=initialState2, action){
                     ...state,
                     
                 }
-                case ADD_CART:
-                    let existe = state.cart.filter(el => el.id === action.payload)
-                    if(existe.length===1) return state
-                    let newItem = state.products.find((p) => p.id === action.payload)
-                    return{
-                        ...state,
-                        cart: [...state.cart, {...newItem, quantity: 1}],
-                    }
-                
-                case DEL_CART:
-                    return{
-                        ...state,
-                        cart: state.cart.filter(p => p.id !== action.payload),
-                    }
-        
-                case DEL_ALL_CART:
-                    return {
-                        ...state,
-                        cart: [],
-                        // localCart: window.localStorage.removeItem('carrito')
-                    }
-                case SET_CART:
-                    return {
-                        ...state,
-                        cart: action.payload
-                    }
-                case SET_PRODUCTS:
-                    return {
-                        ...state,
-                        products: action.payload
-                    }
-                case SET_CARTNAV_ON:
-                    return {
-                        ...state,
-                        cartNav: true
-                    }
-                case SET_CARTNAV_OFF:
-                    return {
-                        ...state,
-                        cartNav: false
-                    }
-                case QUANTITY_ITEM: 
-                    return{
-                        ...state,
-                        cart: state.cart.map(el => {
-                            if(el.id === action.payload.id){
-                                return {
-                                    ...el,
-                                    quantity: action.payload.cantidad
-                                }
-                            }
-                            return el
-                        })
+            case ADD_CART:
+                let existe = state.cart.filter(el => el.id === action.payload)
+                if(existe.length===1) return state
+                let newItem = state.products.find((p) => p.id === action.payload)
+                return{
+                    ...state,
+                    cart: [...state.cart, {...newItem, quantity: 1}],
                 }
+
+            case DEL_CART:
+                return{
+                    ...state,
+                    cart: state.cart.filter(p => p.id !== action.payload),
+                }
+
+            case DEL_ALL_CART:
+                return {
+                    ...state,
+                    cart: [],
+                    // localCart: window.localStorage.removeItem('carrito')
+                }
+            case SET_CART:
+                return {
+                    ...state,
+                    cart: action.payload
+                }
+            case SET_PRODUCTS:
+                return {
+                    ...state,
+                    products: action.payload
+                }
+            case SET_CARTNAV_ON:
+                return {
+                    ...state,
+                    cartNav: true
+                }
+            case SET_CARTNAV_OFF:
+                return {
+                    ...state,
+                    cartNav: false
+                }
+            case QUANTITY_ITEM: 
+                return{
+                    ...state,
+                    cart: state.cart.map(el => {
+                        if(el.id === action.payload.id){
+                            return {
+                                ...el,
+                                quantity: action.payload.cantidad
+                            }
+                        }
+                        return el
+                    })
+            }
 
 		default:
 			return state;

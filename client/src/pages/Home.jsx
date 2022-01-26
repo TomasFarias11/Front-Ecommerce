@@ -13,7 +13,7 @@ export default function Home () {
 
     const dispatch = useDispatch();
     const Navigate = useNavigate();
-    const products = useSelector((state) => state.firstRed.products);
+    const products = useSelector((state) => state.firstRed.productsByCategory);
     const cart = useSelector((state) => state.firstRed.cart);
     
 
@@ -42,7 +42,6 @@ export default function Home () {
                 <CardCarrusel/>
             </div>
         <div className="container" style={{display: "flex", flexDirection: "column"  }} >
-        {/* <div className="row"> */}
             <div className="row" style={{padding:10}}>
                 <div className="col col-lg-4" >
                     <div className={estilos.styleCards}>
@@ -77,7 +76,6 @@ export default function Home () {
                     </div>
                 </div>
                 </div>
-            {/* </div> */}
             
             <div className="row" style={{padding:10}}>
                 <div className="col col-lg-4">

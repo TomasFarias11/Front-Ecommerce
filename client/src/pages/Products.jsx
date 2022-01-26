@@ -1,16 +1,17 @@
 import React from "react";
-// import {useEffect} from 'react';
-import {useDispatch} from 'react-redux';
-import { orderAZ, orderZA, minPrice, maxPrice } from '../actions/actionProducts.js'
+import { orderAZ, orderZA, minPrice, maxPrice, setProducts } from '../actions/actionProducts.js'
 import { Link } from "react-router-dom";
-// import { useState } from "react";
 import { connect } from 'react-redux'
-// import {addToCart,} from '../actions/actionCart.js'
+import { useEffect } from "react";
 
-const Products = ({reducerProducts, orderAZ, orderZA, minPrice, maxPrice}) => {
-
+const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts}) => {
+    
+    useEffect(()=>{
+        products.length < JSON.parse(window.localStorage.getItem('productos')).length && products.length ===0 ? 
+        setProducts(JSON.parse(window.localStorage.getItem('productos'))) :
+        JSON.parse(window.localStorage.getItem('productos'))
+    },[products])
     // const dispatch = useDispatch();
-    const products = reducerProducts
     const formato = new Intl.NumberFormat('de-DE', {
         // style: 'currency',
         // currency: 'USD',
@@ -21,6 +22,16 @@ const Products = ({reducerProducts, orderAZ, orderZA, minPrice, maxPrice}) => {
         
     // },[products])
 
+    useEffect(()=>{
+        const data = window.localStorage.getItem('productos')
+        if (data){
+            window.localStorage.setItem('productos', data)
+        }
+    },[])
+    useEffect(()=> {
+        window.localStorage.setItem('productos',JSON.stringify(products))
+    })
+    
     return (
         
         <div className="row">
@@ -47,10 +58,9 @@ const Products = ({reducerProducts, orderAZ, orderZA, minPrice, maxPrice}) => {
             </div>
                 <div className=" card col-lg-8">
                     <div className="container-sm bg-image hover-overlay ripple" data-mdb-ripple-color="light" style={{ padding: 20 } } >
-                        {/* <h1>{products? products[0].name : "iPhone"}</h1> */}
                         <div className="row row-cols-0 row-cols-md-3 g-5 mask animate__animated animate__bounceIn" Style="background-color: #FAFAFA"    >
                             {
-                                reducerProducts.map(e =>
+                                products.map(e =>
                                     <div className="col" key={e.id}>
                                         <div className="card animate__animated animate__bounceIn" >
                                             <img src={e.image !== 'not found' ? e.image : "https://i.postimg.cc/SK600jXG/OIP.jpg"} className="card-img-top img-fluid" alt={e.image} style={{padding:"30 0", height: "300px"}} />
@@ -68,19 +78,17 @@ const Products = ({reducerProducts, orderAZ, orderZA, minPrice, maxPrice}) => {
                         </div>
                     </div>
                 </div>
-
-
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        reducerProducts: state.firstRed.products,
+        products: state.firstRed.productsByCategory,
     };
 };
 
-const wrapper = connect(mapStateToProps,{ orderAZ, orderZA, minPrice, maxPrice });
+const wrapper = connect(mapStateToProps,{ orderAZ, orderZA, minPrice, maxPrice, setProducts });
 const component = wrapper(Products);
 
 export default component;

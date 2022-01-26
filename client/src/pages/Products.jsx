@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
 import { useEffect } from "react";
 
-const Products = ({reducerProducts, orderAZ, orderZA, minPrice, maxPrice, setProducts}) => {
+const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts}) => {
     
     useEffect(()=>{
-        reducerProducts.length < JSON.parse(window.localStorage.getItem('productos')).length && reducerProducts.length ===0 ? 
+        products.length < JSON.parse(window.localStorage.getItem('productos')).length && products.length ===0 ? 
         setProducts(JSON.parse(window.localStorage.getItem('productos'))) :
         JSON.parse(window.localStorage.getItem('productos'))
-    },[reducerProducts])
+    },[products])
 
     useEffect(()=>{
         const data = window.localStorage.getItem('productos')
@@ -19,7 +19,7 @@ const Products = ({reducerProducts, orderAZ, orderZA, minPrice, maxPrice, setPro
         }
     },[])
     useEffect(()=> {
-        window.localStorage.setItem('productos',JSON.stringify(reducerProducts))
+        window.localStorage.setItem('productos',JSON.stringify(products))
     })
     
     return (
@@ -50,7 +50,7 @@ const Products = ({reducerProducts, orderAZ, orderZA, minPrice, maxPrice, setPro
                     <div className="container-sm bg-image hover-overlay ripple" data-mdb-ripple-color="light" style={{ padding: 20 } } >
                         <div className="row row-cols-0 row-cols-md-3 g-5 mask animate__animated animate__bounceIn" Style="background-color: #FAFAFA"    >
                             {
-                                reducerProducts.map(e =>
+                                products.map(e =>
                                     <div className="col" key={e.id}>
                                         <div className="card animate__animated animate__bounceIn" >
                                             <img src={e.image !== 'not found' ? e.image : "https://i.postimg.cc/SK600jXG/OIP.jpg"} className="card-img-top img-fluid" alt={e.image} style={{padding:"30 0", height: "300px"}} />
@@ -74,7 +74,7 @@ const Products = ({reducerProducts, orderAZ, orderZA, minPrice, maxPrice, setPro
 
 const mapStateToProps = (state) => {
     return {
-        reducerProducts: state.firstRed.productsByCategory,
+        products: state.firstRed.productsByCategory,
     };
 };
 

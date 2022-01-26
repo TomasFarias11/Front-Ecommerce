@@ -22,7 +22,6 @@ export function getProducts () {
     return async function (dispatch) {
         try {
             let products = await axios.get("http://localhost:3001/products");
-            // console.log('la accion', products.data);
             return dispatch({
                 type: "GET_PRODUCTS",
                 payload: products.data

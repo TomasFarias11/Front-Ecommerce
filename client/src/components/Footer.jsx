@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {getProductByCategory} from '../actions/actionProducts.js'
 import { Link } from "react-router-dom";
-import Style from "../css/Footer.module.css"
 
 const Footer = () =>{
 
@@ -33,22 +32,22 @@ const Footer = () =>{
           {/* Left */}
           {/* Right */}
           <div>
-            <a href className="me-4 text-reset">
+            <a href="#!" className="me-4 text-reset">
               <i className="fab fa-facebook-f" />
             </a>
-            <a href className="me-4 text-reset">
+            <a href="#!" className="me-4 text-reset">
               <i className="fab fa-twitter" />
             </a>
-            <a href className="me-4 text-reset">
+            <a href="#!" className="me-4 text-reset">
               <i className="fab fa-google" />
             </a>
-            <a href className="me-4 text-reset">
+            <a href="#!" className="me-4 text-reset">
               <i className="fab fa-instagram" />
             </a>
-            <a href className="me-4 text-reset">
+            <a href="#!" className="me-4 text-reset">
               <i className="fab fa-linkedin" />
             </a>
-            <a href className="me-4 text-reset">
+            <a href="#!" className="me-4 text-reset">
               <i className="fab fa-github" />
             </a>
           </div>
@@ -56,7 +55,7 @@ const Footer = () =>{
         </section>
         {/* Section: Social media */}
         {/* Section: Links  */}
-        <section className>
+        <section>
           <div className="container text-center text-md-start mt-5">
             {/* Grid row */}
             <div className="row mt-3">
@@ -83,24 +82,24 @@ const Footer = () =>{
                   Products
                 </h6>
                 
-                <p >
+                <p>
                   <Link to="/category/iphone" >
-                      <p href="#!" className="text-reset" onClick={() => dispatch(getProductByCategory("iphone"))}>iPhone</p>
+                      <span href="#!" className="text-reset" onClick={() => dispatch(getProductByCategory("iphone"))}>iPhone</span>
                   </Link>
                 </p>
                 <p>
                   <Link to="/category/watch">
-                      <a href="#!" className="text-reset" onClick={() => dispatch(getProductByCategory("watch"))}>Watch</a>
+                      <span href="#!" className="text-reset" onClick={() => dispatch(getProductByCategory("watch"))}>Watch</span>
                   </Link>
                 </p>
                 <p>
                   <Link to="/category/airpods">
-                      <a href="#!" className="text-reset" onClick={() => dispatch(getProductByCategory("airpods"))}>AirPods</a>
+                      <span href="#!" className="text-reset" onClick={() => dispatch(getProductByCategory("airpods"))}>AirPods</span>
                   </Link>
                 </p>
                 <p>
                   <Link to="/category/tv">
-                      <a href="#!" className="text-reset" onClick={() => dispatch(getProductByCategory("tv"))}>TV & Home</a>
+                      <span href="#!" className="text-reset" onClick={() => dispatch(getProductByCategory("tv"))}>TV & Home</span>
                   </Link>
                 </p>
               </div>

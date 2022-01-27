@@ -51,16 +51,37 @@ export default function Details() {
         <div className="col-md-7 order-md-2">
           <br />
           <br />
-          <h2 className="featurette-heading">{productId.name}</h2>
+            <h2 className="featurette-heading">{productId.name}</h2>
           <br />
-          <h3>Descripcion</h3>
+            <h3>Descripcion</h3>
           <p className="lead">{productId.description}</p>
-          {productId.model !== null ? (<p><b>Model:</b> {Array.isArray(productId.model) && productId.model.map((e) => <span key={e}> {e}. </span>)}</p>) : null}
-          <p><b>Color:</b>{Array.isArray(productId.color) && productId.color.map((e) => <span key={e}> {e}. </span>)}</p>
-          {productId.storage !== null ? (<p><b>Almacenamiento:</b> {Array.isArray(productId.storage) && productId.storage.map((e) => <span key={e}> {e}. </span>)}</p>) : null}
-          {productId.ram !== null ? (<p><b>Ram:</b> {Array.isArray(productId.ram) && productId.ram.map((e) => <span key={e}> {e}. </span>)}</p>) : null}
-          <p><b>Precio:</b> ${formato.format(productId.price)}</p>
-          {productId.stock > 0 ? (<p><b>Stock:</b> {productId.stock} </p>) : (<p><b>Stock:</b> Exhausted </p>)}
+          {productId.model !== null ? (
+          <p>
+            <b>Model:</b> {Array.isArray(productId.model) && productId.model.map((e) => <span key={e}> {e}. </span>)}
+          </p>) : null}
+          <p>
+            <b>Color:</b>{Array.isArray(productId.color) && productId.color.map((e) => <span key={e}> {e}. </span>)}
+          </p>
+          {productId.storage !== null ? (
+          <p>
+            <b>Almacenamiento:</b> {Array.isArray(productId.storage) && productId.storage.map((e) => <span key={e}> {e}. </span>)}
+          </p>) : null}
+          {productId.ram !== null ? (
+          <p>
+            <b>Ram:</b> {Array.isArray(productId.ram) && productId.ram.map((e) => <span key={e}> {e}. </span>)}
+          </p>) : null}
+          <p>
+            <b>Precio:</b> ${formato.format(productId.price)}
+          </p>
+          {productId.stock > 0 ? (
+          <p>
+            <b>Stock:</b> {productId.stock} 
+          </p>) 
+            : (
+          <p>
+            <b>Stock:</b> Exhausted 
+          </p>
+          )}
           {/* {productId.stock > 0 ? (<label><b>Cantidad:</b> <input type="number" min="1" max={productId.stock} placeholder="1" /></label>) : null} */}
           {/* boton el svg es la imagen del carrito */}
           <div>

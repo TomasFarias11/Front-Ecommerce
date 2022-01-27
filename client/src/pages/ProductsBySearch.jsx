@@ -35,7 +35,7 @@ const ProductsBySearch = ({products, orderAZ, orderZA, minPrice, maxPrice}) => {
 
                 <div className=" card col-lg-8">
                     <div className="container-sm bg-image hover-overlay ripple" data-mdb-ripple-color="light" style={{ padding: 20 } } >
-                        <div className="row row-cols-0 row-cols-md-3 g-5 mask" Style="background-color: #FAFAFA"    >
+                        <div className="row row-cols-0 row-cols-md-3 g-5 mask" style={{backgroundColor: "#FAFAFA"}}>
                             {
                                 products.map(e =>
                                     <div className="col" key={e.id}>

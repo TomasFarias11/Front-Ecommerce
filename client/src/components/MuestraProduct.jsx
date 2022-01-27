@@ -5,7 +5,7 @@ const MuestraProduct = ()=>{
         <div>
             <h2>soy carousel 1</h2>
             <div className="row">
-                <div className="col" Style="background-color: gray">
+                <div className="col" style={{backgroundColor: "gray"}}>
                         <div className="carousel-item active">
                         <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
                             <ol className="carousel-indicators">

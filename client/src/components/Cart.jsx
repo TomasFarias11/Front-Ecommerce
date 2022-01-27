@@ -46,9 +46,10 @@ export default function Cart () {
                         </div>
                         {cart ? cart?.map((e) => {
                         return (
-                            <div style={{margin: '5px',}}>
+                            <div key = {e.id}style={{margin: '5px',}}>
                                 <hr />
                                 <CartCard 
+                                key = {e.id}
                                 id = {e.id}
                                 name = {e.name}
                                 price = {e.price}

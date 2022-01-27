@@ -9,6 +9,8 @@ import store from "./store";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as bootstrap from 'bootstrap';
 import axios from "axios";
+import dotenv from "dotenv";
+dotenv.config();
 
 axios.defaults.baseURL =  "http://localhost:3001"
   || process.env.REACT_APP_API;

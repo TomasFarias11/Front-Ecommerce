@@ -89,7 +89,7 @@ const LoginScreen = () => {
                     className="btn btn-lg btn-block"
                     style={{background:'609bd1'}}
                     type="submit"
-                    href=" "
+                    // href=" "
                   >
                     Login
                   </button>
@@ -98,13 +98,13 @@ const LoginScreen = () => {
                 </div>
 
                 <p className="small mb-5 pb-lg-2">
-                  <a className="text-muted" href="#!">
+                  <a className="text-muted" href=" ">
                     Forgot password?
                   </a>
                 </p>
                 <p>
                   Don't have an account?{" "}
-                  <a href=" " className="link-info" >
+                  <a href="#!" className="link-info" >
                     Register here
                   </a>
                 </p>

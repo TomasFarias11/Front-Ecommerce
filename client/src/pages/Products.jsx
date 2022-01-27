@@ -11,7 +11,7 @@ const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts, 
 
     // const dispatch = useDispatch()
     const cart = useSelector((state) => state.firstRed.cart)
-    console.log('este es el carrito', cart);
+    // console.log('este es el carrito', cart);
     
     useEffect(()=>{
         products.length < JSON.parse(window.localStorage.getItem('productos')).length && products.length ===0 ? 
@@ -38,7 +38,6 @@ const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts, 
 
     const handleClick = (e) => {
         e.preventDefault();
-        console.log(e.target.value)
         addToCart(e.target.value)
         window.localStorage.setItem('carrito', JSON.stringify(cart))
         setCartOn()
@@ -75,7 +74,7 @@ const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts, 
             </div>
                 <div className=" card col-lg-9">
                     <div className="container-sm bg-image hover-overlay ripple" data-mdb-ripple-color="light" style={{ padding: 20 } } >
-                        <div className="row row-cols-0 row-cols-md-3 g-5 mask animate__animated animate__bounceIn" Style="background-color: #FAFAFA"    >
+                        <div className="row row-cols-0 row-cols-md-3 g-5 mask animate__animated animate__bounceIn" style={{backgroundColor: "#FAFAFA"}}    >
                             {
                                 products.map(e =>
                                     <div className="col" key={e.id}>
@@ -88,7 +87,7 @@ const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts, 
                                                     <button className="btn btn-outline-secondary rounded-pill">Ver más...</button>
                                                 </Link>
                                                 <div>
-                                                    {console.log('products', products)}
+                                                    {/* {console.log('products', products)} */}
                                                     {cart.some((c) => e.id === c.id) ? 
                                                     <div className="alert alert-warning" role="alert">
                                                         Agregado al carrito

@@ -27,20 +27,26 @@ const handleClick = (e) => {
     }
 }
 
+const handleLogout = () => {
+    window.localStorage.setItem('usuario', JSON.stringify([]))
+    window.location.reload()
+}
+
+
 // console.log('aparece o no', cartOnScreen)
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark  h6 sticky-top" style={{background: "#111111"}}>
       <div className="container-fluid">
         <Link to="/" >
-            <a className="navbar-brand h1 $headings-font-weight" href=" ">
+            <span className="navbar-brand h1 $headings-font-weight" href="#!">
             <img
                 src="https://i.postimg.cc/qRkkh295/igroup-nav-2.png"
                 alt="iGroup-logo"
                 width="170" height="80"
                 className = 'animate__animated animate__jackInTheBox'
                 />
-            </a>
+            </span>
         </Link>
         <button
           className="navbar-toggler"
@@ -57,32 +63,32 @@ const handleClick = (e) => {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
             <li className="nav-item">
                 <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/macbook">
-                    <a className="nav-link" aria-current="page" href=" " onClick={() => dispatch(getProductByCategory("macbook"))}> Mac </a>
+                    <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("macbook"))}> Mac </span>
                 </Link>
             </li>
             <li className="nav-item">
                 <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/ipad">
-                    <a className="nav-link" aria-current="page" href=" " onClick={() => dispatch(getProductByCategory("ipad"))}> iPad </a>
+                    <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("ipad"))}> iPad </span>
                 </Link>
             </li>
             <li className="nav-item">
                 <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/iphone">
-                    <a className="nav-link" aria-current="page" href=" " onClick={() => dispatch(getProductByCategory("iphone"))}> iPhone </a>
+                    <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("iphone"))}> iPhone </span>
                 </Link>
             </li>
             <li className="nav-item">
                 <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/watch">
-                    <a className="nav-link" aria-current="page" href=" " onClick={() => dispatch(getProductByCategory("watch"))}> Watch </a>
+                    <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("watch"))}> Watch </span>
                 </Link>
             </li>
             <li className="nav-item">
-                <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/airpods">
-                    <a className="nav-link" aria-current="page" href=" " onClick={() => dispatch(getProductByCategory("airpods"))}> AirPods </a>
+                <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/irpods">
+                    <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("airpods"))}> AirPods </span>
                 </Link>
             </li>
             <li className="nav-item">
                 <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/tv">
-                    <a className="nav-link" aria-current="page" href=" " onClick={() => dispatch(getProductByCategory("tv"))}> TV & Home </a>
+                    <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("tv"))}> TV & Home </span>
                 </Link>
             </li>
             {/* si el usuario existe y es admin */}
@@ -90,58 +96,57 @@ const handleClick = (e) => {
             <div>
                 <li className="nav-item">  
                 <li className="nav-item">
-                    <a className="nav-link " aria-current="page" href=" " onClick={() => window.localStorage.setItem('usuario', JSON.stringify([]))}> Logout </a>
+                    <a className="nav-link " aria-current="page" href="#!" onClick={() => handleLogout()}> Logout </a>
                 </li>
                 </li>
-                <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href=" " id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Admin </a>
+                <ul className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle" href="#!" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Admin </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li>
                         <Link to="/products">
-                            <a className="dropdown-item" href=" "> Opcion 1 </a>
+                            <span className="dropdown-item" href="#!"> Opcion 1 </span>
                         </Link>
                     </li>
                     <li>
                         <Link to="/products">
-                            <a className="dropdown-item" href=" "> Opcion 2 </a>
+                            <span className="dropdown-item" href="#!"> Opcion 2 </span>
                         </Link>
                     </li>
                     <li>
                         <Link to="/products">
-                            <a className="dropdown-item" href=" "> Opcion 3 </a>
+                            <span className="dropdown-item" href="#!"> Opcion 3 </span>
                         </Link>
                     </li>
                     <li>
                         <Link to="/products">
-                            <a className="dropdown-item" href=" "> Opcion 4 </a>
+                            <span className="dropdown-item" href="#!"> Opcion 4 </span>
                         </Link>
                     </li>
                     <li>
                         <Link to="/products">
-                            <a className="dropdown-item" href=" "> Opcion 5 </a>
+                            <span className="dropdown-item" href="#!"> Opcion 5 </span>
                         </Link>
                     </li>
                 </ul>
-            </li>  
-                <li className="nav-link">
-                <p className="text-md-start">
-                    <strong> Bienvenido: {user.username}
-                        <Link style={{ textDecoration: "none", color: "orange" }} to="/products"> </Link>
-                    </strong>
-                </p>
-                </li>
+            </ul>  
+            <li className="nav-link">
+            <p className="text-md-start">
+                <strong> Bienvenido: {user.username}
+                    <Link style={{ textDecoration: "none", color: "orange" }} to="/products"> </Link>
+                </strong>
+            </p>
+            </li>
             </div>
             :
             // si el usuario existe y no es admin
             user.username ?
             <div>
                 <ul>
-
-                <li className="nav-item">  
-                <li className="nav-item">
-                    <a className="nav-link " aria-current="page" href=" " onClick={() => window.localStorage.setItem('usuario', JSON.stringify([]))}> Logout </a>
-                </li>
-                </li>
+                <ul className="nav-item">  
+                    <li className="nav-item">
+                        <a className="nav-link " aria-current="page" href="#!" onClick={() => handleLogout()}> Logout </a>
+                    </li>
+                </ul>
                 <li className="nav-link">
                 <p className="text-md-start">
                     <strong> Bienvenido: {user.username}
@@ -154,14 +159,14 @@ const handleClick = (e) => {
             : 
             <li className="nav-item">
                 <Link style={{ textDecoration: 'none', color: 'white' }} to="/login">
-                    <a className="nav-link" href=" " onClick=""> Login </a>
+                    <span className="nav-link" href="#!"> Login </span>
                 </Link>
             </li>
             }
 
             
           </ul>
-          <li className="nav-link" onClick="">
+          <li className="nav-link">
               <button type="button" className="btn btn-secondary position-relative" onClick={(e) => handleClick(e)}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -180,13 +185,7 @@ const handleClick = (e) => {
           <SearchBar />
           <div>
               {cartOnScreen &&
-            //   <div className="row animate__animated animate__slideInRight">
-                <Cart/>
-            //   </div>
-            //   : 
-            //   <div className="row animate__animated animate__slideOutRight">
-            //     <Cart/>
-            //   </div>
+                <Cart/>         
             }
           </div>
         </div>

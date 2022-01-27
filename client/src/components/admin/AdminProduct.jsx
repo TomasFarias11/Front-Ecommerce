@@ -1,12 +1,19 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import {deleteProduct} from "../../actions/actionAdmin"
 
 function AdminProduct() {
 
     const products = useSelector((state) => state.firstRed.products);
+    const dispatch = useDispatch()
 
     console.log(products)
+
+    const handelDetele=(id)=>{
+        console.log("este es id que pulso", id)
+        dispatch(deleteProduct(id))
+    }
 
   return (
     <div className="row">
@@ -29,16 +36,40 @@ function AdminProduct() {
     </div>
     <div className=" card col-lg-8">
                     <div className="container-sm bg-image hover-overlay ripple" data-mdb-ripple-color="light" style={{ padding: 20 } } >
-                        {/* <h1>{products? products[0].name : "iPhone"}</h1> */}
                         <div className="row row-cols-0 row-cols-md-3 g-5 mask animate__animated animate__bounceIn" Style="background-color: #FAFAFA"    >
-
-                            <h1>Informacion de los prodcutos puede ser cantidad o que se te ocurre para poner aqui?</h1>
+                            <ul>
+                                {
+                                    products.map(e=>
+                                        <li>id:{e.id} nombre: {e.name} categoria: {e.idCategory} <button onClick={()=>handelDetele(e.id)}>X</button></li>
+                                        )
+                                }
+                            </ul>
                         </div>
                     </div>
-                </div>
+        </div>
     </div>
   )
 
 }
 
 export default AdminProduct;
+
+{/*                          {
+                                products.map(e =>
+                                    <div className="col" key={e.id}>
+                                        <div className="card animate__animated animate__bounceIn" >
+                                            <img src={e.image !== 'not found' ? e.image : "https://i.postimg.cc/SK600jXG/OIP.jpg"} className="card-img-top img-fluid" alt={e.image} style={{padding:"30 0", height: "300px"}} />
+                                            <div className="card-body">
+                                                <h5 className="card-title">{e.name}</h5>
+                                                <p className="card-text">{e.category}  ${e.price}</p>
+                                                
+                                                    <button className="btn btn-outline-secondary rounded-pill">Editar</button>
+                                                
+                                                
+                                                    <button className="btn btn-outline-secondary rounded-pill">Borrar</button>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            } */}

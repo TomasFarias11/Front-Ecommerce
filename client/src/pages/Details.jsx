@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getProductById } from "../actions/actionProducts.js";
+import { getProductById, setCartOn } from "../actions/actionProducts.js";
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import Reviews from "../components/Reviews.jsx"
@@ -22,6 +22,7 @@ export default function Details() {
     e.preventDefault();
     dispatch(addToCart(productId.id))
     window.localStorage.setItem('carrito', JSON.stringify(cart))
+    dispatch(setCartOn())
     swal("Agregado al carrito!", {
       buttons: false,
       icon: 'success',
@@ -46,14 +47,14 @@ export default function Details() {
 
   return (<>
     <div className="container">
-      <div class="row featurette">
-        <div class="col-md-7 order-md-2">
+      <div className="row featurette">
+        <div className="col-md-7 order-md-2">
           <br />
           <br />
-          <h2 class="featurette-heading">{productId.name}</h2>
+          <h2 className="featurette-heading">{productId.name}</h2>
           <br />
           <h3>Descripcion</h3>
-          <p class="lead">{productId.description}</p>
+          <p className="lead">{productId.description}</p>
           {productId.model !== null ? (<p><b>Model:</b> {Array.isArray(productId.model) && productId.model.map((e) => <span key={e}> {e}. </span>)}</p>) : null}
           <p><b>Color:</b>{Array.isArray(productId.color) && productId.color.map((e) => <span key={e}> {e}. </span>)}</p>
           {productId.storage !== null ? (<p><b>Almacenamiento:</b> {Array.isArray(productId.storage) && productId.storage.map((e) => <span key={e}> {e}. </span>)}</p>) : null}
@@ -64,11 +65,11 @@ export default function Details() {
           {/* boton el svg es la imagen del carrito */}
           <div>
               {cart.some((c) => productId.id === c.id) ? 
-              <div class="alert alert-warning" role="alert">
+              <div className="alert alert-warning" role="alert">
               Agregado al carrito
               </div>
               :
-              <button type="submit" class="btn btn-primary" onClick={(e) => handleClick(e)} style={{ margin: "0 40px 13px" }}>
+              <button type="submit" className="btn btn-primary" onClick={(e) => handleClick(e)} style={{ margin: "0 40px 13px" }}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -87,11 +88,11 @@ export default function Details() {
           {/*tercer boton */}
         </div>
         {/* en este div se ingresa la img */}
-        <div class="col-md-5 order-md-1">
-          <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="940px" height="1112px" src={productId.image} role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false" />
+        <div className="col-md-5 order-md-1">
+          <img className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="940px" height="1112px" src={productId.image} role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false" />
         </div>
       </div>
-      <hr class="featurette-divider" />
+      <hr className="featurette-divider" />
     </div>
 
     {/* aca estan las reviews*/}

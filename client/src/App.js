@@ -13,12 +13,16 @@ import {setCart} from './actions/actionProducts.js'
 function App() {
   
   const dispatch = useDispatch()
-  // console.log('ESTE ES EK PU*TO LOCALSTORAGTE', window.localStorage.getItem('carrito'));
+  // creacion u obtencion localStorage del carrito
   JSON.parse(window.localStorage.getItem('carrito'))?.length > 0 ? JSON.parse(window.localStorage.getItem('carrito')): window.localStorage.setItem('carrito', JSON.stringify([]))
   dispatch(setCart(JSON.parse(window.localStorage.getItem('carrito'))))
-  
+  // creacion u obtencion localStorage de los productos
   JSON.parse(window.localStorage.getItem('productos'))?.length > 0 ? window.localStorage.getItem('productos') : window.localStorage.setItem('productos',JSON.stringify([]))
-  
+  // creacion u obtencion localStorage del usuario
+  JSON.parse(window.localStorage.getItem('usuario'))?.username ? window.localStorage.getItem('usuario') : window.localStorage.setItem('usuario', JSON.stringify([]))
+
+
+
   return (
     <div className="App">
       <NavBar />

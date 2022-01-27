@@ -1,7 +1,7 @@
 import React from "react";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {addToCart, getProducts} from '../actions/actionProducts.js'
+import {addToCart, getProducts, setCartOn} from '../actions/actionProducts.js'
 import {Link} from "react-router-dom";
 import swal from 'sweetalert';
 
@@ -53,7 +53,7 @@ const CardCarrusel = () =>{
         e.preventDefault();
         dispatch(addToCart(e.target.value))
         window.localStorage.setItem('carrito', JSON.stringify(cart))
-        // dispatch(setCartOff())
+        dispatch(setCartOn())
         swal("Agregado al carrito!", {
             buttons: false,
             icon: 'success',
@@ -76,18 +76,18 @@ const CardCarrusel = () =>{
                             <Link to={`/details/${e.id}`}>
                                 <img src={e.image} alt="" className="card-img-top" height="310px"/>
                             </Link>
-                            <div class="card-body">
+                            <div className="card-body">
                                 <h5>{e.name}</h5>
-                                <p class="card-text">Precio: ${formato.format(e.price)}</p>
-                                <p class="card-text">Stock: {e.stock}</p>
+                                <p className="card-text">Precio: ${formato.format(e.price)}</p>
+                                <p className="card-text">Stock: {e.stock}</p>
                             </div>
                             <div>
                                 {cart.some((c) => e.id === c.id) ? 
-                                <div class="alert alert-warning" role="alert">
+                                <div className="alert alert-warning" role="alert">
                                 Agregado al carrito
                                 </div>
                                 :
-                            <button type="button" value={e.id} class="btn btn-outline-primary" onClick={(e) => handleClick(e)}>Añadir al carrito</button>
+                            <button type="button" value={e.id} className="btn btn-outline-primary" onClick={(e) => handleClick(e)}>Añadir al carrito</button>
                                 // <button  type="button" value = {e.id} class="btn btn-primary" onClick={(e) => handleClick(e)} style={{ margin: "0 40px 13px" }}>
                                 //     <svg
                                 //     xmlns="http://www.w3.org/2000/svg"
@@ -112,33 +112,33 @@ const CardCarrusel = () =>{
                             <Link to={`/details/${e.id}`}>
                                 <img src={e.image} alt="" className="card-img-top" height="300px"/>
                             </Link>
-                            <div class="card-body">
+                            <div className="card-body">
                                 <h5>{e.name}</h5>
-                                <p class="card-text">Price: {e.price}</p>
-                                <p class="card-text">Amount: {e.stock}</p>
+                                <p className="card-text">Price: {e.price}</p>
+                                <p className="card-text">Amount: {e.stock}</p>
                             </div>
                             <div>
                                 {cart.some((c) => e.name === c.name) ? 
-                                <div class="alert alert-warning" role="alert">
+                                <div className="alert alert-warning" role="alert">
                                 Agregado al carrito
                                 </div>
                                 :
-                            <button type="button" value={e.id} class="btn btn-outline-primary" onClick={(e) => handleClick(e)}>Añadir al carrito</button>
+                            <button type="button" value={e.id} className="btn btn-outline-primary" onClick={(e) => handleClick(e)}>Añadir al carrito</button>
                             }
                             </div>
                         </div>
             })}
             
             </div>
-            <nav class="position-absolute start-50 translate-middle-x" aria-label="Page navigation example">
+            <nav className="position-absolute start-50 translate-middle-x" aria-label="Page navigation example">
                 {currentPage ? (
                     <div>
-                        <ul class="pagination" style={{padding: "15px"}}>
-                            <li class="page-item">
-                            <button  class="page-link" aria-label="Previous" aria-hidden="true" onClick={handleprev}>&laquo;</button>
+                        <ul className="pagination" style={{padding: "15px"}}>
+                            <li className="page-item">
+                            <button  className="page-link" aria-label="Previous" aria-hidden="true" onClick={handleprev}>&laquo;</button>
                             </li>
-                            <li class="page-item">
-                            <button  class="page-link" aria-hidden="true" aria-label="Next" onClick={handlenext}>&raquo;</button>
+                            <li className="page-item">
+                            <button  className="page-link" aria-hidden="true" aria-label="Next" onClick={handlenext}>&raquo;</button>
                             </li>
                         </ul>
                     </div>

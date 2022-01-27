@@ -1,5 +1,6 @@
 import axios from "axios";
 import { firebase, googleAuthProvider } from "../firebase";
+// import {useNavigate} from 'react-router-dom'
 
 export const  LOGIN_GOOGLE = "LOGIN_GOOGLE";
 export const LOCAL_LOGIN_USER = "LOCAL_LOGIN_USER";
@@ -7,6 +8,7 @@ export const LOCAL_LOGIN_USER = "LOCAL_LOGIN_USER";
 // .auth().signInWithPopup(googleAuthProvider).then(data => console.log(data))
 
 export const googleLogin = () => {
+  // const Navigate = useNavigate()
   return async (dispatch) => {
     try {
    const dataUser = await firebase.auth().signInWithPopup(googleAuthProvider)
@@ -27,15 +29,25 @@ export const googleLogin = () => {
          console.log(response, "este es el repsonse")
          response.status === 200 ?
             dispatch({
-           type: "LOGIN_GOOGLE",
-           payload:{ username:response.data.username, admin:response.data.admin, id:response.data.id },
-         })
-         : response.status === 202 ? 
-         dispatch({
-          type: "LOGIN_GOOGLE",
-          payload:{ username:userAuthGoogle.username, admin:userAuthGoogle.admin, },
-        })
-         : console.log("este cosole.log no deberia parecer")
+              type: "LOGIN_GOOGLE",
+              payload:{ username:response.data.username, admin:response.data.admin, id:response.data.id },
+            },
+            window.localStorage.setItem('usuario', JSON.stringify({
+              username: response.data.username,
+              id: response.data.id,
+              admin: response.data.admin
+            })))
+            : response.status === 202 ? 
+            dispatch({
+              type: "LOGIN_GOOGLE",
+              payload:{ username:userAuthGoogle.username, admin:userAuthGoogle.admin, },
+            },
+            // console.log('respuesta del 202',response.data),
+            window.localStorage.setItem('usuario', JSON.stringify({
+              username: userAuthGoogle.username,
+              admin: userAuthGoogle.admin
+            })))
+            : console.log("este cosole.log no deberia aparecer")
          
       } catch (error) {
         console.log("msg: algo a salido muy mal x.x")
@@ -49,7 +61,12 @@ export const localLoginUser = (datos) => {
     dispatch({
       type: LOCAL_LOGIN_USER,
       payload: data,
-    })
+    },
+    window.localStorage.setItem('usuario', JSON.stringify({
+      username: data.userName,
+      admin: data.admin,
+      id: data.id
+    })))
   }
 };
 

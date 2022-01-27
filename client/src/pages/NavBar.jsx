@@ -1,5 +1,5 @@
 import React from "react";
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import {useDispatch, useSelector} from 'react-redux';
@@ -11,7 +11,12 @@ function NavBar() {
     const dispatch = useDispatch()
     // const [cartOnScreen, setCartOnScreen] = useState(false)
     const cartOnScreen = useSelector((state) => state.firstRed.cartNav)
+    const user = JSON.parse(window.localStorage.getItem('usuario'))
+    const userData = useSelector((state) => state.secondRed.userData)
 
+    // useEffect(()=>
+    //     console.log('1')
+    // ,[userData])
 
 const handleClick = (e) => {
     e.preventDefault();
@@ -22,7 +27,7 @@ const handleClick = (e) => {
     }
 }
 
-console.log('aparece o no', cartOnScreen)
+// console.log('aparece o no', cartOnScreen)
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark  h6 sticky-top" style={{background: "#111111"}}>
@@ -80,14 +85,15 @@ console.log('aparece o no', cartOnScreen)
                     <a className="nav-link" aria-current="page" href=" " onClick={() => dispatch(getProductByCategory("tv"))}> TV & Home </a>
                 </Link>
             </li>
-
-            <li className="nav-item">
-                <Link style={{ textDecoration: 'none', color: 'white' }} to="/users/google">
-                    <a className="nav-link" href=" " onClick=""> Login </a>
-                </Link>
-            </li>
-
-            <li className="nav-item dropdown">
+            {/* si el usuario existe y es admin */}
+            { userData[0] || user.username && user.admin ?
+            <div>
+                <li className="nav-item">  
+                <li className="nav-item">
+                    <a className="nav-link " aria-current="page" href=" " onClick={() => window.localStorage.setItem('usuario', JSON.stringify([]))}> Logout </a>
+                </li>
+                </li>
+                <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href=" " id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Admin </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li>
@@ -117,19 +123,43 @@ console.log('aparece o no', cartOnScreen)
                     </li>
                 </ul>
             </li>  
-           
-            <li className="nav-item">  
-                <li className="nav-item">
-                    <a className="nav-link " aria-current="page" href=" " onClick=""> Logout </a>
-                </li>
-            </li>
-            <li className="nav-link">
+                <li className="nav-link">
                 <p className="text-md-start">
-                    <strong> Bienvenido:{" "}
+                    <strong> Bienvenido: {user.username}
                         <Link style={{ textDecoration: "none", color: "orange" }} to="/products"> </Link>
                     </strong>
                 </p>
+                </li>
+            </div>
+            :
+            // si el usuario existe y no es admin
+            user.username ?
+            <div>
+                <ul>
+
+                <li className="nav-item">  
+                <li className="nav-item">
+                    <a className="nav-link " aria-current="page" href=" " onClick={() => window.localStorage.setItem('usuario', JSON.stringify([]))}> Logout </a>
+                </li>
+                </li>
+                <li className="nav-link">
+                <p className="text-md-start">
+                    <strong> Bienvenido: {user.username}
+                        <Link style={{ textDecoration: "none", color: "orange" }} to="/products"> </Link>
+                    </strong>
+                </p>
+                </li>
+                </ul>
+            </div>
+            : 
+            <li className="nav-item">
+                <Link style={{ textDecoration: 'none', color: 'white' }} to="/login">
+                    <a className="nav-link" href=" " onClick=""> Login </a>
+                </Link>
             </li>
+            }
+
+            
           </ul>
           <li className="nav-link" onClick="">
               <button type="button" className="btn btn-secondary position-relative" onClick={(e) => handleClick(e)}>
@@ -138,12 +168,12 @@ console.log('aparece o no', cartOnScreen)
                   width="20"
                   height="20"
                   fill="white"
-                  class="bi bi-cart4"
+                  className="bi bi-cart4"
                   viewBox="0 0 16 16"
                 >
                   <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
                 </svg>
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 </span>
               </button>
           </li>

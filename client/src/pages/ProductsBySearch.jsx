@@ -13,19 +13,19 @@ const ProductsBySearch = ({products, orderAZ, orderZA, minPrice, maxPrice}) => {
                 <div className="container-sm " style={{ padding: 20 } }>   
                     <div >
                         <div className="dropdown">
-                        <button type="button" class="btn btn-outline-secondary" onClick={()=>orderAZ()}>Orden  A...Z</button>
+                        <button type="button" className="btn btn-outline-secondary" onClick={()=>orderAZ()}>Orden  A...Z</button>
                         </div>
                         <br/>
                         <div className="dropdown">
-                        <button type="button" class="btn btn-outline-secondary" onClick={()=>orderZA()}>Orden  Z...A</button>
+                        <button type="button" className="btn btn-outline-secondary" onClick={()=>orderZA()}>Orden  Z...A</button>
                         </div>
                         <br/>
                         <div className="dropdown">
-                        <button type="button" class="btn btn-outline-secondary" onClick={()=>minPrice()}>Precio min...max</button>
+                        <button type="button" className="btn btn-outline-secondary" onClick={()=>minPrice()}>Precio min...max</button>
                         </div>
                         <br/>
                         <div className="dropdown">
-                        <button type="button" class="btn btn-outline-secondary" onClick={()=>maxPrice()}>Precio max...min</button>
+                        <button type="button" className="btn btn-outline-secondary" onClick={()=>maxPrice()}>Precio max...min</button>
                         </div>
                     </div>
                 </div>

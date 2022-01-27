@@ -17,7 +17,7 @@ function SearchBar() {
 
   useEffect(() => {
     dispatch(getProductByName(name))
-  }, [dispatch, name],console.log('NAME', name))
+  }, [dispatch, name])
 
   const handleChange = (e) => {
     setName(e.target.value);

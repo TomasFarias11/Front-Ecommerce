@@ -11,7 +11,7 @@ import * as bootstrap from 'bootstrap';
 import axios from "axios";
 
 axios.defaults.baseURL =  "http://localhost:3001"
-//  || process.env.REACT_APP_API;
+  || process.env.REACT_APP_API;
 
 
 

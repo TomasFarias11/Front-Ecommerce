@@ -23,7 +23,7 @@ export const googleLogin = () => {
                loginWithGoogle: true,
             }
             
-         let response = await axios.post('http://localhost:3001/user', userAuthGoogle )
+         let response = await axios.post('/user', userAuthGoogle )
          console.log(response, "este es el repsonse")
          response.status === 200 ?
             dispatch({
@@ -45,7 +45,7 @@ export const googleLogin = () => {
 
 export const localLoginUser = (datos) => {
   return async (dispatch) => {
-    const { data } = await axios.post("http://localhost:3001/user/login", datos )
+    const { data } = await axios.post("/user/login", datos )
     dispatch({
       type: LOCAL_LOGIN_USER,
       payload: data,

@@ -8,7 +8,7 @@ import NavBar from "./pages/NavBar";
 import Footer from "./components/Footer";
 import LoginScreen from "./pages/LoginScreen";
 import {useDispatch, useSelector} from 'react-redux';
-import {setCart} from './actions/actionProducts.js'
+import {setCart} from './actions/actionProducts.js';
 
 function App() {
   

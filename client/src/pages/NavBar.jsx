@@ -1,7 +1,7 @@
 import React from "react";
 // import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import SearchBar from "./SearchBar";
+import SearchAutocomplete from "./SearchAutocomplete";
 import {useDispatch, useSelector} from 'react-redux';
 import {getProductByCategory, setCartOn, setCartOff} from '../actions/actionProducts.js'
 import Cart from "../components/Cart.jsx"
@@ -147,7 +147,7 @@ console.log('aparece o no', cartOnScreen)
                 </span>
               </button>
           </li>
-          <SearchBar />
+          <SearchAutocomplete />
           <div>
               {cartOnScreen &&
             //   <div className="row animate__animated animate__slideInRight">

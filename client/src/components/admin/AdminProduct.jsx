@@ -22,8 +22,8 @@ function AdminProduct() {
             id:value
         }
         )
-        console.log("este es id que pulso", remove)
-        dispatch(deleteProduct(remove))
+        console.log("este es id que pulso", {target:{id,value}})
+        dispatch(deleteProduct(value))
     }
 
   return (

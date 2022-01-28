@@ -46,7 +46,7 @@ function AdminProduct() {
                                             <button>editar</button>
                                         </Link>
                                         <button name="id" value={e.id} onClick={(e)=>handelDetele(e)}>X</button></li>
-                                        )
+                                    )
                                 }
                             </ul>
                         </div>

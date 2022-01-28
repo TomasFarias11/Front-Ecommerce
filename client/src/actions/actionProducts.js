@@ -33,7 +33,7 @@ export const SET_CARTNAV_OFF = 'SET_CARTNAV_OFF'
 export function getProducts () {
     return async function (dispatch) {
         try {
-            let products = await axios.get("http://localhost:3001/products");
+            let products = await axios.get("/products");
             return dispatch({
                 type: "GET_PRODUCTS",
                 payload: products.data
@@ -47,7 +47,7 @@ export function getProducts () {
 export function getProductByName (name) {
     return async function (dispatch) {
         try {
-            let product = await axios.get(`http://localhost:3001/products?name=${name}`)
+            let product = await axios.get(`/products?name=${name}`)
             return dispatch({
                 type: "GET_PRODUCT_BY_NAME",
                 payload: product.data
@@ -67,7 +67,7 @@ export function getProductById (id) {
     return async function (dispatch) {
         try {
 
-            let product = await axios.get(`http://localhost:3001/products/detail/${id}`)
+            let product = await axios.get(`/products/detail/${id}`)
             return dispatch({
                 type: "GET_PRODUCT_BY_ID",
                 payload: product.data
@@ -84,8 +84,7 @@ export function getProductById (id) {
 
 export function getProductByCategory (category) {
     return async function (dispatch) {
-        let products = await axios.get(`http://localhost:3001/products/category/${category}`)
-        console.log('estos son los productos filtrados', products)
+        let products = await axios.get(`/products/category/${category}`)
         return dispatch({
             type: "GET_PRODUCT_BY_CATEGORY",
             payload: products.data
@@ -106,7 +105,7 @@ export const maxPrice = () => { return { type: MAX_PRICE } }
 export function postReview (idProduct, idUser, payload) {
     return async function (dispatch) {
         try {
-            await axios.post(`http://localhost:3001/review/products/${idProduct}/user/${idUser}`, payload )
+            await axios.post(`/review/products/${idProduct}/user/${idUser}`, payload )
             return dispatch({type: POST_REVIEW, payload})
         } catch (err) {
             console.log(err);
@@ -117,7 +116,7 @@ export function postReview (idProduct, idUser, payload) {
 export function putReview (idProduct, idUser, payload) {
     return async function (dispatch) {
         try {
-            await axios.put(`http://localhost:3001/review/products/${idProduct}/user/${idUser}`, payload )
+            await axios.put(`/review/products/${idProduct}/user/${idUser}`, payload )
             return dispatch({type: PUT_REVIEW, payload})
         } catch (err) {
             console.log(err);
@@ -128,7 +127,7 @@ export function putReview (idProduct, idUser, payload) {
 export function getReviews (id) {
     return async function (dispatch) {
         try {
-            let {data} = await axios.get(`http://localhost:3001/review/products/${id}`)
+            let {data} = await axios.get(`/review/products/${id}`)
             return dispatch({
                 type: GET_REVIEWS,
                 payload: data

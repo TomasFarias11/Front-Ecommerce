@@ -10,10 +10,9 @@ import {
     ORDERZA,
     MIN_PRICE,
     MAX_PRICE,
-    minPrice,
     ADD_CART,
-	  DEL_CART,
-	  DEL_ALL_CART,
+    DEL_CART,
+    DEL_ALL_CART,
     SET_CART,
     SET_CARTNAV_ON,
     SET_CARTNAV_OFF,
@@ -27,7 +26,6 @@ const initialState2={
 	products:[],
     allProducts: [],
     productId: [],
-    productsByCategory:[],
     reviews: [],
     cart: [],
     cartNav: false
@@ -35,7 +33,7 @@ const initialState2={
 
 export default function reducerProducts(state=initialState2, action){
     let productsAux = state.products.map(p => p);
-    let productsAux2 = state.productsByCategory.map(p => p);
+    let productsAux2 = state.products.map(p => p);
 	switch(action.type){
         case GET_PRODUCTS:
             state.products.length = 0;
@@ -62,7 +60,7 @@ export default function reducerProducts(state=initialState2, action){
         case GET_PRODUCT_BY_CATEGORY:
             return {
                 ...state,
-                productsByCategory: action.payload
+                products: action.payload
             }
             case ORDERAZ: /* A-Z */
             const orderAZ = productsAux2.sort((prev, post) => {
@@ -72,7 +70,7 @@ export default function reducerProducts(state=initialState2, action){
             });
             return {
                 ...state,
-                productsByCategory: orderAZ,
+                products: orderAZ
             }
             case ORDERZA: /* A-Z */
             const orderZA = productsAux2.sort((prev, post) => {
@@ -82,7 +80,7 @@ export default function reducerProducts(state=initialState2, action){
             });
             return {
                 ...state,
-                productsByCategory: orderZA,
+                products: orderZA
             }
             case MIN_PRICE: /* A-Z */
             const minPrice = productsAux2.sort((prev, post) => {
@@ -92,7 +90,8 @@ export default function reducerProducts(state=initialState2, action){
             });
             return {
                 ...state,
-                productsByCategory: minPrice,
+                products: minPrice
+                // productsByCategory: minPrice,
             }
             case MAX_PRICE: /* A-Z */
             const maxPrice = productsAux2.sort((prev, post) => {
@@ -102,7 +101,7 @@ export default function reducerProducts(state=initialState2, action){
             });
             return {
                 ...state,
-                productsByCategory: maxPrice,
+                products: maxPrice
             }
 
             //  -------      ESTOS SON LAS CASE REVIEW
@@ -149,7 +148,7 @@ export default function reducerProducts(state=initialState2, action){
             case SET_PRODUCTS:
                 return {
                     ...state,
-                    productsByCategory: action.payload
+                    products: action.payload
                 }
             case SET_CARTNAV_ON:
                 return {

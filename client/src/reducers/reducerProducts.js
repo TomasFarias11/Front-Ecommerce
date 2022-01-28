@@ -21,6 +21,8 @@ import {
 
 } from '../actions/actionProducts'
 
+import {DELETE_PRODUCT} from "../actions/actionAdmin"
+
 
 const initialState2={
 	products:[],

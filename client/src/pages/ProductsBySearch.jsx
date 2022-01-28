@@ -13,19 +13,19 @@ const ProductsBySearch = ({products, orderAZ, orderZA, minPrice, maxPrice}) => {
                 <div className="container-sm " style={{ padding: 20 } }>   
                     <div >
                         <div className="dropdown">
-                        <button type="button" class="btn btn-outline-secondary" onClick={()=>orderAZ()}>Orden  A...Z</button>
+                        <button type="button" className="btn btn-outline-secondary" onClick={()=>orderAZ()}>Orden  A...Z</button>
                         </div>
                         <br/>
                         <div className="dropdown">
-                        <button type="button" class="btn btn-outline-secondary" onClick={()=>orderZA()}>Orden  Z...A</button>
+                        <button type="button" className="btn btn-outline-secondary" onClick={()=>orderZA()}>Orden  Z...A</button>
                         </div>
                         <br/>
                         <div className="dropdown">
-                        <button type="button" class="btn btn-outline-secondary" onClick={()=>minPrice()}>Precio min...max</button>
+                        <button type="button" className="btn btn-outline-secondary" onClick={()=>minPrice()}>Precio min...max</button>
                         </div>
                         <br/>
                         <div className="dropdown">
-                        <button type="button" class="btn btn-outline-secondary" onClick={()=>maxPrice()}>Precio max...min</button>
+                        <button type="button" className="btn btn-outline-secondary" onClick={()=>maxPrice()}>Precio max...min</button>
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@ const ProductsBySearch = ({products, orderAZ, orderZA, minPrice, maxPrice}) => {
 
                 <div className=" card col-lg-8">
                     <div className="container-sm bg-image hover-overlay ripple" data-mdb-ripple-color="light" style={{ padding: 20 } } >
-                        <div className="row row-cols-0 row-cols-md-3 g-5 mask" Style="background-color: #FAFAFA"    >
+                        <div className="row row-cols-0 row-cols-md-3 g-5 mask" style={{backgroundColor: "#FAFAFA"}}>
                             {
                                 products.map(e =>
                                     <div className="col" key={e.id}>

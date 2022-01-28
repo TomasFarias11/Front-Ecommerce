@@ -9,17 +9,19 @@ function AdminProduct() {
     const products = useSelector((state) => state.firstRed.products);
     const dispatch = useDispatch()
     let [remove, setRemove]=useState({
-        id:[]
+        id:"",
     })
 
     console.log(products)
+    console.log(remove)
 
-    const handelDetele=(e)=>{
-        e.preventDefault()
+
+    const handelDetele=({target:{id,value}})=>{
         setRemove({
             ...remove,
-            id:[...remove.id, e.target.value]
-        })
+            id:value
+        }
+        )
         console.log("este es id que pulso", remove)
         dispatch(deleteProduct(remove))
     }

@@ -6,6 +6,7 @@ import Details from "./pages/Details";
 import Products from "./pages/Products";
 import NavBar from "./pages/NavBar";
 import Footer from "./components/Footer";
+import Formulario from "./pages/Formulario"
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
       <Route exact path="/details/:id" element={<Details/>}/>
       <Route exact path="/category/:category" element={<Products/>}/>
       <Route exact path="/search" element={<ProductsBySearch/>}/>
+      <Route exact path= "/user" element={<Formulario/>}/>
       </Routes>
+      
       <Footer/>
     </div>
   );

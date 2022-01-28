@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import {useDispatch} from 'react-redux';
-import {getProductByCategory} from '../actions/actionProducts.js'
+import {getProductByCategory, postUserCreate} from '../actions/actionProducts.js'
 
 
 function NavBar() {
@@ -69,7 +69,8 @@ function NavBar() {
             </li>
 
             <li className="nav-item">
-                <Link style={{ textDecoration: 'none', color: 'white' }} to="/users/google">
+                {/* cambie la ruta para realizar pruebas */}
+                <Link style={{ textDecoration: 'none', color: 'white' }} to="/user"> 
                     <a className="nav-link" href=" " onClick=""> Login </a>
                 </Link>
             </li>

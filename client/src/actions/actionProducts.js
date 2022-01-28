@@ -6,6 +6,8 @@ export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME"
 export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID"
 export const GET_IPHONE = "GET_IPHONE"
 export const GET_PRODUCT_BY_CATEGORY = "GET_PRODUCT_BY_CATEGORY" 
+export const CREATE_USERS = 'CREATE_USERS'
+export const LIST_USERS = 'LIST_USERS'
 
 //  ------  ACA ESTA LOS CASE DE LAS REVIEW
 export const GET_REVIEWS = "GET_REVIEWS"
@@ -16,6 +18,11 @@ export const ORDERAZ = "ORDER_AZ";
 export const ORDERZA = "ORDER_ZA";
 export const MIN_PRICE = "MIN_PRICE";
 export const MAX_PRICE = "MAX_PRICE";
+
+// ------ CASE OF USERS
+
+export const USER_CREATE = "USER_CREATE";
+
 
 export function getProducts () {
     return async function (dispatch) {
@@ -128,3 +135,44 @@ export function getReviews (id) {
     }
 }
 
+// SE CREA LA ACCIÓN PARA LA CREACIÓN DEL USUARIO
+
+// export function userCreate (input){
+//     return function (dispatch){
+//         const url = "/users";
+
+//         return axios.post(url, input)
+//         .then(data => {
+//             dispatch({type: CREATE_USERS, payload:data})
+//         })
+//         .then(() => {
+//             dispatch(listarUsers)
+//         })
+//         .catch(error => alert(error, "Algo salio mal al crear el usuario"))
+//     }
+// }
+
+export function postUserCreate (input){
+    return async function(dispatch){
+        try {
+            let response = await axios.post("http://localhost:3001/user", input)
+            console.log(input, "input de las acciones")
+            return response
+            // return dispatch({type: USER_CREATE, input})
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export function listarUsers(){
+    return function(dispatch){
+        axios.get("/users")
+        .then(res => res.data)
+        .then(data => {
+            dispatch({type: LIST_USERS, payload: data})
+        })
+        .catch(error => alert(error, "algo salio mal"))
+    }
+}

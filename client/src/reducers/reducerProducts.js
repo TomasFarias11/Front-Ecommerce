@@ -9,7 +9,9 @@ import {
     ORDERAZ,
     ORDERZA,
     MIN_PRICE,
-    MAX_PRICE
+    MAX_PRICE,
+    LIST_USERS,
+    USER_CREATE
 } from '../actions/actionProducts'
 
 
@@ -19,7 +21,10 @@ const initialState2={
     productId: [],
     productsByCategory:[],
     reviews: [],
-    productsSearch:[]
+    productsSearch:[],
+    users: [],
+    listUser:[]
+
 }
 
 export default function reducerProducts(state=initialState2, action){
@@ -108,6 +113,19 @@ export default function reducerProducts(state=initialState2, action){
                     ...state,
                     
                 }
+
+            // CREANDO LOS USUARIOS
+
+            case USER_CREATE:
+                return{
+                    ...state,
+                    
+                }
+
+            case LIST_USERS:
+                return{
+                    ...state,
+                    listUser: action.payload                }
 
 		default:
 			return state;

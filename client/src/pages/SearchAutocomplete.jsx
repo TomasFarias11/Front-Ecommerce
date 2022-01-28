@@ -1,6 +1,7 @@
 import { createAutocomplete } from '@algolia/autocomplete-core';
 import { useState, useMemo, useRef } from 'react';
 import { Link } from "react-router-dom";
+import icono from "../images/pngwing.com.png"
 
 
 const AutocompleteItem = ({id, name, image, price }) => {
@@ -9,19 +10,30 @@ const AutocompleteItem = ({id, name, image, price }) => {
         // currency: 'USD',
         // minimumFractionDigits: 3,
     })
-    return (
-        <li>
-            <Link to={`/details/${id}`}>
-                <a className='hover:bg-blue-300 flex gap-4 p-4'>
-                    <img src={image} alt={name} className='w-12 h-12 object-contain' />
-                    <div>
-                        <h3 className='text-sm font-semibold'>{name}</h3>
-                        <p className='text-xs text-gray-600'>${formato.format(price)}</p>
-                    </div>
-                </a>
-            </Link>
-        </li>
-    )
+    if (!!name) {
+        return (
+            <li>
+                <Link to={`/details/${id}`}>
+                    <a className='no-underline hover:bg-blue-300 flex gap-4 p-4'>
+                        <img src={image} alt={name} className='w-12 h-12 object-contain' />
+                        <div>
+                            <h3 className='text-sm font-semibold'>{name}</h3>
+                            <p className='text-xs text-gray-600'>${formato.format(price)}</p>
+                        </div>
+                    </a>
+                </Link>
+            </li>
+        )
+    }else{
+        return (
+            <a className='no-underline hover:bg-blue-300 flex gap-4 p-4'>
+                <img src={icono} alt={icono} className='w-7 h-7 object-contain' />
+                <div>
+                    <p>No se ecuentra el producto</p>
+                </div>
+            </a>
+        )
+    }
 }
 
 export default function SearchAutocomplete (props) {

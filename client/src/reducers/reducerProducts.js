@@ -176,7 +176,12 @@ export default function reducerProducts(state=initialState2, action){
                         return el
                     })
             }
-
+            case DELETE_PRODUCT:
+                state.allProducts = state.allProducts .filter(e => e.id !== action.payload)
+                return{
+                    ...state,
+                    products: state.allProducts 
+            }
 		default:
 			return state;
 	}

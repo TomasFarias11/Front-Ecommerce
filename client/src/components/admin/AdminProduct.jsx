@@ -3,27 +3,17 @@ import { Link } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux';
 import {deleteProduct} from "../../actions/actionAdmin"
 import {useState} from "react";
+import { useParams } from "react-router";
 
 function AdminProduct() {
 
     const products = useSelector((state) => state.firstRed.products);
     const dispatch = useDispatch()
-    let [remove, setRemove]=useState({
-        id:"",
-    })
-
-    console.log(products)
-    console.log(remove)
 
 
     const handelDetele=({target:{id,value}})=>{
-        setRemove({
-            ...remove,
-            id:value
-        }
-        )
-        console.log("este es id que pulso", remove)
-        dispatch(deleteProduct(remove))
+        console.log(value)
+        dispatch(deleteProduct(value))
     }
 
   return (

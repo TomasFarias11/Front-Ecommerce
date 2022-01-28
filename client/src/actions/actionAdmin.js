@@ -9,10 +9,11 @@ export function deleteProduct (id) {
     return async(dispatch)=>{
         try {
             console.log("id que llega al action", id)
-            let removeProduct=await axios.delete("http://localhost:3001/admin/delete", id);
-            console.log(removeProduct.data)
-            
-
+            await axios.delete(`http://localhost:3001/admin/delete/${id}`);
+            return dispatch({
+                type: DELETE_PRODUCT, 
+                payload: id
+            })
         } catch (err) {
             console.log(err)
         }

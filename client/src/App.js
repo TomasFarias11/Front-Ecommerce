@@ -32,7 +32,6 @@ function App() {
     <div className="App">
       <NavBar />
       <Routes>
-<<<<<<< HEAD
 
       <Route exact path='/login' element={<LoginScreen />} />      
       <Route exact path="*" element={<NotFound/>}/>
@@ -45,14 +44,6 @@ function App() {
       <Route exact path="/details/:id" element={<Details/>}/>
       <Route exact path="/category/:category" element={<Products/>}/>
       <Route exact path="/search" element={<ProductsBySearch/>}/>
-=======
-        <Route exact path='/login' element={<LoginScreen />} />      
-        <Route exact path="*" element={<NotFound/>}/>
-        <Route exact path="/" element={<Home/>}/>
-        <Route exact path="/details/:id" element={<Details/>}/>
-        <Route exact path="/category/:category" element={<Products/>}/>
-        <Route exact path="/search" element={<ProductsBySearch/>}/>
->>>>>>> ca01ccf157a4560443434385d9512852c616f236
       </Routes>
       <Footer/>
     </div>

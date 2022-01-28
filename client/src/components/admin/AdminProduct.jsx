@@ -2,17 +2,26 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux';
 import {deleteProduct} from "../../actions/actionAdmin"
+import {useState} from "react";
 
 function AdminProduct() {
 
     const products = useSelector((state) => state.firstRed.products);
     const dispatch = useDispatch()
+    let [remove, setRemove]=useState({
+        id:[]
+    })
 
     console.log(products)
 
-    const handelDetele=(id)=>{
-        console.log("este es id que pulso", id)
-        dispatch(deleteProduct(id))
+    const handelDetele=(e)=>{
+        e.preventDefault()
+        setRemove({
+            ...remove,
+            id:[...remove.id, e.target.value]
+        })
+        console.log("este es id que pulso", remove)
+        dispatch(deleteProduct(remove))
     }
 
   return (
@@ -40,7 +49,11 @@ function AdminProduct() {
                             <ul>
                                 {
                                     products.map(e=>
-                                        <li>id:{e.id} nombre: {e.name} categoria: {e.idCategory} <button onClick={()=>handelDetele(e.id)}>X</button></li>
+                                        <li>id:{e.id} nombre: {e.name} categoria: {e.idCategory}
+                                        <Link to={`/admin/edit/${e.id}`}>
+                                            <button>editar</button>
+                                        </Link>
+                                        <button name="id" value={e.id} onClick={(e)=>handelDetele(e)}>X</button></li>
                                         )
                                 }
                             </ul>
@@ -53,23 +66,3 @@ function AdminProduct() {
 }
 
 export default AdminProduct;
-
-{/*                          {
-                                products.map(e =>
-                                    <div className="col" key={e.id}>
-                                        <div className="card animate__animated animate__bounceIn" >
-                                            <img src={e.image !== 'not found' ? e.image : "https://i.postimg.cc/SK600jXG/OIP.jpg"} className="card-img-top img-fluid" alt={e.image} style={{padding:"30 0", height: "300px"}} />
-                                            <div className="card-body">
-                                                <h5 className="card-title">{e.name}</h5>
-                                                <p className="card-text">{e.category}  ${e.price}</p>
-                                                
-                                                    <button className="btn btn-outline-secondary rounded-pill">Editar</button>
-                                                
-                                                
-                                                    <button className="btn btn-outline-secondary rounded-pill">Borrar</button>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                )
-                            } */}

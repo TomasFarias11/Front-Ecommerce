@@ -36,7 +36,7 @@ function App() {
       <Route exact path="/admin/product" element={<AdminProduct/>}/>
       <Route exact path="/admin/addProduct" element={<AddProduct/>}/>
       <Route exact path="/admin/addCategory" element={<AddCategory/>}/>
-      <Route exact path="/admin/edit" element={<EditProduct/>}/>
+      <Route exact path="/admin/edit/:id" element={<EditProduct/>}/>
       <Route exact path="/details/:id" element={<Details/>}/>
       <Route exact path="/category/:category" element={<Products/>}/>
       <Route exact path="/search" element={<ProductsBySearch/>}/>

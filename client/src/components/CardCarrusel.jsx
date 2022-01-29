@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {addToCart, getProducts, setCartOn} from '../actions/actionProducts.js'
 import {Link} from "react-router-dom";
 import swal from 'sweetalert';
-
+import '../css/Carrousel.css'
 const CardCarrusel = () =>{
 
     useEffect(() => 
@@ -108,11 +108,11 @@ const CardCarrusel = () =>{
                     )
                 })
             : allProducts.map((e)=>{
-                <div className="card">
+                <div className="card  cart_carrucel_jose" >
                             <Link to={`/details/${e.id}`}>
                                 <img src={e.image} alt="" className="card-img-top" height="300px"/>
                             </Link>
-                            <div className="card-body">
+                            <div className="card-body"  >
                                 <h5>{e.name}</h5>
                                 <p className="card-text">Price: {e.price}</p>
                                 <p className="card-text">Amount: {e.stock}</p>

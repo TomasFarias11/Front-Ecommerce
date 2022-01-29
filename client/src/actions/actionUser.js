@@ -40,7 +40,7 @@ export const googleLogin = () => {
             : response.status === 202 ? 
             dispatch({
               type: "LOGIN_GOOGLE",
-              payload:{ username:userAuthGoogle.username, admin:userAuthGoogle.admin, },
+              payload:{ username:userAuthGoogle.username, admin:userAuthGoogle.admin, id:response.data.id },
             },
             // console.log('respuesta del 202',response.data),
             window.localStorage.setItem('usuario', JSON.stringify({

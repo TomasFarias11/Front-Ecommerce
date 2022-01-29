@@ -106,7 +106,8 @@ export function postReview (idProduct, idUser, payload) {
     return async function (dispatch) {
         try {
             await axios.post(`/review/products/${idProduct}/user/${idUser}`, payload )
-            return dispatch({type: POST_REVIEW, payload})
+            let {data} = await axios.get(`/review/products/${idProduct}`)
+            return dispatch({type: POST_REVIEW, payload: data})
         } catch (err) {
             console.log(err);
         }
@@ -117,7 +118,8 @@ export function putReview (idProduct, idUser, payload) {
     return async function (dispatch) {
         try {
             await axios.put(`/review/products/${idProduct}/user/${idUser}`, payload )
-            return dispatch({type: PUT_REVIEW, payload})
+            let {data} = await axios.get(`/review/products/${idProduct}`)
+            return dispatch({type: PUT_REVIEW, payload: data})
         } catch (err) {
             console.log(err);
         }

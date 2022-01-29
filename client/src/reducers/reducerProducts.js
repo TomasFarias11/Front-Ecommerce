@@ -113,11 +113,12 @@ export default function reducerProducts(state=initialState2, action){
             case POST_REVIEW:
                 return {
                     ...state,
+                    reviews: action.payload  
                 }
             case PUT_REVIEW:
                 return {
                     ...state,
-                    
+                    reviews: action.payload  
                 }
             case ADD_CART:
                 let existe = state.cart.filter(el => el.id === action.payload)

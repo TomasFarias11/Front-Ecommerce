@@ -110,6 +110,11 @@ console.log('aparece o no', cartOnScreen)
                             <a className="dropdown-item" href=" "> Usuarios </a>
                         </Link>
                     </li>
+                     <li>
+                        <Link to="/admin/Category">
+                            <a className="dropdown-item" href=" "> Categoria </a>
+                        </Link>
+                    </li>
                 </ul>
             </li>  
            

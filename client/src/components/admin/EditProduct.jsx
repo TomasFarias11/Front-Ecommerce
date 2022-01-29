@@ -21,8 +21,8 @@ function EditProduct() {
     description:"",
     image:"",
     color:[],
-    price:"",
-    stock:"",
+    price:0,
+    stock:0,
     storage:[],
     connectivity:[],
     model:[],
@@ -52,24 +52,28 @@ function EditProduct() {
   }
 
 
-
   function handelSubmit(e){
     e.preventDefault()
-    dispatch(editProduct(id, inputBody))
-    alert("producto agregado a la db")
-    setInputBody({
-    idCategory:"",
-    name:"",
-    description:"",
-    image:"",
-    color:[],
-    price:"",
-    stock:"",
-    storage:[],
-    connectivity:[],
-    model:[],
-    ram:[]
-    })
+
+    if(inputBody.idCategory!== "" && inputBody.name!==""){
+      dispatch(editProduct(id, inputBody))
+      alert("producto agregado a la db")
+      setInputBody({
+        idCategory:"",
+        name:"",
+        description:"",
+        image:"",
+        color:[],
+        price:0,
+        stock:0,
+        storage:[],
+        connectivity:[],
+        model:[],
+        ram:[]
+      })
+    }else{
+      alert("Complete los campos necesarios para editar el producto")
+    }
   }
 
 
@@ -93,12 +97,6 @@ function EditProduct() {
                 <button type="button" class="btn btn-outline-secondary" >Agregar Productos</button>
                 </Link>
                 </div>
-                <br/>
-                <div className="dropdown">
-                <Link to="/admin/addCategory">
-                <button type="button" class="btn btn-outline-secondary" >Agregar Categoria</button>
-                </Link>
-                </div>
             </div>
         </div>
     </div>
@@ -108,9 +106,13 @@ function EditProduct() {
     <p><b>ID: </b><span>{productId.id}</span></p>
     <br/>
     <div className="row">
+
+    {/* el div de abajo muestra los valores actuales*/}
+
     <div className=" card col-lg-6">
       <div class="form-group">
           <h2>Categoria</h2>
+        {/*Array.isArray(allCategory) ? allCategory.map(e=> e.idCategory===productId.idCategory return(<p>{e.name}</p>)): null*/}
         </div>
         <div class="form-group">
           <h2>Nombre del Producto</h2>
@@ -145,11 +147,15 @@ function EditProduct() {
           {productId.ram !== null ? (<p>{Array.isArray(productId.ram) && productId.ram.map((e) => <span key={e}> {e}. </span>)}</p>) : null}
         </div>
       </div>
+
+       {/* el div de abajo es donde esta el formulario*/}
+
       <div className=" card col-lg-6">
       <form onSubmit={e=>handelSubmit(e)}>
         <div class="form-group">
           <label>Categoria</label>
             <select class="form-control" name="idCategory" onChange={e=>handelInput(e)}>
+              <option>Seleccione una categoria</option>
               {allCategory.map((e)=>(
                 <option value={e.idCategory}>{e.name}</option>))
               }
@@ -169,11 +175,11 @@ function EditProduct() {
         </div>
         <div class="form-group">
           <label for="exampleInputPreci">Precio</label>
-          <input name="price" value={inputBody.price} onChange={e=>handelInput(e)} type="number" class="form-control" id="exampleInputPreci" aria-describedby="emailHelp" placeholder="Ingrese el precio"/>
+          <input name="price" min="1" value={inputBody.price} onChange={e=>handelInput(e)} type="number" class="form-control" id="exampleInputPreci" aria-describedby="emailHelp" placeholder="Ingrese el precio"/>
         </div>
         <div class="form-group">
           <label for="exampleInputStock">Cantidad</label>
-          <input name="stock" value={inputBody.stock} onChange={e=>handelInput(e)} type="number" class="form-control" id="exampleInputStock" aria-describedby="emailHelp" placeholder="Ingrese la cantidad de productos"/>
+          <input name="stock" min="1" value={inputBody.stock} onChange={e=>handelInput(e)} type="number" class="form-control" id="exampleInputStock" aria-describedby="emailHelp" placeholder="Ingrese la cantidad de productos"/>
         </div>
         <div class="form-group">
           <label for="exampleInputStorage">Almacenamiento</label>
@@ -190,15 +196,15 @@ function EditProduct() {
         <div class="form-group">
           <label for="exampleInputRam">Ram</label>
           <input name="ram" value={inputBody.ram} onChange={e=>handelArray(e)} type="text" class="form-control" id="exampleInputRam" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
-          <small id="emailHelp" class="form-text text-muted">Ingrese una Ram y presione enter</small>
         </div>
-         <div class="form-group">
+         <div class="form-group" style={{marginTop:10, marginBottom:10}}>
           <label for="exampleFormControlFile1">Imagen</label>
           <input name="image" value={inputBody.image} onChange={e=>handelInput(e)} type="file" class="form-control-file" id="exampleFormControlFile1"/>
         </div>
-        <button class="btn btn-primary" type="submit">Add</button>
+        <button class="btn btn-primary" type="submit">Editar</button>
       </form>
       </div>
+
     </div>
     </div>
   </div>

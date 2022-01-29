@@ -22,7 +22,7 @@ import {
 
 } from '../actions/actionProducts'
 
-import {DELETE_PRODUCT} from "../actions/actionAdmin"
+import {DELETE_PRODUCT, ADD_PRODUCT, EDIT_PRODUCT} from "../actions/actionAdmin"
 
 
 const initialState2={
@@ -181,6 +181,15 @@ export default function reducerProducts(state=initialState2, action){
                 return{
                     ...state,
                     products: state.allProducts 
+            }
+            case ADD_PRODUCT:
+                return {
+                    ...state,
+                    
+                }
+            case EDIT_PRODUCT:
+                return {
+                    ...state,     
             }
 		default:
 			return state;

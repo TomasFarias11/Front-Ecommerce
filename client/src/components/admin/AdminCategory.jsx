@@ -1,19 +1,16 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux';
-import {deleteProduct} from "../../actions/actionAdmin"
+import {getCategory} from "../../actions/actionAdmin"
 import {useState} from "react";
 import { useParams } from "react-router";
 
-function AdminProduct() {
+function AdminCategory() {
 
-    const products = useSelector((state) => state.firstRed.products);
+    const allCategory = useSelector((state)=>state.fourthRed.category);
     const dispatch = useDispatch()
 
 
-    const handelDetele=({target:{id,value}})=>{
-        dispatch(deleteProduct(value))
-    }
 
   return (
     <div className="row">
@@ -21,8 +18,8 @@ function AdminProduct() {
         <div className="container-sm" style={{ padding: 20 } }>   
             <div >
                 <div className="dropdown">
-                <Link to="/admin/addProduct">
-                <button type="button" class="btn btn-outline-secondary" >Agregar Productos</button>
+                <Link to="/admin/addCategory">
+                <button type="button" class="btn btn-outline-secondary" >Agregar Categoria</button>
                 </Link>
                 </div>
             </div>
@@ -33,12 +30,8 @@ function AdminProduct() {
                         <div className="row" Style="background-color: #FAFAFA"    >
                             <ul class="list-group list-group-flush">
                                 {
-                                    products.map(e=>
-                                        <li class="list-group-item" key={e.id}><p><b>ID: </b>{e.id}</p> <p><b>Nombre: </b> {e.name}</p> <p><b>Categoria: </b> {e.idCategory}</p>
-                                            <Link to={`/admin/edit/${e.id}`}>
-                                                <button class="btn btn-primary" style={{marginRight:10}}>editar</button>
-                                            </Link>
-                                            <button class="btn btn-primary" name="id" value={e.id} onClick={(e)=>handelDetele(e)}>X</button>
+                                    allCategory.map(e=>
+                                        <li class="list-group-item" key={e.idCategory}><p><b>ID: </b>{e.idCategory}</p><p><b>Categoria: </b> {e.name}</p>
                                         </li>
                                     )
                                 }
@@ -51,4 +44,4 @@ function AdminProduct() {
 
 }
 
-export default AdminProduct;
+export default AdminCategory;

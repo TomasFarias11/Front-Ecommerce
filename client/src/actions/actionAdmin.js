@@ -3,6 +3,8 @@ import axios from "axios";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const GET_CATEGORY = "GET_CATEGORY"
 export const ADD_PRODUCT = "ADD_PRODUCT"
+export const EDIT_PRODUCT = "EDIT_PRODUCT"
+
 
 
 export function deleteProduct (id) {
@@ -26,7 +28,7 @@ export function getCategory () {
         try {
             var allCategory=await axios.get("http://localhost:3001/category");
               return dispatch({
-                type: "GET_CATEGORY",
+                type: GET_CATEGORY,
                 payload: allCategory.data
             })
         } catch (err) {
@@ -53,7 +55,9 @@ export function editProduct(id, body){
     return async (dispatch)=>{
         try {
             var editproduct = await axios.put(`http://localhost:3001/admin/edit/${id}`, body);
-            return editproduct;
+            return dispatch({
+                type: EDIT_PRODUCT,
+            })
         } catch (err) {
             console.log(err);
         }

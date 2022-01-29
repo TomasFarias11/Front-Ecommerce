@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import AddProduct from "./components/admin/AddProduct"
 import EditProduct from "./components/admin/EditProduct"
 import AdminProduct from "./components/admin/AdminProduct"
+import AdminCategory from "./components/admin/AdminCategory"
 import AddCategory from "./components/admin/AddCategory"
 import LoginScreen from "./pages/LoginScreen";
 import {useDispatch, useSelector} from 'react-redux';
@@ -35,6 +36,7 @@ function App() {
       <Route exact path="/admin" element={<Admin/>}/>
       <Route exact path="/admin/product" element={<AdminProduct/>}/>
       <Route exact path="/admin/addProduct" element={<AddProduct/>}/>
+      <Route exact path="/admin/Category" element={<AdminCategory/>}/>
       <Route exact path="/admin/addCategory" element={<AddCategory/>}/>
       <Route exact path="/admin/edit/:id" element={<EditProduct/>}/>
       <Route exact path="/details/:id" element={<Details/>}/>

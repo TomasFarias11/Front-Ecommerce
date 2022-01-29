@@ -29,6 +29,7 @@ const handleClick = (e) => {
 
 const handleLogout = () => {
     window.localStorage.setItem('usuario', JSON.stringify([]))
+    window.localStorage.setItem('carrito', JSON.stringify([]))
     window.location.reload()
 }
 

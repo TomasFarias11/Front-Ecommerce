@@ -49,6 +49,21 @@ const CreateUser = () =>{
     });
 
     console.log(input, "ESTE ES EL INPUT")
+
+    // function handleSubmit(e){
+    //     e.preventDefault()
+
+    //     dispatch(CreateUser(input))
+    //     .then(() => {
+    //         swal("useuario creado", {
+    //             buttons: false,
+    //             icon: 'success',
+    //             timer: 1500,
+    //         })
+    //     })
+        
+
+    // }
     
 
     function User(e, input){
@@ -114,7 +129,7 @@ const CreateUser = () =>{
     return(
         <div>
             
-            <form onSubmit={(e) => User(e, input)}>
+            <form onSubmit={(e) => handleSubmit(e)}>
                 <div>
                     <div>
                         <div>
@@ -137,7 +152,7 @@ const CreateUser = () =>{
                                             aria-label="Username" 
                                             value={input.name} 
                                             name="name"
-                                            onChange={handleChange} required
+                                            onChange={(e) => handleChange(e)} required
                                             /> 
                                             <span>
                                             </span> 
@@ -147,7 +162,7 @@ const CreateUser = () =>{
                                             placeholder="Ultimo nombre" 
                                             value={input.lastName} 
                                             name="lastName"
-                                            onChange={handleChange} required aria-label="Server"
+                                            onChange={(e) => handleChange(e)} required aria-label="Server"
                                             /> 
                                         </div>
                                     
@@ -157,7 +172,7 @@ const CreateUser = () =>{
                                         type="text" placeholder="nombre de usuario" 
                                         value={input.username}
                                         name="username"
-                                        onChange={handleChange} required
+                                        onChange={(e) => handleChange(e)} required
                                         /> 
                                     </div>
                                     <div className="mt-3 px-3"> 

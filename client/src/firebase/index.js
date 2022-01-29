@@ -3,7 +3,7 @@ import firebase from "firebase/compat/app";
 import 'firebase/compat/firestore' // la base de datos practicamente
 import "firebase/compat/auth" // carpeta de auntenticasion <---- ;) ;) 
 
-// FIREBASE HISO UNA ACTUALIZACION POR LO TANTO HAY NUEVAS MANERAS DE USARLO PERO SIN EMBARGO
+// FIREBASE HIZO UNA ACTUALIZACION POR LO TANTO HAY NUEVAS MANERAS DE USARLO PERO SIN EMBARGO
 // EN LAS CARPETAS COMPAT TIENE LOS METODOS DE LA VERSION PASADA!
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {

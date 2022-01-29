@@ -39,44 +39,11 @@ function AddProdcut() {
 
   }
 
-  function handelConect(e){
+  function handelArray(e){
     e.preventDefault()
     setInputBody({
       ...inputBody,
-      connectivity:[e.target.value]
-    })
-
-  }
-
-    function handelcolor(e){
-    e.preventDefault()
-    setInputBody({
-      ...inputBody,
-      color:[e.target.value]
-    })
-
-  }
-    function handelram(e){
-    e.preventDefault()
-    setInputBody({
-      ...inputBody,
-      ram:[e.target.value]
-    })
-
-  }
-    function handelstorage(e){
-    e.preventDefault()
-    setInputBody({
-      ...inputBody,
-      storage:[e.target.value]
-    })
-
-  }
-    function handelmodel(e){
-    e.preventDefault()
-    setInputBody({
-      ...inputBody,
-      model:[e.target.value]
+      [e.target.name]:[e.target.value]
     })
 
   }
@@ -145,7 +112,7 @@ function AddProdcut() {
         </div>
         <div class="form-group">
           <label for="exampleInputColor">Color</label>
-          <input name="color" value={inputBody.color} onChange={e=>handelcolor(e)} type="text" class="form-control" id="exampleInputColor" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
+          <input name="color" value={inputBody.color} onChange={e=>handelArray(e)} type="text" class="form-control" id="exampleInputColor" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
         </div>
         <div class="form-group">
           <label for="exampleInputPreci">Precio</label>
@@ -157,19 +124,19 @@ function AddProdcut() {
         </div>
         <div class="form-group">
           <label for="exampleInputStorage">Almacenamiento</label>
-          <input name="storage" value={inputBody.storage} onChange={e=>handelstorage(e)} type="text" class="form-control" id="exampleInputStorage" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
+          <input name="storage" value={inputBody.storage} onChange={e=>handelArray(e)} type="text" class="form-control" id="exampleInputStorage" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
         </div>
         <div class="form-group">
           <label for="exampleInputConnectivity">Conectividad</label>
-          <input name="connectivity" value={inputBody.connectivity} onChange={e=>handelConect(e)} type="text" class="form-control" id="exampleInputConnectivity" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
+          <input name="connectivity" value={inputBody.connectivity} onChange={e=>handelArray(e)} type="text" class="form-control" id="exampleInputConnectivity" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
         </div>
         <div class="form-group">
           <label for="exampleInputModel">Modelos</label>
-          <input name="model" value={inputBody.model} onChange={e=>handelmodel(e)} type="text" class="form-control" id="exampleInputModel" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
+          <input name="model" value={inputBody.model} onChange={e=>handelArray(e)} type="text" class="form-control" id="exampleInputModel" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
         </div>
         <div class="form-group">
           <label for="exampleInputRam">Ram</label>
-          <input name="ram" value={inputBody.ram} onChange={e=>handelram(e)} type="text" class="form-control" id="exampleInputRam" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
+          <input name="ram" value={inputBody.ram} onChange={e=>handelArray(e)} type="text" class="form-control" id="exampleInputRam" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
         </div>
          <div class="form-group">
           <label for="exampleFormControlFile1">Imagen</label>

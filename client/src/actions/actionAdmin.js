@@ -39,8 +39,9 @@ export function getCategory () {
 export function addProduct(body){
     return async (dispatch)=>{
         try {
+            console.log("lo que me llega al actions", body)
             var addproduct = await axios.post('http://localhost:3001/admin/create', body);
-            console.log("producto agregado", addproduct)
+            return addproduct;
         } catch (err) {
             console.log(err);
         }
@@ -52,7 +53,7 @@ export function editProduct(id, body){
     return async (dispatch)=>{
         try {
             var editproduct = await axios.put(`http://localhost:3001/admin/edit/${id}`, body);
-            console.log("producto modificado", editproduct)
+            return editproduct;
         } catch (err) {
             console.log(err);
         }

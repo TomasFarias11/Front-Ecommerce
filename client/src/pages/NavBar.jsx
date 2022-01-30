@@ -6,6 +6,10 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getProductByCategory, setCartOn, setCartOff} from '../actions/actionProducts.js'
 import Cart from "../components/Cart.jsx"
 
+// import {useDispatch} from 'react-redux';
+import {getProductByCategory, postUserCreate} from '../actions/actionProducts.js'
+
+
 
 function NavBar() {
     const dispatch = useDispatch()

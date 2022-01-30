@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import LoginScreen from "./pages/LoginScreen";
 import {useDispatch, useSelector} from 'react-redux';
 import {setCart} from './actions/actionProducts.js'
+import Formulario from "./pages/Formulario"
 
 function App() {
   
@@ -28,12 +29,14 @@ function App() {
       <NavBar />
       <Routes>
         <Route exact path='/login' element={<LoginScreen />} />      
-        <Route exact path="*" element={<NotFound/>}/>
-        <Route exact path="/" element={<Home/>}/>
-        <Route exact path="/details/:id" element={<Details/>}/>
-        <Route exact path="/category/:category" element={<Products/>}/>
-        <Route exact path="/search" element={<ProductsBySearch/>}/>
+      <Route exact path="*" element={<NotFound/>}/>
+      <Route exact path="/" element={<Home/>}/>
+      <Route exact path="/details/:id" element={<Details/>}/>
+      <Route exact path="/category/:category" element={<Products/>}/>
+      <Route exact path="/search" element={<ProductsBySearch/>}/>
+      <Route exact path= "/user" element={<Formulario/>}/>
       </Routes>
+      
       <Footer/>
     </div>
   );

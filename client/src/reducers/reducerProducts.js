@@ -17,8 +17,10 @@ import {
     SET_CARTNAV_ON,
     SET_CARTNAV_OFF,
     QUANTITY_ITEM,
-    SET_PRODUCTS
+    SET_PRODUCTS,
 
+    LIST_USERS,
+    USER_CREATE
 } from '../actions/actionProducts'
 
 
@@ -28,7 +30,11 @@ const initialState2={
     productId: [],
     reviews: [],
     cart: [],
-    cartNav: false
+    cartNav: false,
+    productsSearch:[],
+    users: [],
+    listUser:[],
+
 }
 
 export default function reducerProducts(state=initialState2, action){
@@ -174,6 +180,19 @@ export default function reducerProducts(state=initialState2, action){
                         return el
                     })
             }
+
+            // CREANDO LOS USUARIOS
+
+            case USER_CREATE:
+                return{
+                    ...state,
+                    
+                }
+
+            case LIST_USERS:
+                return{
+                    ...state,
+                    listUser: action.payload                }
 
 		default:
 			return state;

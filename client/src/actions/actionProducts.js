@@ -30,6 +30,13 @@ export const SET_CART = 'SET_CART'
 export const SET_CARTNAV_ON = 'SET_CARTNAV_ON'
 export const SET_CARTNAV_OFF = 'SET_CARTNAV_OFF'
 
+// ------- ORDERS
+
+export const GET_ORDER = "GET_ORDER"
+export const POST_ORDER = "POST_ORDER"
+export const GET_ORDER_OPEN = "GET_ORDER_OPEN"
+export const GET_ORDER_USER = "GET_ORDER_USER"
+
 export function getProducts () {
     return async function (dispatch) {
         try {
@@ -227,4 +234,39 @@ export function setCartOff () {
         }
     }
 
+}
+
+export function createOrder (idUser, payload) {
+    return async function (dispatch) {
+        try {
+            await axios.post(`/order/${idUser}`, payload)
+            const order = await axios.get(`/order/${idUser}`)
+            return dispatch({type: POST_ORDER, payload: order.data})
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}
+
+export function getOrderUser (idUser) {
+    return async function (dispatch) {
+        try {
+            const order = await axios.get(`/order/${idUser}`);
+            console.log('orden de la action', order)
+            return dispatch({type: GET_ORDER_USER, payload: order.data})
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}
+
+export function getOpenOrderUser (idUser) {
+    return async function (dispatch) {
+        try {
+            const order = await axios.get(`/order/user/${idUser}`)
+            return dispatch({type: GET_ORDER_OPEN, payload: order.data})
+        } catch (err) {
+            console.log(err);
+        }
+    }
 }

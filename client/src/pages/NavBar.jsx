@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import {useDispatch, useSelector} from 'react-redux';
-import {getProductByCategory, setCartOn, setCartOff} from '../actions/actionProducts.js'
+import {getProductByCategory, setCartOn, setCartOff, createOrder, setCart} from '../actions/actionProducts.js'
 import Cart from "../components/Cart.jsx"
 
 
@@ -13,6 +13,8 @@ function NavBar() {
     const cartOnScreen = useSelector((state) => state.firstRed.cartNav)
     const user = JSON.parse(window.localStorage.getItem('usuario'))
     const userData = useSelector((state) => state.secondRed.userData)
+    const cart = useSelector((state) => state.firstRed.cart)
+    const order = useSelector((state) => state.firstRed.order)
 
     // useEffect(()=>
     //     console.log('1')
@@ -25,16 +27,21 @@ const handleClick = (e) => {
     } else {
         dispatch(setCartOff())
     }
+    if (userData.username) {
+        dispatch(setCart(order[0].carrito))
+    }
 }
 
 const handleLogout = () => {
-    window.localStorage.setItem('usuario', JSON.stringify([]))
+    // dispatch(createOrder(userData.id, {carrito: cart}))
     window.localStorage.setItem('carrito', JSON.stringify([]))
+    // dispatch(setCart([]))
+    window.localStorage.setItem('usuario', JSON.stringify([]))
     window.location.reload()
 }
 
 
-// console.log('aparece o no', cartOnScreen)
+
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark  h6 sticky-top" style={{background: "#111111"}}>

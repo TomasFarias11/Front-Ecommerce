@@ -41,17 +41,13 @@ export const googleLogin = () => {
             : response.status === 202 ? 
             dispatch({
               type: "LOGIN_GOOGLE",
-<<<<<<< HEAD
-              // payload:{ username:response.data[0].username, admin:response.data[0].admin, id: response.data[0].id },
-              payload: response
-=======
               payload:{ username:userAuthGoogle.username, admin:userAuthGoogle.admin, id:response.data.id },
->>>>>>> 3404ba8082f21753fcff1285e524be71e688ced0
             },
             // console.log('respuesta del 202',response.data),
             window.localStorage.setItem('usuario', JSON.stringify({
               username: userAuthGoogle.username,
-              admin: userAuthGoogle.admin
+              admin: userAuthGoogle.admin,
+              id: response.data.id
             })))
             : console.log("este cosole.log no deberia aparecer")
          

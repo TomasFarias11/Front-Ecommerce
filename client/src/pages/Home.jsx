@@ -2,7 +2,7 @@ import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import CardCarrusel from "../components/CardCarrusel.jsx";
-import {getProducts, getProductByCategory, setCart} from '../actions/actionProducts.js'
+import {getProducts, getProductByCategory, setCart, createOrder, getOrderUser} from '../actions/actionProducts.js'
 // import {getProducts1} from '../actions/actionCart.js'
 import { useNavigate } from 'react-router-dom';
 import estilos from '../css/Home.module.css';
@@ -15,12 +15,29 @@ export default function Home () {
     const Navigate = useNavigate();
     const products = useSelector((state) => state.firstRed.productsByCategory);
     const cart = useSelector((state) => state.firstRed.cart);
+    const userStorage = JSON.parse(window.localStorage.getItem('usuario'))
+    const users = useSelector((state) => state.secondRed.userData)
+    const order = useSelector((state) => state.firstRed.order)
+    console.log('esta es laorden', order)
     
 
     useEffect(()=>{
         cart.length > JSON.parse(window.localStorage.getItem('carrito')).length || cart.length < JSON.parse(window.localStorage.getItem('carrito')).length? window.localStorage.setItem('carrito', JSON.stringify(cart)) : window.localStorage.setItem('carrito', JSON.stringify(cart))
     },[cart])
    
+    useEffect(()=>{
+        users && users.admin === false ? 
+        dispatch(createOrder(users.id, {carrito: cart})) : 
+        users && users.admin === true && cart.length > 0 ?
+        alert('los admins no pueden realizar compras') :
+        console.log('a');
+    }, [users])
+
+    // useEffect(()=> {
+    //     if (users.username) {
+    //         dispatch(setCart(order[0].carrito))
+    //     }
+    // },[users])
 
     const handleClick = (e) => {
         e.preventDefault();

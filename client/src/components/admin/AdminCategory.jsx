@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux';
-import {getCategory} from "../../actions/actionAdmin"
-import {useState} from "react";
-import { useParams } from "react-router";
+import {getCategory} from "../../actions/actionAdmin";
+import {useEffect} from "react";
 
 function AdminCategory() {
 
@@ -11,6 +10,9 @@ function AdminCategory() {
     const dispatch = useDispatch()
 
 
+useEffect(() => {
+    dispatch(getCategory())
+  }, [dispatch])
 
   return (
     <div className="row">
@@ -31,7 +33,7 @@ function AdminCategory() {
                             <ul class="list-group list-group-flush">
                                 {
                                     allCategory.map(e=>
-                                        <li class="list-group-item" key={e.idCategory}><p><b>ID: </b>{e.idCategory}</p><p><b>Categoria: </b> {e.name}</p>
+                                        <li class="list-group-item" key={e.idCategory}><p><b>Categoria: </b> {e.name}</p>
                                         </li>
                                     )
                                 }

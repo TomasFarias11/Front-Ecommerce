@@ -109,7 +109,7 @@ function EditProduct() {
 
     {/* el div de abajo muestra los valores actuales*/}
 
-    <div className=" card col-lg-6">
+    <div className=" card col-lg-6" style={{marginTop:20}}>
       <div class="form-group">
           <h2>Categoria</h2>
         {/*Array.isArray(allCategory) ? allCategory.map(e=> e.idCategory===productId.idCategory return(<p>{e.name}</p>)): null*/}
@@ -150,14 +150,15 @@ function EditProduct() {
 
        {/* el div de abajo es donde esta el formulario*/}
 
-      <div className=" card col-lg-6">
+
+      <div className=" card col-lg-6" style={{marginTop:20}}>
       <form onSubmit={e=>handelSubmit(e)}>
         <div class="form-group">
           <label>Categoria</label>
             <select class="form-control" name="idCategory" onChange={e=>handelInput(e)}>
               <option>Seleccione una categoria</option>
               {allCategory.map((e)=>(
-                <option value={e.idCategory}>{e.name}</option>))
+                <option value={e.idCategory} key={e.idCategory}>{e.name}</option>))
               }
             </select>
           </div>

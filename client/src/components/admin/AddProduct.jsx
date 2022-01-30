@@ -102,7 +102,7 @@ function AddProdcut() {
             <select class="form-control" name="idCategory" onChange={e=>handelInput(e)}>
               <option>Seleccione una categoria</option>
               {allCategory.map((e)=>(
-                <option value={e.idCategory}>{e.name}</option>))
+                <option value={e.idCategory} key={e.idCategory}>{e.name}</option>))
               }
             </select>
           </div>

@@ -28,8 +28,19 @@ function AddCategory() {
     })
   }
 
-  return<div className="row ">
-    <div className="container d-flex justify-content-center">
+  return(<div className="row">
+    <div className="col-lg-3">
+        <div className="container-sm" style={{ padding: 20 } }>   
+            <div >
+                <div className="dropdown">
+                <Link to="/admin/Category">
+                <button type="button" class="btn btn-outline-secondary" >Categorias</button>
+                </Link>
+                </div>
+                <br/>
+            </div>
+        </div>
+    </div>
     <div className=" card col-lg-8">
     <br/>
     <h1>Agregar Categoria</h1>
@@ -42,8 +53,8 @@ function AddCategory() {
         <button class="btn btn-primary" type="submit" style={{marginTop:10, marginBottom:10}}>Agregar Categoria</button>
       </form>
     </div>
-  </div>
-  </div>;
+    
+  </div>);
 }
 
 export default AddCategory;

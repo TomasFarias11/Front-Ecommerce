@@ -1,6 +1,6 @@
 import React from 'react';
 import GoogleButton from "react-google-button";
-// import {Link} from "react-router-dom"
+import {Link} from "react-router-dom"
 import { useNavigate } from 'react-router-dom';
 import { googleLogin, localLoginUser  } from "../actions/actionUser"
 import { useDispatch } from "react-redux";
@@ -91,22 +91,24 @@ const LoginScreen = () => {
                     type="submit"
                     // href=" "
                   >
-                    Login
+                    Iniciar sesión
                   </button>
-                  <p className="form-label text-center" >OR</p>
+                  <p className="form-label text-center" >O</p>
                   <GoogleButton type="light" onClick={handleGoogleLogin} />
                 </div>
 
                 <p className="small mb-5 pb-lg-2">
                   <a className="text-muted" href=" ">
-                    Forgot password?
+                    Olvido su contraseña?
                   </a>
                 </p>
                 <p>
-                  Don't have an account?{" "}
-                  <a href="#!" className="link-info" >
-                    Register here
-                  </a>
+                  No tienes cuenta?{" "}
+                  {/* <a href="#!" className="link-info" > */}
+                  <Link to='/user'>
+                    Registrate aqui
+                  </Link>
+                  {/* </a> */}
                 </p>
               </div>
             </div>

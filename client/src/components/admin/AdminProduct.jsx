@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux';
 import {deleteProduct} from "../../actions/actionAdmin"
-import {useState} from "react";
-import { useParams } from "react-router";
+// import {useState} from "react";
+// import { useParams } from "react-router";
 
 function AdminProduct() {
 
@@ -12,13 +12,13 @@ function AdminProduct() {
 
 
     const handelDetele=({target:{id,value}})=>{
-        setRemove({
-            ...remove,
-            id:value
-        }
-        )
-        console.log("este es id que pulso", {target:{id,value}})
-        dispatch(deleteProduct(value))
+        // setRemove({
+        //     ...remove,
+        //     id:value
+        // }
+        // )
+        // console.log("este es id que pulso", {target:{id,value}})
+        // dispatch(deleteProduct(value))
     }
 
   return (

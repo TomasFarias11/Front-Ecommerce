@@ -11,18 +11,15 @@ export function deleteProduct (id) {
     return async(dispatch)=>{
         try {
             console.log("id que llega al action", id)
-<<<<<<< HEAD
             await axios.delete(`http://localhost:3001/admin/delete/${id}`);
             return dispatch({
                 type: DELETE_PRODUCT, 
                 payload: id
             })
-=======
             let removeProduct=await axios.delete(`http://localhost:3001/admin/delete/${id}`);
             console.log('QUE ES ESTO',id)
             
 
->>>>>>> origin/ramaloca
         } catch (err) {
             console.log(err)
         }

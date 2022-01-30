@@ -97,16 +97,16 @@ const handleLogout = () => {
                 </Link>
             </li>
             {/* si el usuario existe y es admin */}
-            {/* { userData[0] || user.username && user.admin ? */}
+            { userData[0] || user.username && user.admin ?
             <div>
-                {/* <li className="nav-item">  
+                <li className="nav-item">  
                 <li className="nav-item">
                     <a className="nav-link " aria-current="page" href="#!" onClick={() => handleLogout()}> Logout </a>
                 </li>
-                </li> */}
-                {/* <ul className="nav-item dropdown">
+                </li>
+                <ul className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#!" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Admin </a>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown"> */}
+                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li>
                         <Link to="/admin/product">
                             <span className="dropdown-item" href="#!"> Opcion 1 </span>
@@ -132,17 +132,17 @@ const handleLogout = () => {
                             <span className="dropdown-item" href="#!"> Opcion 5 </span>
                         </Link>
                     </li>
-              {/*   </ul>
-            </ul>   */}
-           {/*  <li className="nav-link">
+                </ul>
+            </ul>  
+            <li className="nav-link">
             <p className="text-md-start">
                 <strong> Bienvenido: {user.username}
                     <Link style={{ textDecoration: "none", color: "orange" }} to="/products"> </Link>
                 </strong>
             </p>
-            </li> */}
+            </li>
             </div>
-           {/*  :
+             : 
             // si el usuario existe y no es admin
             user.username ?
             <div>
@@ -161,13 +161,13 @@ const handleLogout = () => {
                 </li>
                 </ul>
             </div>
-            : 
+            :
             <li className="nav-item">
                 <Link style={{ textDecoration: 'none', color: 'white' }} to="/login">
                     <span className="nav-link" href="#!"> Login </span>
                 </Link>
             </li>
-            } */}
+            }
 
             
           </ul>

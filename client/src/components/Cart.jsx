@@ -1,7 +1,7 @@
 import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {addToCart, delCart, delAllCart} from '../actions/actionProducts.js'
+import {delAllCart, createOrder} from '../actions/actionProducts.js'
 import { useNavigate } from 'react-router-dom';
 import CartCard from './CartCard.jsx'
 import swal from 'sweetalert';
@@ -11,6 +11,7 @@ export default function Cart () {
     const cart = useSelector((state) => state.firstRed.cart)
     const cartStorage = JSON.parse(window.localStorage.getItem('carrito'))
     const cartNav = useSelector((state) => state.firstRed.cartNav)
+    const user = useSelector((state) => state.secondRed.userData)
     // console.log('este es el carrito',cart)
 
     let total = 0;
@@ -24,17 +25,24 @@ export default function Cart () {
         // currency: 'USD',
         // minimumFractionDigits: 3,
     })
+
+    // useEffect(()=> {
+    //     if (cart.length === 0) {
+            
+    //     }
+    // },[cart])
     
 
     const handleDeleteAll = (e) =>  {
         e.preventDefault()
         dispatch(delAllCart())
         window.localStorage.setItem('carrito', JSON.stringify([]))
+        dispatch(createOrder(user.id, {carrito: []}))
         swal("Carrito vaciado con exito!", {
             buttons: false,
             icon: 'success',
             timer: 2000,
-          });
+        });
     }
     // animate__slideOutRight
     return (

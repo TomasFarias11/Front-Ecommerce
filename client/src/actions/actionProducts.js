@@ -36,6 +36,7 @@ export const GET_ORDER = "GET_ORDER"
 export const POST_ORDER = "POST_ORDER"
 export const GET_ORDER_OPEN = "GET_ORDER_OPEN"
 export const GET_ORDER_USER = "GET_ORDER_USER"
+export const SET_CART_USER = "SET_CART_USER"
 
 export function getProducts () {
     return async function (dispatch) {
@@ -267,6 +268,16 @@ export function getOpenOrderUser (idUser) {
             return dispatch({type: GET_ORDER_OPEN, payload: order.data})
         } catch (err) {
             console.log(err);
+        }
+    }
+}
+
+export function setCartUser (payload) {
+    return async function (dispatch) {
+        try {
+            return dispatch({type: SET_CART_USER, payload})
+        } catch (err) {
+            console.log(err)
         }
     }
 }

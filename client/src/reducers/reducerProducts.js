@@ -26,7 +26,8 @@ import {
     GET_ORDER,
     GET_ORDER_OPEN,
     GET_ORDER_USER,
-    POST_ORDER
+    POST_ORDER,
+    SET_CART_USER
 
 } from '../actions/actionProducts'
 
@@ -38,7 +39,8 @@ const initialState2={
     reviews: [],
     cart: [],
     cartNav: false,
-    order: []
+    order: [],
+    cartUser: []
 }
 
 export default function reducerProducts(state=initialState2, action){
@@ -203,6 +205,11 @@ export default function reducerProducts(state=initialState2, action){
             return {
                 ...state,
                 order: action.payload
+            }
+        case SET_CART_USER:
+            return {
+                ...state,
+                cartUser: action.payload
             }
 
 		default:

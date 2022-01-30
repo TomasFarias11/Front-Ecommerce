@@ -23,6 +23,8 @@ import {
     USER_CREATE
 } from '../actions/actionProducts'
 
+import {DELETE_PRODUCT, ADD_PRODUCT, EDIT_PRODUCT} from "../actions/actionAdmin"
+
 
 const initialState2={
 	products:[],
@@ -194,6 +196,21 @@ export default function reducerProducts(state=initialState2, action){
                     ...state,
                     listUser: action.payload                }
 
+            case DELETE_PRODUCT:
+                state.allProducts = state.allProducts .filter(e => e.id !== action.payload)
+                return{
+                    ...state,
+                    products: state.allProducts 
+            }
+            case ADD_PRODUCT:
+                return {
+                    ...state,
+                    
+                }
+            case EDIT_PRODUCT:
+                return {
+                    ...state,     
+            }
 		default:
 			return state;
 	}

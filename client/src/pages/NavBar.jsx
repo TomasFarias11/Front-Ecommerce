@@ -108,28 +108,28 @@ const handleLogout = () => {
                 <a className="nav-link dropdown-toggle" href="#!" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Admin </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li>
-                        <Link to="/products">
-                            <span className="dropdown-item" href="#!"> Opcion 1 </span>
+                        <Link to="/admin">
+                            <a className="dropdown-item" href=" "> Perfil</a>
                         </Link>
                     </li>
                     <li>
-                        <Link to="/products">
-                            <span className="dropdown-item" href="#!"> Opcion 2 </span>
+                        <Link to="/admin/product">
+                            <a className="dropdown-item" href=" "> Productos </a>
                         </Link>
                     </li>
                     <li>
-                        <Link to="/products">
-                            <span className="dropdown-item" href="#!"> Opcion 3 </span>
+                        <Link to="/">
+                            <a className="dropdown-item" href=" ">Ordenes</a>
                         </Link>
                     </li>
                     <li>
-                        <Link to="/products">
-                            <span className="dropdown-item" href="#!"> Opcion 4 </span>
+                        <Link to="/">
+                            <a className="dropdown-item" href=" "> Usuarios </a>
                         </Link>
                     </li>
-                    <li>
-                        <Link to="/products">
-                            <span className="dropdown-item" href="#!"> Opcion 5 </span>
+                     <li>
+                        <Link to="/admin/Category">
+                            <a className="dropdown-item" href=" "> Categoria </a>
                         </Link>
                     </li>
                 </ul>

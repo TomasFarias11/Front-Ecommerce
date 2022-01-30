@@ -19,7 +19,7 @@ export default function CartCard ({id, name, price, image, quantity, stock}) {
 
     const handleOnClick = (e) => {
         e.preventDefault();
-        dispatch(delCart(id))
+        dispatch(delCart(Number(id)))
         window.localStorage.setItem('carrito', JSON.stringify(cart))
         swal("Articulo eliminado con exito!", {
             buttons: false,

@@ -38,7 +38,7 @@ const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts, 
 
     const handleClick = (e) => {
         e.preventDefault();
-        addToCart(e.target.value)
+        addToCart(Number(e.target.value))
         window.localStorage.setItem('carrito', JSON.stringify(cart))
         setCartOn()
         swal("Agregado al carrito!", {

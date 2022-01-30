@@ -51,7 +51,7 @@ const CardCarrusel = () =>{
 
     const handleClick = (e) => {
         e.preventDefault();
-        dispatch(addToCart(e.target.value))
+        dispatch(addToCart(Number(e.target.value)))
         window.localStorage.setItem('carrito', JSON.stringify(cart))
         dispatch(setCartOn())
         swal("Agregado al carrito!", {

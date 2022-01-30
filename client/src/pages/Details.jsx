@@ -37,7 +37,7 @@ export default function Details() {
 
   useEffect(() => {
     dispatch(getProductById(id))
-  }, [dispatch])
+  }, [dispatch,id])
 
 
   useEffect(() =>

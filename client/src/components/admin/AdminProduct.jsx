@@ -12,6 +12,12 @@ function AdminProduct() {
 
 
     const handelDetele=({target:{id,value}})=>{
+        setRemove({
+            ...remove,
+            id:value
+        }
+        )
+        console.log("este es id que pulso", {target:{id,value}})
         dispatch(deleteProduct(value))
     }
 

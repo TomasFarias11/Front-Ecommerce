@@ -19,6 +19,8 @@ function NavBar() {
     const userData = useSelector((state) => state.secondRed.userData)
     const cart = useSelector((state) => state.firstRed.cart)
 
+
+
     // useEffect(()=>
     //     console.log('1')
     // ,[userData])
@@ -42,137 +44,119 @@ const handleLogout = () => {
 // console.log('aparece o no', cartOnScreen)
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark  h6 sticky-top" style={{background: "#111111"}}>
-      <div className="container-fluid">
-        <Link to="/" >
-            <span className="navbar-brand h1 $headings-font-weight" href="#!">
-            <img
-                src="https://i.postimg.cc/qRkkh295/igroup-nav-2.png"
-                alt="iGroup-logo"
-                width="170" height="80"
-                className = 'animate__animated animate__jackInTheBox'
-                />
-            </span>
-        </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
-            <li className="nav-item">
-                <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/macbook">
-                    <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("macbook"))}> Mac </span>
+        <nav className="navbar navbar-expand-lg navbar-dark  h6 sticky-top" style={{background: "#111111"}}>
+            <div className="container-fluid">
+                <Link to="/" >
+                    <span className="navbar-brand h1 $headings-font-weight" href="#!">
+                        <img src="https://i.postimg.cc/qRkkh295/igroup-nav-2.png" alt="iGroup-logo" width="170" height="80" className = 'animate__animated animate__jackInTheBox' />
+                    </span>
                 </Link>
-            </li>
-            <li className="nav-item">
-                <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/ipad">
-                    <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("ipad"))}> iPad </span>
-                </Link>
-            </li>
-            <li className="nav-item">
-                <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/iphone">
-                    <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("iphone"))}> iPhone </span>
-                </Link>
-            </li>
-            <li className="nav-item">
-                <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/watch">
-                    <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("watch"))}> Watch </span>
-                </Link>
-            </li>
-            <li className="nav-item">
-                <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/irpods">
-                    <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("airpods"))}> AirPods </span>
-                </Link>
-            </li>
-            <li className="nav-item">
-                <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/tv">
-                    <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("tv"))}> TV & Home </span>
-                </Link>
-            </li>
-            {/* si el usuario existe y es admin */}
-            { userData[0] || (user.username && user.admin) ?
-            <div>
-                <li className="nav-item">  
-                <li className="nav-item">
-                    <a className="nav-link " aria-current="page" href="#!" onClick={() => handleLogout()}> Logout </a>
-                </li>
-                </li>
-                <ul className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#!" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Admin </a>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li>
-                        <Link to="/admin/product">
-                            <span className="dropdown-item" href="#!"> Opcion 1 </span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/admin/products">
-                            <span className="dropdown-item" href="#!"> Opcion 2 </span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/admin/products">
-                            <span className="dropdown-item" href="#!"> Opcion 3 </span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/admin/products">
-                            <span className="dropdown-item" href="#!"> Opcion 4 </span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/admin/products">
-                            <span className="dropdown-item" href="#!"> Opcion 5 </span>
-                        </Link>
-                    </li>
-                </ul>
-            </ul>  
-            <li className="nav-link">
-            <p className="text-sm-start">
-                <strong> Bienvenido: {user.username}
-                    <Link style={{ textDecoration: "none", color: "orange" }} to="/products"> </Link>
-                </strong>
-            </p>
-            </li>
-            </div>
-             : 
-            // si el usuario existe y no es admin
-            user.username ?
-            <div>
-                <ul>
-                <ul className="nav-item">  
-                    <li className="nav-item">
-                        <a className="nav-link " aria-current="page" href="#!" onClick={() => handleLogout()}> Logout </a>
-                    </li>
-                </ul>
-                <li className="nav-link">
-                <p className="text-md-start">
-                    <strong> Bienvenido: {user.username}
-                        <Link style={{ textDecoration: "none", color: "orange" }} to="/products"> </Link>
-                    </strong>
-                </p>
-                </li>
-                </ul>
-            </div>
-            :
-            <li className="nav-item">
-                <Link style={{ textDecoration: 'none', color: 'white' }} to="/login">
-                    <span className="nav-link" href="#!"> Login </span>
-                </Link>
-            </li>
-            }
-            
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
+                        <li className="nav-item">
+                            <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/macbook">
+                                <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("macbook"))}> Mac </span>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/ipad">
+                                <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("ipad"))}> iPad </span>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/iphone">
+                                <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("iphone"))}> iPhone </span>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/watch">
+                                <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("watch"))}> Watch </span>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/irpods">
+                                <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("airpods"))}> AirPods </span>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/tv">
+                                <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("tv"))}> TV & Home </span>
+                            </Link>
+                        </li>
 
-            
-          </ul>
+                        {/* si el usuario existe y es admin */}
+
+                        { userData[0] || (user.username && user.admin) ?
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
+                            <li className="nav-link">
+                                <p className="text-sm-start">
+                                    <strong> Bienvenido: 
+                                        <Link style={{ textDecoration: "none", color: "white" }} to="/"> {user.username}</Link>
+                                    </strong>
+                                </p>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link " aria-current="page" href="#!" onClick={() => handleLogout()}> Logout </a>
+                            </li>
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href=" " id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Admin </a>
+                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li>
+                                        <Link style={{ textDecoration: "none", color: "white" }} to="/admin/product">
+                                            <span className="dropdown-item" href="#!"> Productos </span>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link style={{ textDecoration: "none", color: "white" }} to="/products">
+                                            <span className="dropdown-item" href="#!"> Opcion 2 </span>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link style={{ textDecoration: "none", color: "white" }} to="/products">
+                                            <span className="dropdown-item" href="#!"> Opcion 3 </span>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link style={{ textDecoration: "none", color: "white" }} to="/products">
+                                            <span className="dropdown-item" href="#!"> Opcion 4 </span>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link style={{ textDecoration: "none", color: "white" }} to="/products">
+                                            <span className="dropdown-item" href="#!"> Opcion 5 </span>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </li> 
+                        </ul>
+                        :
+                        // si el usuario existe y no es admin
+                        user.username ?
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li className="nav-link">
+                            <p className="text-md-start">
+                                <strong> Bienvenido: 
+                                    <Link style={{ textDecoration: "none", color: "white" }} to="/"> {user.username} </Link>
+                                </strong>
+                            </p>
+                            </li>
+                            <ul className="nav-item">  
+                                <li className="nav-item">
+                                    <a className="nav-link " aria-current="page" href="#!" onClick={() => handleLogout()}> Logout </a>
+                                </li>
+                            </ul>
+                        </ul>
+                        : 
+                        <li className="nav-item">
+                            <Link style={{ textDecoration: 'none', color: 'white' }} to="/login">
+                                <span className="nav-link" href="#!"> Login </span>
+                            </Link>
+                        </li>
+                        }
+                    </ul>
           <li className="nav-link">
               <button type="button" className="btn btn-secondary position-relative" onClick={(e) => handleClick(e)}>
                 <svg

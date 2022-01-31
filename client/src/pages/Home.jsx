@@ -12,13 +12,19 @@ export default function Home () {
 
     const dispatch = useDispatch();
     const Navigate = useNavigate();
-    // const products = useSelector((state) => state.firstRed.productsByCategory);
+    const products = useSelector((state) => state.firstRed.productsByCategory);
     const cart = useSelector((state) => state.firstRed.cart);
     
 
     useEffect(()=>{
         cart.length > JSON.parse(window.localStorage.getItem('carrito')).length || cart.length < JSON.parse(window.localStorage.getItem('carrito')).length? window.localStorage.setItem('carrito', JSON.stringify(cart)) : window.localStorage.setItem('carrito', JSON.stringify(cart))
     },[cart])
+
+    
+
+    useEffect(()=> {
+        products > 0 ? window.localStorage.setItem('productos',JSON.stringify(products)) : window.localStorage.setItem('productos',JSON.stringify([]))
+    })
    
 
     const handleClick = (e) => {

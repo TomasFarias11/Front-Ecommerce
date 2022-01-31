@@ -24,7 +24,7 @@ export default function Reviews ({id}) {
 
     const handleSubmit = (e) => {
         if (reviews) {
-          if (reviews && reviews.filter(e => e.userId === user.id).length > 0) {
+          if ( reviews.filter(e => e.username.toLowerCase() === user.username.toLowerCase()).length > 0) {
             e.preventDefault()
             dispatch(putReview(product && product.id, user.id, input));
             setInput({
@@ -55,7 +55,11 @@ export default function Reviews ({id}) {
           })
         }
         Navigate(`/details/${product.id}`)
+
+
       }
+
+      let locuras = 1;
       
       useEffect(() => {
         dispatch(getReviews(id));
@@ -93,7 +97,14 @@ export default function Reviews ({id}) {
                       <h5 href="blog-detail-2.html">Nombre de usuario: {re.username ? re.username : "username123"}</h5>
                     </span>
                     <div>
-                      <h6>Calificacion: {re.calification ? re.calification : 0}</h6>
+                      <h6>Calificacion: {
+                             re.calification == 1? <i class="fas fa-star"></i>
+                           : re.calification == 2? <div><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                           : re.calification == 3? <div><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                           : re.calification == 4? <div><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                           : re.calification == 5? <div><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                           : <h1>1</h1>
+                        }</h6>
                     </div>
                     
                     <p className="be-comment-text"><b>Comentario:</b> {re.commentary}</p>

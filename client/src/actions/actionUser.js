@@ -26,7 +26,7 @@ export const googleLogin = () => {
             }
             
          let response = await axios.post('/user', userAuthGoogle )
-         console.log(response, "este es el repsonse")
+        //  console.log(response, "este es el repsonse")
          response.status === 200 ?
             dispatch({
               type: "LOGIN_GOOGLE",
@@ -40,12 +40,13 @@ export const googleLogin = () => {
             : response.status === 202 ? 
             dispatch({
               type: "LOGIN_GOOGLE",
-              payload:{ username:userAuthGoogle.username, admin:userAuthGoogle.admin, },
+              payload:{ username:userAuthGoogle.username, admin:userAuthGoogle.admin, id:response.data.id },
             },
             // console.log('respuesta del 202',response.data),
             window.localStorage.setItem('usuario', JSON.stringify({
               username: userAuthGoogle.username,
-              admin: userAuthGoogle.admin
+              admin: userAuthGoogle.admin,
+              id:response.data.id,
             })))
             : console.log("este cosole.log no deberia aparecer")
          

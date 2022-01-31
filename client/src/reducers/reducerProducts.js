@@ -17,9 +17,13 @@ import {
     SET_CARTNAV_ON,
     SET_CARTNAV_OFF,
     QUANTITY_ITEM,
-    SET_PRODUCTS
+    SET_PRODUCTS,
 
+    LIST_USERS,
+    USER_CREATE
 } from '../actions/actionProducts'
+
+import {DELETE_PRODUCT, ADD_PRODUCT, EDIT_PRODUCT} from "../actions/actionAdmin"
 
 
 const initialState2={
@@ -28,7 +32,11 @@ const initialState2={
     productId: [],
     reviews: [],
     cart: [],
-    cartNav: false
+    cartNav: false,
+    productsSearch:[],
+    users: [],
+    listUser:[],
+
 }
 
 export default function reducerProducts(state=initialState2, action){
@@ -113,11 +121,12 @@ export default function reducerProducts(state=initialState2, action){
             case POST_REVIEW:
                 return {
                     ...state,
+                    reviews: action.payload  
                 }
             case PUT_REVIEW:
                 return {
                     ...state,
-                    
+                    reviews: action.payload  
                 }
             case ADD_CART:
                 let existe = state.cart.filter(el => el.id === action.payload)
@@ -174,6 +183,34 @@ export default function reducerProducts(state=initialState2, action){
                     })
             }
 
+            // CREANDO LOS USUARIOS
+
+            case USER_CREATE:
+                return{
+                    ...state,
+                    
+                }
+
+            case LIST_USERS:
+                return{
+                    ...state,
+                    listUser: action.payload                }
+
+            case DELETE_PRODUCT:
+                state.allProducts = state.allProducts .filter(e => e.id !== action.payload)
+                return{
+                    ...state,
+                    products: state.allProducts 
+            }
+            case ADD_PRODUCT:
+                return {
+                    ...state,
+                    
+                }
+            case EDIT_PRODUCT:
+                return {
+                    ...state,     
+            }
 		default:
 			return state;
 	}

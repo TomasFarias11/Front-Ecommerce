@@ -1,5 +1,5 @@
 import React from 'react';
-// import {Link} from "react-router-dom"
+import {Link} from "react-router-dom"
 import { useNavigate } from 'react-router-dom';
 import { googleLogin, localLoginUser  } from "../actions/actionUser"
 import { useDispatch } from "react-redux";
@@ -13,7 +13,7 @@ const LoginScreen = () => {
     password: '',
 });
   const dispatch = useDispatch();
-  const local = window.localStorage.getItem('login')
+  // const local = window.localStorage.getItem('login')
   const Navigate = useNavigate()
 
 //   console.log(local, "este es mi local storage")   //  <--- console,LOG
@@ -76,7 +76,7 @@ const LoginScreen = () => {
               <button type="submit" onSubmit={e => handleLocalLogin(e)} className="btn btn-primary"> Iniciar sesión </button>
             </div>
             <div className="my-3">
-              <span> No tienes una cuenta? <a href="# "> Regístrate </a> </span>{" "}
+              <span> No tienes una cuenta? <Link to = "/user">Registrate</Link></span>
               <br />
               <span> <a href="# "> Recuperar password </a> </span>
             </div>

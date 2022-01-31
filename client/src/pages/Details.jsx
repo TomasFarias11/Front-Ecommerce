@@ -20,7 +20,7 @@ export default function Details() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    dispatch(addToCart(productId.id))
+    dispatch(addToCart(Number(productId.id)))
     window.localStorage.setItem('carrito', JSON.stringify(cart))
     dispatch(setCartOn())
     swal("Agregado al carrito!", {
@@ -37,7 +37,7 @@ export default function Details() {
 
   useEffect(() => {
     dispatch(getProductById(id))
-  }, [dispatch])
+  }, [dispatch,id])
 
 
   useEffect(() =>

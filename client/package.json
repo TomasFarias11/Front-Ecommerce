@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@algolia/autocomplete-core": "1.5.2",
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "@popperjs/core": "^2.11.2",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",

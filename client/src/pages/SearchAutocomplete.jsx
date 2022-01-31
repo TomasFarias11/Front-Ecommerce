@@ -1,4 +1,5 @@
 import { createAutocomplete } from '@algolia/autocomplete-core';
+import axios from 'axios';
 import { useState, useMemo, useRef } from 'react';
 import { Link } from "react-router-dom";
 import style from "../css/SearchAutocomplete.module.css"
@@ -50,7 +51,7 @@ export default function SearchAutocomplete (props) {
             sourceId: 'offers-next-api',
             getItems: ({ query }) => {
                 if (!!query) {
-                    return fetch(`http://localhost:3001/products?name=${query}`)
+                    return axios(`/products?name=${query}`)
                         .then(res=> res.json())
                 }
             }

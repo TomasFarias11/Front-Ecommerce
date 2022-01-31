@@ -20,6 +20,10 @@ export default function Home () {
     useEffect(()=>{
         cart.length > JSON.parse(window.localStorage.getItem('carrito')).length || cart.length < JSON.parse(window.localStorage.getItem('carrito')).length? window.localStorage.setItem('carrito', JSON.stringify(cart)) : window.localStorage.setItem('carrito', JSON.stringify(cart))
     },[cart])
+
+    useEffect(()=> {
+        window.localStorage.setItem('productos',JSON.stringify(products))
+    })
    
 
     const handleClick = (e) => {

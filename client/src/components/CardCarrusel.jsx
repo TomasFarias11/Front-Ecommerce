@@ -69,7 +69,7 @@ const CardCarrusel = () =>{
     return(<>
         <div className="container" style={{padding: "15px"}}>
             <div className="row animate__animated animate__slideInRight">
-                {currentProduct ? currentProduct.map((e)=>{
+                {currentProduct ? currentProduct.filter(p=>p.stock > 0).map((e)=>{
                     return(
                     <div className="col-3 animate__animated animate__slideInRight" key={e.id} >
                         <div className="card ">
@@ -94,7 +94,7 @@ const CardCarrusel = () =>{
                     </div>
                     )
                 })
-            : allProducts.map((e)=>{
+            : allProducts.filter(p=>p.stock > 0).map((e)=>{
                 <div className="card">
                             <Link to={`/details/${e.id}`}>
                                 <img src={e.image} alt="" className="card-img-top" height="300px"/>

@@ -4,6 +4,8 @@ import {useSelector, useDispatch} from 'react-redux';
 import {deleteProduct} from "../../actions/actionAdmin"
 import {useState} from "react";
 import { useParams } from "react-router";
+import { useEffect } from 'react';
+import { getProducts } from '../../actions/actionProducts'
 
 function AdminProduct() {
 
@@ -14,6 +16,9 @@ function AdminProduct() {
     const handelDetele=({target:{id,value}})=>{
         dispatch(deleteProduct(value))
     }
+    useEffect(()=>{
+        dispatch(getProducts())
+    },[])
 
   return (
     <div className="row">

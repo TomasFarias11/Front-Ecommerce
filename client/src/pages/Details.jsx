@@ -62,7 +62,7 @@ export default function Details() {
           {productId.stock > 0 ? (<p><b>Stock:</b> {productId.stock} </p>) : (<p><b>Stock:</b> Exhausted </p>)}
           {/* {productId.stock > 0 ? (<label><b>Cantidad:</b> <input type="number" min="1" max={productId.stock} placeholder="1" /></label>) : null} */}
           {/* boton el svg es la imagen del carrito */}
-          <div>
+          {productId.length > 0 ? <div>
               {cart.some((c) => productId.name === c.name) ? 
               <div class="alert alert-warning" role="alert">
               Agregado al carrito
@@ -82,7 +82,7 @@ export default function Details() {
                 <span>  Añadir al carrito <span>$<b>{formato.format(productId.price)}</b></span></span>
               </button>
               }
-          </div>
+          </div> : <div><h5>Sin Stock</h5></div>}
           {/*segundo boton tomado de piwo */}
           {/*tercer boton */}
         </div>

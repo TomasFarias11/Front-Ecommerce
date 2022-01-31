@@ -93,7 +93,7 @@ const handleLogout = () => {
                 </Link>
             </li>
             {/* si el usuario existe y es admin */}
-            { userData[0] || user.username && user.admin ?
+            { userData[0] || (user.username && user.admin) ?
             <div>
                 <li className="nav-item">  
                 <li className="nav-item">
@@ -131,7 +131,7 @@ const handleLogout = () => {
                 </ul>
             </ul>  
             <li className="nav-link">
-            <p className="text-md-start">
+            <p className="text-sm-start">
                 <strong> Bienvenido: {user.username}
                     <Link style={{ textDecoration: "none", color: "orange" }} to="/products"> </Link>
                 </strong>
@@ -164,6 +164,7 @@ const handleLogout = () => {
                 </Link>
             </li>
             }
+            
 
             
           </ul>

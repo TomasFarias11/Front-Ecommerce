@@ -18,7 +18,7 @@ function AdminProduct() {
     }
     useEffect(()=>{
         dispatch(getProducts())
-    },[products])
+    },[])
 
   return (
     <div className="row">

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {getCategory, addProduct } from "../../actions/actionAdmin"
-import {useEffect, useState} from "react";
+import {addProduct, getCategory} from "../../actions/actionAdmin"
+import {useState, useEffect} from "react";
 import swal from 'sweetalert';
 
 function AddProdcut() {
@@ -10,8 +10,11 @@ function AddProdcut() {
   const allCategory = useSelector((state)=>state.fourthRed.category);
   const dispatch = useDispatch()
 
+  useEffect(()=>{
+    dispatch(getCategory())
+  },[])
+
   const [inputBody , setInputBody] = useState({
-    idUser:"1",
     idCategory:"",
     name:"",
     description:"",
@@ -26,7 +29,6 @@ function AddProdcut() {
   })
 
   console.log(inputBody)
-
 
   function handelInput(e){
     e.preventDefault()
@@ -57,7 +59,6 @@ function AddProdcut() {
       timer: 1500,
     });
       setInputBody({
-        idUser:"1",
         idCategory:"",
         name:"",
         description:"",
@@ -94,7 +95,7 @@ function AddProdcut() {
 
     <div className=" card col-lg-8">
       <br/>
-      <h1>Agregar Producto</h1>
+      <h2>Agregar Producto</h2>
       <br/>
       <form onSubmit={e=>handelSubmit(e)}>
           <div class="form-group">

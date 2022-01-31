@@ -14,8 +14,12 @@ function EditProduct() {
   const productId = useSelector((state) => state.firstRed.productId)
   const allCategory = useSelector((state)=>state.fourthRed.category);
 
+    useEffect(() => {
+    dispatch(getProductById(id))
+    dispatch(getCategory())
+  }, [])
+
   const [inputBody , setInputBody] = useState({
-    idUser:"1",
     idCategory:"",
     name:"",
     description:"",
@@ -28,9 +32,6 @@ function EditProduct() {
     model:[],
     ram:[]
   })
-
-  console.log("producto", productId)
-  console.log("input", inputBody)
 
 
   function handelInput(e){
@@ -57,7 +58,7 @@ function EditProduct() {
 
     if(inputBody.idCategory!== "" && inputBody.name!==""){
       dispatch(editProduct(id, inputBody))
-      alert("producto agregado a la db")
+      alert("producto editado")
       setInputBody({
         idCategory:"",
         name:"",
@@ -77,10 +78,7 @@ function EditProduct() {
   }
 
 
-  useEffect(() => {
-    dispatch(getProductById(id))
-    dispatch(getCategory())
-  }, [dispatch])
+
 
   return<div className="row">
   <div className="col-lg-3">
@@ -102,7 +100,7 @@ function EditProduct() {
     </div>
     <div className=" card col-lg-8">
     <br/>
-    <h1>Editar Producto</h1>
+    <h2>Editar Producto</h2>
     <p><b>ID: </b><span>{productId.id}</span></p>
     <br/>
     <div className="row">

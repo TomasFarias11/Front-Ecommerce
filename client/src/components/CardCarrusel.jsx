@@ -72,9 +72,9 @@ const CardCarrusel = () =>{
                 {currentProduct ? currentProduct.map((e)=>{
                     return(
                     <div className="col-3 animate__animated animate__slideInRight img-fluid" key={e.id} >
-                        <div className="card ">
+                        <div className="card2 ">
                             <Link to={`/details/${e.id}`}>
-                                <img src={e.image} alt="" className="img-fluid"/>
+                                <img src={e.image} alt="" className="card-img-top" height="310px"/>
                             </Link>
                             <div className="card-body">
                                 <h5>{e.name}</h5>

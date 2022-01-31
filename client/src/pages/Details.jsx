@@ -84,7 +84,7 @@ export default function Details() {
           )}
           {/* {productId.stock > 0 ? (<label><b>Cantidad:</b> <input type="number" min="1" max={productId.stock} placeholder="1" /></label>) : null} */}
           {/* boton el svg es la imagen del carrito */}
-          {productId.length > 0 ? <div>
+          {productId.stock > 0 ? <div>
               {cart.some((c) => productId.name === c.name) ? 
               <div class="alert alert-warning" role="alert">
               Agregado al carrito

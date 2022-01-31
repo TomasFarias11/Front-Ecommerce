@@ -235,7 +235,7 @@ export function setProducts (payload) {
 export function postUserCreate (input){
     return async function(dispatch){
         try {
-            let response = await axios.post("http://localhost:3001/user", input)
+            let response = await axios.post("user", input)
             console.log(input, "input de las acciones")
             return response
             // return dispatch({type: USER_CREATE, input})

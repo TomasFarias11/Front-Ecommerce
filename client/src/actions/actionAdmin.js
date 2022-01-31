@@ -31,6 +31,7 @@ export function getCategory () {
     return async(dispatch)=>{
         try {
             var allCategory=await axios.get("/category");
+
               return dispatch({
                 type: GET_CATEGORY,
                 payload: allCategory.data

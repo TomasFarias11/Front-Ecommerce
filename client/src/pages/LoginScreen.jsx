@@ -13,7 +13,7 @@ const LoginScreen = () => {
     password: '',
 });
   const dispatch = useDispatch();
-  const local = window.localStorage.getItem('login')
+  // const local = window.localStorage.getItem('login')
   const Navigate = useNavigate()
 
 //   console.log(local, "este es mi local storage")   //  <--- console,LOG

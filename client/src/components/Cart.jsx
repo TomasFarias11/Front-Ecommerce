@@ -1,7 +1,7 @@
 import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {delAllCart, createOrder} from '../actions/actionProducts.js'
+import {addToCart, delCart, delAllCart, setCartOff, createOrder} from '../actions/actionProducts.js'
 import { useNavigate } from 'react-router-dom';
 import CartCard from './CartCard.jsx'
 import swal from 'sweetalert';
@@ -42,8 +42,15 @@ export default function Cart () {
             buttons: false,
             icon: 'success',
             timer: 2000,
-        });
+          });
+        dispatch(setCartOff())
     }
+
+    useEffect(() => {
+        if (cart.length === 0) {
+            dispatch(setCartOff())
+        }
+    },[cart])
     // animate__slideOutRight
     return (
         <div className = {cartNav === false ? "row animate__animated animate__slideOutRight" : "row animate__animated animate__slideInRight"} style={{position: 'absolute', right: '12px', top: '95px', background: '#E9E9E9', overflowY: "scroll", height: '90.5vh'}}>

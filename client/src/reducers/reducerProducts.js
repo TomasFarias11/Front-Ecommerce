@@ -27,9 +27,14 @@ import {
     GET_ORDER_OPEN,
     GET_ORDER_USER,
     POST_ORDER,
-    SET_CART_USER
+    SET_CART_USER,
 
+    // users
+    LIST_USERS,
+    USER_CREATE
 } from '../actions/actionProducts'
+
+import {DELETE_PRODUCT, ADD_PRODUCT, EDIT_PRODUCT} from "../actions/actionAdmin"
 
 
 const initialState2={
@@ -40,7 +45,11 @@ const initialState2={
     cart: [],
     cartNav: false,
     order: [],
-    cartUser: []
+    cartUser: [],
+    productsSearch:[],
+    users: [],
+    listUser:[],
+
 }
 
 export default function reducerProducts(state=initialState2, action){
@@ -115,8 +124,7 @@ export default function reducerProducts(state=initialState2, action){
             ...state,
             products: maxPrice
         }
-
-        //  -------      ESTOS SON LAS CASE REVIEW
+            //  -------      ESTOS SON LAS CASE REVIEW
         case GET_REVIEWS:
             return {
                 ...state,
@@ -125,16 +133,17 @@ export default function reducerProducts(state=initialState2, action){
         case POST_REVIEW:
             return {
                 ...state,
+                reviews: action.payload  
             }
         case PUT_REVIEW:
             return {
                 ...state,
-                
+                reviews: action.payload  
             }
         case ADD_CART:
-            let existe = state.cart.filter(el => el.id == action.payload)
+            let existe = state.cart.filter(el => el.id === action.payload)
             if(existe.length===1) return state
-            let newItem = state.products.find((p) => p.id == action.payload)
+            let newItem = state.products.find((p) => p.id === action.payload)
             return{
                 ...state,
                 cart: [...state.cart, {...newItem, quantity: 1}],
@@ -212,6 +221,34 @@ export default function reducerProducts(state=initialState2, action){
                 cartUser: action.payload
             }
 
+            // CREANDO LOS USUARIOS
+
+        case USER_CREATE:
+            return{
+                ...state,
+                
+            }
+
+        case LIST_USERS:
+            return{
+                ...state,
+                listUser: action.payload                }
+
+        case DELETE_PRODUCT:
+            state.allProducts = state.allProducts .filter(e => e.id !== action.payload)
+            return{
+                ...state,
+                products: state.allProducts 
+        }
+        case ADD_PRODUCT:
+            return {
+                ...state,
+                
+            }
+        case EDIT_PRODUCT:
+            return {
+                ...state,     
+        }
 		default:
 			return state;
 	}

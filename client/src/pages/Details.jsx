@@ -20,7 +20,7 @@ export default function Details() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    dispatch(addToCart(productId.id))
+    dispatch(addToCart(Number(productId.id)))
     window.localStorage.setItem('carrito', JSON.stringify(cart))
     dispatch(setCartOn())
     swal("Agregado al carrito!", {
@@ -37,7 +37,7 @@ export default function Details() {
 
   useEffect(() => {
     dispatch(getProductById(id))
-  }, [dispatch])
+  }, [dispatch,id])
 
 
   useEffect(() =>
@@ -84,9 +84,9 @@ export default function Details() {
           )}
           {/* {productId.stock > 0 ? (<label><b>Cantidad:</b> <input type="number" min="1" max={productId.stock} placeholder="1" /></label>) : null} */}
           {/* boton el svg es la imagen del carrito */}
-          <div>
-              {cart.some((c) => productId.id === c.id) ? 
-              <div className="alert alert-warning" role="alert">
+          {productId.stock > 0 ? <div>
+              {cart.some((c) => productId.name === c.name) ? 
+              <div class="alert alert-warning" role="alert">
               Agregado al carrito
               </div>
               :
@@ -104,7 +104,7 @@ export default function Details() {
                 <span>  Añadir al carrito <span>$<b>{formato.format(productId.price)}</b></span></span>
               </button>
               }
-          </div>
+          </div> : <div><h5>Sin Stock</h5></div>}
           {/*segundo boton tomado de piwo */}
           {/*tercer boton */}
         </div>

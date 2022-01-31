@@ -25,9 +25,9 @@ export const googleLogin = () => {
                password: dataUser.user.uid,
                loginWithGoogle: true,
             }
-          console.log(userAuthGoogle, 'que te pasa lacdtm')
-         let response = await axios.post('/user', userAuthGoogle)
-         console.log(response, "este es el repsonse")
+            
+         let response = await axios.post('/user', userAuthGoogle )
+        //  console.log(response, "este es el repsonse")
          response.status === 200 ?
             dispatch({
               type: "LOGIN_GOOGLE",
@@ -47,7 +47,7 @@ export const googleLogin = () => {
             window.localStorage.setItem('usuario', JSON.stringify({
               username: userAuthGoogle.username,
               admin: userAuthGoogle.admin,
-              id: response.data.id
+              id:response.data.id,
             })))
             : console.log("este cosole.log no deberia aparecer")
          

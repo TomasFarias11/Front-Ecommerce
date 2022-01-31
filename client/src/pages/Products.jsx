@@ -79,7 +79,7 @@ const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts, 
                                 products.map(e =>
                                     <div className="col" key={e.id}>
                                         <div className="card animate__animated animate__bounceIn" >
-                                            <img src={e.image !== 'not found' ? e.image : "https://i.postimg.cc/SK600jXG/OIP.jpg"} className="card-img-top img-fluid" alt={e.image} style={{padding:"20 0", height: "340px", width: "340px"}} />
+                                            <img src={e.image !== 'not found' ? e.image : "https://i.postimg.cc/SK600jXG/OIP.jpg"} className="img-fluid" alt="product"  />
                                             <div className="card-body">
                                                 <h5 className="card-title">{e.name}</h5>
                                                 <p className="card-text">{e.category}  ${formato.format(e.price)}</p>

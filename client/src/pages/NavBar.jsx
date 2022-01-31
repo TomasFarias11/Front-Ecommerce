@@ -131,11 +131,6 @@ const handleLogout = () => {
                         // si el usuario existe y no es admin
                         user.username ?
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <ul className="nav-item">  
-                                <li className="nav-item">
-                                    <a className="nav-link " aria-current="page" href="#!" onClick={() => handleLogout()}> Logout </a>
-                                </li>
-                            </ul>
                             <li className="nav-link">
                             <p className="text-md-start">
                                 <strong> Bienvenido: 
@@ -143,6 +138,11 @@ const handleLogout = () => {
                                 </strong>
                             </p>
                             </li>
+                            <ul className="nav-item">  
+                                <li className="nav-item">
+                                    <a className="nav-link " aria-current="page" href="#!" onClick={() => handleLogout()}> Logout </a>
+                                </li>
+                            </ul>
                         </ul>
                         : 
                         <li className="nav-item">

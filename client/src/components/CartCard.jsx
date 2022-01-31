@@ -26,7 +26,6 @@ export default function CartCard ({id, name, price, image, quantity, stock}) {
             icon: 'success',
             timer: 2000,
           });
-
     }
 
     useEffect(()=>{

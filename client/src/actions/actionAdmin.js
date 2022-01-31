@@ -11,12 +11,12 @@ export function deleteProduct (id) {
     return async(dispatch)=>{
         try {
             console.log("id que llega al action", id)
-            await axios.delete(`http://localhost:3001/admin/delete/${id}`);
+            await axios.delete(`/admin/delete/${id}`);
             return dispatch({
                 type: DELETE_PRODUCT, 
                 payload: id
             })
-            let removeProduct=await axios.delete(`http://localhost:3001/admin/delete/${id}`);
+            let removeProduct=await axios.delete(`/admin/delete/${id}`);
             console.log('QUE ES ESTO',id)
             
 
@@ -30,7 +30,7 @@ export function deleteProduct (id) {
 export function getCategory () {
     return async(dispatch)=>{
         try {
-            var allCategory=await axios.get("http://localhost:3001/category");
+            var allCategory=await axios.get("/category");
               return dispatch({
                 type: GET_CATEGORY,
                 payload: allCategory.data
@@ -46,7 +46,7 @@ export function addProduct(body){
     return async (dispatch)=>{
         try {
             console.log("lo que me llega al actions", body)
-            var addproduct = await axios.post('http://localhost:3001/admin/create', body);
+            var addproduct = await axios.post('/admin/create', body);
             return addproduct;
         } catch (err) {
             console.log(err);
@@ -58,7 +58,7 @@ export function addProduct(body){
 export function editProduct(id, body){
     return async (dispatch)=>{
         try {
-            var editproduct = await axios.put(`http://localhost:3001/admin/edit/${id}`, body);
+            var editproduct = await axios.put(`/admin/edit/${id}`, body);
             return dispatch({
                 type: EDIT_PRODUCT,
             })

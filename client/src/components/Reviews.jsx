@@ -24,7 +24,7 @@ export default function Reviews ({id}) {
 
     const handleSubmit = (e) => {
         if (reviews) {
-          if ( reviews.filter(e => e.username === user.username).length > 0) {
+          if ( reviews.filter(e => e.username.toLowerCase() === user.username.toLowerCase()).length > 0) {
             e.preventDefault()
             dispatch(putReview(product && product.id, user.id, input));
             setInput({

@@ -105,8 +105,8 @@ const handleLogout = () => {
                                 <a className="nav-link dropdown-toggle" href=" " id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Admin </a>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li>
-                                        <Link style={{ textDecoration: "none", color: "white" }} to="/products">
-                                            <span className="dropdown-item" href="#!"> Opcion 1 </span>
+                                        <Link style={{ textDecoration: "none", color: "white" }} to="/admin/product">
+                                            <span className="dropdown-item" href="#!"> Productos </span>
                                         </Link>
                                     </li>
                                     <li>

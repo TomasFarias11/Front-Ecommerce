@@ -1,6 +1,5 @@
 import React from 'react';
-import GoogleButton from "react-google-button";
-// import {Link} from "react-router-dom"
+import {Link} from "react-router-dom"
 import { useNavigate } from 'react-router-dom';
 import { googleLogin, localLoginUser  } from "../actions/actionUser"
 import { useDispatch } from "react-redux";
@@ -14,7 +13,7 @@ const LoginScreen = () => {
     password: '',
 });
   const dispatch = useDispatch();
-  const local = window.localStorage.getItem('login')
+  // const local = window.localStorage.getItem('login')
   const Navigate = useNavigate()
 
 //   console.log(local, "este es mi local storage")   //  <--- console,LOG
@@ -37,93 +36,77 @@ const LoginScreen = () => {
     // window.location.reload()
   };
   
-  return <form onSubmit={e => handleLocalLogin(e)} >
-  <div className="containerr">
-    <div className="vh-100">
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-sm-6 text-black">
-            <div className="px-5 ms-xl-4">
-              <span className="h1 fw-bold mb-0 text-center">iGroup-6</span>
+  return (
+<div>
+  <form onSubmit={e => handleLocalLogin(e)} >
+    <div className="container w-75 bg-primary mt-5 rounded shadow">
+      <div className="row align-items-center align-items-stretch">
+        <div className="col d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded bg"></div>
+        <div className="col bg-white p-5 col-lg-7 col-xl-6 rounded-end">
+          <div className="text-end">
+            <img src="https://i.postimg.cc/WznK6qfm/igroup-log.png" alt='logo' style={{ width: 200 }} />
+          </div>
+          <h2 className="fw-bold text-center pt-5 mb-5">Bienvenido</h2>
+          {/* Formulario de login */}
+            <div className="mb-4">
+              <label htmlFor="email" className="form-label"> Correo electrónico </label>
+              <input type="text" 
+              className="form-control mb-2" 
+              placeholder="email" 
+              value={input.email} 
+              onChange={(e) => setInput({ ...input, email: e.target.value })}
+              required        
+              />
             </div>
-
-            <div className="d-flex align-items-center h-custom-2 px-5 mt-5 pt-xl-0 ">
-              <div style={{ width: "20rem" }}>
-                <h3
-                  className="fw-normal mb-3 pb-3"
-                  style={{ letterSpacing: "1px" }}
-                >
-                  Log in
-                </h3>
-
-                <div>
-                  <input
-                    type="text"
-                    className="form-control mb-2"
-                    placeholder="email"
-                    value={input.email}
-                    onChange={(e) =>
-                      setInput({ ...input, email: e.target.value })
-                    }
-                    required        
-                  />
-                </div>
-
-                <div className="form">
-                    <input
-                      type="password"
-                      className="form-control"
-                      placeholder="Password"
-                      value={input.password}
-                      onChange={(e) =>
-                        setInput({ ...input, password: e.target.value })
-                      }
-                      required
-    
-                    />
-                </div>
-                <br />
-
-                <div className="pt-1 mb-4">
-                  <button
-                    className="btn btn-lg btn-block"
-                    style={{background:'609bd1'}}
-                    type="submit"
-                    // href=" "
-                  >
-                    Login
-                  </button>
-                  <p className="form-label text-center" >OR</p>
-                  <GoogleButton type="light" onClick={handleGoogleLogin} />
-                </div>
-
-                <p className="small mb-5 pb-lg-2">
-                  <a className="text-muted" href=" ">
-                    Forgot password?
-                  </a>
-                </p>
-                <p>
-                  Don't have an account?{" "}
-                  <a href="#!" className="link-info" >
-                    Register here
-                  </a>
-                </p>
+            <div className="mb-4">
+              <label htmlFor="password" className="form-label"> Contraseña </label>
+              <input type="password" 
+              className="form-control"
+              placeholder="Password"
+              value={input.password}
+              onChange={(e) => setInput({ ...input, password: e.target.value })}
+              required
+              />
+            </div>
+            <div className="mb-4 form-check">
+              <input type="checkbox" className="form-check-input" name="connected" />
+              <label className="form-check-label" htmlFor="connected"> Mantenerme conectado </label>
+            </div>
+            <div className="d-grid">
+              <button type="submit" onSubmit={e => handleLocalLogin(e)} className="btn btn-primary"> Iniciar sesión </button>
+            </div>
+            <div className="my-3">
+              <span> No tienes una cuenta? <Link to = "/user">Registrate</Link></span>
+              <br />
+              <span> <a href="# "> Recuperar password </a> </span>
+            </div>
+          {/* Login con google */}
+          <div className="container w-100 my-5">
+            <div className="row my-3 text-center">
+              <div className="col-12"> Iniciar sesión con </div>
+            </div>
+            <div className="row">
+              <div className="col">
+                <button className="btn btn-outline-danger w-100 my-1" type="button" onClick={handleGoogleLogin}>
+                  <div className="row align-items-center">
+                    <div className="d-none d-md-block col-3 col-lg-4 col-xl-4 col-xxl-3 text-center">
+                      <img src="https://i.postimg.cc/Y04ZG5n6/google.png" width="30%" alt='' />
+                    </div>
+                    <div className="col-12 col-md-9 col-lg-8 col-xl-8 col-xxl-6 text-center">
+                      Google
+                    </div>
+                  </div>
+                </button>
               </div>
             </div>
           </div>
-          <div className="col-sm-6 px-0 d-none d-sm-block">
-            <img
-              src="https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/9135bd6fc06088352f143d3d3c0043bb/medium.JPG"
-              alt="Login i"
-              className="w-100 vh-100"
-              style={{ objectFit: "unset", objectPosition: "left" }}
-            />
-          </div>
+          {/* */}
         </div>
       </div>
     </div>
-  </div>
-</form>;
+  </form>
+</div>
+  );
 };
 
 export default LoginScreen;

@@ -3,13 +3,20 @@ import axios from "axios";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const GET_CATEGORY = "GET_CATEGORY"
 export const ADD_PRODUCT = "ADD_PRODUCT"
+export const EDIT_PRODUCT = "EDIT_PRODUCT"
+
 
 
 export function deleteProduct (id) {
     return async(dispatch)=>{
         try {
             console.log("id que llega al action", id)
-            let removeProduct=await axios.delete(`http://localhost:3001/admin/delete/${id}`);
+            await axios.delete(`/admin/delete/${id}`);
+            return dispatch({
+                type: DELETE_PRODUCT, 
+                payload: id
+            })
+            let removeProduct=await axios.delete(`/admin/delete/${id}`);
             console.log('QUE ES ESTO',id)
             
 
@@ -23,9 +30,10 @@ export function deleteProduct (id) {
 export function getCategory () {
     return async(dispatch)=>{
         try {
-            var allCategory=await axios.get("http://localhost:3001/category");
+            var allCategory=await axios.get("/category");
+
               return dispatch({
-                type: "GET_CATEGORY",
+                type: GET_CATEGORY,
                 payload: allCategory.data
             })
         } catch (err) {
@@ -38,8 +46,9 @@ export function getCategory () {
 export function addProduct(body){
     return async (dispatch)=>{
         try {
-            var addproduct = await axios.post('http://localhost:3001/admin/create', body);
-            console.log("producto agregado", addproduct)
+            console.log("lo que me llega al actions", body)
+            var addproduct = await axios.post('/admin/create', body);
+            return addproduct;
         } catch (err) {
             console.log(err);
         }
@@ -50,8 +59,10 @@ export function addProduct(body){
 export function editProduct(id, body){
     return async (dispatch)=>{
         try {
-            var editproduct = await axios.put(`http://localhost:3001/admin/edit/${id}`, body);
-            console.log("producto modificado", editproduct)
+            var editproduct = await axios.put(`/admin/edit/${id}`, body);
+            return dispatch({
+                type: EDIT_PRODUCT,
+            })
         } catch (err) {
             console.log(err);
         }

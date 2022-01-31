@@ -3,28 +3,22 @@ import { Link } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux';
 import {deleteProduct} from "../../actions/actionAdmin"
 import {useState} from "react";
+import { useParams } from "react-router";
+import { useEffect } from 'react';
+import { getProducts } from '../../actions/actionProducts'
 
 function AdminProduct() {
 
     const products = useSelector((state) => state.firstRed.products);
     const dispatch = useDispatch()
-    let [remove, setRemove]=useState({
-        id:"",
-    })
-
-    console.log(products)
-    console.log(remove)
 
 
     const handelDetele=({target:{id,value}})=>{
-        setRemove({
-            ...remove,
-            id:value
-        }
-        )
-        console.log("este es id que pulso", {target:{id,value}})
         dispatch(deleteProduct(value))
     }
+    useEffect(()=>{
+        dispatch(getProducts())
+    },[products])
 
   return (
     <div className="row">
@@ -36,27 +30,22 @@ function AdminProduct() {
                 <button type="button" class="btn btn-outline-secondary" >Agregar Productos</button>
                 </Link>
                 </div>
-                <br/>
-                <div className="dropdown">
-                <Link to="/admin/addCategory">
-                <button type="button" class="btn btn-outline-secondary" >Agregar Categoria</button>
-                </Link>
-                </div>
             </div>
         </div>
     </div>
     <div className=" card col-lg-8">
                     <div className="container-sm bg-image hover-overlay ripple" data-mdb-ripple-color="light" style={{ padding: 20 } } >
-                        <div className="row row-cols-0 row-cols-md-3 g-5 mask animate__animated animate__bounceIn" Style="background-color: #FAFAFA"    >
-                            <ul>
+                        <div className="row" Style="background-color: #FAFAFA"    >
+                            <ul class="list-group list-group-flush">
                                 {
                                     products.map(e=>
-                                        <li>id:{e.id} nombre: {e.name} categoria: {e.idCategory}
-                                        <Link to={`/admin/edit/${e.id}`}>
-                                            <button>editar</button>
-                                        </Link>
-                                        <button name="id" value={e.id} onClick={(e)=>handelDetele(e)}>X</button></li>
-                                        )
+                                        <li class="list-group-item" key={e.id}><p><b>ID: </b>{e.id}</p> <p><b>Nombre: </b> {e.name}</p> <p><b>Categoria: </b> {e.idCategory}</p>
+                                            <Link to={`/admin/edit/${e.id}`}>
+                                                <button class="btn btn-primary" style={{marginRight:10}}>editar</button>
+                                            </Link>
+                                            <button class="btn btn-primary" name="id" value={e.id} onClick={(e)=>handelDetele(e)}>X</button>
+                                        </li>
+                                    )
                                 }
                             </ul>
                         </div>

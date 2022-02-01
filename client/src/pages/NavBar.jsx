@@ -27,7 +27,7 @@ const handleClick = (e) => {
     } else {
         dispatch(setCartOff())
     }
-    dispatch(setCart(order[0].carrito))
+    // dispatch(setCart(order[0].carrito))
 }
 
 const handleLogout = () => {
@@ -38,9 +38,11 @@ const handleLogout = () => {
     window.location.reload()
 }
 
-    // useEffect(() => 
-    // order && order.carrito ? dispatch(setCart(order.carrito)) : order && order[0].carrito ? dispatch(setCart(order[0].carrito)) : console.log('pa que no se rompa')
-    // ,[order])
+    // useEffect(() => {
+    //     if (order && order[0]) {
+    //         dispatch(setCart(order[0].carrito))
+    //     }
+    // },[user])
 
   return (
         <nav className="navbar navbar-expand-lg navbar-dark  h6 sticky-top" style={{background: "#111111"}}>

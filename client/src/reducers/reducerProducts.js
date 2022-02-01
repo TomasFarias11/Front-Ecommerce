@@ -49,6 +49,7 @@ const initialState2={
     productsSearch:[],
     users: [],
     listUser:[],
+    orderAlert: false,
 
 }
 
@@ -195,11 +196,15 @@ export default function reducerProducts(state=initialState2, action){
                 })
             }
         case POST_ORDER:
-            return {
-                ...state,
-                order: action.payload,
-                // cart: action.payload[0].carrito
+            if (action.payload[0]?.carrito.length > 0){
+                return {
+                    ...state,
+                    order: action.payload,
+                    orderAlert: true
+                    // cart: action.payload[0].carrito
+                }
             }
+            
         case GET_ORDER:
             return {
                 ...state,

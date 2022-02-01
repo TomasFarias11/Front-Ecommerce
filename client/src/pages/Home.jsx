@@ -2,7 +2,7 @@ import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import CardCarrusel from "../components/CardCarrusel.jsx";
-import {getProducts, getProductByCategory, editOrder, createOrder, getOrderUser, setCart} from '../actions/actionProducts.js'
+import {getProducts, getProductByCategory, editOrder, createOrder, setCartOn, setCart} from '../actions/actionProducts.js'
 // import {getProducts1} from '../actions/actionCart.js'
 import { useNavigate } from 'react-router-dom';
 import estilos from '../css/Home.module.css';
@@ -15,10 +15,9 @@ export default function Home () {
     const Navigate = useNavigate();
     const products = useSelector((state) => state.firstRed.productsByCategory);
     const cart = useSelector((state) => state.firstRed.cart);
-    const cartStorage = JSON.parse(window.localStorage.getItem('carrito'))
-    const userStorage = JSON.parse(window.localStorage.getItem('usuario'))
     const users = useSelector((state) => state.secondRed.userData)
     const order = useSelector((state) => state.firstRed.order)
+    const orderAlert = useSelector((state) => state.firstRed.orderAlert)
     // console.log('esta es laorden', order)
     
 
@@ -36,13 +35,23 @@ export default function Home () {
         
     })
 
-    useEffect(() => { 
-        dispatch(createOrder(users.id, {carrito: cart}))
+    useEffect(async () => {
+        if (users && users.username) {
+            dispatch(createOrder(users.id, {carrito: cart}))
+            // dispatch(setCart(order && order[0]?.carrito))
+        }
+        // dispatch(setCartOn())
         // if (order && order[0]) {
         //     dispatch(setCart(order[0]?.carrito))
         // } 
         
     },[users])
+
+    useEffect(() => {
+        if (order && order[0]) {
+            dispatch(setCart(order[0]?.carrito))
+        }
+    }, [orderAlert])
 
 
   

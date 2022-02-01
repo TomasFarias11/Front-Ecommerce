@@ -1,7 +1,7 @@
 import React from "react";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {addToCart, getProducts, setCartOn} from '../actions/actionProducts.js'
+import {addToCart, getProducts, setCartOn, setCart, editOrder} from '../actions/actionProducts.js'
 import {Link} from "react-router-dom";
 import swal from 'sweetalert';
 import '../css/Carrousel.css'
@@ -14,6 +14,8 @@ const CardCarrusel = () =>{
     const allProducts = useSelector((state) => state.firstRed.products) // me traigo todo los productos
     const dispatch = useDispatch()
     const cart = useSelector((state) => state.firstRed.cart)
+    const order = useSelector((state) => state.firstRed.order)
+    const user = useSelector((state) => state.secondRed.userData)
     const formato = new Intl.NumberFormat('de-DE', {
         // style: 'currency',
         // currency: 'USD',
@@ -52,6 +54,7 @@ const CardCarrusel = () =>{
     const handleClick = (e) => {
         e.preventDefault();
         dispatch(addToCart(Number(e.target.value)))
+        // dispatch(editOrder(user.id, {carrito: cart}))
         window.localStorage.setItem('carrito', JSON.stringify(cart))
         dispatch(setCartOn())
         swal("Agregado al carrito!", {
@@ -59,12 +62,22 @@ const CardCarrusel = () =>{
             icon: 'success',
             timer: 1500,
         });
-        // dispatch(setCartOn())
+        
       }
 
     useEffect(()=>{
         cart.length > JSON.parse(window.localStorage.getItem('carrito')).length ? window.localStorage.setItem('carrito', JSON.stringify(cart)) : window.localStorage.getItem('carrito')
+        if (user && user.username) {
+            dispatch(editOrder(user.id, {carrito: cart}))
+        }
     },[cart])
+
+    useEffect(() => {
+        if (order && order[0]) {
+            dispatch(setCart(order[0]?.carrito))
+        } 
+    },[allProducts])
+
        
     return(<>
         <div className="container" style={{padding: "15px"}}>
@@ -87,7 +100,7 @@ const CardCarrusel = () =>{
                                 Agregado al carrito
                                 </div>
                                 :
-                            <button type="button" value={e.id} className="btn btn-outline-primary" onClick={(e) => handleClick(e)}>Añadir al carrito</button>
+                                <button type="button" value={e.id} className="btn btn-outline-primary" onClick={(e) => handleClick(e)}>Añadir al carrito</button>
                                 }
                             </div>
                         </div>

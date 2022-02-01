@@ -8,9 +8,10 @@ export const LOCAL_LOGIN_USER = "LOCAL_LOGIN_USER";
 // .auth().signInWithPopup(googleAuthProvider).then(data => console.log(data))
 
 export const googleLogin = () => {
-  // const Navigate = useNavigate()
+
   return async (dispatch) => {
     try {
+      console.log('algooooooooo')
    const dataUser = await firebase.auth().signInWithPopup(googleAuthProvider)
           const userAuthGoogle =
              {
@@ -51,7 +52,7 @@ export const googleLogin = () => {
             : console.log("este cosole.log no deberia aparecer")
          
       } catch (error) {
-        console.log("msg: algo a salido muy mal x.x")
+        console.log(error)
       }
    };
 }; // esta es la accion de la autenticacion con google 

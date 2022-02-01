@@ -21,7 +21,7 @@ useEffect(() => {
             <div >
                 <div className="dropdown">
                 <Link to="/admin/addCategory">
-                <button type="button" class="btn btn-outline-secondary" >Agregar Categoria</button>
+                <button type="button" className="btn btn-outline-secondary" >Agregar Categoria</button>
                 </Link>
                 </div>
             </div>
@@ -30,10 +30,10 @@ useEffect(() => {
     <div className=" card col-lg-8">
                     <div className="container-sm bg-image hover-overlay ripple" data-mdb-ripple-color="light" style={{ padding: 20 } } >
                         <div className="row" Style="background-color: #FAFAFA"    >
-                            <ul class="list-group list-group-flush">
+                            <ul className="list-group list-group-flush">
                                 {
                                     allCategory.map(e=>
-                                        <li class="list-group-item" key={e.idCategory}><p><b>Categoria: </b> {e.name}</p>
+                                        <li className="list-group-item" key={e.idCategory}><p><b>Categoria: </b> {e.name}</p>
                                         </li>
                                     )
                                 }

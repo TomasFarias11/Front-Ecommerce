@@ -1,5 +1,4 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SearchAutocomplete from "./SearchAutocomplete";
 import {useDispatch, useSelector} from 'react-redux';
@@ -9,8 +8,6 @@ import Cart from "../components/Cart.jsx"
 // import {useDispatch} from 'react-redux';
 // import {getProductByCategory, postUserCreate} from '../actions/actionProducts.js'
 
-
-
 function NavBar() {
     const dispatch = useDispatch()
     // const [cartOnScreen, setCartOnScreen] = useState(false)
@@ -19,12 +16,6 @@ function NavBar() {
     const userData = useSelector((state) => state.secondRed.userData)
     const cart = useSelector((state) => state.firstRed.cart)
 
-
-
-    // useEffect(()=>
-    //     console.log('1')
-    // ,[userData])
-
 const handleClick = (e) => {
     e.preventDefault();
     if (cartOnScreen === false) {
@@ -32,16 +23,22 @@ const handleClick = (e) => {
     } else {
         dispatch(setCartOff())
     }
+    // dispatch(setCart(order[0].carrito))
 }
 
 const handleLogout = () => {
-    window.localStorage.setItem('usuario', JSON.stringify([]))
+    // dispatch(createOrder(userData.id, {carrito: cart}))
     window.localStorage.setItem('carrito', JSON.stringify([]))
+    // dispatch(setCart([]))
+    window.localStorage.setItem('usuario', JSON.stringify([]))
     window.location.reload()
 }
 
-
-// console.log('aparece o no', cartOnScreen)
+    // useEffect(() => {
+    //     if (order && order[0]) {
+    //         dispatch(setCart(order[0].carrito))
+    //     }
+    // },[user])
 
   return (
         <nav className="navbar navbar-expand-lg navbar-dark  h6 sticky-top" style={{background: "#111111"}}>
@@ -171,7 +168,7 @@ const handleLogout = () => {
                 </svg>
                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 </span>
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                         {cart && cart.length}
                 </span>
               </button>

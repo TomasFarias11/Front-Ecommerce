@@ -2,7 +2,7 @@ import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import CardCarrusel from "../components/CardCarrusel.jsx";
-import {getProducts, getProductByCategory, editOrder, createOrder, setCartOn, setCart} from '../actions/actionProducts.js'
+import {getProductByCategory, createOrder, setCart} from '../actions/actionProducts.js'
 // import {getProducts1} from '../actions/actionCart.js'
 import { useNavigate } from 'react-router-dom';
 import estilos from '../css/Home.module.css';
@@ -35,16 +35,10 @@ export default function Home () {
         
     })
 
-    useEffect(async () => {
+    useEffect(() => {
         if (users && users.username) {
             dispatch(createOrder(users.id, {carrito: cart}))
-            // dispatch(setCart(order && order[0]?.carrito))
         }
-        // dispatch(setCartOn())
-        // if (order && order[0]) {
-        //     dispatch(setCart(order[0]?.carrito))
-        // } 
-        
     },[users])
 
     useEffect(() => {

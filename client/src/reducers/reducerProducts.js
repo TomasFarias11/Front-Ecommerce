@@ -1,7 +1,6 @@
 import {
     // productos
     GET_PRODUCTS,
-    GET_PRODUCT_BY_NAME,
     GET_PRODUCT_BY_ID,
     GET_PRODUCT_BY_CATEGORY,
     GET_REVIEWS,
@@ -54,7 +53,7 @@ const initialState2={
 }
 
 export default function reducerProducts(state=initialState2, action){
-    let productsAux = state.products.map(p => p);
+    // let productsAux = state.products.map(p => p);
     let productsAux2 = state.products.map(p => p);
 	switch(action.type){
         case GET_PRODUCTS:
@@ -200,11 +199,9 @@ export default function reducerProducts(state=initialState2, action){
                 return {
                     ...state,
                     order: action.payload,
-                    orderAlert: true
-                    // cart: action.payload[0].carrito
+                    orderAlert: true,
                 }
             }
-            
         case GET_ORDER:
             return {
                 ...state,
@@ -237,10 +234,10 @@ export default function reducerProducts(state=initialState2, action){
         case LIST_USERS:
             return{
                 ...state,
-                listUser: action.payload                }
-
+                listUser: action.payload
+            }
         case DELETE_PRODUCT:
-            state.allProducts = state.allProducts .filter(e => e.id !== action.payload)
+            state.allProducts = state.allProducts.filter(e => e.id !== action.payload)
             return{
                 ...state,
                 products: state.allProducts 

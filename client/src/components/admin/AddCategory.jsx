@@ -1,12 +1,10 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import {useDispatch} from "react-redux";
 import {useState} from "react";
 
 function AddCategory() {
 
 
-  const dispatch = useDispatch()
   const [inputBody , setInputBody] = useState({
     name:"",
   })

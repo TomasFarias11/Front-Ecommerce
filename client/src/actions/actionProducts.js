@@ -320,7 +320,7 @@ export function listarUsers(){
 export function editOrder (idUser, payload) {
     return async function (dispatch) {
         try {
-            const order = await axios.put(`/order/${idUser}`, payload)
+            await axios.put(`/order/${idUser}`, payload)
             const {data} = await axios.get(`/order/${idUser}`)
             console.log('la data de la orden', data[0])
             return dispatch({type: PUT_ORDER, payload:data[0]})

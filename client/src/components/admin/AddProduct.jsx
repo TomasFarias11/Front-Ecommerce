@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {getCategory, addProduct } from "../../actions/actionAdmin"
-import {useEffect, useState} from "react";
+import {addProduct } from "../../actions/actionAdmin"
+import {useState} from "react";
 import swal from 'sweetalert';
 
 function AddProdcut() {

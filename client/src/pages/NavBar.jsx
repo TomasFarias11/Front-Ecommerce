@@ -1,15 +1,12 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SearchAutocomplete from "./SearchAutocomplete";
 import {useDispatch, useSelector} from 'react-redux';
-import {getProductByCategory, setCartOn, setCartOff, createOrder, setCart} from '../actions/actionProducts.js'
+import {getProductByCategory, setCartOn, setCartOff} from '../actions/actionProducts.js'
 import Cart from "../components/Cart.jsx"
 
 // import {useDispatch} from 'react-redux';
 // import {getProductByCategory, postUserCreate} from '../actions/actionProducts.js'
-
-
 
 function NavBar() {
     const dispatch = useDispatch()
@@ -18,7 +15,6 @@ function NavBar() {
     const user = JSON.parse(window.localStorage.getItem('usuario'))
     const userData = useSelector((state) => state.secondRed.userData)
     const cart = useSelector((state) => state.firstRed.cart)
-    const order = useSelector((state) => state.firstRed.order)
 
 const handleClick = (e) => {
     e.preventDefault();

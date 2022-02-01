@@ -81,17 +81,7 @@ const CreateUser = () =>{
           
       })
 
-    //   
-
-    //   setInput({
-    //     username: '',
-    //     email: '',
-    //     password: '',
-    //     name: '',
-    //     lastName: '',
-    //     image: '',
-    //     address: '' 
-    //   })
+ 
 
     }
 
@@ -107,7 +97,15 @@ const CreateUser = () =>{
         e.preventDefault()
         console.log(input, "este es el input")
         dispatch(postUserCreate(input))
-        alert("usuario creado")
+        .then(() => {
+            swal("usuario creado", {
+                
+                buttons: false,
+                icon: 'success',
+                timer: 1000,
+                })
+        })
+        // swal("usuario creado")
         setInput({
                 username: '',
                 email: '',
@@ -121,6 +119,7 @@ const CreateUser = () =>{
             ...input,
             [e.target.name]: e.target.value
         })) 
+        navigate("/")
     }
  
       
@@ -133,17 +132,18 @@ const CreateUser = () =>{
                 <div>
                     <div>
                         <div>
-                            <h4>Crear cuenta</h4>
+                            
                             <div> 
-                                <span>
-                                    Already have an account?
-                                </span> 
-                                <Link to="/user"><span>sign in</span></Link>
+                          
+                                
                                
                             </div>
                             <div className="container">
+                                
                                 <div className="row">
+                                    
                                     <div className="col-6">
+                                        <h4> Crear cuenta</h4>
                                         <div className="input-group px-3 mt-3"> 
                                             <input 
                                             type="text" 
@@ -209,17 +209,19 @@ const CreateUser = () =>{
                                     <div className="col-6">
                                         <h1>aqui va una imagen</h1>
                                     </div>
-
+                                    <br/>
+                                    
                                 </div>
-                               
-                            
+                                <br/>
+                                <button className="btn btn-outline-secondary" style= {{display: "flex"}} type='submit' onSubmit={(e) => User(e,input)}>Crear usuario</button>
                                 
                             </div>
                             <br/>
                         </div>
+                        
                     </div>
                 </div>
-                <button type='submit' onSubmit={(e) => User(e,input)}>Crear usuario</button>
+                
             </form>
             
 

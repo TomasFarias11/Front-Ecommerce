@@ -51,6 +51,7 @@ function AddProdcut() {
 
   function handelSubmit(e){
     e.preventDefault()
+
     if(inputBody.idCategory!== "" && inputBody.name!==""){
       dispatch(addProduct(inputBody))
       swal("Agregado a la DB!", {
@@ -109,7 +110,7 @@ function AddProdcut() {
           </div>
         <div class="form-group">
           <label for="exampleInputName">Nombre del Producto</label>
-          <input name="name" value={inputBody.name} onChange={e=>handelInput(e)} type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp" placeholder="Ingrese el nombre"/>
+          <input class="form-control" name="name" value={inputBody.name} onChange={e=>handelInput(e)} type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp" placeholder="Ingrese el nombre"/>
         </div>
         <div class="form-group">
           <label for="exampleFormControlTextarea1">Descripcion</label>
@@ -145,7 +146,7 @@ function AddProdcut() {
         </div>
          <div class="form-group" style={{marginTop:10, marginBottom:10}}>
           <label for="exampleFormControlFile1">Imagen</label>
-          <input name="image" accept="image/png,image/jpeg" value={inputBody.image} onChange={e=>handelInput(e)} type="file" class="form-control-file" id="exampleFormControlFile1"/>
+          <input name="image" accept="image/png,image/jpg" value={inputBody.image} onChange={e=>handelInput(e)} type="file" class="form-control-file" id="exampleFormControlFile1"/>
         </div>
         <button class="btn btn-primary" type="submit">Agregar</button>
       </form>

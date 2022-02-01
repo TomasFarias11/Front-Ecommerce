@@ -28,6 +28,7 @@ import {
     GET_ORDER_USER,
     POST_ORDER,
     SET_CART_USER,
+    PUT_ORDER,
 
     // users
     LIST_USERS,
@@ -45,7 +46,6 @@ const initialState2={
     cart: [],
     cartNav: false,
     order: [],
-    cartUser: [],
     productsSearch:[],
     users: [],
     listUser:[],
@@ -249,6 +249,11 @@ export default function reducerProducts(state=initialState2, action){
             return {
                 ...state,     
         }
+        case PUT_ORDER:
+            return {
+                ...state,
+                order: [action.payload]
+            }
 		default:
 			return state;
 	}

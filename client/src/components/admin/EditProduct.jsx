@@ -4,13 +4,14 @@ import { getProductById } from "../../actions/actionProducts.js";
 import {getCategory, editProduct} from "../../actions/actionAdmin"
 import {useEffect, useState} from "react";
 import { useParams } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 function EditProduct() {
 
   const { id } = useParams();
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const productId = useSelector((state) => state.firstRed.productId)
   const allCategory = useSelector((state)=>state.fourthRed.category);
 
@@ -75,6 +76,7 @@ function EditProduct() {
     }else{
       alert("Complete los campos necesarios para editar el producto")
     }
+    navigate("/admin/product")
   }
 
 

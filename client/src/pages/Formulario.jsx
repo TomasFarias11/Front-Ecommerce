@@ -18,7 +18,7 @@ function validate(input) {
     if(!input.name){
         errors.name = "se requiere un nombre"
     }
-    if(!input.life){
+    if(!input.lastName){
         errors.lastName = "Se requiere apellido"
     }
     if(!input.defense){
@@ -92,6 +92,11 @@ const CreateUser = () =>{
         })
 
     }
+
+// si es el mismo correo que muestre una alert o una validacion que indique la exitencia del correo o deshabilitar el boton de crear
+
+// enviar notificacion cuando se crea el usuario
+
 
     function handleSubmit(e){
         e.preventDefault()

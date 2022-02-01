@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {useState} from "react";
 import {addCategory} from "../../actions/actionAdmin";
@@ -8,6 +8,7 @@ function AddCategory() {
 
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [inputBody , setInputBody] = useState({
     name:"",
   })
@@ -32,6 +33,7 @@ function AddCategory() {
     }else{
       alert("ingrese el nombre de la nueva categoria")
     }
+    navigate("/admin/Category")
   }
 
   return(<div className="row">

@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux';
 import {deleteProduct} from "../../actions/actionAdmin"
-import {useState} from "react";
-import { useParams } from "react-router";
+
+
 import { useEffect } from 'react';
 import { getProducts } from '../../actions/actionProducts'
+import swal from 'sweetalert';
 
 function AdminProduct() {
 
@@ -15,6 +16,11 @@ function AdminProduct() {
 
     const handelDetele=({target:{id,value}})=>{
         dispatch(deleteProduct(value))
+        .then(() => {
+            swal("producto eliminado", {
+                icon: "warning"
+            })
+        })
     }
     useEffect(()=>{
         dispatch(getProducts())

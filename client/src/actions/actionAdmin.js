@@ -4,6 +4,7 @@ export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const GET_CATEGORY = "GET_CATEGORY"
 export const ADD_PRODUCT = "ADD_PRODUCT"
 export const EDIT_PRODUCT = "EDIT_PRODUCT"
+export const ADD_CATEGORY = "ADD_CATEGORY"
 
 
 
@@ -31,7 +32,6 @@ export function getCategory () {
     return async(dispatch)=>{
         try {
             var allCategory=await axios.get("/category");
-
               return dispatch({
                 type: GET_CATEGORY,
                 payload: allCategory.data
@@ -72,8 +72,8 @@ export function editProduct(id, body){
 export function addCategory(body){
     return async (dispatch)=>{
         try {
-            var addCategory = await axios.post("", body);
-            console.log("Categoria agregada", addCategory)
+            var addCategory = await axios.post("/category/create", body);
+            return addCategory;
         } catch (err) {
             console.log(err);
         }

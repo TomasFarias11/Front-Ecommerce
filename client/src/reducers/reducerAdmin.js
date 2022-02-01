@@ -2,7 +2,6 @@ import {GET_CATEGORY} from "../actions/actionAdmin"
 
 
 const initialState={
-	admin:[],
 	category:[],
 	
 }

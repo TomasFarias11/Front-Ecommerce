@@ -16,6 +16,7 @@ import LoginScreen from "./pages/LoginScreen";
 import {useDispatch, useSelector} from 'react-redux';
 import {setCart} from './actions/actionProducts.js'
 import Formulario from "./pages/Formulario"
+import AdminUser from "./components/admin/AdminUser";
 
 function App() {
   
@@ -35,18 +36,19 @@ function App() {
       <NavBar />
       <Routes>
         <Route exact path='/login' element={<LoginScreen />} />      
-      <Route exact path="*" element={<NotFound/>}/>
-      <Route exact path="/" element={<Home/>}/>
-      <Route exact path="/admin" element={<Admin/>}/>
-      <Route exact path="/admin/product" element={<AdminProduct/>}/>
-      <Route exact path="/admin/addProduct" element={<AddProduct/>}/>
-      <Route exact path="/admin/Category" element={<AdminCategory/>}/>
-      <Route exact path="/admin/addCategory" element={<AddCategory/>}/>
-      <Route exact path="/admin/edit/:id" element={<EditProduct/>}/>
-      <Route exact path="/details/:id" element={<Details/>}/>
-      <Route exact path="/category/:category" element={<Products/>}/>
-      <Route exact path="/search" element={<ProductsBySearch/>}/>
-      <Route exact path= "/user" element={<Formulario/>}/>
+        <Route exact path="*" element={<NotFound/>}/>
+        <Route exact path="/" element={<Home/>}/>
+        <Route exact path="/admin" element={<Admin/>}/>
+        <Route exact path="/admin/product" element={<AdminProduct/>}/>
+        <Route exact path="/admin/addProduct" element={<AddProduct/>}/>
+        <Route exact path="/admin/Category" element={<AdminCategory/>}/>
+        <Route exact path="/admin/addCategory" element={<AddCategory/>}/>
+        <Route exact path="/admin/edit/:id" element={<EditProduct/>}/>
+        <Route exact path= "/admin/user" element={<AdminUser/>}/>
+        <Route exact path="/details/:id" element={<Details/>}/>
+        <Route exact path="/category/:category" element={<Products/>}/>
+        <Route exact path="/search" element={<ProductsBySearch/>}/>
+        <Route exact path= "/user" element={<Formulario/>}/>
       </Routes>
       
       <Footer/>

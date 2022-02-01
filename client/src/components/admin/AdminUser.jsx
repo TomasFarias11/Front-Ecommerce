@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux';
-import {deleteProduct} from "../../actions/actionAdmin"
+import {deleteUser} from "../../actions/actionAdmin"
 import {useState} from "react";
 import { useParams } from "react-router";
 import { useEffect } from 'react';
-import { getProducts } from '../../actions/actionProducts'
+import { getUsers } from '../../actions/actionAdmin';
+import Swal from 'sweetalert2'
 
 
 function AdminUser() {
@@ -14,12 +15,30 @@ function AdminUser() {
   const dispatch = useDispatch()
 
 
-  const handelDetele=({target:{id,value}})=>{
-      dispatch(deleteProduct(value))
-  }
+  const handelDetele=(e)=>{
+
+    Swal.fire({
+        title: '¿Eliminar?',
+        text: "¿Estás seguro que deseas eliminar este usuario?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, Eliminar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(deleteUser(e.target.value))
+                Swal.fire(
+                'Eliminado',
+                'El usuario ha sido eliminado.',
+                'success'
+                )
+            }
+        })
+}
   useEffect(()=>{
       dispatch(getUsers())
-  },[users])
+  },[users]); 
 
 return (
   <div className="row">
@@ -40,11 +59,17 @@ return (
                           <ul class="list-group list-group-flush">
                               {
                                   users.map(e=>
-                                      <li class="list-group-item" key={e.id}><p><b>ID: </b>{e.id}</p> <p><b>Username: </b> {e.username}</p> <p><b>Nombre: </b> {e.name}</p> <p><b>Apellido: </b> {e.lastname}</p> <p><b>Email: </b> {e.email}</p><p><b>Admin: </b> {e.admin}</p>
+                                      <li class="list-group-item" key={e.id}>
+                                        <p><b>ID: </b>{e.id}</p> 
+                                        <p><b>Username: </b> {e.username}</p> 
+                                        <p><b>Nombre: </b> {e.name}</p> 
+                                        <p><b>Apellido: </b> {e.lastName}</p> 
+                                        <p><b>Email: </b> {e.email}</p>
+                                        <p><b>Admin: </b> {e.admin.toString()}</p>
                                           <Link to={`/admin/edit/${e.id}`}>
                                               <button class="btn btn-primary" style={{marginRight:10}}>editar</button>
                                           </Link>
-                                          <button class="btn btn-primary" name="id" value={e.id} onClick={(e)=>handelDetele(e)}>X</button>
+                                          <button class="btn btn-danger" name="id" value={e.id} onClick={(e)=>handelDetele(e)}>X</button>
                                       </li>
                                   )
                               }

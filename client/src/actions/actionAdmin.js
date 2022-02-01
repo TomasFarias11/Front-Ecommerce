@@ -4,6 +4,8 @@ export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const GET_CATEGORY = "GET_CATEGORY"
 export const ADD_PRODUCT = "ADD_PRODUCT"
 export const EDIT_PRODUCT = "EDIT_PRODUCT"
+export const GET_USERS = "GET_USERS"
+export const DELETE_USER = "DELETE_USER"
 
 
 
@@ -74,6 +76,34 @@ export function addCategory(body){
         try {
             var addCategory = await axios.post("", body);
             console.log("Categoria agregada", addCategory)
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}
+
+export function getUsers(){
+    return async (dispatch)=>{
+        try {
+            const allUsers=await axios.get("/user");
+            return dispatch({
+                type: GET_USERS,
+                payload: allUsers.data
+            })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}
+
+export function deleteUser(id){
+    return async (dispatch)=>{
+        try {
+            const deleteUser=await axios.delete(`/admin/user/delete/${id}`);
+            return dispatch({
+                type: DELETE_USER,
+                payload: deleteUser.data.id
+            })
         } catch (err) {
             console.log(err);
         }

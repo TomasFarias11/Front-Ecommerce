@@ -17,6 +17,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {setCart} from './actions/actionProducts.js'
 import Formulario from "./pages/Formulario"
 import Boton from "./MercadoPago/Boton";
+import Aceptado from "./MercadoPago/Aceptado";
+import Rechazado from "./MercadoPago/Rechazado";
 
 function App() {
   
@@ -48,7 +50,9 @@ function App() {
       <Route exact path="/category/:category" element={<Products/>}/>
       <Route exact path="/search" element={<ProductsBySearch/>}/>
       <Route exact path= "/user" element={<Formulario/>}/>
-      <Route exact path= "/mercadolibre" element={<Boton/>}/>
+      <Route exact path= "/mercadopago" element={<Boton/>}/>
+      <Route exact path= "/mercadopago/aceptado" element={<Aceptado/>}/>
+      <Route exact path= "/mercadopago/rechazado" element={<Rechazado/>}/>
       </Routes>
       
       <Footer/>

@@ -227,8 +227,7 @@ export default function reducerProducts(state=initialState2, action){
 
         case USER_CREATE:
             return{
-                ...state,
-                
+                ...state,                
             }
 
         case LIST_USERS:

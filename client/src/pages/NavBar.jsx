@@ -3,13 +3,16 @@ import { Link } from "react-router-dom";
 import SearchAutocomplete from "./SearchAutocomplete";
 import {useDispatch, useSelector} from 'react-redux';
 import {getProductByCategory, setCartOn, setCartOff} from '../actions/actionProducts.js'
+import {getUserId} from '../actions/actionUser.js'
 import Cart from "../components/Cart.jsx"
+import { useNavigate } from 'react-router-dom';
 
 // import {useDispatch} from 'react-redux';
 // import {getProductByCategory, postUserCreate} from '../actions/actionProducts.js'
 
 function NavBar() {
     const dispatch = useDispatch()
+    const Navigate = useNavigate()
     // const [cartOnScreen, setCartOnScreen] = useState(false)
     const cartOnScreen = useSelector((state) => state.firstRed.cartNav)
     const user = JSON.parse(window.localStorage.getItem('usuario'))
@@ -34,11 +37,11 @@ const handleLogout = () => {
     window.location.reload()
 }
 
-    // useEffect(() => {
-    //     if (order && order[0]) {
-    //         dispatch(setCart(order[0].carrito))
-    //     }
-    // },[user])
+// const handleProfile = (e) => {
+//     e.preventDefault()
+//     Navigate(`/profile`)
+
+// }
 
   return (
         <nav className="navbar navbar-expand-lg navbar-dark  h6 sticky-top" style={{background: "#111111"}}>
@@ -91,7 +94,7 @@ const handleLogout = () => {
                             <li className="nav-link">
                                 <p className="text-sm-start">
                                     <strong> Bienvenido: 
-                                        <Link style={{ textDecoration: "none", color: "white" }} to="/"> {user.username}</Link>
+                                        <Link style={{ textDecoration: "none", color: "white" }} to="/profile"> {user.username}</Link>
                                     </strong>
                                 </p>
                             </li>
@@ -136,7 +139,7 @@ const handleLogout = () => {
                             <li className="nav-link">
                             <p className="text-md-start">
                                 <strong> Bienvenido: 
-                                    <Link style={{ textDecoration: "none", color: "white" }} to="/"> {user.username} </Link>
+                                    <Link style={{ textDecoration: "none", color: "white" }} to="/profile"> {user.username} </Link>
                                 </strong>
                             </p>
                             </li>

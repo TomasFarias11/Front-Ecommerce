@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux';
-import {getCategory} from "../../actions/actionAdmin";
+import {getCategory, editCategory, deleteCategory} from "../../actions/actionAdmin";
 import swal from 'sweetalert';
 import Swal from 'sweetalert2'
 
@@ -9,21 +9,24 @@ function AdminCategory() {
 
     const allCategory = useSelector((state)=>state.fourthRed.category);
     const dispatch = useDispatch()
-    const [boton, setBoton]=useState({
-        name:true
-    });
     const [inputBody , setInputBody] = useState({
     name:"",
     })
 
-    console.log(boton)
 
-    const handelBoton=(e)=>{
-        e.preventDefault()
-        setBoton({
-            [e.target.name]:!e.target.value
+    function handelInput(e){
+        setInputBody({
+            ...inputBody,
+            [e.target.name]:e.target.value,
         })
+    }
 
+    console.log(inputBody)
+
+
+    function handelSubmit(e){
+        e.preventDefault()
+        console.log(e.target.value)
     }
 
 
@@ -41,6 +44,7 @@ function AdminCategory() {
             confirmButtonText: 'Si, Eliminar'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    dispatch(deleteCategory(e.target.value))
                     Swal.fire(
                     'Eliminado',
                     'La categoria ha sido eliminada.',
@@ -75,24 +79,23 @@ useEffect(() => {
                             <ul class="list-group list-group-flush">
                                 {
                                     allCategory.map(e=>
-                                        <li class="list-group-item" key={e.idCategory}><p><b>{e.name}</b></p>
+                                        <li className="list-group-item" key={e.idCategory}><p><b>{e.name}</b></p>
                                             
-                                            <button class="btn btn-warning" name="name" disabled={boton.name} onClick={e=>handelBoton(e)} style={{marginRight:10}}>Editar</button>
+                                            <button className="btn btn-danger"  style={{marginRight:10}} name="id" value={e.name} onClick={(e)=>handelDetele(e)}>X</button>
                                             
-                                            <button class="btn btn-danger" disabled={boton.name} name="id" value={e.id} onClick={e=>handelDetele(e)}>X</button>
-                                            {boton.name===true ? 
-                                                <form >
+                                            <button class="btn btn-warning" style={{marginRight:10}}>Editar</button>
+
+                                                <form  value={e.idCategory} onSubmit={e=>handelSubmit(e)} >
                                                     <div class="form-group" style={{marginTop:10}}>
-                                                        <input name="name" style={{marginBottom:10}} type="text" class="form-control" aria-describedby="emailHelp"/>
-                                                        <button class="btn btn-primary" style={{marginRight:10}}>Realizar</button>
-                                                        <button name="name" class="btn btn-danger" value={boton.name} onClick={e=>handelBoton(e)}>Cancelar</button>
+                                                        <input name="name" style={{marginBottom:10}} type="text" class="form-control" value={inputBody.name} onChange={e=>handelInput(e)}  placeholder="Edite la Categoria" aria-describedby="emailHelp"/>
+                                                        <button class="btn btn-primary" style={{marginRight:10}} type="submit">Realizar</button>
+                                                        <button name="name" class="btn btn-danger">Cancelar</button>
                                                     </div>
                                                 </form>
-                                                :
-                                                null
-                                            }
                                         </li>
                                     )
+
+                                    
                                 }
                             </ul>
                         </div>
@@ -104,3 +107,29 @@ useEffect(() => {
 }
 
 export default AdminCategory;
+
+
+{/*      esto es para editar
+
+
+        function handelInput(e){
+        e.preventDefault()
+        setInputBody({
+            ...inputBody,
+            [e.target.name]:e.target.value
+        })
+
+    }
+
+    function handelSubmit(e){
+        e.preventDefault()
+
+    }
+
+<form  value={e.id} onSubmit={e=>handelSubmit(e)} >
+                                                    <div class="form-group" style={{marginTop:10}}>
+                                                        <input name="name" style={{marginBottom:10}} type="text" class="form-control" value={inputBody.name} onChange={e=>handelInput(e)} aria-describedby="emailHelp"/>
+                                                        <button class="btn btn-primary" style={{marginRight:10}} type="submit">Realizar</button>
+                                                        <button name="name" class="btn btn-danger">Cancelar</button>
+                                                    </div>
+                                                </form>*/}

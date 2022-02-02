@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux';
-import {deleteProduct} from "../../actions/actionAdmin"
+import {deleteProduct, deleteCategory} from "../../actions/actionAdmin"
 import {useState} from "react";
 import { useParams } from "react-router";
 import { useEffect } from 'react';
@@ -28,7 +28,7 @@ function AdminProduct() {
             confirmButtonText: 'Si, Eliminar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    dispatch(deleteProduct(e.target.value))
+                    dispatch(deleteCategory(e.target.value))
                     Swal.fire(
                     'Eliminado',
                     'El producto ha sido eliminado.',

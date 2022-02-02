@@ -5,6 +5,9 @@ export const GET_CATEGORY = "GET_CATEGORY"
 export const ADD_PRODUCT = "ADD_PRODUCT"
 export const EDIT_PRODUCT = "EDIT_PRODUCT"
 export const ADD_CATEGORY = "ADD_CATEGORY"
+export const EDIT_CATEGORY = "EDIT_CATEGORY"
+export const DELETE_CATEGORY = "DELETE_CATEGORY"
+
 
 
 
@@ -59,7 +62,7 @@ export function addProduct(body){
 export function editProduct(id, body){
     return async (dispatch)=>{
         try {
-            var editproduct = await axios.put(`/admin/edit/${id}`, body);
+            await axios.put(`/admin/edit/${id}`, body);
             return dispatch({
                 type: EDIT_PRODUCT,
             })
@@ -76,6 +79,36 @@ export function addCategory(body){
             return addCategory;
         } catch (err) {
             console.log(err);
+        }
+    }
+}
+
+export function editCategory(id, body){
+    return async (dispatch)=>{
+        try {
+            await axios.put(`/category/edit/${id}`, body);
+            var allCategory=await axios.get("/category");
+            return dispatch({
+                type: EDIT_CATEGORY,
+                payload: allCategory.data
+            })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}
+
+export function deleteCategory (name) {
+    return async(dispatch)=>{
+        try {
+            await axios.delete(`/category/delete/?name=${name}`);
+            var allCategory=await axios.get("/category");
+            return dispatch({
+                type: DELETE_CATEGORY, 
+                payload: allCategory.data
+            })
+        } catch (err) {
+            console.log(err)
         }
     }
 }

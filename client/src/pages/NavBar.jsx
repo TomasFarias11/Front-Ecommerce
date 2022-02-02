@@ -5,6 +5,7 @@ import SearchAutocomplete from "./SearchAutocomplete";
 import {useDispatch, useSelector} from 'react-redux';
 import {getProductByCategory, setCartOn, setCartOff} from '../actions/actionProducts.js'
 import Cart from "../components/Cart.jsx"
+import {getCategory} from "../actions/actionAdmin";
 
 // import {useDispatch} from 'react-redux';
 // import {getProductByCategory, postUserCreate} from '../actions/actionProducts.js'
@@ -18,12 +19,13 @@ function NavBar() {
     const user = JSON.parse(window.localStorage.getItem('usuario'))
     const userData = useSelector((state) => state.secondRed.userData)
     const cart = useSelector((state) => state.firstRed.cart)
+    const allCategory = useSelector((state)=>state.fourthRed.category);
 
 
 
-    // useEffect(()=>
-    //     console.log('1')
-    // ,[userData])
+    useEffect(()=>
+        dispatch(getCategory())
+    ,[])
 
 const handleClick = (e) => {
     e.preventDefault();
@@ -56,37 +58,15 @@ const handleLogout = () => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
-                        <li className="nav-item">
-                            <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/macbook">
-                                <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("macbook"))}> Mac </span>
+                        {allCategory ? allCategory.map((e)=>{
+                            return(<li className="nav-item">
+                            <Link style={{ textDecoration: 'none', color: 'white' }} to={`/category/${e.name}`}>
+                                <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory(e.name))}>{e.name}</span>
                             </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/ipad">
-                                <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("ipad"))}> iPad </span>
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/iphone">
-                                <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("iphone"))}> iPhone </span>
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/watch">
-                                <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("watch"))}> Watch </span>
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/irpods">
-                                <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("airpods"))}> AirPods </span>
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/tv">
-                                <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("tv"))}> TV & Home </span>
-                            </Link>
-                        </li>
-
+                        </li>)
+                        })
+                        : null
+                        }
                         {/* si el usuario existe y es admin */}
 
                         { userData[0] || (user.username && user.admin) ?

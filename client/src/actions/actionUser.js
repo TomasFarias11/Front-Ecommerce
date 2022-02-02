@@ -4,6 +4,7 @@ import { firebase, googleAuthProvider } from "../firebase";
 
 export const  LOGIN_GOOGLE = "LOGIN_GOOGLE";
 export const LOCAL_LOGIN_USER = "LOCAL_LOGIN_USER";
+export const GET_USER_ID = "GET_USER_ID";
 
 // .auth().signInWithPopup(googleAuthProvider).then(data => console.log(data))
 
@@ -72,3 +73,12 @@ export const localLoginUser = (datos) => {
   }
 };
 
+export const getUserId = (idUser) => {
+  return async (dispatch) => {
+    const user = await axios.get(`/user/${idUser}`)
+    dispatch({
+      type: GET_USER_ID,
+      payload: user.data
+    })
+  }
+}

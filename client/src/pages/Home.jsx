@@ -3,7 +3,7 @@ import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import CardCarrusel from "../components/CardCarrusel.jsx";
 import {getProductByCategory, createOrder, setCart} from '../actions/actionProducts.js'
-// import {getProducts1} from '../actions/actionCart.js'
+import {getUserId} from '../actions/actionUser.js'
 import { useNavigate } from 'react-router-dom';
 import estilos from '../css/Home.module.css';
 import CarrouselMain from "../components/CarrouselMain.jsx"
@@ -32,7 +32,7 @@ export default function Home () {
 
     useEffect(()=> {  
         products > 0 ? window.localStorage.setItem('productos',JSON.stringify(products)) : window.localStorage.setItem('productos',JSON.stringify([]))
-        
+        // dispatch(getUserId(users.id))
     })
 
     useEffect(() => {

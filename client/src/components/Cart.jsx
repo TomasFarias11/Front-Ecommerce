@@ -2,7 +2,7 @@ import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {addToCart, delCart, delAllCart, setCartOff, editOrder} from '../actions/actionProducts.js'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CartCard from './CartCard.jsx'
 import swal from 'sweetalert';
 
@@ -85,7 +85,10 @@ export default function Cart () {
                         <div className='carrito_izq'>
                             <div>
                                 <hr />
-                                <button className='btn btn-warning btn-lg' style={{margin: '5px 0'}}>CHECKOUT</button> 
+                                <Link to='/mercadopago' >
+                                    <button className='btn btn-warning btn-lg' style={{margin: '5px 0'}}>CHECKOUT</button>
+                                </Link>
+                                
                             </div>
                         </div>
                     </div>

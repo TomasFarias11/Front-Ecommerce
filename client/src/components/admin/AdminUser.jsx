@@ -1,13 +1,9 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux';
 import {deleteUser,editUser} from "../../actions/actionAdmin"
-import {useState} from "react";
-import { useParams } from "react-router";
 import { useEffect } from 'react';
 import { getUsers } from '../../actions/actionAdmin';
 import Swal from 'sweetalert2'
-import { use } from 'bcrypt/promises';
 
 
 function AdminUser() {
@@ -124,8 +120,8 @@ return (
               </div>
             </td>
             <td>
-              <button type="button" class="btn btn-danger btn-sm px-4" value={e.id} onClick={(e)=>handelDetele(e)}>
-                <i class="fas fa-times"></i>
+              <button type="button" className="btn btn-danger btn-sm px-4" value={e.id} onClick={(e)=>handelDetele(e)}>
+                <i className="fas fa-times"></i>
               </button>
             </td>
           </tr>

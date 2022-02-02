@@ -100,10 +100,11 @@ export function getUsers(){
 export function deleteUser(id){
     return async (dispatch)=>{
         try {
-            const deleteUser=await axios.delete(`/admin/user/delete/${id}`);
+                           await axios.delete(`/admin/user/delete/${id}`);
+            const allUsers=await axios.get("/user");
             return dispatch({
                 type: DELETE_USER,
-                payload: id
+                payload: allUsers.data
             })
         } catch (err) {
             console.log(err);
@@ -116,10 +117,11 @@ export function editUser(id, admin){
     const a = {admin:admin}
     return async (dispatch)=>{
         try {
-            const editUser = await axios.put(`/admin/user/edit/${id}`,a);
+                           await axios.put(`/admin/user/edit/${id}`,a);
+            const allUsers=await axios.get("/user");
             return dispatch({
                 type: EDIT_USER,
-                payload: id
+                payload: allUsers.data
             })
         } catch (err) {
             console.log(err);

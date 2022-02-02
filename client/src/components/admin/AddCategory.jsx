@@ -52,11 +52,11 @@ function AddCategory() {
     <h1>Agregar Categoria</h1>
     <br/>
       <form onSubmit={e=>handelSubmit(e)}>
-        <div class="form-group">
+        <div className="form-group">
           <label for="exampleInputName">Nombre de la nueva Categoria</label>
-          <input name="name" value={inputBody.name} onChange={e=>handelInput(e)} type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp" placeholder="Ingrese el nombre"/>
+          <input name="name" value={inputBody.name} onChange={e=>handelInput(e)} type="text" className="form-control" id="exampleInputName" aria-describedby="emailHelp" placeholder="Ingrese el nombre"/>
         </div>
-        <button class="btn btn-primary" type="submit" style={{marginTop:10, marginBottom:10}}>Agregar Categoria</button>
+        <button className="btn btn-primary" type="submit" style={{marginTop:10, marginBottom:10}}>Agregar Categoria</button>
       </form>
     </div>
     

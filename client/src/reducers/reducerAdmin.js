@@ -29,19 +29,15 @@ export default function reducerAdmin(state=initialState, action){
 			}
 			
 		case DELETE_USER:
-			console.log('PLAYLOAD',action.payload)
-			state.allUsers = state.allUsers.filter(e => e.id !== action.payload)
-			console.log('AAAAAA',action.payload)
-			console.log('BBBBBB',state.allUsers[0].id)
 			 return {
 				...state,
-				users:state.allUsers
+				users:action.payload,				
 			}
-		/* case EDIT_USER:
+		case EDIT_USER:
 			return {
 				...state,
-				state:state.users
-			} */
+				users:action.payload
+			}
 		default:
 			return state;
 	}

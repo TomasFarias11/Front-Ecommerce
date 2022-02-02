@@ -1,17 +1,30 @@
-import React from "react";
+import {React,useState} from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {getUserId} from "../actions/actionUser.js"
+import {getUserId, editUser} from "../actions/actionUser.js"
+import EditProfile from "./EditProfile.jsx"
 
 
 const Perfil = () =>{
   const dispatch = useDispatch()
   const user = useSelector((state) => state.secondRed.userData)
   const userId = useSelector((state) => state.secondRed.userId)
+  const [controlador, setControlador] = useState(false)
+
+  console.log(controlador)
 
   useEffect(() => {
     dispatch(getUserId(user.id))
   },[])
+
+  const handleControl = (e) => {
+    e.preventDefault()
+    if (controlador === false) {
+      setControlador(true)
+    } else {
+      setControlador(false)
+    }
+  }
 
 	return(
 		<div className="container">
@@ -30,8 +43,16 @@ const Perfil = () =>{
               </div>
             </div>
           </div>
-
+          {controlador === true ?
+          <div>
+            <EditProfile/>
+            <button onClick={(e) => handleControl(e)}>Cerrar</button>
+          </div>
+            :
+            <button onClick={(e) => handleControl(e)}>Editar</button>
+          }
         </div>
+        
 
         <div className="col-md-8">
           <div className="card mb-3">
@@ -116,7 +137,7 @@ const Perfil = () =>{
                 <div className="progress mb-3" >
                 </div>
                 <small>Backend API</small>
-                <div className="progress mb-3" >   
+                <div className="progress mb-3" >
                 </div>
               </div>
             </div>

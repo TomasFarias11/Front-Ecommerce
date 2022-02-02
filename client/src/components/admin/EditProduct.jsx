@@ -5,6 +5,8 @@ import {getCategory, editProduct} from "../../actions/actionAdmin"
 import {useEffect, useState} from "react";
 import { useParams } from "react-router";
 import { Link, useNavigate } from "react-router-dom";
+import swal from 'sweetalert';
+import Swal from 'sweetalert2'
 
 
 function EditProduct() {
@@ -22,17 +24,16 @@ function EditProduct() {
       idCategory:"",
       name:productId.name,
       description:productId.description,
-      color:[productId.color],
+      color:productId.color,
       price:productId.price,
       stock:productId.stock,
-      storage:[productId.storage],
-      connectivity:[productId.connectivity],
-      model:[productId.model],
-      ram:[productId.ram],
+      storage:productId.storage,
+      connectivity:productId.connectivity,
+      model:productId.model,
+      ram:productId.ram,
       })
   }, [productId.name])
 
-  console.log(productId)
   const [inputBody , setInputBody] = useState({
       idCategory:"",
       name:productId.name,
@@ -46,6 +47,8 @@ function EditProduct() {
       ram:[productId.ram],
       image:""
   })
+
+  console.log("body",inputBody)
 
 
   function handelInput(e){
@@ -78,7 +81,11 @@ function EditProduct() {
 
     if(inputBody.idCategory!== "" && inputBody.name!==""){
       dispatch(editProduct(id, inputBody))
-      alert("producto editado")
+      swal("Producto Editado Correctamente", {
+        buttons: false,
+        icon: 'success',
+        timer: 1500,
+      });
       setInputBody({
         idCategory:"",
         name:"",
@@ -94,10 +101,12 @@ function EditProduct() {
       })
       navigate("/admin/product")
     }else{
-      alert("Complete los campos necesarios para editar el producto")
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Por favor, rellene los campos necesarios para editar el producto',
+        })
     }
-
-
   }
 
 

@@ -40,7 +40,7 @@ function AddCategory() {
             <div >
                 <div className="dropdown">
                 <Link to="/admin/Category">
-                <button type="button" class="btn btn-outline-secondary" >Categorias</button>
+                <button type="button" className="btn btn-outline-secondary" >Categorias</button>
                 </Link>
                 </div>
                 <br/>

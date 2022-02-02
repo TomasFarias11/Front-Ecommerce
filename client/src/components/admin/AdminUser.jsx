@@ -12,7 +12,6 @@ function AdminUser() {
     const users = useSelector((state) => state.fourthRed.users.filter(u=>u.id !== userLoguer));
   
     console.log('USUARIO LOGUEADO', userLoguer)
-    //users = users.filter(u=>u.id !== userLoguer);
     console.log('USER',users)
     const dispatch = useDispatch()
 
@@ -81,7 +80,7 @@ return (
     </div>
     <div className=" card col-lg-8"style={{ paddingTop:15 } }>
       <table className="table table-hover table-bordered">
-        <thead class="table-dark">
+        <thead className="table-dark">
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Usuario</th>
@@ -101,12 +100,12 @@ return (
             <td>{e.lastName}</td>
             <td>{e.email}</td>
             <td>
-              <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                <div class="btn-group" role="group" >
-                  <button id="btnGroupDrop1" type="button" class="btn btn-primary px-3 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" btn-padding-y="222">
+              <div className="btn-group" role="group" aria-label="Button group with nested dropdown">
+                <div className="btn-group" role="group" >
+                  <button id="btnGroupDrop1" type="button" className="btn btn-primary px-3 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" btn-padding-y="222">
                     {(e.admin) ?  "Si  "  : "No"}
                   </button>
-                  <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                  <ul className="dropdown-menu" aria-labelledby="btnGroupDrop1">
                   { e.admin ? 
                   <li>
                     <button className="dropdown-item" name="admin" value={[e.id,false]} onClick={(e)=>handelEdit(e)}> No </button>

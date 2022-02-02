@@ -86,7 +86,7 @@ export default function Details() {
           {/* boton el svg es la imagen del carrito */}
           {productId.stock > 0 ? <div>
               {cart.some((c) => productId.name === c.name) ? 
-              <div class="alert alert-warning" role="alert">
+              <div className="alert alert-warning" role="alert">
               Agregado al carrito
               </div>
               :

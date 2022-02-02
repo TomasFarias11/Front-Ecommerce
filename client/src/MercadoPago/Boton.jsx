@@ -34,6 +34,6 @@ export default function Boton () {
     
     
     return (
-        <button type="button" class="btn btn-primary" onClick={() => handleClick()}>Pagar</button>
+        <button type="button" className="btn btn-primary" onClick={() => handleClick()}>Pagar</button>
     )
 }

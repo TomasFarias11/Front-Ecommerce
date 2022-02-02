@@ -5,6 +5,7 @@ import { firebase, googleAuthProvider } from "../firebase";
 export const  LOGIN_GOOGLE = "LOGIN_GOOGLE";
 export const LOCAL_LOGIN_USER = "LOCAL_LOGIN_USER";
 export const GET_USER_ID = "GET_USER_ID";
+export const EDIT_USER = "EDIT_USER";
 
 // .auth().signInWithPopup(googleAuthProvider).then(data => console.log(data))
 
@@ -66,7 +67,7 @@ export const localLoginUser = (datos) => {
       payload: data,
     },
     window.localStorage.setItem('usuario', JSON.stringify({
-      username: data.userName,
+      username: data.username,
       admin: data.admin,
       id: data.id
     })))
@@ -78,6 +79,16 @@ export const getUserId = (idUser) => {
     const user = await axios.get(`/user/${idUser}`)
     dispatch({
       type: GET_USER_ID,
+      payload: user.data
+    })
+  }
+}
+
+export const editUser = (idUser, payload) => {
+  return async (dispatch) => {
+    const user = await axios.put(`/user/${idUser}`, payload)
+    dispatch({
+      type: EDIT_USER,
       payload: user.data
     })
   }

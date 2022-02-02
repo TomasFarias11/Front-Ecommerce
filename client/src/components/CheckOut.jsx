@@ -2,14 +2,17 @@ import React from "react";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {addToCart, getProducts, setCartOn, setCart, editOrder} from '../actions/actionProducts.js'
+import {getUserId} from '../actions/actionUser.js'
 import {Link} from "react-router-dom";
 const CheckOut = () =>{
 
     const [ items, setItems] = useState([]);
 
     const order = useSelector((state) => state.firstRed.order)
+    const user = useSelector((state) => state.secondRed.userData)
+    const userFull = useSelector((state) => state.secondRed.userId)
     console.log('order', order[0].carrito[0].name)
-
+    const dispatch = useDispatch()
     var item = [];
 
     const createItem = (order)=>{
@@ -31,6 +34,7 @@ const CheckOut = () =>{
     useEffect(()=>{
         createItem(order)
         setItems(...items,item)
+        dispatch(getUserId(user.id))
         console.log('ITEMS',items)
     },[]);
     

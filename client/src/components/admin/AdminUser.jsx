@@ -36,51 +36,91 @@ function AdminUser() {
             }
         })
 }
+
+const handelEdit =(e)=>{
+  Swal.fire({
+      title: '¿Volver administrador?',
+      text: "¿Estás seguro que deseas volver administrador a este usuario?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si'
+      }).then((result) => {
+          if (result.isConfirmed) {
+              dispatch(deleteUser(e.target.value))
+              Swal.fire(
+              'Cambio realizado',
+              'El usuario ahora es administrador.',
+              'success'
+              )
+          }
+      })
+
+}
   useEffect(()=>{
       dispatch(getUsers())
   },[users]); 
 
 return (
   <div className="row">
-  <div className="col-lg-3">
-      <div className="container-sm" style={{ padding: 20 } }>   
-          <div >
-              <div className="dropdown">
-              <Link to="/admin/addProduct">
-              <button type="button" class="btn btn-outline-secondary" >Agregar Productos</button>
-              </Link>
+    <div className="col-lg-3">
+      <div className="container-sm" style={{ padding:20, paddingTop:0 } }> 
+        <div className="badge fs-3 bg-dark text-wrap" style={{ width: "20rem" }}>
+          Administración de Usuarios
+        </div>
+      </div>
+    </div>
+    <div className=" card col-lg-8"style={{ paddingTop:15 } }>
+      <table className="table table-hover table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Email</th>
+            <th scope="col">Admin</th>
+            <th scope="col">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          { users.map((e)=>
+          <tr key={e.id}>
+            <th scope="row">{e.id}</th>
+            <td>{e.username}</td>
+            <td>{e.name}</td>
+            <td>{e.lastName}</td>
+            <td>{e.email}</td>
+            <td>
+              <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                <div class="btn-group" role="group" >
+                  <button id="btnGroupDrop1" type="button" class="btn btn-primary px-3 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" btn-padding-y="222">
+                    {(e.admin) ?  "Si  "  : "No"}
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                  { e.admin ? 
+                  <li>
+                    <button className="dropdown-item" name="admin" value={!e.admin} onClick={(e)=>handelEdit(e)}> No </button>
+                  </li> 
+                  :
+                  <li>
+                    <button className="dropdown-item" name="admin" value={!e.admin} onClick={(e)=>handelEdit(e)}> Si </button>
+                  </li>}
+                  </ul>
+                </div>
               </div>
-          </div>
-      </div>
+            </td>
+            <td>
+              <button type="button" class="btn btn-danger btn-sm px-4" value={e.id} onClick={(e)=>handelDetele(e)}>
+                <i class="fas fa-times"></i>
+              </button>
+            </td>
+          </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
   </div>
-  <div className=" card col-lg-8">
-                  <div className="container-sm bg-image hover-overlay ripple" data-mdb-ripple-color="light" style={{ padding: 20 } } >
-                      <div className="row" Style="background-color: #FAFAFA"    >
-                          <ul class="list-group list-group-flush">
-                              {
-                                  users.map(e=>
-                                      <li class="list-group-item" key={e.id}>
-                                        <p><b>ID: </b>{e.id}</p> 
-                                        <p><b>Username: </b> {e.username}</p> 
-                                        <p><b>Nombre: </b> {e.name}</p> 
-                                        <p><b>Apellido: </b> {e.lastName}</p> 
-                                        <p><b>Email: </b> {e.email}</p>
-                                        <p><b>Admin: </b> {e.admin.toString()}</p>
-                                          <Link to={`/admin/edit/${e.id}`}>
-                                              <button class="btn btn-primary" style={{marginRight:10}}>editar</button>
-                                          </Link>
-                                          <button class="btn btn-danger" name="id" value={e.id} onClick={(e)=>handelDetele(e)}>X</button>
-                                      </li>
-                                  )
-                              }
-                          </ul>
-                      </div>
-                  </div>
-      </div>
-  </div>
-)
-
-
-}
-
+)}
 export default AdminUser;

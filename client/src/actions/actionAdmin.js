@@ -7,6 +7,8 @@ export const EDIT_PRODUCT = "EDIT_PRODUCT"
 export const ADD_CATEGORY = "ADD_CATEGORY"
 export const EDIT_CATEGORY = "EDIT_CATEGORY"
 export const DELETE_CATEGORY = "DELETE_CATEGORY"
+export const GET_CATEGORY_ID = "GET_CATEGORY_ID"
+
 
 
 
@@ -109,6 +111,21 @@ export function deleteCategory (name) {
             })
         } catch (err) {
             console.log(err)
+        }
+    }
+}
+
+export function getCategoryById (id) {
+    return async function (dispatch) {
+        try {
+
+            let category = await axios.get(`/category/${id}`)
+            return dispatch({
+                type: "GET_CATEGORY_ID",
+                payload: category.data
+            })
+        } catch (err) {
+            console.log(err);
         }
     }
 }

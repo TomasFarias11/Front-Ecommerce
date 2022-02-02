@@ -9,27 +9,6 @@ function AdminCategory() {
 
     const allCategory = useSelector((state)=>state.fourthRed.category);
     const dispatch = useDispatch()
-    const [inputBody , setInputBody] = useState({
-    name:"",
-    })
-
-
-    function handelInput(e){
-        setInputBody({
-            ...inputBody,
-            [e.target.name]:e.target.value,
-        })
-    }
-
-    console.log(inputBody)
-
-
-    function handelSubmit(e){
-        e.preventDefault()
-        console.log(e.target.value)
-    }
-
-
 
 
     const handelDetele=(e)=>{
@@ -66,7 +45,7 @@ useEffect(() => {
             <div >
                 <div className="dropdown">
                 <Link to="/admin/addCategory">
-                <button type="button" class="btn btn-outline-secondary" >Agregar Categoria</button>
+                <button type="button" className="btn btn-outline-secondary" >Agregar Categoria</button>
                 </Link>
                 </div>
             </div>
@@ -76,28 +55,22 @@ useEffect(() => {
         <h2>Categorias</h2>
                     <div className="container-sm bg-image hover-overlay ripple" data-mdb-ripple-color="light" style={{ padding: 20 } } >
                         <div className="row" Style="background-color: #FAFAFA"    >
-                            <ul class="list-group list-group-flush">
+                            
                                 {
                                     allCategory.map(e=>
-                                        <li className="list-group-item" key={e.idCategory}><p><b>{e.name}</b></p>
-                                            
+                                        <ul className="list-group list-group-flush" key={e.idCategory}>
+                                        <li className="list-group-item"><p><b>{e.name}</b></p>
+                                            <Link to={`/admin/Category/${e.idCategory}`}>
+                                            <button className="btn btn-warning" style={{marginRight:10}}>Editar</button>
+                                            </Link>
                                             <button className="btn btn-danger"  style={{marginRight:10}} name="id" value={e.name} onClick={(e)=>handelDetele(e)}>X</button>
-                                            
-                                            <button class="btn btn-warning" style={{marginRight:10}}>Editar</button>
-
-                                                <form  value={e.idCategory} onSubmit={e=>handelSubmit(e)} >
-                                                    <div class="form-group" style={{marginTop:10}}>
-                                                        <input name="name" style={{marginBottom:10}} type="text" class="form-control" value={inputBody.name} onChange={e=>handelInput(e)}  placeholder="Edite la Categoria" aria-describedby="emailHelp"/>
-                                                        <button class="btn btn-primary" style={{marginRight:10}} type="submit">Realizar</button>
-                                                        <button name="name" class="btn btn-danger">Cancelar</button>
-                                                    </div>
-                                                </form>
                                         </li>
+                                        </ul>
                                     )
 
                                     
                                 }
-                            </ul>
+                            
                         </div>
                     </div>
         </div>

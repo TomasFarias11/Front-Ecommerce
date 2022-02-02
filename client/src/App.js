@@ -19,6 +19,7 @@ import Formulario from "./pages/Formulario"
 import Boton from "./MercadoPago/Boton";
 import Aceptado from "./MercadoPago/Aceptado";
 import Rechazado from "./MercadoPago/Rechazado";
+import AdminUser from "./components/admin/AdminUser";
 
 function App() {
   
@@ -53,6 +54,19 @@ function App() {
       <Route exact path= "/mercadopago" element={<Boton/>}/>
       <Route exact path= "/mercadopago/aceptado" element={<Aceptado/>}/>
       <Route exact path= "/mercadopago/rechazado" element={<Rechazado/>}/>
+        <Route exact path="*" element={<NotFound/>}/>
+        <Route exact path="/" element={<Home/>}/>
+        <Route exact path="/admin" element={<Admin/>}/>
+        <Route exact path="/admin/product" element={<AdminProduct/>}/>
+        <Route exact path="/admin/addProduct" element={<AddProduct/>}/>
+        <Route exact path="/admin/Category" element={<AdminCategory/>}/>
+        <Route exact path="/admin/addCategory" element={<AddCategory/>}/>
+        <Route exact path="/admin/edit/:id" element={<EditProduct/>}/>
+        <Route exact path= "/admin/user" element={<AdminUser/>}/>
+        <Route exact path="/details/:id" element={<Details/>}/>
+        <Route exact path="/category/:category" element={<Products/>}/>
+        <Route exact path="/search" element={<ProductsBySearch/>}/>
+        <Route exact path= "/user" element={<Formulario/>}/>
       </Routes>
       
       <Footer/>

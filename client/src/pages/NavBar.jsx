@@ -115,8 +115,8 @@ const handleLogout = () => {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link style={{ textDecoration: "none", color: "white" }} to="/products">
-                                            <span className="dropdown-item" href="#!"> Opcion 3 </span>
+                                        <Link style={{ textDecoration: "none", color: "white" }} to="/admin/user">
+                                            <span className="dropdown-item" href="#!"> Usuarios </span>
                                         </Link>
                                     </li>
                                     <li>

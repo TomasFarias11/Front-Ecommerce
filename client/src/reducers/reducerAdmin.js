@@ -37,12 +37,11 @@ export default function reducerAdmin(state=initialState, action){
 				...state,
 				users:state.allUsers
 			}
-		case EDIT_USER:
-			state.allUsers = state.allUsers.map(e=>e)
+		/* case EDIT_USER:
 			return {
 				...state,
-				state:state.allUsers
-			}
+				state:state.users
+			} */
 		default:
 			return state;
 	}

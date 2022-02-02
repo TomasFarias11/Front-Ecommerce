@@ -7,6 +7,7 @@ export const EDIT_PRODUCT = "EDIT_PRODUCT"
 export const ADD_CATEGORY = "ADD_CATEGORY"
 export const GET_USERS = "GET_USERS"
 export const DELETE_USER = "DELETE_USER"
+export const EDIT_USER = "EDIT_USER"
 
 
 
@@ -102,6 +103,22 @@ export function deleteUser(id){
             const deleteUser=await axios.delete(`/admin/user/delete/${id}`);
             return dispatch({
                 type: DELETE_USER,
+                payload: id
+            })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}
+
+export function editUser(id, admin){
+    console.log('ADMIN',admin)
+    const a = {admin:admin}
+    return async (dispatch)=>{
+        try {
+            const editUser = await axios.put(`/admin/user/edit/${id}`,a);
+            return dispatch({
+                type: EDIT_USER,
                 payload: id
             })
         } catch (err) {

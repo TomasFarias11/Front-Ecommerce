@@ -1,6 +1,7 @@
 import {GET_CATEGORY} from "../actions/actionAdmin"
 import {GET_USERS} from "../actions/actionAdmin"
 import {DELETE_USER} from "../actions/actionAdmin"
+import { EDIT_USER } from "../actions/actionAdmin"
 
 
 const initialState={
@@ -35,6 +36,12 @@ export default function reducerAdmin(state=initialState, action){
 			 return {
 				...state,
 				users:state.allUsers
+			}
+		case EDIT_USER:
+			state.allUsers = state.allUsers.map(e=>e)
+			return {
+				...state,
+				state:state.allUsers
 			}
 		default:
 			return state;

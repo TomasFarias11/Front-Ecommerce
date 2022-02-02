@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux';
-import {deleteUser} from "../../actions/actionAdmin"
+import {deleteUser,editUser} from "../../actions/actionAdmin"
 import {useState} from "react";
 import { useParams } from "react-router";
 import { useEffect } from 'react';
@@ -18,6 +18,7 @@ function AdminUser() {
     console.log('USER',users)
     const dispatch = useDispatch()
 
+  
 
     const handelDetele=(e)=>{
 
@@ -52,20 +53,25 @@ function AdminUser() {
             confirmButtonText: 'Si'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    dispatch(deleteUser(e.target.value))
+                    const a=e.target.value.split(',')
+                    const id=parseInt(a[0])
+                    const admin=a[1]==='true'
+                    dispatch(editUser(id,admin))
+                    console.log('????',a[1])
                     Swal.fire(
-                    'Eliminado',
-                    'El usuario ha sido eliminado.',
+                    'Modificado',
+                    'El usuario ha sido modificado.',
                     'success'
                     )
                 }
             })
+            getUsers()
 
     }
 
-  useEffect(()=>{
+useEffect(()=>{
       dispatch(getUsers())
-  },[users.id]); 
+  },[]);
 
 return (
   <div className="row">
@@ -99,10 +105,10 @@ return (
                                 <a class="btn btn-primary" style={{marginRight:10}} href=" " id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Admin </a>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                     { e.admin ? <li>
-                                        <button className="dropdown-item" name="admin" value={!e.admin} onClick={(e)=>handelEdit(e)}> Admin: No </button>
+                                        <button className="dropdown-item" name="admin" value={[e.id,false]} onClick={(e)=>handelEdit(e)}> Admin: No </button>
                                     </li> :
                                     <li>
-                                        <button className="dropdown-item" name="admin" value={!e.admin} onClick={(e)=>handelEdit(e)}> Admin: Si </button>
+                                        <button className="dropdown-item" name="admin" value={[e.id,true]} onClick={(e)=>handelEdit(e)}> Admin: Si </button>
                                     </li>}
                                 </ul>
                             </li></ul>

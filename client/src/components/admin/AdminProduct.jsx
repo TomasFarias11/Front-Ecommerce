@@ -6,7 +6,7 @@ import {deleteProduct} from "../../actions/actionAdmin"
 
 import { useEffect } from 'react';
 import { getProducts } from '../../actions/actionProducts'
-import swal from 'sweetalert';
+import Swal from 'sweetalert2'
 
 function AdminProduct() {
 
@@ -14,14 +14,29 @@ function AdminProduct() {
     const dispatch = useDispatch()
 
 
-    const handelDetele=({target:{id,value}})=>{
-        dispatch(deleteProduct(value))
-        .then(() => {
-            swal("producto eliminado", {
-                icon: "warning"
+    const handelDetele=(e)=>{
+
+        Swal.fire({
+            title: '¿Eliminar?',
+            text: "¿Estas seguro que deseas eliminar el producto?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, Eliminar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    dispatch(deleteProduct(e.target.value))
+                    Swal.fire(
+                    'Eliminado',
+                    'El producto ha sido eliminado.',
+                    'success'
+                    )
+                }
             })
-        })
     }
+
+
     useEffect(()=>{
         dispatch(getProducts())
     },[])
@@ -46,10 +61,13 @@ function AdminProduct() {
                                 {
                                     products.map(e=>
                                         <li class="list-group-item" key={e.id}><p><b>ID: </b>{e.id}</p> <p><b>Nombre: </b> {e.name}</p> <p><b>Categoria: </b> {e.idCategory}</p>
-                                            <Link to={`/admin/edit/${e.id}`}>
-                                                <button class="btn btn-primary" style={{marginRight:10}}>editar</button>
+                                            <Link to={`/details/${e.id}`}>
+                                                <button class="btn btn-primary" style={{marginRight:10}}>Ir al detalle</button>
                                             </Link>
-                                            <button class="btn btn-primary" name="id" value={e.id} onClick={(e)=>handelDetele(e)}>X</button>
+                                            <Link to={`/admin/edit/${e.id}`}>
+                                                <button class="btn btn-warning" style={{marginRight:10}}>Editar</button>
+                                            </Link>
+                                            <button class="btn btn-danger" name="id" value={e.id} onClick={(e)=>handelDetele(e)}>X</button>
                                         </li>
                                     )
                                 }

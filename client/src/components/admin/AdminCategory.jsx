@@ -9,10 +9,12 @@ function AdminCategory() {
     const allCategory = useSelector((state)=>state.fourthRed.category);
     const dispatch = useDispatch()
 
+    // 
 
-useEffect(() => {
-    dispatch(getCategory())
-  }, [])
+
+    useEffect(() => {
+        dispatch(getCategory())
+    }, [])
 
   return (
     <div className="row">

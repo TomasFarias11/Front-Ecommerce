@@ -15,23 +15,49 @@ function EditProduct() {
   const productId = useSelector((state) => state.firstRed.productId)
   const allCategory = useSelector((state)=>state.fourthRed.category);
 
+  console.log(allCategory, "ESTE ES ALL CATEGORY")
+
+  function comparar(productId, allCategory ){
+    for (let i= 0; i < allCategory.length; i++) {
+      if(allCategory[i].idCategory === productId[0].idCategory) {
+          var prueba = allCategory[i].idCategory.name
+          return prueba
+      } 
+      
+  }
+
+  }
+
     useEffect(() => {
     dispatch(getProductById(id))
     dispatch(getCategory())
-  }, [])
+    setInputBody({
+      idCategory:"",
+      name:productId.name,
+      description:productId.description,
+      color:[productId.color],
+      price:productId.price,
+      stock:productId.stock,
+      storage:[productId.storage],
+      connectivity:[productId.connectivity],
+      model:[productId.model],
+      ram:[productId.ram],
+      })
+  }, [productId.name])
 
+  console.log(productId)
   const [inputBody , setInputBody] = useState({
-    idCategory:"",
-    name:"",
-    description:"",
-    image:"",
-    color:[],
-    price:0,
-    stock:0,
-    storage:[],
-    connectivity:[],
-    model:[],
-    ram:[]
+      idCategory:"",
+      name:productId.name,
+      description:productId.description,
+      color:[productId.color],
+      price:productId.price,
+      stock:productId.stock,
+      storage:[productId.storage],
+      connectivity:[productId.connectivity],
+      model:[productId.model],
+      ram:[productId.ram],
+      image:""
   })
 
 
@@ -57,6 +83,12 @@ function EditProduct() {
   function handelSubmit(e){
     e.preventDefault()
 
+    if(inputBody.image===""){
+      setInputBody({
+        image:productId.image
+      })
+    }
+
     if(inputBody.idCategory!== "" && inputBody.name!==""){
       dispatch(editProduct(id, inputBody))
       alert("producto editado")
@@ -73,10 +105,12 @@ function EditProduct() {
         model:[],
         ram:[]
       })
+      navigate("/admin/product")
     }else{
       alert("Complete los campos necesarios para editar el producto")
     }
-    navigate("/admin/product")
+
+
   }
 
 
@@ -112,9 +146,12 @@ function EditProduct() {
     <div className=" card col-lg-6" style={{marginTop:20}}>
       <div class="form-group">
           <h2>Categoria</h2>
+
+          {/* AQUI VAMOS */}
+          <p >{() => comparar(productId, allCategory)} </p>
         {/*Array.isArray(allCategory) ? allCategory.map(e=> e.idCategory===productId.idCategory return(<p>{e.name}</p>)): null*/}
         </div>
-        <div class="form-group">
+        <div class="form-group" autofocus>
           <h2>Nombre del Producto</h2>
           <p>{productId.name}</p>
         </div>

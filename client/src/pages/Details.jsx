@@ -110,7 +110,7 @@ export default function Details() {
         </div>
         {/* en este div se ingresa la img */}
         <div className="col-md-5 order-md-1">
-          <img className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="940px" height="1112px" src={productId.image} role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false" />
+          <img alt="not found"className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="940px" height="1112px" src={productId.image} role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false" />
         </div>
       </div>
       <hr className="featurette-divider" />

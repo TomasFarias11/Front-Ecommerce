@@ -2,7 +2,8 @@ import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import CardCarrusel from "../components/CardCarrusel.jsx";
-import { getProductByCategory } from '../actions/actionProducts.js'
+import {getProductByCategory, createOrder, setCart} from '../actions/actionProducts.js'
+import {getUserId} from '../actions/actionUser.js'
 import { useNavigate } from 'react-router-dom';
 import estilos from '../css/Home.module.css';
 import CarrouselMain from "../components/CarrouselMain.jsx"
@@ -14,18 +15,42 @@ export default function Home () {
     const Navigate = useNavigate();
     const products = useSelector((state) => state.firstRed.productsByCategory);
     const cart = useSelector((state) => state.firstRed.cart);
+    const users = useSelector((state) => state.secondRed.userData)
+    const order = useSelector((state) => state.firstRed.order)
+    const orderAlert = useSelector((state) => state.firstRed.orderAlert)
+    // console.log('esta es laorden', order)
     
 
     useEffect(()=>{
         cart.length > JSON.parse(window.localStorage.getItem('carrito')).length || cart.length < JSON.parse(window.localStorage.getItem('carrito')).length? window.localStorage.setItem('carrito', JSON.stringify(cart)) : window.localStorage.setItem('carrito', JSON.stringify(cart))
+        if (cart.length === 0 && JSON.parse(window.localStorage.getItem('carrito').length > 0)) {
+            setCart(JSON.parse(window.localStorage.getItem('carrito')))
+        }
     },[cart])
 
     
 
-    useEffect(()=> {
+    useEffect(()=> {  
         products > 0 ? window.localStorage.setItem('productos',JSON.stringify(products)) : window.localStorage.setItem('productos',JSON.stringify([]))
+        // dispatch(getUserId(users.id))
     })
-   
+
+    useEffect(() => {
+        if (users && users.username) {
+            dispatch(createOrder(users.id, {carrito: cart}))
+        }
+    },[users])
+
+    useEffect(() => {
+        if (order && order[0]) {
+            dispatch(setCart(order[0]?.carrito))
+        }
+    }, [orderAlert])
+
+
+  
+    
+
 
     const handleClick = (e) => {
         e.preventDefault();

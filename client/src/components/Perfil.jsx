@@ -1,7 +1,17 @@
 import React from "react";
+import {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {getUserId} from "../actions/actionUser.js"
 
 
 const Perfil = () =>{
+  const dispatch = useDispatch()
+  const user = useSelector((state) => state.secondRed.userData)
+  const userId = useSelector((state) => state.secondRed.userId)
+
+  useEffect(() => {
+    dispatch(getUserId(user.id))
+  },[])
 
 	return(
 		<div className="container">

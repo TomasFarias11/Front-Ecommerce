@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import {useDispatch} from "react-redux";
 import {useState} from "react";
 import {addCategory} from "../../actions/actionAdmin";
+import { useDispatch } from 'react-redux';
 
 function AddCategory() {
 
+  const dispatch = useDispatch();
 
-  const dispatch = useDispatch()
   const [inputBody , setInputBody] = useState({
     name:"",
   })

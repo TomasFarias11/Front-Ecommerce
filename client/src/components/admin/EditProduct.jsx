@@ -103,7 +103,8 @@ function EditProduct() {
 
 
 
-  return<div className="row">
+  return(
+  <div className="row">
   <div className="col-lg-3">
         <div className="container-sm" style={{ padding: 20 } }>   
             <div >
@@ -230,7 +231,7 @@ function EditProduct() {
     </div>
     </div>
   </div>
-  ;
+  )
 }
 
 export default EditProduct;

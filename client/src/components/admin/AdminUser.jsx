@@ -31,6 +31,7 @@ function AdminUser() {
         }).then((result) => {
             if (result.isConfirmed) {
                 dispatch(deleteUser(e.target.value))
+                console.log('ID',e.target.value)
                 Swal.fire(
                 'Eliminado',
                 'El usuario ha sido eliminado.',

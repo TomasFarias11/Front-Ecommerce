@@ -55,12 +55,7 @@ export default function Reviews ({id}) {
           })
         }
         Navigate(`/details/${product.id}`)
-
-
-      }
-
-      let locuras = 1;
-      
+      }       
       useEffect(() => {
         dispatch(getReviews(id));
       }, [dispatch]);

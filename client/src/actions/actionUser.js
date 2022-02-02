@@ -4,13 +4,15 @@ import { firebase, googleAuthProvider } from "../firebase";
 
 export const  LOGIN_GOOGLE = "LOGIN_GOOGLE";
 export const LOCAL_LOGIN_USER = "LOCAL_LOGIN_USER";
+export const GET_USER_ID = "GET_USER_ID";
 
 // .auth().signInWithPopup(googleAuthProvider).then(data => console.log(data))
 
 export const googleLogin = () => {
-  // const Navigate = useNavigate()
+
   return async (dispatch) => {
     try {
+      console.log('algooooooooo')
    const dataUser = await firebase.auth().signInWithPopup(googleAuthProvider)
           const userAuthGoogle =
              {
@@ -51,7 +53,7 @@ export const googleLogin = () => {
             : console.log("este cosole.log no deberia aparecer")
          
       } catch (error) {
-        console.log("msg: algo a salido muy mal x.x")
+        console.log(error)
       }
    };
 }; // esta es la accion de la autenticacion con google 
@@ -71,3 +73,12 @@ export const localLoginUser = (datos) => {
   }
 };
 
+export const getUserId = (idUser) => {
+  return async (dispatch) => {
+    const user = await axios.get(`/user/${idUser}`)
+    dispatch({
+      type: GET_USER_ID,
+      payload: user.data
+    })
+  }
+}

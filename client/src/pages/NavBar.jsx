@@ -1,29 +1,23 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SearchAutocomplete from "./SearchAutocomplete";
 import {useDispatch, useSelector} from 'react-redux';
 import {getProductByCategory, setCartOn, setCartOff} from '../actions/actionProducts.js'
+import {getUserId} from '../actions/actionUser.js'
 import Cart from "../components/Cart.jsx"
+import { useNavigate } from 'react-router-dom';
 
 // import {useDispatch} from 'react-redux';
 // import {getProductByCategory, postUserCreate} from '../actions/actionProducts.js'
 
-
-
 function NavBar() {
     const dispatch = useDispatch()
+    const Navigate = useNavigate()
     // const [cartOnScreen, setCartOnScreen] = useState(false)
     const cartOnScreen = useSelector((state) => state.firstRed.cartNav)
     const user = JSON.parse(window.localStorage.getItem('usuario'))
     const userData = useSelector((state) => state.secondRed.userData)
     const cart = useSelector((state) => state.firstRed.cart)
-
-
-
-    // useEffect(()=>
-    //     console.log('1')
-    // ,[userData])
 
 const handleClick = (e) => {
     e.preventDefault();
@@ -32,16 +26,22 @@ const handleClick = (e) => {
     } else {
         dispatch(setCartOff())
     }
+    // dispatch(setCart(order[0].carrito))
 }
 
 const handleLogout = () => {
-    window.localStorage.setItem('usuario', JSON.stringify([]))
+    // dispatch(createOrder(userData.id, {carrito: cart}))
     window.localStorage.setItem('carrito', JSON.stringify([]))
+    // dispatch(setCart([]))
+    window.localStorage.setItem('usuario', JSON.stringify([]))
     window.location.reload()
 }
 
+// const handleProfile = (e) => {
+//     e.preventDefault()
+//     Navigate(`/profile`)
 
-// console.log('aparece o no', cartOnScreen)
+// }
 
   return (
         <nav className="navbar navbar-expand-lg navbar-dark  h6 sticky-top" style={{background: "#111111"}}>
@@ -94,7 +94,7 @@ const handleLogout = () => {
                             <li className="nav-link">
                                 <p className="text-sm-start">
                                     <strong> Bienvenido: 
-                                        <Link style={{ textDecoration: "none", color: "white" }} to="/"> {user.username}</Link>
+                                        <Link style={{ textDecoration: "none", color: "white" }} to="/profile"> {user.username}</Link>
                                     </strong>
                                 </p>
                             </li>
@@ -129,7 +129,7 @@ const handleLogout = () => {
                             <li className="nav-link">
                             <p className="text-md-start">
                                 <strong> Bienvenido: 
-                                    <Link style={{ textDecoration: "none", color: "white" }} to="/"> {user.username} </Link>
+                                    <Link style={{ textDecoration: "none", color: "white" }} to="/profile"> {user.username} </Link>
                                 </strong>
                             </p>
                             </li>

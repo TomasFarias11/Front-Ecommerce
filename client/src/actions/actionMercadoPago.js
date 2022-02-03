@@ -1,9 +1,11 @@
 import axios from "axios";
 
 export const PRE_PAGO = 'PRE_PAGO';
+export const PAGAR = 'PAGAR';
 
 
 export function loadPrePago (producto) {
+    window.localStorage.setItem('todojunto', JSON.stringify(producto))
     return (dispatch)=>{
         return dispatch(
             {
@@ -18,11 +20,11 @@ export function pagar(preference) {
     return async(dispatch)=>{
         try {
             const mp = await axios.post(`/mercadopago/sale/`, preference)
-            console.log('url',mp.data.response.init_point)
-            console.log('WHAT...?',mp)
+            // console.log('url',mp.data.response.init_point)
+            // console.log('WHAT...?',mp)
             return dispatch({
-                type:'' , 
-                payload: ''
+                type: PAGAR, 
+                payload: mp.data.response.init_point
             })
         } catch (err) {
             console.log(err)

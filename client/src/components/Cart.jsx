@@ -8,10 +8,12 @@ import swal from 'sweetalert';
 
 export default function Cart () {
     const dispatch = useDispatch()
+    const Navigate = useNavigate()
     const cart = useSelector((state) => state.firstRed.cart)
     const cartStorage = JSON.parse(window.localStorage.getItem('carrito'))
     const cartNav = useSelector((state) => state.firstRed.cartNav)
     const user = useSelector((state) => state.secondRed.userData)
+    const order = useSelector((state) => state.firstRed.order)
     // console.log('este es el carrito',cart)
 
     let total = 0;
@@ -51,6 +53,13 @@ export default function Cart () {
         }
     },[cart])
 
+
+    const handleCheck = (e) => {
+        e.preventDefault()
+        window.localStorage.setItem('order', JSON.stringify(order))
+        Navigate("/mercadopago")
+    }
+
     // animate__slideOutRight
     return (
         <div className = {cartNav === false ? "row animate__animated animate__slideOutRight" : "row animate__animated animate__slideInRight"} style={{position: 'absolute', right: '12px', top: '95px', background: '#E9E9E9', overflowY: "scroll", height: '90.5vh'}}>
@@ -85,9 +94,7 @@ export default function Cart () {
                         <div className='carrito_izq'>
                             <div>
                                 <hr />
-                                <Link to='/mercadopago' >
-                                    <button className='btn btn-warning btn-lg' style={{margin: '5px 0'}}>CHECKOUT</button>
-                                </Link>
+                                    <button onClick={(e) => handleCheck(e)} className='btn btn-warning btn-lg' style={{margin: '5px 0'}}>CHECKOUT</button>
                                 
                             </div>
                         </div>

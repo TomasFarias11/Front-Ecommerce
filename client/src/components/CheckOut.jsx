@@ -2,59 +2,76 @@ import React from "react";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getUserId} from '../actions/actionUser.js'
-import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import { loadPrePago } from "../actions/actionMercadoPago.js";
 const CheckOut = () =>{
+    const Navigate = useNavigate()
 
     const [ items, setItems] = useState([]);
     
 
-    const order = useSelector((state) => state.firstRed.order)
+    // const order = useSelector((state) => state.firstRed.order)
+    const order = JSON.parse(window.localStorage.getItem('order'))
     const user = useSelector((state) => state.secondRed.userData)
-    const userFull = useSelector((state) => state.secondRed.userId)
-    console.log('OTRA COSA', userFull)
+    const userFull = JSON.parse(window.localStorage.getItem('usuario'))
     const dispatch = useDispatch()
     const [payer, setPayer] = useState(
         {
             name:userFull.name,
             surname:userFull.lastName,
-            email:'test_user_25470426@testuser.com',
+            email:userFull.email,
             phone:{
-                area_code: '11',
-                number:12345678,
+                area_code: '',
+                number:'',
             },
             identification:{
-                type:'DNI',
-                number:'12345678'
+                type:'',
+                number:''
             },
             address:{
-                street_name:'Avenida Riv',
-                street_number:888,
-                zip_code:'1708'
+                street_name:'',
+                street_number:'',
+                zip_code:''
             }
         }
     );
-    console.log('PAYER',payer)
     
-    let todojunto = {
+    var todojunto = {
         items:items,
-        payer:payer
+        payer:{
+            name:payer.name,
+            surname:payer.lastName,
+            email:payer.email,
+            phone:{
+                area_code: payer.phone.area_code,
+                number:parseInt(payer.phone.number),
+            },
+            identification:{
+                type:payer.identification.type,
+                number:payer.identification.number
+            },
+            address:{
+                street_name:payer.address.street_name,
+                street_number:parseInt(payer.address.street_number),
+                zip_code:payer.address.zip_code
+            }
+        }
     }
-    console.log('todojunto',todojunto)
+    
     
     
     var item = [];
     const createItem = (order)=>{
         
-         order[0].carrito.map(e=>item.push(
+         order[0]?.carrito.map(e=>item.push(
             {
             id:`${e.id}`,
             title: e.name,
             currency_id: "ARS",
-            description: 'ahi tenes tu descripcion la concha de tu madre',
+            description: 'aqui iria una descrición',
             category_id: `${e.idCategory}`,
             quantity: e.quantity,
-            unit_price: 20
+            unit_price: e.price
             }))
             return item
     }
@@ -64,21 +81,28 @@ const CheckOut = () =>{
         createItem(order)
         setItems(...items,item)
         dispatch(getUserId(user.id))
-        console.log('ITEMS',items)
     },[]);
 
     const handleSubmit=(e)=>{
         e.preventDefault()
+        dispatch(loadPrePago(todojunto))
+        Navigate('/mercadopago/compra')
         setPayer({
-            
-        })
+            phone:{
+                area_code: '',
+                number:'',
+            },
+            identification:{
+                type:'',
+                number:''
+            },
+            address:{
+                street_name:'',
+                street_number:'',
+                zip_code:''
+            }
+        }) 
     };
-    
-     /* const handleChange = ({ target: { name, value } }) => {
-        
-        setPayer({ ...payer, [name]: value })
-        )
-    } */
 
     const handleChangePhone = (e) => {
         setPayer((prev) => ({ ...prev, phone: { ...prev.phone, [e.target.name] : e.target.value } }))
@@ -110,7 +134,7 @@ const CheckOut = () =>{
                 </li>
             </ul>
             <br/>
-            {order[0].carrito.map(e=>
+            {order[0]?.carrito.map(e=>
                 <ul>
                     <li>
                         <h6>{e.id}</h6>
@@ -140,12 +164,12 @@ const CheckOut = () =>{
                 <div>
                     <label>Codigo de area telefono:</label>
                 </div>
-                    <input type="text" value={payer.phone.area_code} name="area_code" placeholder='telefono' onChange={(e) => handleChangePhone(e)}/>
+                    <input type="integer" value={payer.phone.area_code} name="area_code" onChange={(e) => handleChangePhone(e)}/>
                 <div>
                     <div>
                         <label>Numero telefonico:</label>
                     </div>
-                    <input type="text" value={payer.phone.number} name="number" onChange={(e) => handleChangePhone(e)}/>
+                    <input type="integer" value={payer.phone.number} name="number" onChange={(e) => handleChangePhone(e)}/>
                 </div>
                 <div>
                     <div>
@@ -157,7 +181,7 @@ const CheckOut = () =>{
                     <div>
                         <label>Numero de documento:</label>
                     </div>
-                    <input type="text" value = {payer.identification.number} name="number" onChange={(e) => handleChangeDni(e)}/>
+                    <input type="integer" value = {payer.identification.number} name="number" onChange={(e) => handleChangeDni(e)}/>
                 </div>
                 <div>
                     <label>Direccion de envio:</label>
@@ -177,12 +201,8 @@ const CheckOut = () =>{
                     </div>
                     <input type="text" value = {payer.address.zip_code} name="zip_code" onChange={(e) => handleChangeAddress(e)}/>
                 </div>
-                
-                <button type="submit">Proceder con el pago</button>
-            </form>
-            <Link to="/mercadopago/compra">
-                <button onClick={() => dispatch(loadPrePago(todojunto))} >Proceder con el hermoso pago</button>
-            </Link>
+                <button type="submit" onClick={handleSubmit}>Proceder con el pago</button>
+            </form>            
         </div>
     )
 }

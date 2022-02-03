@@ -9,6 +9,8 @@ const Perfil = () =>{
   const dispatch = useDispatch()
   const user = useSelector((state) => state.secondRed.userData)
   const userId = useSelector((state) => state.secondRed.userId)
+  const userStorage = JSON.parse(window.localStorage.getItem('usuario'))
+  const order = useSelector((state) => state.firstRed.order)
   const [controlador, setControlador] = useState(false)
 
 
@@ -34,9 +36,9 @@ const Perfil = () =>{
           <div className="card">
             <div className="card-body">
               <div className="d-flex flex-column align-items-center text-center">
-                <img src={userId.image} alt="Admin" className="rounded-circle" width="150"/>
+                <img src={userStorage.image} alt="Admin" className="rounded-circle" width="150"/>
                 <div className="mt-3">
-                  <h4>{userId.username}</h4>
+                  <h4>{userStorage.username}</h4>
                   <p className="text-secondary mb-1">Full Stack Developer</p>
                 </div>
               </div>
@@ -62,7 +64,7 @@ const Perfil = () =>{
                   <h6 className="mb-0">Nombre Completo</h6>
                 </div>
                 <div className="col-sm-9 text-secondary">
-                {userId.name} {userId.lastName}
+                {userStorage.name} {userStorage.lastName}
                 </div>
               </div>
 
@@ -73,7 +75,7 @@ const Perfil = () =>{
                   <h6 className="mb-0">Email</h6>
                 </div>
                 <div className="col-sm-9 text-secondary">
-                  {userId.email}
+                  {userStorage.email}
                 </div>
                 </div>
 
@@ -84,7 +86,7 @@ const Perfil = () =>{
                     <h6 className="mb-0">Admin</h6>
                   </div>
                   <div className="col-sm-9 text-secondary">
-                    {`${userId.admin}`}
+                    {`${userStorage.admin}`}
                   </div>
                 </div>
 
@@ -95,7 +97,7 @@ const Perfil = () =>{
                     <h6 className="mb-0">Login con Google</h6>
                   </div>
                   <div className="col-sm-9 text-secondary">
-                    {`${userId && userId.loginWithGoogle}`}
+                    {`${userStorage && userStorage.loginWithGoogle}`}
                   </div>
                 </div>
 
@@ -106,7 +108,7 @@ const Perfil = () =>{
                     <h6 className="mb-0">Address</h6>
                   </div>
                   <div className="col-sm-9 text-secondary">
-                    {userId.address && userId.address === "null" ? "Dato no ingresado" : userId.address}
+                    {userStorage.address && userStorage.address === "null" ? "Dato no ingresado" : userStorage.address}
                   </div>
                 </div>
 
@@ -123,20 +125,16 @@ const Perfil = () =>{
             <div className="card h-100">
               <div className="card-body">
                 <h6 className="d-flex align-items-center mb-3">Ordenes</h6>
-                <small>Web Design</small>
-                <div className="progress mb-3" >     
-                </div>
-                <small>Website Markup</small>
-                <div className="progress mb-3" > 
-                </div>
-                <small>One Page</small>
-                <div className="progress mb-3" > 
-                </div>
-                <small>Mobile Template</small>
-                <div className="progress mb-3" >
-                </div>
-                <small>Backend API</small>
-                <div className="progress mb-3" >
+                <small>Numero de orden: {order[0]?.id}</small> <br />
+                <small>Estado de la orden: {order[0]?.status}</small>
+                <div>     
+                    {order[0] && order[0].carrito.map((e) => 
+                      <div>
+                        <small>Nombre de producto: {e.name}</small> <br />
+                        <small>Precio: {e.price}</small> <br />
+                        <small>Cantidad: {e.quantity}</small>
+                      </div>
+                    )}
                 </div>
               </div>
             </div>

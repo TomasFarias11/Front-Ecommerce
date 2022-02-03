@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux';
 import {deleteProduct} from "../../actions/actionAdmin"
-import {useState} from "react";
-import { useParams } from "react-router";
 import { useEffect } from 'react';
 import { getProducts } from '../../actions/actionProducts'
 
@@ -18,7 +16,7 @@ function AdminProduct() {
     }
     useEffect(()=>{
         dispatch(getProducts())
-    },[products])
+    },[products, dispatch])
 
   return (
     <div className="row">
@@ -27,7 +25,7 @@ function AdminProduct() {
             <div >
                 <div className="dropdown">
                 <Link to="/admin/addProduct">
-                <button type="button" class="btn btn-outline-secondary" >Agregar Productos</button>
+                <button type="button" className="btn btn-outline-secondary" >Agregar Productos</button>
                 </Link>
                 </div>
             </div>
@@ -36,14 +34,14 @@ function AdminProduct() {
     <div className=" card col-lg-8">
                     <div className="container-sm bg-image hover-overlay ripple" data-mdb-ripple-color="light" style={{ padding: 20 } } >
                         <div className="row" Style="background-color: #FAFAFA"    >
-                            <ul class="list-group list-group-flush">
+                            <ul className="list-group list-group-flush">
                                 {
                                     products.map(e=>
-                                        <li class="list-group-item" key={e.id}><p><b>ID: </b>{e.id}</p> <p><b>Nombre: </b> {e.name}</p> <p><b>Categoria: </b> {e.idCategory}</p>
+                                        <li className="list-group-item" key={e.id}><p><b>ID: </b>{e.id}</p> <p><b>Nombre: </b> {e.name}</p> <p><b>Categoria: </b> {e.idCategory}</p>
                                             <Link to={`/admin/edit/${e.id}`}>
-                                                <button class="btn btn-primary" style={{marginRight:10}}>editar</button>
+                                                <button className="btn btn-primary" style={{marginRight:10}}>editar</button>
                                             </Link>
-                                            <button class="btn btn-primary" name="id" value={e.id} onClick={(e)=>handelDetele(e)}>X</button>
+                                            <button className="btn btn-primary" name="id" value={e.id} onClick={(e)=>handelDetele(e)}>X</button>
                                         </li>
                                     )
                                 }

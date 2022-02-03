@@ -1,7 +1,7 @@
 import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {addToCart, delCart, quantity_item, setCartOff} from '../actions/actionProducts.js'
+import {addToCart, delCart, quantity_item, editOrder, createOrder} from '../actions/actionProducts.js'
 import { useNavigate } from 'react-router-dom';
 import '../css/CartCard.module.css'
 import swal from 'sweetalert';
@@ -11,6 +11,7 @@ export default function CartCard ({id, name, price, image, quantity, stock}) {
     const dispatch = useDispatch()
     const cartStorage = window.localStorage.getItem('carrito')
     const cart = useSelector((state) => state.firstRed.cart)
+    const user = useSelector((state) => state.secondRed.userData)
     const formato = new Intl.NumberFormat('de-DE', {
         // style: 'currency',
         // currency: 'USD',

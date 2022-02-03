@@ -1,29 +1,25 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import {React, useEffect} from "react";
 import { Link } from "react-router-dom";
 import SearchAutocomplete from "./SearchAutocomplete";
 import {useDispatch, useSelector} from 'react-redux';
-import {getProductByCategory, setCartOn, setCartOff} from '../actions/actionProducts.js'
+import {getProductByCategory, setCartOn, setCartOff, setCart, createOrder, editOrder} from '../actions/actionProducts.js'
+import {getUserId} from '../actions/actionUser.js'
 import Cart from "../components/Cart.jsx"
+import { useNavigate } from 'react-router-dom';
 
 // import {useDispatch} from 'react-redux';
 // import {getProductByCategory, postUserCreate} from '../actions/actionProducts.js'
 
-
-
 function NavBar() {
     const dispatch = useDispatch()
-    // const [cartOnScreen, setCartOnScreen] = useState(false)
+    const Navigate = useNavigate()
+    const allProducts = useSelector((state) => state.firstRed.products)
     const cartOnScreen = useSelector((state) => state.firstRed.cartNav)
     const user = JSON.parse(window.localStorage.getItem('usuario'))
     const userData = useSelector((state) => state.secondRed.userData)
     const cart = useSelector((state) => state.firstRed.cart)
-
-
-
-    // useEffect(()=>
-    //     console.log('1')
-    // ,[userData])
+    const order = useSelector((state) => state.firstRed.order)
+    const orderAlert = useSelector((state) => state.firstRed.orderAlert)
 
 const handleClick = (e) => {
     e.preventDefault();
@@ -32,16 +28,38 @@ const handleClick = (e) => {
     } else {
         dispatch(setCartOff())
     }
+    // dispatch(setCart(order[0].carrito))
 }
 
 const handleLogout = () => {
-    window.localStorage.setItem('usuario', JSON.stringify([]))
     window.localStorage.setItem('carrito', JSON.stringify([]))
+    window.localStorage.setItem('usuario', JSON.stringify([]))
     window.location.reload()
 }
 
+useEffect(() => {
+    if (userData && userData.username) {
+        dispatch(createOrder(userData.id, {carrito: cart}))
+    }
+},[userData])
 
-// console.log('aparece o no', cartOnScreen)
+useEffect(() => {
+    if (order && order[0]) {
+        dispatch(setCart(order[0]?.carrito))
+    }
+}, [orderAlert])
+
+useEffect(()=>{
+    if (user && user.username) {
+        dispatch(editOrder(user.id, {carrito: cart}))
+    }
+},[cart])
+
+useEffect(() => {
+    if (order && order[0]) {
+        dispatch(setCart(order[0]?.carrito))
+    } 
+},[allProducts])
 
   return (
         <nav className="navbar navbar-expand-lg navbar-dark  h6 sticky-top" style={{background: "#111111"}}>
@@ -94,7 +112,7 @@ const handleLogout = () => {
                             <li className="nav-link">
                                 <p className="text-sm-start">
                                     <strong> Bienvenido: 
-                                        <Link style={{ textDecoration: "none", color: "white" }} to="/"> {user.username}</Link>
+                                        <Link style={{ textDecoration: "none", color: "white" }} to="/profile"> {user.username}</Link>
                                     </strong>
                                 </p>
                             </li>
@@ -139,7 +157,7 @@ const handleLogout = () => {
                             <li className="nav-link">
                             <p className="text-md-start">
                                 <strong> Bienvenido: 
-                                    <Link style={{ textDecoration: "none", color: "white" }} to="/"> {user.username} </Link>
+                                    <Link style={{ textDecoration: "none", color: "white" }} to="/profile"> {user.username} </Link>
                                 </strong>
                             </p>
                             </li>
@@ -171,7 +189,7 @@ const handleLogout = () => {
                 </svg>
                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 </span>
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                         {cart && cart.length}
                 </span>
               </button>

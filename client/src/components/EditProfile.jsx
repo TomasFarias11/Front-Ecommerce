@@ -8,17 +8,19 @@ import {getUserId, editUser} from "../actions/actionUser.js"
 const EditProfie = () => {
     const userId = useSelector((state) => state.secondRed.userData)
     const user = useSelector((state) => state.secondRed.userId)
+    const userStorage = JSON.parse(window.localStorage.getItem('usuario'))
     const Navigate = useNavigate()
     const dispatch = useDispatch()
     const [input, setInput] = useState({
-        username: user.username,
-        email: user.email,
-        name: user.name,
-        lastName: user.lastName,
-        address: user.address,
-        image: user.image,
-        admin: user.admin,
-        // password: user.password,
+        username: userStorage.username,
+        email: userStorage.email,
+        name: userStorage.name,
+        lastName: userStorage.lastName,
+        address: userStorage.address,
+        image: userStorage.image,
+        admin: userStorage.admin,
+        // password: '',
+        id: userStorage.id
     })
 
     const handleChange = (e) => {
@@ -31,16 +33,18 @@ const EditProfie = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(editUser(userId.id, input))
+        window.localStorage.setItem('usuario', JSON.stringify(input))
         alert("Perfil modificado!")
         setInput({
-            username: user.username,
-            email: user.email,
-            name: user.name,
-            lastName: user.lastName,
-            address: user.address,
-            image: user.image,
-            admin: user.admin,
-            // password: user.password,
+            username: input.username,
+            email: input.email,
+            name: input.name,
+            lastName: input.lastName,
+            address: input.address,
+            image: input.image,
+            admin: input.admin,
+            // password: '',
+            id: userStorage.id
         })
         Navigate('/profile')
     }
@@ -84,7 +88,7 @@ const EditProfie = () => {
                     <div>
                         <label>Contraseña:</label>
                     </div>
-                    <input type="text" value = {input.password} name="password" onChange={(e) => handleChange(e)}/>
+                    <input type="password" value = {input.password} name="password" onChange={(e) => handleChange(e)}/>
                 </div> */}
                 
                 <button type="submit">Editar Perfil</button>

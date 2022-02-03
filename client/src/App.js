@@ -22,6 +22,7 @@ import Aceptado from "./MercadoPago/Aceptado";
 import Rechazado from "./MercadoPago/Rechazado";
 import AdminUser from "./components/admin/AdminUser";
 import Compra from './components/Compra';
+import Profile from "./components/Perfil"
 
 function App() {
   
@@ -70,6 +71,7 @@ function App() {
         <Route exact path="/category/:category" element={<Products/>}/>
         <Route exact path="/search" element={<ProductsBySearch/>}/>
         <Route exact path= "/user" element={<Formulario/>}/>
+        <Route exact path= "/profile" element={<Profile/>}/>
       </Routes>
       
       <Footer/>

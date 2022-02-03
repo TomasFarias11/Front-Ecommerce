@@ -65,18 +65,18 @@ const CardCarrusel = () =>{
         
       }
 
-    useEffect(()=>{
-        cart.length > JSON.parse(window.localStorage.getItem('carrito')).length ? window.localStorage.setItem('carrito', JSON.stringify(cart)) : window.localStorage.getItem('carrito')
-        if (user && user.username) {
-            dispatch(editOrder(user.id, {carrito: cart}))
-        }
-    },[cart])
+    // useEffect(()=>{
+    //     cart.length > JSON.parse(window.localStorage.getItem('carrito')).length ? window.localStorage.setItem('carrito', JSON.stringify(cart)) : window.localStorage.getItem('carrito')
+    //     if (user && user.username) {
+    //         dispatch(editOrder(user.id, {carrito: cart}))
+    //     }
+    // },[cart])
 
-    useEffect(() => {
-        if (order && order[0]) {
-            dispatch(setCart(order[0]?.carrito))
-        } 
-    },[allProducts])
+    // useEffect(() => {
+    //     if (order && order[0]) {
+    //         dispatch(setCart(order[0]?.carrito))
+    //     } 
+    // },[allProducts])
 
        
     return(<>

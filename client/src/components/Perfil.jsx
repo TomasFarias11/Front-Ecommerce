@@ -11,7 +11,6 @@ const Perfil = () =>{
   const userId = useSelector((state) => state.secondRed.userId)
   const [controlador, setControlador] = useState(false)
 
-  console.log(controlador)
 
   useEffect(() => {
     dispatch(getUserId(user.id))

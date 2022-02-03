@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import {useState} from "react";
+import {addCategory} from "../../actions/actionAdmin";
+import { useDispatch } from 'react-redux';
 
 function AddCategory() {
 
+  const dispatch = useDispatch();
 
   const [inputBody , setInputBody] = useState({
     name:"",
@@ -20,10 +23,15 @@ function AddCategory() {
 
    function handelSubmit(e){
     e.preventDefault()
-    alert("producto agregado a la db")
+    if(inputBody.name!==""){
+    alert("Nueva categoria agregada")
+    dispatch(addCategory(inputBody))
     setInputBody({
     name:""
     })
+    }else{
+      alert("ingrese el nombre de la nueva categoria")
+    }
   }
 
   return(<div className="row">

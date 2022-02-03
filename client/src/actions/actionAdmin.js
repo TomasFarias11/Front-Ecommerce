@@ -4,6 +4,10 @@ export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const GET_CATEGORY = "GET_CATEGORY"
 export const ADD_PRODUCT = "ADD_PRODUCT"
 export const EDIT_PRODUCT = "EDIT_PRODUCT"
+export const ADD_CATEGORY = "ADD_CATEGORY"
+export const GET_USERS = "GET_USERS"
+export const DELETE_USER = "DELETE_USER"
+export const EDIT_USER = "EDIT_USER"
 
 
 
@@ -31,7 +35,6 @@ export function getCategory () {
     return async(dispatch)=>{
         try {
             var allCategory=await axios.get("/category");
-
               return dispatch({
                 type: GET_CATEGORY,
                 payload: allCategory.data
@@ -72,8 +75,54 @@ export function editProduct(id, body){
 export function addCategory(body){
     return async (dispatch)=>{
         try {
-            var addCategory = await axios.post("", body);
-            console.log("Categoria agregada", addCategory)
+            var addCategory = await axios.post("/category/create", body);
+            return addCategory;
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}
+
+export function getUsers(){
+    return async function (dispatch) {
+        try {
+            const allUsers=await axios.get("/user");
+            return dispatch({
+                type: GET_USERS,
+                payload: allUsers.data
+            })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}
+
+export function deleteUser(id){
+    return async (dispatch)=>{
+        try {
+                           await axios.delete(`/admin/user/delete/${id}`);
+            const allUsers=await axios.get("/user");
+            return dispatch({
+                type: DELETE_USER,
+                payload: allUsers.data
+            })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}
+
+export function editUser(id, admin){
+    console.log('ADMIN',admin)
+    const a = {admin:admin}
+    return async (dispatch)=>{
+        try {
+                           await axios.put(`/admin/user/edit/${id}`,a);
+            const allUsers=await axios.get("/user");
+            return dispatch({
+                type: EDIT_USER,
+                payload: allUsers.data
+            })
         } catch (err) {
             console.log(err);
         }

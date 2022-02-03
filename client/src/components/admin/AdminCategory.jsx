@@ -12,7 +12,7 @@ function AdminCategory() {
 
 useEffect(() => {
     dispatch(getCategory())
-  }, [dispatch])
+  }, [])
 
   return (
     <div className="row">
@@ -28,12 +28,13 @@ useEffect(() => {
         </div>
     </div>
     <div className=" card col-lg-8">
+        <h2>Categorias</h2>
                     <div className="container-sm bg-image hover-overlay ripple" data-mdb-ripple-color="light" style={{ padding: 20 } } >
                         <div className="row" Style="background-color: #FAFAFA"    >
                             <ul className="list-group list-group-flush">
                                 {
                                     allCategory.map(e=>
-                                        <li className="list-group-item" key={e.idCategory}><p><b>Categoria: </b> {e.name}</p>
+                                        <li className="list-group-item" key={e.idCategory}><p><b>{e.name}</b></p>
                                         </li>
                                     )
                                 }

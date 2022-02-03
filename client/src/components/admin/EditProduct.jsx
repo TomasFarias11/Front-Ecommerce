@@ -4,33 +4,48 @@ import { getProductById } from "../../actions/actionProducts.js";
 import {getCategory, editProduct} from "../../actions/actionAdmin"
 import {useEffect, useState} from "react";
 import { useParams } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 function EditProduct() {
 
   const { id } = useParams();
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const productId = useSelector((state) => state.firstRed.productId)
   const allCategory = useSelector((state)=>state.fourthRed.category);
 
-  const [inputBody , setInputBody] = useState({
-    idUser:"1",
-    idCategory:"",
-    name:"",
-    description:"",
-    image:"",
-    color:[],
-    price:0,
-    stock:0,
-    storage:[],
-    connectivity:[],
-    model:[],
-    ram:[]
-  })
+    useEffect(() => {
+    dispatch(getProductById(id))
+    dispatch(getCategory())
+    setInputBody({
+      idCategory:"",
+      name:productId.name,
+      description:productId.description,
+      color:[productId.color],
+      price:productId.price,
+      stock:productId.stock,
+      storage:[productId.storage],
+      connectivity:[productId.connectivity],
+      model:[productId.model],
+      ram:[productId.ram],
+      })
+  }, [productId.name])
 
-  console.log("producto", productId)
-  console.log("input", inputBody)
+  console.log(productId)
+  const [inputBody , setInputBody] = useState({
+      idCategory:"",
+      name:productId.name,
+      description:productId.description,
+      color:[productId.color],
+      price:productId.price,
+      stock:productId.stock,
+      storage:[productId.storage],
+      connectivity:[productId.connectivity],
+      model:[productId.model],
+      ram:[productId.ram],
+      image:""
+  })
 
 
   function handelInput(e){
@@ -55,9 +70,15 @@ function EditProduct() {
   function handelSubmit(e){
     e.preventDefault()
 
+    if(inputBody.image===""){
+      setInputBody({
+        image:productId.image
+      })
+    }
+
     if(inputBody.idCategory!== "" && inputBody.name!==""){
       dispatch(editProduct(id, inputBody))
-      alert("producto agregado a la db")
+      alert("producto editado")
       setInputBody({
         idCategory:"",
         name:"",
@@ -71,16 +92,16 @@ function EditProduct() {
         model:[],
         ram:[]
       })
+      navigate("/admin/product")
     }else{
       alert("Complete los campos necesarios para editar el producto")
     }
+
+
   }
 
 
-  useEffect(() => {
-    dispatch(getProductById(id))
-    dispatch(getCategory())
-  }, [dispatch])
+
 
   return(
   <div className="row">
@@ -103,7 +124,7 @@ function EditProduct() {
     </div>
     <div className=" card col-lg-8">
     <br/>
-    <h1>Editar Producto</h1>
+    <h2>Editar Producto</h2>
     <p><b>ID: </b><span>{productId.id}</span></p>
     <br/>
     <div className="row">

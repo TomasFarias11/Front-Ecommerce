@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {addProduct } from "../../actions/actionAdmin"
-import {useState} from "react";
+import {addProduct, getCategory} from "../../actions/actionAdmin"
+import {useState, useEffect} from "react";
 import swal from 'sweetalert';
 
 function AddProdcut() {
@@ -10,8 +10,11 @@ function AddProdcut() {
   const allCategory = useSelector((state)=>state.fourthRed.category);
   const dispatch = useDispatch()
 
+  useEffect(()=>{
+    dispatch(getCategory())
+  },[])
+
   const [inputBody , setInputBody] = useState({
-    idUser:"1",
     idCategory:"",
     name:"",
     description:"",
@@ -26,7 +29,6 @@ function AddProdcut() {
   })
 
   console.log(inputBody)
-
 
   function handelInput(e){
     e.preventDefault()
@@ -49,6 +51,7 @@ function AddProdcut() {
 
   function handelSubmit(e){
     e.preventDefault()
+
     if(inputBody.idCategory!== "" && inputBody.name!==""){
       dispatch(addProduct(inputBody))
       swal("Agregado a la DB!", {
@@ -57,7 +60,6 @@ function AddProdcut() {
       timer: 1500,
     });
       setInputBody({
-        idUser:"1",
         idCategory:"",
         name:"",
         description:"",
@@ -94,7 +96,7 @@ function AddProdcut() {
 
     <div className=" card col-lg-8">
       <br/>
-      <h1>Agregar Producto</h1>
+      <h2>Agregar Producto</h2>
       <br/>
       <form onSubmit={e=>handelSubmit(e)}>
           <div className="form-group">
@@ -108,7 +110,7 @@ function AddProdcut() {
           </div>
         <div className="form-group">
           <label for="exampleInputName">Nombre del Producto</label>
-          <input name="name" value={inputBody.name} onChange={e=>handelInput(e)} type="text" className="form-control" id="exampleInputName" aria-describedby="emailHelp" placeholder="Ingrese el nombre"/>
+          <input className="form-control" name="name" value={inputBody.name} onChange={e=>handelInput(e)} type="text" className="form-control" id="exampleInputName" aria-describedby="emailHelp" placeholder="Ingrese el nombre"/>
         </div>
         <div className="form-group">
           <label for="exampleFormControlTextarea1">Descripcion</label>
@@ -144,7 +146,7 @@ function AddProdcut() {
         </div>
          <div className="form-group" style={{marginTop:10, marginBottom:10}}>
           <label for="exampleFormControlFile1">Imagen</label>
-          <input name="image" accept="image/png,image/jpeg" value={inputBody.image} onChange={e=>handelInput(e)} type="file" className="form-control-file" id="exampleFormControlFile1"/>
+          <input name="image" accept="image/png,image/jpg" value={inputBody.image} onChange={e=>handelInput(e)} type="file" className="form-control-file" id="exampleFormControlFile1"/>
         </div>
         <button className="btn btn-primary" type="submit">Agregar</button>
       </form>

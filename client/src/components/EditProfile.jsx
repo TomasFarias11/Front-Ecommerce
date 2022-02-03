@@ -18,7 +18,7 @@ const EditProfie = () => {
         address: user.address,
         image: user.image,
         admin: user.admin,
-        // password: user.password,
+        password: '',
     })
 
     const handleChange = (e) => {
@@ -31,6 +31,7 @@ const EditProfie = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(editUser(userId.id, input))
+        window.localStorage.setItem('usuario', JSON.stringify({username: user.username, id: user.id, admin: user.admin}))
         alert("Perfil modificado!")
         setInput({
             username: user.username,
@@ -40,7 +41,7 @@ const EditProfie = () => {
             address: user.address,
             image: user.image,
             admin: user.admin,
-            // password: user.password,
+            password: '',
         })
         Navigate('/profile')
     }
@@ -80,12 +81,12 @@ const EditProfie = () => {
                     </div>
                     <input type="text" value = {input.address} name="address" onChange={(e) => handleChange(e)}/>
                 </div>
-                {/* <div>
+                <div>
                     <div>
                         <label>Contraseña:</label>
                     </div>
-                    <input type="text" value = {input.password} name="password" onChange={(e) => handleChange(e)}/>
-                </div> */}
+                    <input type="password" value = {input.password} name="password" onChange={(e) => handleChange(e)}/>
+                </div>
                 
                 <button type="submit">Editar Perfil</button>
             </form>

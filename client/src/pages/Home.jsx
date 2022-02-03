@@ -35,17 +35,17 @@ export default function Home () {
         // dispatch(getUserId(users.id))
     })
 
-    useEffect(() => {
-        if (users && users.username) {
-            dispatch(createOrder(users.id, {carrito: cart}))
-        }
-    },[users])
+    // useEffect(() => {
+    //     if (users && users.username) {
+    //         dispatch(createOrder(users.id, {carrito: cart}))
+    //     }
+    // },[users])
 
-    useEffect(() => {
-        if (order && order[0]) {
-            dispatch(setCart(order[0]?.carrito))
-        }
-    }, [orderAlert])
+    // useEffect(() => {
+    //     if (order && order[0]) {
+    //         dispatch(setCart(order[0]?.carrito))
+    //     }
+    // }, [orderAlert])
 
 
   

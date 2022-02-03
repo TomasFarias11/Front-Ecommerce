@@ -30,7 +30,12 @@ export default function reducer(state=initialState, action){
 		case EDIT_USER:
 			return {
 				...state,
-				userId: action.payload
+				userId: action.payload,
+				userData: {
+					username: action.payload.username,
+					id: action.payload.id,
+					admin: action.payload.admin,
+				}
 			}
 		default:
 			return state;

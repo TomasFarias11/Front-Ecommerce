@@ -1,9 +1,9 @@
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { resolvePath, useNavigate, useNavigationType } from "react-router";
 
 
 export default function Boton () {
-
+	
 	const Navigate = useNavigate()
 	var preference = {
 		items: [
@@ -18,18 +18,15 @@ export default function Boton () {
 				failure: "http://localhost:3000/mercadopago/rechazado",
 				pending: "http://localhost:3000/mercadopago/rechazado"
 		},
-		auto_return:"approved"
+		auto_return:"approved",
+		notification_url:'https://endrg8sjycslc.x.pipedream.net'
 	};
 	console.log('AQUI',preference)
 
 	const handleClick = async () => {
 		const mp = await axios.post(`/mercadopago/sale/`, preference)
 		console.log('url',mp.data.response.init_point)
-		//Navigate.reset(mp.data.response.init_point)
-		Navigate.reset({
-			index: 0,
-			routes: [{ name: mp.data.response.init_point }],
-		  });
+		//Navigate(mp.data.response.init_point, )
 	  }
     
     

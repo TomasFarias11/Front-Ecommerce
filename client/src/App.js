@@ -21,6 +21,7 @@ import CheckOut from './components/CheckOut'
 import Aceptado from "./MercadoPago/Aceptado";
 import Rechazado from "./MercadoPago/Rechazado";
 import AdminUser from "./components/admin/AdminUser";
+import Compra from './components/Compra';
 
 function App() {
   
@@ -54,7 +55,8 @@ function App() {
       <Route exact path= "/user" element={<Formulario/>}/>
       <Route exact path= "/mercadopago" element={<CheckOut/>}/>
       <Route exact path= "/mercadopago/aceptado" element={<Aceptado/>}/>
-      <Route exact path= "/mercadopago/rechazado" element={<Rechazado/>}/>
+      <Route exact path= "/mercadopago/compra" element={<Compra/>}/>
+      <Route exact path= "/mercadopago/boton" element={<Boton/>}/>
         <Route exact path="*" element={<NotFound/>}/>
         <Route exact path="/" element={<Home/>}/>
         <Route exact path="/admin" element={<Admin/>}/>

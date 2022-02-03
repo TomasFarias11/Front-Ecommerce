@@ -15,7 +15,7 @@ function AdminCategory() {
 
         Swal.fire({
             title: 'Advertencia!!',
-            text: "Si elimina la categoria estará eliminando todos los productos asociados a esta categoria¿Estas seguro que deseas eliminar la categoria?",
+            text: "Si elimina la categoria estará los productos asociados a esta categoria no perteneceran a ninguna categoria¿Estas seguro que deseas eliminar la categoria?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -55,22 +55,21 @@ useEffect(() => {
         <h2>Categorias</h2>
                     <div className="container-sm bg-image hover-overlay ripple" data-mdb-ripple-color="light" style={{ padding: 20 } } >
                         <div className="row" Style="background-color: #FAFAFA"    >
-                            
+
+                            <ul className="list-group list-group-flush" >
                                 {
                                     allCategory.map(e=>
-                                        <ul className="list-group list-group-flush" key={e.idCategory}>
-                                        <li className="list-group-item"><p><b>{e.name}</b></p>
+                                        
+                                        <li className="list-group-item" key={e.idCategory}><p><b>{e.name}</b></p>
                                             <Link to={`/admin/Category/${e.idCategory}`}>
                                             <button className="btn btn-warning" style={{marginRight:10}}>Editar</button>
                                             </Link>
                                             <button className="btn btn-danger"  style={{marginRight:10}} name="id" value={e.name} onClick={(e)=>handelDetele(e)}>X</button>
                                         </li>
-                                        </ul>
+                                        
                                     )
-
-                                    
                                 }
-                            
+                            </ul>
                         </div>
                     </div>
         </div>

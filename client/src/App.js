@@ -14,9 +14,10 @@ import AdminCategory from "./components/admin/AdminCategory"
 import AddCategory from "./components/admin/AddCategory"
 import EditCategory from "./components/admin/EditCategory"
 import LoginScreen from "./pages/LoginScreen";
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {setCart} from './actions/actionProducts.js'
 import Formulario from "./pages/Formulario"
+import Profile from "./components/Perfil"
 
 function App() {
   
@@ -35,7 +36,7 @@ function App() {
     <div className="App">
       <NavBar />
       <Routes>
-        <Route exact path='/login' element={<LoginScreen />} />      
+      <Route exact path='/login' element={<LoginScreen />} />      
       <Route exact path="*" element={<NotFound/>}/>
       <Route exact path="/" element={<Home/>}/>
       <Route exact path="/admin" element={<Admin/>}/>
@@ -49,6 +50,7 @@ function App() {
       <Route exact path="/category/:category" element={<Products/>}/>
       <Route exact path="/search" element={<ProductsBySearch/>}/>
       <Route exact path= "/user" element={<Formulario/>}/>
+      <Route exact path= "/profile" element={<Profile/>}/>
       </Routes>
       
       <Footer/>

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux';
-import {deleteProduct, deleteCategory} from "../../actions/actionAdmin"
 import {useState} from "react";
 import { useParams } from "react-router";
+import {deleteProduct} from "../../actions/actionAdmin"
 import { useEffect } from 'react';
 import { getProducts } from '../../actions/actionProducts'
 import Swal from 'sweetalert2'
@@ -28,7 +28,7 @@ function AdminProduct() {
             confirmButtonText: 'Si, Eliminar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    dispatch(deleteCategory(e.target.value))
+                    dispatch(deleteProduct(e.target.value))
                     Swal.fire(
                     'Eliminado',
                     'El producto ha sido eliminado.',
@@ -43,6 +43,7 @@ function AdminProduct() {
         dispatch(getProducts())
     },[])
 
+
   return (
     <div className="row">
     <div className="col-lg-3">
@@ -50,7 +51,7 @@ function AdminProduct() {
             <div >
                 <div className="dropdown">
                 <Link to="/admin/addProduct">
-                <button type="button" class="btn btn-outline-secondary" >Agregar Productos</button>
+                <button type="button" className="btn btn-outline-secondary" >Agregar Productos</button>
                 </Link>
                 </div>
             </div>
@@ -59,9 +60,10 @@ function AdminProduct() {
     <div className=" card col-lg-8">
                     <div className="container-sm bg-image hover-overlay ripple" data-mdb-ripple-color="light" style={{ padding: 20 } } >
                         <div className="row" Style="background-color: #FAFAFA"    >
-                            <ul class="list-group list-group-flush">
+                            <ul className="list-group list-group-flush">
                                 {
                                     products.map(e=>
+
                                         <li class="list-group-item" key={e.id}><p><b>ID: </b>{e.id}</p> <p><b>Nombre: </b> {e.name}</p> <p><b>Categoria: </b> {e.idCategory}</p>
                                             <Link to={`/details/${e.id}`}>
                                                 <button class="btn btn-primary" style={{marginRight:10}}>Ir al detalle</button>

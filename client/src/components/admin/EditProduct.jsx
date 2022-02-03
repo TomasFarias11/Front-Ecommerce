@@ -112,19 +112,20 @@ function EditProduct() {
 
 
 
-  return<div className="row">
+  return(
+  <div className="row">
   <div className="col-lg-3">
         <div className="container-sm" style={{ padding: 20 } }>   
             <div >
                 <div className="dropdown">
                 <Link to="/admin/product">
-                <button type="button" class="btn btn-outline-secondary" >Productos</button>
+                <button type="button" className="btn btn-outline-secondary" >Productos</button>
                 </Link>
                 </div>
                 <br/>
                 <div className="dropdown">
                 <Link to="/admin/addProduct">
-                <button type="button" class="btn btn-outline-secondary" >Agregar Productos</button>
+                <button type="button" className="btn btn-outline-secondary" >Agregar Productos</button>
                 </Link>
                 </div>
             </div>
@@ -140,39 +141,39 @@ function EditProduct() {
     {/* el div de abajo muestra los valores actuales*/}
 
     <div className=" card col-lg-6" style={{marginTop:20}}>
-      <div class="form-group">
+      <div className="form-group">
           <h2>Categoria</h2>
         {/*Array.isArray(allCategory) ? allCategory.map(e=> e.idCategory===productId.idCategory return(<p>{e.name}</p>)): null*/}
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <h2>Nombre del Producto</h2>
           <p>{productId.name}</p>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <h2>Descripcion</h2>
           <p>{productId.description}</p>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <h2>Color</h2>
           <p>{Array.isArray(productId.color) && productId.color.map((e) => <span key={e}> {e}. </span>)}</p>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <h2>Precio</h2>
           <p>{productId.price}</p>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <h2>Almacenamiento</h2>
           {productId.storage !== null ? (<p> {Array.isArray(productId.storage) && productId.storage.map((e) => <span key={e}> {e}. </span>)}</p>) : null}
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <h2>Conectividad</h2>
           {productId.connectivity !== null ? (<p>{Array.isArray(productId.connectivity) && productId.connectivity.map((e) => <span key={e}> {e}. </span>)}</p>) : null}
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <h2>Modelos</h2>
           {productId.model !== null ? (<p> {Array.isArray(productId.model) && productId.model.map((e) => <span key={e}> {e}. </span>)}</p>) : null}
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <h2>Ram</h2>
           {productId.ram !== null ? (<p>{Array.isArray(productId.ram) && productId.ram.map((e) => <span key={e}> {e}. </span>)}</p>) : null}
         </div>
@@ -183,63 +184,63 @@ function EditProduct() {
 
       <div className=" card col-lg-6" style={{marginTop:20}}>
       <form onSubmit={e=>handelSubmit(e)}>
-        <div class="form-group">
+        <div className="form-group">
           <label>Categoria</label>
-            <select class="form-control" name="idCategory" onChange={e=>handelInput(e)}>
+            <select className="form-control" name="idCategory" onChange={e=>handelInput(e)}>
               <option>Seleccione una categoria</option>
               {allCategory.map((e)=>(
                 <option value={e.idCategory} key={e.idCategory}>{e.name}</option>))
               }
             </select>
           </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="exampleInputName">Nombre del Producto</label>
-          <input name="name" value={inputBody.name} onChange={e=>handelInput(e)} type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp" placeholder="Ingrese el nombre"/>
+          <input name="name" value={inputBody.name} onChange={e=>handelInput(e)} type="text" className="form-control" id="exampleInputName" aria-describedby="emailHelp" placeholder="Ingrese el nombre"/>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="exampleFormControlTextarea1">Descripcion</label>
-          <textarea name="description" value={inputBody.description} onChange={e=>handelInput(e)} class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+          <textarea name="description" value={inputBody.description} onChange={e=>handelInput(e)} className="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="exampleInputColor">Color</label>
-          <input name="color" value={inputBody.color} onChange={e=>handelArray(e)} type="text" class="form-control" id="exampleInputColor" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
+          <input name="color" value={inputBody.color} onChange={e=>handelArray(e)} type="text" className="form-control" id="exampleInputColor" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="exampleInputPreci">Precio</label>
-          <input name="price" min="1" value={inputBody.price} onChange={e=>handelInput(e)} type="number" class="form-control" id="exampleInputPreci" aria-describedby="emailHelp" placeholder="Ingrese el precio"/>
+          <input name="price" min="1" value={inputBody.price} onChange={e=>handelInput(e)} type="number" className="form-control" id="exampleInputPreci" aria-describedby="emailHelp" placeholder="Ingrese el precio"/>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="exampleInputStock">Cantidad</label>
-          <input name="stock" min="1" value={inputBody.stock} onChange={e=>handelInput(e)} type="number" class="form-control" id="exampleInputStock" aria-describedby="emailHelp" placeholder="Ingrese la cantidad de productos"/>
+          <input name="stock" min="1" value={inputBody.stock} onChange={e=>handelInput(e)} type="number" className="form-control" id="exampleInputStock" aria-describedby="emailHelp" placeholder="Ingrese la cantidad de productos"/>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="exampleInputStorage">Almacenamiento</label>
-          <input name="storage" value={inputBody.storage} onChange={e=>handelArray(e)} type="text" class="form-control" id="exampleInputStorage" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
+          <input name="storage" value={inputBody.storage} onChange={e=>handelArray(e)} type="text" className="form-control" id="exampleInputStorage" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="exampleInputConnectivity">Conectividad</label>
-          <input name="connectivity" value={inputBody.connectivity} onChange={e=>handelArray(e)} type="text" class="form-control" id="exampleInputConnectivity" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
+          <input name="connectivity" value={inputBody.connectivity} onChange={e=>handelArray(e)} type="text" className="form-control" id="exampleInputConnectivity" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="exampleInputModel">Modelos</label>
-          <input name="model" value={inputBody.model} onChange={e=>handelArray(e)} type="text" class="form-control" id="exampleInputModel" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
+          <input name="model" value={inputBody.model} onChange={e=>handelArray(e)} type="text" className="form-control" id="exampleInputModel" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="exampleInputRam">Ram</label>
-          <input name="ram" value={inputBody.ram} onChange={e=>handelArray(e)} type="text" class="form-control" id="exampleInputRam" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
+          <input name="ram" value={inputBody.ram} onChange={e=>handelArray(e)} type="text" className="form-control" id="exampleInputRam" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
         </div>
-         <div class="form-group" style={{marginTop:10, marginBottom:10}}>
+         <div className="form-group" style={{marginTop:10, marginBottom:10}}>
           <label for="exampleFormControlFile1">Imagen</label>
-          <input name="image" value={inputBody.image} onChange={e=>handelInput(e)} type="file" class="form-control-file" id="exampleFormControlFile1"/>
+          <input name="image" value={inputBody.image} onChange={e=>handelInput(e)} type="file" className="form-control-file" id="exampleFormControlFile1"/>
         </div>
-        <button class="btn btn-primary" type="submit">Editar</button>
+        <button className="btn btn-primary" type="submit">Editar</button>
       </form>
       </div>
 
     </div>
     </div>
   </div>
-  ;
+  )
 }
 
 export default EditProduct;

@@ -17,12 +17,12 @@ export default function Boton () {
         items:compra.items,
         payer:compra.payer,
         back_urls:{
-				success: "http://localhost:3000/mercadopago/aceptado",
-				failure: "http://localhost:3000/mercadopago/rechazado",
-				pending: "http://localhost:3000/mercadopago/rechazado"
+				success: "/mercadopago/aceptado",
+				failure: "/mercadopago/rechazado",
+				pending: "/mercadopago/rechazado"
 		},
 		auto_return:"approved",
-        notification_url:'https://endrg8sjycslc.x.pipedream.net'
+        //notification_url:'https://ecommerce-igroup-6.herokuapp.com/mercadopago/callreception'
     })
 
     // useEffect(()=>{

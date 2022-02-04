@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {addProduct, getCategory} from "../../actions/actionAdmin"
 import {useState, useEffect} from "react";
 import swal from 'sweetalert';
+import Swal from 'sweetalert2'
 
 function AddProdcut() {
 
@@ -73,7 +74,11 @@ function AddProdcut() {
         ram:[]
       })
     }else{
-      alert("Complete los campos necesarios para editar el producto")
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Por favor, rellene los campos necesarios para agregar un producto',
+      })
     }
   }
 

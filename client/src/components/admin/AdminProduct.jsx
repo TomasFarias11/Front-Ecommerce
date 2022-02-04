@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux';
+import {useState} from "react";
+import { useParams } from "react-router";
 import {deleteProduct} from "../../actions/actionAdmin"
 import { useEffect } from 'react';
 import { getProducts } from '../../actions/actionProducts'
@@ -10,6 +12,8 @@ function AdminProduct() {
 
     const products = useSelector((state) => state.firstRed.products);
     const dispatch = useDispatch()
+
+    console.log(products)
 
 
     const handelDetele=(e)=>{

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {useEffect, useState} from "react";
 import { useNavigate } from 'react-router-dom';
 import {getUserId, editUser} from "../actions/actionUser.js"
+import swal from 'sweetalert';
 
 
 const EditProfie = () => {
@@ -34,7 +35,11 @@ const EditProfie = () => {
         e.preventDefault()
         dispatch(editUser(userId.id, input))
         window.localStorage.setItem('usuario', JSON.stringify(input))
-        alert("Perfil modificado!")
+        swal("Perfil modificado con exito!", {
+            buttons: false,
+            icon: 'success',
+            timer: 2000,
+          });
         setInput({
             username: input.username,
             email: input.email,

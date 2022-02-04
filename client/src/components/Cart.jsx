@@ -12,7 +12,7 @@ export default function Cart () {
     const cart = useSelector((state) => state.firstRed.cart)
     const cartStorage = JSON.parse(window.localStorage.getItem('carrito'))
     const cartNav = useSelector((state) => state.firstRed.cartNav)
-    const user = useSelector((state) => state.secondRed.userData)
+    const user = JSON.parse(window.localStorage.getItem('usuario'))
     const order = useSelector((state) => state.firstRed.order)
     // console.log('este es el carrito',cart)
 
@@ -56,8 +56,16 @@ export default function Cart () {
 
     const handleCheck = (e) => {
         e.preventDefault()
-        window.localStorage.setItem('order', JSON.stringify(order))
-        Navigate("/mercadopago")
+        if (!user.username) {
+            swal("Debes iniciar sesion primero!", {
+                buttons: false,
+                icon: 'error',
+                timer: 2000,
+              });
+        } else {
+            window.localStorage.setItem('order', JSON.stringify(order))
+            Navigate("/mercadopago")
+        }
     }
 
     // animate__slideOutRight

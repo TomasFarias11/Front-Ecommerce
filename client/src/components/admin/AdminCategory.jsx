@@ -80,28 +80,3 @@ useEffect(() => {
 
 export default AdminCategory;
 
-
-{/*      esto es para editar
-
-
-        function handelInput(e){
-        e.preventDefault()
-        setInputBody({
-            ...inputBody,
-            [e.target.name]:e.target.value
-        })
-
-    }
-
-    function handelSubmit(e){
-        e.preventDefault()
-
-    }
-
-<form  value={e.id} onSubmit={e=>handelSubmit(e)} >
-                                                    <div class="form-group" style={{marginTop:10}}>
-                                                        <input name="name" style={{marginBottom:10}} type="text" class="form-control" value={inputBody.name} onChange={e=>handelInput(e)} aria-describedby="emailHelp"/>
-                                                        <button class="btn btn-primary" style={{marginRight:10}} type="submit">Realizar</button>
-                                                        <button name="name" class="btn btn-danger">Cancelar</button>
-                                                    </div>
-                                                </form>*/}

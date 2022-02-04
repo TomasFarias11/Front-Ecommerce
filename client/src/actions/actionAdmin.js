@@ -10,6 +10,9 @@ export const DELETE_CATEGORY = "DELETE_CATEGORY"
 export const GET_CATEGORY_ID = "GET_CATEGORY_ID"
 
 
+export const GET_USERS = "GET_USERS"
+export const DELETE_USER = "DELETE_USER"
+export const EDIT_USER = "EDIT_USER"
 
 
 
@@ -129,6 +132,52 @@ export function getCategoryById (id) {
             return dispatch({
                 type: "GET_CATEGORY_ID",
                 payload: category.data
+            })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}
+
+export function getUsers(){
+    return async function (dispatch) {
+        try {
+            const allUsers=await axios.get("/user");
+            return dispatch({
+                type: GET_USERS,
+                payload: allUsers.data
+            })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}
+
+export function deleteUser(id){
+    return async (dispatch)=>{
+        try {
+                           await axios.delete(`/admin/user/delete/${id}`);
+            const allUsers=await axios.get("/user");
+            return dispatch({
+                type: DELETE_USER,
+                payload: allUsers.data
+            })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}
+
+export function editUser(id, admin){
+    console.log('ADMIN',admin)
+    const a = {admin:admin}
+    return async (dispatch)=>{
+        try {
+                           await axios.put(`/admin/user/edit/${id}`,a);
+            const allUsers=await axios.get("/user");
+            return dispatch({
+                type: EDIT_USER,
+                payload: allUsers.data
             })
         } catch (err) {
             console.log(err);

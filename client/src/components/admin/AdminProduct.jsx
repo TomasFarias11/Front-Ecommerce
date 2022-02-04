@@ -43,7 +43,6 @@ function AdminProduct() {
         dispatch(getProducts())
     },[])
 
-
   return (
     <div className="row">
     <div className="col-lg-3">
@@ -63,15 +62,14 @@ function AdminProduct() {
                             <ul className="list-group list-group-flush">
                                 {
                                     products.map(e=>
-
-                                        <li class="list-group-item" key={e.id}><p><b>ID: </b>{e.id}</p> <p><b>Nombre: </b> {e.name}</p> <p><b>Categoria: </b> {e.idCategory}</p>
+                                        <li className="list-group-item" key={e.id}><p><b>ID: </b>{e.id}</p> <p><b>Nombre: </b> {e.name}</p> <p><b>Categoria: </b> {e.idCategory}</p>
                                             <Link to={`/details/${e.id}`}>
-                                                <button class="btn btn-primary" style={{marginRight:10}}>Ir al detalle</button>
+                                                <button className="btn btn-primary" style={{marginRight:10}}>Ir al detalle</button>
                                             </Link>
                                             <Link to={`/admin/edit/${e.id}`}>
-                                                <button class="btn btn-warning" style={{marginRight:10}}>Editar</button>
+                                                <button className="btn btn-warning" style={{marginRight:10}}>Editar</button>
                                             </Link>
-                                            <button class="btn btn-danger" name="id" value={e.id} onClick={(e)=>handelDetele(e)}>X</button>
+                                            <button className="btn btn-danger" name="id" value={e.id} onClick={(e)=>handelDetele(e)}>X</button>
                                         </li>
                                     )
                                 }

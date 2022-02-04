@@ -17,6 +17,12 @@ import LoginScreen from "./pages/LoginScreen";
 import {useDispatch} from 'react-redux';
 import {setCart} from './actions/actionProducts.js'
 import Formulario from "./pages/Formulario"
+import Boton from "./MercadoPago/Boton";
+import CheckOut from './components/CheckOut'
+import Aceptado from "./MercadoPago/Aceptado";
+import Rechazado from "./MercadoPago/Rechazado";
+import AdminUser from "./components/admin/AdminUser";
+import Compra from './components/Compra';
 import Profile from "./components/Perfil"
 
 function App() {
@@ -50,6 +56,11 @@ function App() {
       <Route exact path="/category/:category" element={<Products/>}/>
       <Route exact path="/search" element={<ProductsBySearch/>}/>
       <Route exact path= "/user" element={<Formulario/>}/>
+      <Route exact path= "/mercadopago" element={<CheckOut/>}/>
+      <Route exact path= "/mercadopago/aceptado" element={<Aceptado/>}/>
+      <Route exact path= "/mercadopago/compra" element={<Compra/>}/>
+      <Route exact path= "/mercadopago/boton" element={<Boton/>}/>
+      <Route exact path= "/admin/user" element={<AdminUser/>}/>
       <Route exact path= "/profile" element={<Profile/>}/>
       </Routes>
       

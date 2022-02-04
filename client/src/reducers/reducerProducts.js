@@ -225,9 +225,22 @@ export default function reducerProducts(state=initialState2, action){
 
             // CREANDO LOS USUARIOS
 
-        case USER_CREATE:
-            return{
-                ...state,                
+            case USER_CREATE:
+                return{
+                    ...state,
+                    
+                }
+
+            case LIST_USERS:
+                return{
+                    ...state,
+                    listUser: action.payload                }
+
+            case DELETE_PRODUCT:
+                state.allProducts = state.allProducts.filter(e => e.id !== action.payload)
+                return{
+                    ...state,
+                    products: state.allProducts 
             }
 
         case LIST_USERS:

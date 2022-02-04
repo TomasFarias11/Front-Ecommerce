@@ -32,8 +32,6 @@ export default function Details() {
 
   const { id } = useParams();
 
-  console.log("este es el modelo", productId.model)
-
 
   // console.log('el carrito', cart)
 
@@ -57,42 +55,21 @@ export default function Details() {
           <br />
             <h3>Descripcion</h3>
           <p className="lead">{productId.description}</p>
-
-          {productId.model !== null  ? productId.model[0]!==undefined ?(
+          {productId.model !== null ? (
           <p>
             <b>Model:</b> {Array.isArray(productId.model) && productId.model.map((e) => <span key={e}> {e}. </span>)}
-          </p>)
-          :null
-           : null}
-
-          {productId.color !== null  ? productId.color[0]!==undefined ?(
+          </p>) : null}
           <p>
             <b>Color:</b>{Array.isArray(productId.color) && productId.color.map((e) => <span key={e}> {e}. </span>)}
-          </p>)
-          :null
-          :null}
-
-          {productId.storage !== null ? productId.storage[0]!==undefined ? (
+          </p>
+          {productId.storage !== null ? (
           <p>
             <b>Almacenamiento:</b> {Array.isArray(productId.storage) && productId.storage.map((e) => <span key={e}> {e}. </span>)}
-          </p>) 
-          :null
-          :null}
-
-          {productId.ram !== null ? productId.ram[0]!==undefined ?(
+          </p>) : null}
+          {productId.ram !== null ? (
           <p>
             <b>Ram:</b> {Array.isArray(productId.ram) && productId.ram.map((e) => <span key={e}> {e}. </span>)}
-          </p>)
-          :null 
-          : null}
-
-          {productId.connectivity !== null ? productId.connectivity[0]!==undefined ?(
-          <p>
-            <b>Conectividad:</b> {Array.isArray(productId.connectivity) && productId.connectivity.map((e) => <span key={e}> {e}. </span>)}
-          </p>)
-          :null 
-          : null}
-          
+          </p>) : null}
           <p>
             <b>Precio:</b> ${formato.format(productId.price)}
           </p>

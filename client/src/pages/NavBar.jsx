@@ -104,7 +104,7 @@ useEffect(() => {
                                     </strong>
                                 </p>
                             </li>
-                            <li className="nav-item">
+                            <li className="nav-item"> 
                                 <a className="nav-link " aria-current="page" href="#!" onClick={() => handleLogout()}> Logout </a>
                             </li>
                             <li className="nav-item dropdown">
@@ -121,18 +121,8 @@ useEffect(() => {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link style={{ textDecoration: "none", color: "white" }} to="/products">
-                                            <span className="dropdown-item" href="#!"> Opcion 3 </span>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link style={{ textDecoration: "none", color: "white" }} to="/products">
-                                            <span className="dropdown-item" href="#!"> Opcion 4 </span>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link style={{ textDecoration: "none", color: "white" }} to="/products">
-                                            <span className="dropdown-item" href="#!"> Opcion 5 </span>
+                                        <Link style={{ textDecoration: "none", color: "white" }} to="/admin/user">
+                                            <span className="dropdown-item" href="#!"> Usuarios </span>
                                         </Link>
                                     </li>
                                 </ul>
@@ -151,7 +141,7 @@ useEffect(() => {
                             </li>
                             <ul className="nav-item">  
                                 <li className="nav-item">
-                                    <a className="nav-link " aria-current="page" href="#!" onClick={() => handleLogout()}> Logout </a>
+                                    <a className="nav-link " aria-current="page" href="/login" onClick={() => handleLogout()}> Logout </a>
                                 </li>
                             </ul>
                         </ul>

@@ -111,7 +111,7 @@ const Footer = () =>{
                   Useful links
                 </h6>
                 <p>
-                  <a href="/contactanos" className="text-reset">Pricing</a>
+                  <a href="/contactanos" className="text-reset">Contacto</a>
                 </p>
                 <p>
                   <a href="#!" className="text-reset">Settings</a>

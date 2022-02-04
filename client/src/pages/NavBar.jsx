@@ -152,7 +152,7 @@ useEffect(() => {
                             </p>
                             </li>
                             <ul className="nav-item">  
-                                <li className="nav-item">
+                                <li className="nav-item list-unstyled">
                                     <a className="nav-link " aria-current="page" href="/login" onClick={() => handleLogout()}> Logout </a>
                                 </li>
                             </ul>

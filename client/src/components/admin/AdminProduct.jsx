@@ -78,13 +78,15 @@ function AdminProduct() {
                         :  "Nueva Categoria"}
                     </td>
                     <td>
-                        <Link to={`/details/${e.id}`}>
-                            <button className="btn btn-outline-primary" style={{marginRight:10}}>Detalles</button>
-                        </Link>
-                        <Link to={`/admin/edit/${e.id}`}>
-                            <button className="btn btn-outline-warning" style={{marginRight:10}}>Editar</button>
-                        </Link>
-                        <button className="btn btn-outline-danger" name="id" value={e.id} onClick={(e)=>handelDetele(e)}><i className="fas fa-trash-alt"></i></button>
+                        <div className="d-flex justify-content-center">
+                            <Link to={`/details/${e.id}`}>
+                                <button className="btn btn-outline-primary" style={{marginRight:10}}>Detalles</button>
+                            </Link>
+                            <Link to={`/admin/edit/${e.id}`}>
+                                <button className="btn btn-outline-warning" style={{marginRight:10}}>Editar</button>
+                            </Link>
+                            <button className="btn btn-outline-danger" name="id" value={e.id} onClick={(e)=>handelDetele(e)}><i className="fas fa-trash-alt"></i></button>
+                        </div>
                     </td>
                 </tr>
                 )}

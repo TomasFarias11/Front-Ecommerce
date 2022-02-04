@@ -1,17 +1,8 @@
 import React from "react";
-import swal from 'sweetalert';
-import { useEffect, useState } from "react";
-import {putReview , postReview , getReviews, postUserCreate} from '../actions/actionProducts'
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { postUserCreate} from '../actions/actionProducts'
+import { useDispatch  } from "react-redux";
 import { Link } from "react-router-dom";
-
-
-
-// debo crear la action que me permita conectar con el post
-// luego el reducer que asocia la action en donde tendre una copia del estado que llega
-// creo el componente que contendra la logica del formlario al que le voy hacer post
-// enlazar el componente con el navbar o viceversa para mostrar el componente
 
 function validate(input) {
     let errors = {}
@@ -28,13 +19,9 @@ function validate(input) {
     return errors;
 }
 
-
 const CreateUser = () =>{
-
-    const userCreated = useSelector((state) => state.firstRed.users)
-    console.log(userCreated, "ESTE ES EL ESTADO GLOBAL")
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+  
     const[error, setError] = useState('')
 
     const [input, setInput] = useState({
@@ -48,53 +35,6 @@ const CreateUser = () =>{
        
     });
 
-    console.log(input, "ESTE ES EL INPUT")
-
-    // function handleSubmit(e){
-    //     e.preventDefault()
-
-    //     dispatch(CreateUser(input))
-    //     .then(() => {
-    //         swal("useuario creado", {
-    //             buttons: false,
-    //             icon: 'success',
-    //             timer: 1500,
-    //         })
-    //     })
-        
-
-    // }
-    
-
-    function User(e, input){
-        e.preventDefault();
-        
-        dispatch(CreateUser(input))
-        .then(() => {
-          swal("User created! ", {
-            buttons: false,
-            icon: 'success',
-            timer: 1500,
-            }
-            )
-          navigate('/users/products')
-          
-      })
-
-    //   
-
-    //   setInput({
-    //     username: '',
-    //     email: '',
-    //     password: '',
-    //     name: '',
-    //     lastName: '',
-    //     image: '',
-    //     address: '' 
-    //   })
-
-    }
-
     function handleChange(e){
         setInput({
             ...input,
@@ -105,9 +45,7 @@ const CreateUser = () =>{
 
     function handleSubmit(e){
         e.preventDefault()
-        console.log(input, "este es el input")
         dispatch(postUserCreate(input))
-        alert("usuario creado")
         setInput({
                 username: '',
                 email: '',
@@ -138,7 +76,7 @@ const CreateUser = () =>{
                                 <span>
                                     Already have an account?
                                 </span> 
-                                <Link to="/user"><span>sign in</span></Link>
+                                <Link to="/login"><span>sign in</span></Link>
                                
                             </div>
                             <div className="container">
@@ -152,7 +90,8 @@ const CreateUser = () =>{
                                             aria-label="Username" 
                                             value={input.name} 
                                             name="name"
-                                            onChange={(e) => handleChange(e)} required
+                                            onChange={(e) => handleChange(e)} 
+                                            required={true}
                                             /> 
                                             <span>
                                             </span> 
@@ -162,7 +101,7 @@ const CreateUser = () =>{
                                             placeholder="Ultimo nombre" 
                                             value={input.lastName} 
                                             name="lastName"
-                                            onChange={(e) => handleChange(e)} required aria-label="Server"
+                                            onChange={(e) => handleChange(e)} required={true} aria-label="Server"
                                             /> 
                                         </div>
                                     
@@ -172,7 +111,7 @@ const CreateUser = () =>{
                                         type="text" placeholder="nombre de usuario" 
                                         value={input.username}
                                         name="username"
-                                        onChange={(e) => handleChange(e)} required
+                                        onChange={(e) => handleChange(e)} required={true}
                                         /> 
                                     </div>
                                     <div className="mt-3 px-3"> 
@@ -181,7 +120,7 @@ const CreateUser = () =>{
                                         placeholder="Password" 
                                         value={input.password} 
                                         name="password"
-                                        onChange={handleChange} required
+                                        onChange={handleChange} required={true}
                                         /> 
                                     </div>
                                     <div className="mt-3 px-3">
@@ -191,7 +130,7 @@ const CreateUser = () =>{
                                         placeholder="E-mail" 
                                         value={input.email} 
                                         name="email"
-                                        onChange={handleChange} required
+                                        onChange={handleChange} required={true}
                                         /> 
                                     </div>
                                     <div className="mt-3 px-3"> 
@@ -201,7 +140,7 @@ const CreateUser = () =>{
                                         placeholder="Dirección residencia" 
                                         value={input.address} 
                                         name="address"
-                                        onChange={handleChange} required
+                                        onChange={handleChange} required={true}
                                         /> 
                                     </div>
                                     
@@ -210,16 +149,13 @@ const CreateUser = () =>{
                                         <h1>aqui va una imagen</h1>
                                     </div>
 
-                                </div>
-                               
-                            
-                                
+                                </div>                                
                             </div>
                             <br/>
                         </div>
                     </div>
                 </div>
-                <button type='submit' onSubmit={(e) => User(e,input)}>Crear usuario</button>
+                <button type='submit' >Crear usuario</button>
             </form>
             
 

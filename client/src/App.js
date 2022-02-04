@@ -23,6 +23,7 @@ import Rechazado from "./MercadoPago/Rechazado";
 import AdminUser from "./components/admin/AdminUser";
 import Compra from './components/Compra';
 import Profile from "./components/Perfil"
+import Contact from "./components/Contact";
 
 function App() {
   
@@ -41,7 +42,7 @@ function App() {
     <div className="App">
       <NavBar />
       <Routes>
-        <Route exact path='/login' element={<LoginScreen />} />      
+      <Route exact path='/login' element={<LoginScreen />} />      
       <Route exact path="*" element={<NotFound/>}/>
       <Route exact path="/" element={<Home/>}/>
       <Route exact path="/admin" element={<Admin/>}/>
@@ -58,20 +59,9 @@ function App() {
       <Route exact path= "/mercadopago/aceptado" element={<Aceptado/>}/>
       <Route exact path= "/mercadopago/compra" element={<Compra/>}/>
       <Route exact path= "/mercadopago/boton" element={<Boton/>}/>
-        <Route exact path="*" element={<NotFound/>}/>
-        <Route exact path="/" element={<Home/>}/>
-        <Route exact path="/admin" element={<Admin/>}/>
-        <Route exact path="/admin/product" element={<AdminProduct/>}/>
-        <Route exact path="/admin/addProduct" element={<AddProduct/>}/>
-        <Route exact path="/admin/Category" element={<AdminCategory/>}/>
-        <Route exact path="/admin/addCategory" element={<AddCategory/>}/>
-        <Route exact path="/admin/edit/:id" element={<EditProduct/>}/>
-        <Route exact path= "/admin/user" element={<AdminUser/>}/>
-        <Route exact path="/details/:id" element={<Details/>}/>
-        <Route exact path="/category/:category" element={<Products/>}/>
-        <Route exact path="/search" element={<ProductsBySearch/>}/>
-        <Route exact path= "/user" element={<Formulario/>}/>
-        <Route exact path= "/profile" element={<Profile/>}/>
+      <Route exact path= "/admin/user" element={<AdminUser/>}/>
+      <Route exact path= "/profile" element={<Profile/>}/>
+      <Route exact path= "/contactanos" element={<Contact/>}/>
       </Routes>
       
       <Footer/>

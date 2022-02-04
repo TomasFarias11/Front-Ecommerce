@@ -17,7 +17,7 @@ const EditProfie = () => {
         name: userStorage.name,
         lastName: userStorage.lastName,
         address: userStorage.address,
-        image: userStorage.image,
+        image: userStorage.image ? userStorage.image : "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png",
         admin: userStorage.admin,
         // password: '',
         id: userStorage.id
@@ -76,7 +76,7 @@ const EditProfie = () => {
                 </div>
                 <div>
                     <label>Imagen:</label>
-                    <input type="text" value = {input.image} name="image"/>
+                    <input type="text" value = {input.image} name="image" onChange={(e) => handleChange(e)}/>
                 </div>
                 <div>
                     <div>

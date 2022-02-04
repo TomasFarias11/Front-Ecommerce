@@ -1,11 +1,14 @@
-import {GET_CATEGORY} from "../actions/actionAdmin"
+
+import {GET_CATEGORY, EDIT_CATEGORY, DELETE_CATEGORY, GET_CATEGORY_ID, ADD_CATEGORY} from "../actions/actionAdmin"
 import {GET_USERS} from "../actions/actionAdmin"
 import {DELETE_USER} from "../actions/actionAdmin"
 import { EDIT_USER } from "../actions/actionAdmin"
 
 
+
 const initialState={
 	category:[],
+	categoryId:[],
 	users:[],
 	allUsers:[]
 	
@@ -18,7 +21,26 @@ export default function reducerAdmin(state=initialState, action){
 			...state,
 			category:action.payload,
 			}
-
+		case ADD_CATEGORY:
+			return{
+				...state,
+				category:action.payload,
+			}
+		case EDIT_CATEGORY:
+			return{
+				...state,
+				category:action.payload
+			}
+		case DELETE_CATEGORY:
+			return{
+				...state,
+				category:action.payload
+			}
+		case GET_CATEGORY_ID:
+			return{
+				...state,
+				categoryId:action.payload
+			}
 		case GET_USERS:
 			state.users.length = 0;
             state.allUsers.length = 0;

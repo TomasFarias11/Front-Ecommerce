@@ -12,8 +12,9 @@ import EditProduct from "./components/admin/EditProduct"
 import AdminProduct from "./components/admin/AdminProduct"
 import AdminCategory from "./components/admin/AdminCategory"
 import AddCategory from "./components/admin/AddCategory"
+import EditCategory from "./components/admin/EditCategory"
 import LoginScreen from "./pages/LoginScreen";
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {setCart} from './actions/actionProducts.js'
 import Formulario from "./pages/Formulario"
 import Boton from "./MercadoPago/Boton";
@@ -49,6 +50,7 @@ function App() {
       <Route exact path="/admin/product" element={<AdminProduct/>}/>
       <Route exact path="/admin/addProduct" element={<AddProduct/>}/>
       <Route exact path="/admin/Category" element={<AdminCategory/>}/>
+      <Route exact path="/admin/Category/:id" element={<EditCategory/>}/>
       <Route exact path="/admin/addCategory" element={<AddCategory/>}/>
       <Route exact path="/admin/edit/:id" element={<EditProduct/>}/>
       <Route exact path="/details/:id" element={<Details/>}/>

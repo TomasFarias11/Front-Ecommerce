@@ -93,11 +93,11 @@ export default function Reviews ({id}) {
                     </span>
                     <div>
                       <h6>Calificacion: {
-                             re.calification===  1? <i className="fas fa-star"></i>
-                           : re.calification === 2? <div><i className="fas fa-star"></i><i className="fas fa-star"></i></div>
-                           : re.calification === 3? <div><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i></div>
-                           : re.calification === 4? <div><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i></div>
-                           : re.calification === 5? <div><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i></div>
+                             re.calification == 1? <i className="fas fa-star"></i>
+                           : re.calification == 2? <div><i className="fas fa-star"></i><i className="fas fa-star"></i></div>
+                           : re.calification == 3? <div><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i></div>
+                           : re.calification == 4? <div><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i></div>
+                           : re.calification == 5? <div><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i></div>
                            : <h1>1</h1>
                         }</h6>
                     </div>

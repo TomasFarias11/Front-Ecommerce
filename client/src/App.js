@@ -24,6 +24,7 @@ import Rechazado from "./MercadoPago/Rechazado";
 import AdminUser from "./components/admin/AdminUser";
 import Compra from './components/Compra';
 import Profile from "./components/Perfil"
+import Contact from "./components/Contact";
 
 function App() {
   
@@ -62,6 +63,7 @@ function App() {
       <Route exact path= "/mercadopago/boton" element={<Boton/>}/>
       <Route exact path= "/admin/user" element={<AdminUser/>}/>
       <Route exact path= "/profile" element={<Profile/>}/>
+      <Route exact path= "/contactanos" element={<Contact/>}/>
       </Routes>
       
       <Footer/>

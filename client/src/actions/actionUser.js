@@ -64,15 +64,12 @@ export const googleLogin = () => {
 export const localLoginUser = (datos) => {
   return async (dispatch) => {
     const { data } = await axios.post("/user/login", datos )
+    console.log('data del login', data)
     dispatch({
       type: LOCAL_LOGIN_USER,
       payload: data,
     },
-    window.localStorage.setItem('usuario', JSON.stringify({
-      username: data.username,
-      admin: data.admin,
-      id: data.id
-    })))
+    window.localStorage.setItem('usuario', JSON.stringify(data)))
   }
 };
 

@@ -1,8 +1,8 @@
-import React from "react";
+import {React, useEffect} from "react";
 import { Link } from "react-router-dom";
 import SearchAutocomplete from "./SearchAutocomplete";
 import {useDispatch, useSelector} from 'react-redux';
-import {getProductByCategory, setCartOn, setCartOff} from '../actions/actionProducts.js'
+import {getProductByCategory, setCartOn, setCartOff, setCart, createOrder, editOrder} from '../actions/actionProducts.js'
 import {getUserId} from '../actions/actionUser.js'
 import Cart from "../components/Cart.jsx"
 import { useNavigate } from 'react-router-dom';
@@ -13,11 +13,13 @@ import { useNavigate } from 'react-router-dom';
 function NavBar() {
     const dispatch = useDispatch()
     const Navigate = useNavigate()
-    // const [cartOnScreen, setCartOnScreen] = useState(false)
+    const allProducts = useSelector((state) => state.firstRed.products)
     const cartOnScreen = useSelector((state) => state.firstRed.cartNav)
     const user = JSON.parse(window.localStorage.getItem('usuario'))
     const userData = useSelector((state) => state.secondRed.userData)
     const cart = useSelector((state) => state.firstRed.cart)
+    const order = useSelector((state) => state.firstRed.order)
+    const orderAlert = useSelector((state) => state.firstRed.orderAlert)
 
 const handleClick = (e) => {
     e.preventDefault();
@@ -30,18 +32,34 @@ const handleClick = (e) => {
 }
 
 const handleLogout = () => {
-    // dispatch(createOrder(userData.id, {carrito: cart}))
     window.localStorage.setItem('carrito', JSON.stringify([]))
-    // dispatch(setCart([]))
     window.localStorage.setItem('usuario', JSON.stringify([]))
     window.location.reload()
 }
 
-// const handleProfile = (e) => {
-//     e.preventDefault()
-//     Navigate(`/profile`)
+useEffect(() => {
+    if (userData && userData.username) {
+        dispatch(createOrder(userData.id, {carrito: cart}))
+    }
+},[userData])
 
-// }
+useEffect(() => {
+    if (order && order[0]) {
+        dispatch(setCart(order[0]?.carrito))
+    }
+}, [orderAlert])
+
+useEffect(()=>{
+    if (user && user.username) {
+        dispatch(editOrder(user.id, {carrito: cart}))
+    }
+},[cart])
+
+useEffect(() => {
+    if (order && order[0]) {
+        dispatch(setCart(order[0]?.carrito))
+    } 
+},[allProducts])
 
   return (
         <nav className="navbar navbar-expand-lg navbar-dark  h6 sticky-top" style={{background: "#111111"}}>
@@ -98,7 +116,7 @@ const handleLogout = () => {
                                     </strong>
                                 </p>
                             </li>
-                            <li className="nav-item">
+                            <li className="nav-item"> 
                                 <a className="nav-link " aria-current="page" href="#!" onClick={() => handleLogout()}> Logout </a>
                             </li>
                             <li className="nav-item dropdown">
@@ -135,7 +153,7 @@ const handleLogout = () => {
                             </li>
                             <ul className="nav-item">  
                                 <li className="nav-item">
-                                    <a className="nav-link " aria-current="page" href="#!" onClick={() => handleLogout()}> Logout </a>
+                                    <a className="nav-link " aria-current="page" href="/login" onClick={() => handleLogout()}> Logout </a>
                                 </li>
                             </ul>
                         </ul>

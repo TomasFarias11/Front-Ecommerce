@@ -5,6 +5,7 @@ import { firebase, googleAuthProvider } from "../firebase";
 export const  LOGIN_GOOGLE = "LOGIN_GOOGLE";
 export const LOCAL_LOGIN_USER = "LOCAL_LOGIN_USER";
 export const GET_USER_ID = "GET_USER_ID";
+export const EDIT_USER = "EDIT_USER";
 
 // .auth().signInWithPopup(googleAuthProvider).then(data => console.log(data))
 
@@ -34,22 +35,24 @@ export const googleLogin = () => {
               type: "LOGIN_GOOGLE",
               payload:{ username:response.data.username, admin:response.data.admin, id:response.data.id },
             },
-            window.localStorage.setItem('usuario', JSON.stringify({
-              username: response.data.username,
-              id: response.data.id,
-              admin: response.data.admin
-            })))
+            // window.localStorage.setItem('usuario', JSON.stringify({
+            //   username: response.data.username,
+            //   id: response.data.id,
+            //   admin: response.data.admin
+            // })))
+            window.localStorage.setItem('usuario', JSON.stringify(response.data)))
             : response.status === 202 ? 
             dispatch({
               type: "LOGIN_GOOGLE",
-              payload:{ username:userAuthGoogle.username, admin:userAuthGoogle.admin, id:response.data.id },
+              payload:{ username:response.data.username, admin:response.data.admin, id:response.data.id },
             },
             // console.log('respuesta del 202',response.data),
-            window.localStorage.setItem('usuario', JSON.stringify({
-              username: userAuthGoogle.username,
-              admin: userAuthGoogle.admin,
-              id:response.data.id,
-            })))
+            // window.localStorage.setItem('usuario', JSON.stringify({
+            //   username: response.data.username,
+            //   admin: response.data.admin,
+            //   id:response.data.id,
+            // })))
+            window.localStorage.setItem('usuario', JSON.stringify(response.data)))
             : console.log("este cosole.log no deberia aparecer")
          
       } catch (error) {
@@ -66,7 +69,7 @@ export const localLoginUser = (datos) => {
       payload: data,
     },
     window.localStorage.setItem('usuario', JSON.stringify({
-      username: data.userName,
+      username: data.username,
       admin: data.admin,
       id: data.id
     })))
@@ -78,6 +81,16 @@ export const getUserId = (idUser) => {
     const user = await axios.get(`/user/${idUser}`)
     dispatch({
       type: GET_USER_ID,
+      payload: user.data
+    })
+  }
+}
+
+export const editUser = (idUser, payload) => {
+  return async (dispatch) => {
+    const user = await axios.put(`/user/${idUser}`, payload)
+    dispatch({
+      type: EDIT_USER,
       payload: user.data
     })
   }

@@ -237,10 +237,9 @@ export default function reducerProducts(state=initialState2, action){
                     listUser: action.payload                }
 
             case DELETE_PRODUCT:
-                state.allProducts = state.allProducts.filter(e => e.id !== action.payload)
                 return{
                     ...state,
-                    products: state.allProducts 
+                    products: action.payload  
             }
 
         case LIST_USERS:

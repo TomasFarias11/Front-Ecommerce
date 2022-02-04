@@ -1,4 +1,4 @@
-import {GET_CATEGORY, EDIT_CATEGORY, DELETE_CATEGORY, GET_CATEGORY_ID} from "../actions/actionAdmin"
+import {GET_CATEGORY, EDIT_CATEGORY, DELETE_CATEGORY, GET_CATEGORY_ID, ADD_CATEGORY} from "../actions/actionAdmin"
 
 
 const initialState={
@@ -13,6 +13,11 @@ export default function reducerAdmin(state=initialState, action){
 		return{
 			...state,
 			category:action.payload,
+			}
+		case ADD_CATEGORY:
+			return{
+				...state,
+				category:action.payload,
 			}
 		case EDIT_CATEGORY:
 			return{

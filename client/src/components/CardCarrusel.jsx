@@ -26,11 +26,12 @@ const CardCarrusel = () =>{
 	const[productsPerPage, setProductsPerPage]=useState(4);
 	const indexOfLastProduct = currentPage * productsPerPage;
 	const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-	const currentProduct = allProducts.slice(indexOfFirstProduct,indexOfLastProduct);
+    const filtro=allProducts.filter(p=>p.idCategory !== null  && p.stock > 0); // le hacemos un filtro a todos los productos antes de enviarlos al carrusel
+	const currentProduct = filtro.slice(indexOfFirstProduct,indexOfLastProduct);
     // console.log('estos son los de jose', currentProduct)
 
     const handleprev=()=>{
-        var pagina=Math.ceil(allProducts.length / productsPerPage);
+        var pagina=Math.ceil(filtro.length / productsPerPage);
 		if(currentPage===1){
             setCurrentPage(pagina)
         }else{
@@ -40,7 +41,7 @@ const CardCarrusel = () =>{
 	};
 
     const handlenext=()=>{
-        var pagina=Math.ceil(allProducts.length / productsPerPage);
+        var pagina=Math.ceil(filtro.length / productsPerPage);
 		if(currentPage===pagina){
             pagina=1;
             setCurrentPage(pagina)
@@ -65,24 +66,11 @@ const CardCarrusel = () =>{
         
       }
 
-    // useEffect(()=>{
-    //     cart.length > JSON.parse(window.localStorage.getItem('carrito')).length ? window.localStorage.setItem('carrito', JSON.stringify(cart)) : window.localStorage.getItem('carrito')
-    //     if (user && user.username) {
-    //         dispatch(editOrder(user.id, {carrito: cart}))
-    //     }
-    // },[cart])
-
-    // useEffect(() => {
-    //     if (order && order[0]) {
-    //         dispatch(setCart(order[0]?.carrito))
-    //     } 
-    // },[allProducts])
-
        
     return(<>
         <div className="container" style={{padding: "15px"}}>
             <div className="row animate__animated animate__slideInRight">
-                {currentProduct ? currentProduct.filter(p=>p.stock > 0 && p.idCategory!==null).map((e)=>{
+                {currentProduct ? currentProduct.map((e)=>{
                     return(
                     <div className="col-3 animate__animated animate__slideInRight img-fluid" key={e.id} >
                         <div className="card2 ">
@@ -107,27 +95,7 @@ const CardCarrusel = () =>{
                     </div>
                     )
                 })
-            : allProducts.filter(p=>p.stock > 0).map((e)=>{
-                <div className="card">
-                            <Link to={`/details/${e.id}`}>
-                                <img src={e.image} alt="" className="card-img-top" height="310px"/>
-                            </Link>
-                            <div className="card-body"  >
-                                <h5>{e.name}</h5>
-                                <p className="card-text">Price: {e.price}</p>
-                                <p className="card-text">Amount: {e.stock}</p>
-                            </div>
-                            <div>
-                                {cart.some((c) => e.name === c.name) ? 
-                                <div className="alert alert-warning" role="alert">
-                                Agregado al carrito
-                                </div>
-                                :
-                            <button type="button" value={e.id} className="btn btn-outline-primary" onClick={(e) => handleClick(e)}>Añadir al carrito</button>
-                            }
-                            </div>
-                        </div>
-            })}
+            : null}
             
             </div>
             <nav className="position-absolute start-50 translate-middle-x" aria-label="Page navigation example">

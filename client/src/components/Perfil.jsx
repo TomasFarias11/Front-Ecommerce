@@ -36,7 +36,7 @@ const Perfil = () =>{
           <div className="card">
             <div className="card-body">
               <div className="d-flex flex-column align-items-center text-center">
-                <img src={userStorage.image} alt="Admin" className="rounded-circle" width="150"/>
+                <img src={userStorage.image ? userStorage.image : 'http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png'} alt="no se encuentra la imagen panita" className="rounded-circle" width="150"/>
                 <div className="mt-3">
                   <h4>{userStorage.username}</h4>
                 </div>

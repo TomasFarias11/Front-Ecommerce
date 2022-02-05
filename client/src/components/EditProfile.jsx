@@ -18,7 +18,7 @@ const EditProfie = () => {
         name: userStorage.name,
         lastName: userStorage.lastName,
         address: userStorage.address,
-        image: userStorage.image ? userStorage.image : "http://assets.stickpng.com/images/585e4bd7cb11b227491c3397.png",
+        image: userStorage.image ? userStorage.image : "https://i.postimg.cc/cHWhrsQL/user.png",
         admin: userStorage.admin,
         // password: '',
         id: userStorage.id
@@ -55,39 +55,69 @@ const EditProfie = () => {
     }
 
     return (
-        <div>
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <div>
+        <div className=" card col-lg-13 mt-4">
+            <div className="container mt-1 mb-4 mx-0">
+              <form onSubmit={(e) => handleSubmit(e)}>
+              <div className="row mt-3">
+              <div className="col-md-12">
+              <div className="card">              
+              <div className="card-header d-flex align-items-center">
+                    <div className="container-sm d-flex justify-content-center" style={{ padding:0, paddingTop:0 }}> 
+                      <div className="badge fs-5 bg-info text-wrap" style={{ width: "20rem" }}>
+                        Editar información de Usuario
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div className='card-group'>
+                    <div className="card-body">
+                    <div className="col-sm-10">
+
                     <label>Nombre de Usuario:</label>
+                    <input className="form-control" type="text" value = {input.username} name="username" onChange={(e) => handleChange(e)}/>
                 </div>
-                    <input type="text" value = {input.username} name="username" onChange={(e) => handleChange(e)}/>
-                <div>
-                    <div>
+                </div>
+                </div>
+                <div className='card-group'>
+                    <div className="card-body">
+                    <div className="col-sm-10">
                         <label>Email:</label>
+                    <input className="form-control" type="text" value = {input.email} name="email" onChange={(e) => handleChange(e)}/>
                     </div>
-                    <input type="text" value = {input.email} name="email" onChange={(e) => handleChange(e)}/>
+                    </div>
                 </div>
-                <div>
-                    <div>
+                <div className='card-group'>
+                    <div className="card-body">
+                    <div className="col-sm-10">
                         <label>Nombre:</label>
+                    <input className="form-control" type="text" value = {input.name} name="name" onChange={(e) => handleChange(e)}/>
                     </div>
-                    <input type="text" value = {input.name} name="name" onChange={(e) => handleChange(e)}/>
+                    </div>
                 </div>
-                <div>
-                    <div>
+                <div className='card-group'>
+                    <div className="card-body">
+                    <div className="col-sm-10">
                         <label>Apellido:</label>
+                    <input className="form-control" type="text" value = {input.lastName} name="lastName" onChange={(e) => handleChange(e)}/>
                     </div>
-                    <input type="text" value = {input.lastName} name="lastName" onChange={(e) => handleChange(e)}/>
+                    </div>
                 </div>
-                <div>
+                <div className='card-group'>
+                    <div className="card-body">
+                    <div className="col-sm-10">
                     <label>Imagen:</label>
-                    <input type="text" value = {input.image} name="image" onChange={(e) => handleChange(e)}/>
+                    <input className="form-control" type="text" value = {input.image} name="image" onChange={(e) => handleChange(e)}/>
                 </div>
-                <div>
-                    <div>
+                </div>
+                </div>
+                <div className='card-group'>
+                    <div className="card-body">
+                    <div className="col-sm-10">
                         <label>Domicilio:</label>
+                    <input className="form-control" type="text" value = {input.address} name="address" onChange={(e) => handleChange(e)}/>
                     </div>
-                    <input type="text" value = {input.address} name="address" onChange={(e) => handleChange(e)}/>
+                    </div>
                 </div>
                 {/* <div>
                     <div>
@@ -95,9 +125,20 @@ const EditProfie = () => {
                     </div>
                     <input type="password" value = {input.password} name="password" onChange={(e) => handleChange(e)}/>
                 </div> */}
-                
-                <button type="submit">Editar Perfil</button>
-            </form>
+                                  <div className="card-body">
+                    <div className="col-sm-11">
+                      <div className="form-group d-flex justify-content-center mt-2">
+
+                <button className="btn btn-success btn-lg d-flex align-items-center float-right" type="submit">Guardar Cambios</button>
+
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+              </form>
+            </div>
         </div>
     )
 }

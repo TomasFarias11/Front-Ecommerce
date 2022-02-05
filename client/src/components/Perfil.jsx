@@ -29,14 +29,19 @@ const Perfil = () =>{
 
 	return(
 		<div className="container">
-      
+              <div className="container-sm d-flex justify-content-center" style={{ padding:20, paddingTop:0 }}> 
+          <div className="badge fs-3 bg-dark text-wrap" style={{ width: "20rem" }}>
+              Perfil de Usuario
+          </div>
+        </div>
+
       <div className="row gutters-sm">
 
         <div className="col-md-4 mb-3">
           <div className="card">
             <div className="card-body">
               <div className="d-flex flex-column align-items-center text-center">
-                <img src={userStorage.image} alt="Admin" className="rounded-circle" width="150"/>
+                <img src={userStorage.image ? userStorage.image : "https://i.postimg.cc/cHWhrsQL/user.png"} alt="Admin" className="rounded-circle" width="150"/>
                 <div className="mt-3">
                   <h4>{userStorage.username}</h4>
                 </div>
@@ -44,12 +49,26 @@ const Perfil = () =>{
             </div>
           </div>
           {controlador === true ?
-          <div>
+          <div className="justify-content-center">
             <EditProfile/>
-            <button onClick={(e) => handleControl(e)}>Cerrar</button>
+            <div className="card-body">
+                    <div className="col-sm-11">
+                      <div className="form-group d-flex justify-content-center mt-2">
+
+            <button className="btn btn-outline-danger btn-lg d-flex align-items-center float-right" onClick={(e) => handleControl(e)}>Cancelar Edición</button>
+          </div>
+          </div>
+          </div>
           </div>
             :
-            <button onClick={(e) => handleControl(e)}>Editar</button>
+            <div className="card-body">
+            <div className="col-sm-11">
+              <div className="form-group d-flex justify-content-center mt-2">
+
+            <button className="btn btn-outline-info btn-lg d-flex align-items-center float-right" onClick={(e) => handleControl(e)}>Editar Perfil</button>
+        </div>
+        </div>
+        </div>
           }
         </div>
         

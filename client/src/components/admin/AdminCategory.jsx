@@ -37,21 +37,12 @@ function AdminCategory() {
   return (
     <div className="row">
       <div className="col-lg-3">
-        <div
-          className="container-sm d-flex justify-content-center"
-          style={{ padding: 20, paddingTop: 0 }}
-        >
-          <div
-            className="badge fs-3 bg-dark text-wrap"
-            style={{ width: "20rem" }}
-          >
+        <div className="container-sm d-flex justify-content-center" style={{ padding: 20, paddingTop: 0 }}>
+          <div className="badge fs-3 bg-dark text-wrap"style={{ width: "20rem" }}>
             Administración de Categorías
           </div>
         </div>
-        <div
-          className="d-flex justify-content-center"
-          style={{ paddingTop: 0 }}
-        >
+        <div className="d-flex justify-content-center" style={{ paddingTop: 0 }}>
           <Link to="/admin/addCategory">
             <button type="button" className="btn btn-outline-success btn-lg">
               Añadir Categoría
@@ -76,19 +67,11 @@ function AdminCategory() {
                 <td>
                   <div className="d-flex justify-content-center">
                     <Link to={`/admin/Category/${e.idCategory}`}>
-                      <button
-                        className="btn btn-outline-warning"
-                        style={{ marginRight: 10 }}
-                      >
+                      <button className="btn btn-outline-warning" style={{ marginRight: 10 }}>
                         Editar
                       </button>
                     </Link>
-                    <button
-                      className="btn btn-outline-danger"
-                      name="id"
-                      value={e.name}
-                      onClick={(e) => handelDetele(e)}
-                    >
+                    <button className="btn btn-outline-danger" name="id" value={e.name} onClick={(e) => handelDetele(e)}>
                       <i className="fas fa-trash-alt"></i>
                     </button>
                   </div>

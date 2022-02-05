@@ -73,7 +73,7 @@ function AdminUser() {
 return (
   <div className="row">
     <div className="col-lg-3">
-      <div className="container-sm" style={{ padding:20, paddingTop:0 } }> 
+      <div className="container-sm d-flex justify-content-center" style={{ padding:20, paddingTop:0 } }> 
         <div className="badge fs-3 bg-dark text-wrap" style={{ width: "20rem" }}>
           Administración de Usuarios
         </div>
@@ -88,8 +88,8 @@ return (
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
             <th scope="col">Email</th>
-            <th scope="col">Admin</th>
-            <th scope="col">Eliminar</th>
+            <th className="text-center" scope="col">Admin</th>
+            <th className="text-center" scope="col">Eliminar</th>
           </tr>
         </thead>
         <tbody>
@@ -101,7 +101,7 @@ return (
             <td>{e.lastName}</td>
             <td>{e.email}</td>
             <td>
-              <div className="btn-group" role="group" aria-label="Button group with nested dropdown">
+              <div className="btn-group d-flex justify-content-center" role="group" aria-label="Button group with nested dropdown">
                 <div className="btn-group" role="group" >
                   <button id="btnGroupDrop1" type="button" className="btn btn-primary px-3 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" btn-padding-y="222">
                     {(e.admin) ?  "Si  "  : "No"}
@@ -120,9 +120,11 @@ return (
               </div>
             </td>
             <td>
-              <button type="button" className="btn btn-danger btn-sm px-4" value={e.id} onClick={(e)=>handelDetele(e)}>
-                <i className="fas fa-times"></i>
-              </button>
+              <div className="d-flex justify-content-center">
+                <button type="button" className="btn btn-danger position-relative px-3" value={e.id} onClick={(e)=>handelDetele(e)}>
+                  <i className="fas fa-trash-alt"></i>
+                </button>
+              </div>
             </td>
           </tr>
           )}
@@ -130,5 +132,6 @@ return (
       </table>
     </div>
   </div>
-)}
+)
+}
 export default AdminUser;

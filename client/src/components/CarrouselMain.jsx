@@ -34,13 +34,13 @@ function CarrouselMain() {
       </div>
     <div className="carousel-inner">
       <div className="carousel-item active">
-        <img src="https://i.postimg.cc/cHM5QVGW/IMG-5334.jpg" className="d-block w-100" alt="..." />
+        <img src="https://i.postimg.cc/1RY4Jvf9/IMG-5334-2.jpg" className="d-block w-100" alt="..." />
       </div>
       <div className="carousel-item">
-        <img src="https://i.postimg.cc/Y0dnPYSy/IMG-5333.jpg" className="d-block w-100" alt="..." />
+        <img src="https://i.postimg.cc/8cscT6nQ/IMG-5333-2.jpg" className="d-block w-100" alt="..." />
       </div>
       <div className="carousel-item">
-        <img src="https://i.postimg.cc/mkLpV8TH/IMG-5335.jpg" className="d-block w-100" alt="..." />
+        <img src="https://i.postimg.cc/7hc6hZpC/IMG-5335-2.jpg" className="d-block w-100" alt="..." />
       </div>
       <div className="carousel-item">
         <img src="https://i.postimg.cc/hjq5QKwM/IMG-5336.jpg" className="d-block w-100" alt="..." />

@@ -37,7 +37,7 @@ const LoginScreen = () => {
   };
   
   return (
-<div>
+<div style={{marginBottom: 40 }} >
   <form onSubmit={e => handleLocalLogin(e)} >
     <div className="container w-75 bg-primary mt-5 rounded shadow">
       <div className="row align-items-center align-items-stretch">
@@ -78,7 +78,7 @@ const LoginScreen = () => {
             <div className="my-3">
               <span> No tienes una cuenta? <Link to = "/user">Registrate</Link></span>
               <br />
-              <span> <a href="# "> Recuperar password </a> </span>
+              {/* <span> <a href="# "> Recuperar password </a> </span> */}
             </div>
           {/* Login con google */}
           <div className="container w-100 my-5">

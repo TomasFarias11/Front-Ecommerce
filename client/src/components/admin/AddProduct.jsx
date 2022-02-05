@@ -4,6 +4,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {addProduct, getCategory} from "../../actions/actionAdmin"
 import {useState, useEffect} from "react";
 import swal from 'sweetalert';
+import Swal from 'sweetalert2';
+import axios from "axios";
+
 
 function AddProdcut() {
 
@@ -73,10 +76,31 @@ function AddProdcut() {
         ram:[]
       })
     }else{
-      alert("Complete los campos necesarios para editar el producto")
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Por favor, rellene los campos necesarios para agregar un producto',
+      })
     }
   }
 
+
+
+  const handelImagen = async(e)=>{
+    e.preventDefault()
+    const files=e.target.files;
+    const data =new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "group6");
+
+    const res= await axios.post(`https://api.cloudinary.com/v1_1/groupapple/image/upload`, data)
+
+    const file=res.data;
+     setInputBody({
+       ...inputBody,
+       [e.target.name]:file.url
+     })
+  }
 
 
 
@@ -86,7 +110,7 @@ function AddProdcut() {
             <div >
                 <div className="dropdown">
                 <Link to="/admin/product">
-                <button type="button" class="btn btn-outline-secondary" >Productos</button>
+                <button type="button" className="btn btn-outline-secondary" >Productos</button>
                 </Link>
                 </div>
                 <br/>
@@ -99,56 +123,56 @@ function AddProdcut() {
       <h2>Agregar Producto</h2>
       <br/>
       <form onSubmit={e=>handelSubmit(e)}>
-          <div class="form-group">
+          <div className="form-group">
           <label>Categoria</label>
-            <select class="form-control" name="idCategory" onChange={e=>handelInput(e)}>
+            <select className="form-control" name="idCategory" onChange={e=>handelInput(e)}>
               <option>Seleccione una categoria</option>
               {allCategory.map((e)=>(
                 <option value={e.idCategory} key={e.idCategory}>{e.name}</option>))
               }
             </select>
           </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="exampleInputName">Nombre del Producto</label>
-          <input class="form-control" name="name" value={inputBody.name} onChange={e=>handelInput(e)} type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp" placeholder="Ingrese el nombre"/>
+          <input className="form-control" name="name" value={inputBody.name} onChange={e=>handelInput(e)} type="text" className="form-control" id="exampleInputName" aria-describedby="emailHelp" placeholder="Ingrese el nombre"/>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="exampleFormControlTextarea1">Descripcion</label>
-          <textarea name="description" value={inputBody.description} onChange={e=>handelInput(e)} class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+          <textarea name="description" value={inputBody.description} onChange={e=>handelInput(e)} className="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="exampleInputColor">Color</label>
-          <input name="color" value={inputBody.color} onChange={e=>handelArray(e)} type="text" class="form-control" id="exampleInputColor" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
+          <input name="color" value={inputBody.color} onChange={e=>handelArray(e)} type="text" className="form-control" id="exampleInputColor" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="exampleInputPreci">Precio</label>
-          <input name="price" min="1" value={inputBody.price} onChange={e=>handelInput(e)} type="number" class="form-control" id="exampleInputPreci" aria-describedby="emailHelp" placeholder="Ingrese el precio"/>
+          <input name="price" min="1" value={inputBody.price} onChange={e=>handelInput(e)} type="number" className="form-control" id="exampleInputPreci" aria-describedby="emailHelp" placeholder="Ingrese el precio"/>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="exampleInputStock">Cantidad</label>
-          <input name="stock" min="1" value={inputBody.stock} onChange={e=>handelInput(e)} type="number" class="form-control" id="exampleInputStock" aria-describedby="emailHelp" placeholder="Ingrese la cantidad de productos"/>
+          <input name="stock" min="1" value={inputBody.stock} onChange={e=>handelInput(e)} type="number" className="form-control" id="exampleInputStock" aria-describedby="emailHelp" placeholder="Ingrese la cantidad de productos"/>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="exampleInputStorage">Almacenamiento</label>
-          <input name="storage" value={inputBody.storage} onChange={e=>handelArray(e)} type="text" class="form-control" id="exampleInputStorage" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
+          <input name="storage" value={inputBody.storage} onChange={e=>handelArray(e)} type="text" className="form-control" id="exampleInputStorage" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="exampleInputConnectivity">Conectividad</label>
-          <input name="connectivity" value={inputBody.connectivity} onChange={e=>handelArray(e)} type="text" class="form-control" id="exampleInputConnectivity" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
+          <input name="connectivity" value={inputBody.connectivity} onChange={e=>handelArray(e)} type="text" className="form-control" id="exampleInputConnectivity" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="exampleInputModel">Modelos</label>
-          <input name="model" value={inputBody.model} onChange={e=>handelArray(e)} type="text" class="form-control" id="exampleInputModel" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
+          <input name="model" value={inputBody.model} onChange={e=>handelArray(e)} type="text" className="form-control" id="exampleInputModel" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="exampleInputRam">Ram</label>
-          <input name="ram" value={inputBody.ram} onChange={e=>handelArray(e)} type="text" class="form-control" id="exampleInputRam" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
+          <input name="ram" value={inputBody.ram} onChange={e=>handelArray(e)} type="text" className="form-control" id="exampleInputRam" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
         </div>
-         <div class="form-group" style={{marginTop:10, marginBottom:10}}>
+         <div className="form-group" style={{marginTop:10, marginBottom:10}}>
           <label for="exampleFormControlFile1">Imagen</label>
-          <input name="image" accept="image/png,image/jpg" value={inputBody.image} onChange={e=>handelInput(e)} type="file" class="form-control-file" id="exampleFormControlFile1"/>
+          <input name="image" accept="image/png,image/jpg"  onChange={handelImagen} type="file" className="form-control-file" id="exampleFormControlFile1"/>
         </div>
-        <button class="btn btn-primary" type="submit">Agregar</button>
+        <button className="btn btn-primary" type="submit">Agregar</button>
       </form>
     </div>
   </div>;

@@ -1,29 +1,35 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import {React, useEffect} from "react";
 import { Link } from "react-router-dom";
 import SearchAutocomplete from "./SearchAutocomplete";
 import {useDispatch, useSelector} from 'react-redux';
-import {getProductByCategory, setCartOn, setCartOff} from '../actions/actionProducts.js'
+import {getProductByCategory, setCartOn, setCartOff, setCart, createOrder, editOrder} from '../actions/actionProducts.js'
+import {getUserId} from '../actions/actionUser.js'
 import Cart from "../components/Cart.jsx"
+import {getCategory} from "../actions/actionAdmin";
+
+
 
 // import {useDispatch} from 'react-redux';
 // import {getProductByCategory, postUserCreate} from '../actions/actionProducts.js'
 
-
-
 function NavBar() {
     const dispatch = useDispatch()
-    // const [cartOnScreen, setCartOnScreen] = useState(false)
+    const allProducts = useSelector((state) => state.firstRed.products)
     const cartOnScreen = useSelector((state) => state.firstRed.cartNav)
     const user = JSON.parse(window.localStorage.getItem('usuario'))
     const userData = useSelector((state) => state.secondRed.userData)
     const cart = useSelector((state) => state.firstRed.cart)
+    const allCategory = useSelector((state)=>state.fourthRed.category);
 
 
 
-    // useEffect(()=>
-    //     console.log('1')
-    // ,[userData])
+    useEffect(()=>
+        dispatch(getCategory())
+    ,[])
+
+    const order = useSelector((state) => state.firstRed.order)
+    const orderAlert = useSelector((state) => state.firstRed.orderAlert)
+
 
 const handleClick = (e) => {
     e.preventDefault();
@@ -32,16 +38,38 @@ const handleClick = (e) => {
     } else {
         dispatch(setCartOff())
     }
+    // dispatch(setCart(order[0].carrito))
 }
 
 const handleLogout = () => {
-    window.localStorage.setItem('usuario', JSON.stringify([]))
     window.localStorage.setItem('carrito', JSON.stringify([]))
+    window.localStorage.setItem('usuario', JSON.stringify([]))
     window.location.reload()
 }
 
+useEffect(() => {
+    if (userData && userData.username) {
+        dispatch(createOrder(userData.id, {carrito: cart}))
+    }
+},[userData])
 
-// console.log('aparece o no', cartOnScreen)
+useEffect(() => {
+    if (order && order[0]) {
+        dispatch(setCart(order[0]?.carrito))
+    }
+}, [orderAlert])
+
+useEffect(()=>{
+    if (user && user.username) {
+        dispatch(editOrder(user.id, {carrito: cart}))
+    }
+},[cart])
+
+useEffect(() => {
+    if (order && order[0]) {
+        dispatch(setCart(order[0]?.carrito))
+    } 
+},[allProducts])
 
   return (
         <nav className="navbar navbar-expand-lg navbar-dark  h6 sticky-top" style={{background: "#111111"}}>
@@ -56,37 +84,15 @@ const handleLogout = () => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
-                        <li className="nav-item">
-                            <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/macbook">
-                                <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("macbook"))}> Mac </span>
+                        {allCategory ? allCategory.map((e)=>{
+                            return(<li className="nav-item">
+                            <Link style={{ textDecoration: 'none', color: 'white' }} to={`/category/${e.name}`}>
+                                <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory(e.name))}>{e.name}</span>
                             </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/ipad">
-                                <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("ipad"))}> iPad </span>
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/iphone">
-                                <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("iphone"))}> iPhone </span>
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/watch">
-                                <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("watch"))}> Watch </span>
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/irpods">
-                                <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("airpods"))}> AirPods </span>
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link style={{ textDecoration: 'none', color: 'white' }} to="/category/tv">
-                                <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory("tv"))}> TV & Home </span>
-                            </Link>
-                        </li>
-
+                        </li>)
+                        })
+                        : null
+                        }
                         {/* si el usuario existe y es admin */}
 
                         { userData[0] || (user.username && user.admin) ?
@@ -94,11 +100,11 @@ const handleLogout = () => {
                             <li className="nav-link">
                                 <p className="text-sm-start">
                                     <strong> Bienvenido: 
-                                        <Link style={{ textDecoration: "none", color: "white" }} to="/"> {user.username}</Link>
+                                        <Link style={{ textDecoration: "none", color: "white" }} to="/profile"> {user.username}</Link>
                                     </strong>
                                 </p>
                             </li>
-                            <li className="nav-item">
+                            <li className="nav-item"> 
                                 <a className="nav-link " aria-current="page" href="#!" onClick={() => handleLogout()}> Logout </a>
                             </li>
                             <li className="nav-item dropdown">
@@ -115,18 +121,8 @@ const handleLogout = () => {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link style={{ textDecoration: "none", color: "white" }} to="/products">
-                                            <span className="dropdown-item" href="#!"> Opcion 3 </span>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link style={{ textDecoration: "none", color: "white" }} to="/products">
-                                            <span className="dropdown-item" href="#!"> Opcion 4 </span>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link style={{ textDecoration: "none", color: "white" }} to="/products">
-                                            <span className="dropdown-item" href="#!"> Opcion 5 </span>
+                                        <Link style={{ textDecoration: "none", color: "white" }} to="/admin/user">
+                                            <span className="dropdown-item" href="#!"> Usuarios </span>
                                         </Link>
                                     </li>
                                 </ul>
@@ -139,13 +135,13 @@ const handleLogout = () => {
                             <li className="nav-link">
                             <p className="text-md-start">
                                 <strong> Bienvenido: 
-                                    <Link style={{ textDecoration: "none", color: "white" }} to="/"> {user.username} </Link>
+                                    <Link style={{ textDecoration: "none", color: "white" }} to="/profile"> {user.username} </Link>
                                 </strong>
                             </p>
                             </li>
                             <ul className="nav-item">  
                                 <li className="nav-item">
-                                    <a className="nav-link " aria-current="page" href="#!" onClick={() => handleLogout()}> Logout </a>
+                                    <a className="nav-link " aria-current="page" href="/login" onClick={() => handleLogout()}> Logout </a>
                                 </li>
                             </ul>
                         </ul>
@@ -171,7 +167,7 @@ const handleLogout = () => {
                 </svg>
                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 </span>
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                         {cart && cart.length}
                 </span>
               </button>

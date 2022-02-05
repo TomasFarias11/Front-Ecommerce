@@ -1,16 +1,21 @@
 import React from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {useState} from "react";
-import {addCategory} from "../../actions/actionAdmin";
+import { useDispatch, useSelector } from 'react-redux';
+import {useEffect, useState} from "react"
+import { useParams } from "react-router";
+import {getCategoryById, editCategory} from "../../actions/actionAdmin";
 
-function AddCategory() {
+function EditCategory() {
 
-  const dispatch = useDispatch()
+  const { id } = useParams();
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const categorytId = useSelector((state) => state.fourthRed.categoryId)
   const [inputBody , setInputBody] = useState({
     name:"",
   })
+
+  console.log(categorytId)
 
   function handelInput(e){
     e.preventDefault()
@@ -24,16 +29,20 @@ function AddCategory() {
    function handelSubmit(e){
     e.preventDefault()
     if(inputBody.name!==""){
-    alert("Nueva categoria agregada")
-    dispatch(addCategory(inputBody))
+    alert("Categoria Editada")
+    dispatch(editCategory(id, inputBody))
     setInputBody({
     name:""
     })
+    navigate("/admin/Category")
     }else{
       alert("ingrese el nombre de la nueva categoria")
     }
-    navigate("/admin/Category")
   }
+
+    useEffect(() => {
+    dispatch(getCategoryById(id))
+  }, [])
 
   return(<div className="row">
     <div className="col-lg-3">
@@ -50,18 +59,18 @@ function AddCategory() {
     </div>
     <div className=" card col-lg-8">
     <br/>
-    <h1>Agregar Categoria</h1>
+    <h1>Editar Categoria: {categorytId.name}</h1>
     <br/>
       <form onSubmit={e=>handelSubmit(e)}>
         <div className="form-group">
-          <label for="exampleInputName">Nombre de la nueva Categoria</label>
+          <label for="exampleInputName">Edita la Categoria</label>
           <input name="name" value={inputBody.name} onChange={e=>handelInput(e)} type="text" className="form-control" id="exampleInputName" aria-describedby="emailHelp" placeholder="Ingrese el nombre"/>
         </div>
-        <button className="btn btn-primary" type="submit" style={{marginTop:10, marginBottom:10}}>Agregar Categoria</button>
+        <button className="btn btn-warning" type="submit" style={{marginTop:10, marginBottom:10}}>Editar Categoria</button>
       </form>
     </div>
     
   </div>);
 }
 
-export default AddCategory;
+export default EditCategory;

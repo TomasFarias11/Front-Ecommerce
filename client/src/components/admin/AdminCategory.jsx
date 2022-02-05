@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux';
-import {getCategory} from "../../actions/actionAdmin";
-import {useEffect} from "react";
+import {getCategory, editCategory, deleteCategory} from "../../actions/actionAdmin";
+import swal from 'sweetalert';
+import Swal from 'sweetalert2'
 
 function AdminCategory() {
 
@@ -11,10 +12,39 @@ function AdminCategory() {
 
     // 
 
+<<<<<<< HEAD
 
     useEffect(() => {
         dispatch(getCategory())
     }, [])
+=======
+    const handelDetele=(e)=>{
+
+        Swal.fire({
+            title: 'Advertencia!!',
+            text: "Si elimina la categoria estará los productos asociados a esta categoria no perteneceran a ninguna categoria¿Estas seguro que deseas eliminar la categoria?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, Eliminar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    dispatch(deleteCategory(e.target.value))
+                    Swal.fire(
+                    'Eliminado',
+                    'La categoria ha sido eliminada.',
+                    'success'
+                    )
+                }
+            })
+    }
+
+
+useEffect(() => {
+    dispatch(getCategory())
+  }, [])
+>>>>>>> bb6ddaaa40354a4a553c563bea75116cad031103
 
   return (
     <div className="row">
@@ -23,7 +53,7 @@ function AdminCategory() {
             <div >
                 <div className="dropdown">
                 <Link to="/admin/addCategory">
-                <button type="button" class="btn btn-outline-secondary" >Agregar Categoria</button>
+                <button type="button" className="btn btn-outline-secondary" >Agregar Categoria</button>
                 </Link>
                 </div>
             </div>
@@ -33,11 +63,18 @@ function AdminCategory() {
         <h2>Categorias</h2>
                     <div className="container-sm bg-image hover-overlay ripple" data-mdb-ripple-color="light" style={{ padding: 20 } } >
                         <div className="row" Style="background-color: #FAFAFA"    >
-                            <ul class="list-group list-group-flush">
+
+                            <ul className="list-group list-group-flush" >
                                 {
                                     allCategory.map(e=>
-                                        <li class="list-group-item" key={e.idCategory}><p><b>{e.name}</b></p>
+                                        
+                                        <li className="list-group-item" key={e.idCategory}><p><b>{e.name}</b></p>
+                                            <Link to={`/admin/Category/${e.idCategory}`}>
+                                            <button className="btn btn-warning" style={{marginRight:10}}>Editar</button>
+                                            </Link>
+                                            <button className="btn btn-danger"  style={{marginRight:10}} name="id" value={e.name} onClick={(e)=>handelDetele(e)}>X</button>
                                         </li>
+                                        
                                     )
                                 }
                             </ul>
@@ -50,3 +87,4 @@ function AdminCategory() {
 }
 
 export default AdminCategory;
+

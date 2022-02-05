@@ -1,16 +1,19 @@
 import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {addToCart, delCart, delAllCart, setCartOff} from '../actions/actionProducts.js'
-import { useNavigate } from 'react-router-dom';
+import {addToCart, delCart, delAllCart, setCartOff, editOrder} from '../actions/actionProducts.js'
+import { Link, useNavigate } from 'react-router-dom';
 import CartCard from './CartCard.jsx'
 import swal from 'sweetalert';
 
 export default function Cart () {
     const dispatch = useDispatch()
+    const Navigate = useNavigate()
     const cart = useSelector((state) => state.firstRed.cart)
     const cartStorage = JSON.parse(window.localStorage.getItem('carrito'))
     const cartNav = useSelector((state) => state.firstRed.cartNav)
+    const user = JSON.parse(window.localStorage.getItem('usuario'))
+    const order = useSelector((state) => state.firstRed.order)
     // console.log('este es el carrito',cart)
 
     let total = 0;
@@ -24,6 +27,12 @@ export default function Cart () {
         // currency: 'USD',
         // minimumFractionDigits: 3,
     })
+
+    // useEffect(()=> {
+    //     if (cart.length === 0) {
+            
+    //     }
+    // },[cart])
     
 
     const handleDeleteAll = (e) =>  {
@@ -43,13 +52,32 @@ export default function Cart () {
             dispatch(setCartOff())
         }
     },[cart])
+
+
+    const handleCheck = (e) => {
+        e.preventDefault()
+        if (!user.username) {
+            swal("Debes iniciar sesion primero!", {
+                buttons: false,
+                icon: 'error',
+                timer: 2000,
+              });
+        } else {
+            window.localStorage.setItem('order', JSON.stringify(order))
+            Navigate("/mercadopago")
+        }
+    }
+
     // animate__slideOutRight
     return (
         <div className = {cartNav === false ? "row animate__animated animate__slideOutRight" : "row animate__animated animate__slideInRight"} style={{position: 'absolute', right: '12px', top: '95px', background: '#E9E9E9', overflowY: "scroll", height: '90.5vh'}}>
                 <div className="container-sm">
                     <div>
                         <div>
-                            <button onClick = {(e) => handleDeleteAll(e)}className='btn btn-warning btn-lg' style={{margin: '5px 0 5px'}}>CLEAR CART</button>
+                            <button onClick={() => dispatch(setCartOff())} className="btn btn-warning btn-lg" style={{position: 'relative', left: 0, top: 0,margin: '5px 0 5px'}}>CERRAR</button>
+                        </div>
+                        <div>
+                            <button onClick = {(e) => handleDeleteAll(e)}className='btn btn-warning btn-lg' style={{position: 'absolute', right: 0, top: 0,margin: '5px 0 5px'}}>VACIAR CARRO</button>
                         </div>
                         {cart ? cart?.map((e) => {
                         return (
@@ -74,7 +102,8 @@ export default function Cart () {
                         <div className='carrito_izq'>
                             <div>
                                 <hr />
-                                <button className='btn btn-warning btn-lg' style={{margin: '5px 0'}}>CHECKOUT</button> 
+                                    <button onClick={(e) => handleCheck(e)} className='btn btn-warning btn-lg' style={{margin: '5px 0'}}>CHECKOUT</button>
+                                
                             </div>
                         </div>
                     </div>

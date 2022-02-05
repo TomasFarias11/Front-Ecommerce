@@ -1,7 +1,7 @@
 import React from "react";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {addToCart, getProducts, setCartOn} from '../actions/actionProducts.js'
+import {addToCart, getProducts, setCartOn, setCart, editOrder} from '../actions/actionProducts.js'
 import {Link} from "react-router-dom";
 import swal from 'sweetalert';
 import '../css/Carrousel.css'
@@ -14,6 +14,8 @@ const CardCarrusel = () =>{
     const allProducts = useSelector((state) => state.firstRed.products) // me traigo todo los productos
     const dispatch = useDispatch()
     const cart = useSelector((state) => state.firstRed.cart)
+    const order = useSelector((state) => state.firstRed.order)
+    const user = useSelector((state) => state.secondRed.userData)
     const formato = new Intl.NumberFormat('de-DE', {
         // style: 'currency',
         // currency: 'USD',
@@ -24,11 +26,12 @@ const CardCarrusel = () =>{
 	const[productsPerPage, setProductsPerPage]=useState(4);
 	const indexOfLastProduct = currentPage * productsPerPage;
 	const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-	const currentProduct = allProducts.slice(indexOfFirstProduct,indexOfLastProduct);
+    const filtro=allProducts.filter(p=>p.idCategory !== null  && p.stock > 0); // le hacemos un filtro a todos los productos antes de enviarlos al carrusel
+	const currentProduct = filtro.slice(indexOfFirstProduct,indexOfLastProduct);
     // console.log('estos son los de jose', currentProduct)
 
     const handleprev=()=>{
-        var pagina=Math.ceil(allProducts.length / productsPerPage);
+        var pagina=Math.ceil(filtro.length / productsPerPage);
 		if(currentPage===1){
             setCurrentPage(pagina)
         }else{
@@ -38,7 +41,7 @@ const CardCarrusel = () =>{
 	};
 
     const handlenext=()=>{
-        var pagina=Math.ceil(allProducts.length / productsPerPage);
+        var pagina=Math.ceil(filtro.length / productsPerPage);
 		if(currentPage===pagina){
             pagina=1;
             setCurrentPage(pagina)
@@ -52,6 +55,7 @@ const CardCarrusel = () =>{
     const handleClick = (e) => {
         e.preventDefault();
         dispatch(addToCart(Number(e.target.value)))
+        // dispatch(editOrder(user.id, {carrito: cart}))
         window.localStorage.setItem('carrito', JSON.stringify(cart))
         dispatch(setCartOn())
         swal("Agregado al carrito!", {
@@ -59,17 +63,14 @@ const CardCarrusel = () =>{
             icon: 'success',
             timer: 1500,
         });
-        // dispatch(setCartOn())
+        
       }
 
-    useEffect(()=>{
-        cart.length > JSON.parse(window.localStorage.getItem('carrito')).length ? window.localStorage.setItem('carrito', JSON.stringify(cart)) : window.localStorage.getItem('carrito')
-    },[cart])
        
     return(<>
         <div className="container" style={{padding: "15px"}}>
             <div className="row animate__animated animate__slideInRight">
-                {currentProduct ? currentProduct.filter(p=>p.stock > 0).map((e)=>{
+                {currentProduct ? currentProduct.map((e)=>{
                     return(
                     <div className="col-3 animate__animated animate__slideInRight img-fluid" key={e.id} >
                         <div className="card2 ">
@@ -87,34 +88,14 @@ const CardCarrusel = () =>{
                                 Agregado al carrito
                                 </div>
                                 :
-                            <button type="button" value={e.id} className="btn btn-outline-primary" onClick={(e) => handleClick(e)}>Añadir al carrito</button>
+                                <button type="button" value={e.id} className="btn btn-outline-primary" onClick={(e) => handleClick(e)}>Añadir al carrito</button>
                                 }
                             </div>
                         </div>
                     </div>
                     )
                 })
-            : allProducts.filter(p=>p.stock > 0).map((e)=>{
-                <div className="card">
-                            <Link to={`/details/${e.id}`}>
-                                <img src={e.image} alt="" className="card-img-top" height="310px"/>
-                            </Link>
-                            <div className="card-body"  >
-                                <h5>{e.name}</h5>
-                                <p className="card-text">Price: {e.price}</p>
-                                <p className="card-text">Amount: {e.stock}</p>
-                            </div>
-                            <div>
-                                {cart.some((c) => e.name === c.name) ? 
-                                <div className="alert alert-warning" role="alert">
-                                Agregado al carrito
-                                </div>
-                                :
-                            <button type="button" value={e.id} className="btn btn-outline-primary" onClick={(e) => handleClick(e)}>Añadir al carrito</button>
-                            }
-                            </div>
-                        </div>
-            })}
+            : null}
             
             </div>
             <nav className="position-absolute start-50 translate-middle-x" aria-label="Page navigation example">

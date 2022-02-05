@@ -230,31 +230,31 @@ export function setProducts (payload) {
 export function postUserCreate (input){   
     return async function(dispatch){
         try {
-            const response = await axios.post("user", input)
+            let response = await axios.post("user", input)
             console.log(response.status, "esto es lo que necesitas")
-            response.state === 202 ?
-            swal("este usuario email o username ya existen!", {
+            response.status === 202 ?
+            swal("este email ya esta registrado con una cuenta, puedes recuperar ti clave si tienes el correo aun", {
                 buttons: false,
                 icon: 'error',
                 timer: 4000,
             })
-            : response.state === 200 ?
-            swal("esta cuenta fue creada con exito!", {
+            : 
+            swal("este usuario email o username ya existen!", {
                 buttons: false,
                 icon: 'success',
                 timer: 3000,
             })
-            :
-            swal("un error ponco conocido e.e !", {
-                buttons: false,
-                icon: 'error',
-                timer: 3000,
-            })
+          
             // return response
             // return dispatch({type: USER_CREATE, input})
             
         } catch (error) {
-            console.log(error)
+            swal(`estas agrgando valores extraños ${error}`, {
+                buttons: false,
+                icon: 'error',
+                timer: 4000,
+            })
+            // console.log(error)
         }
     }
 }

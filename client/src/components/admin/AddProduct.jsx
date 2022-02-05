@@ -97,7 +97,7 @@ function AddProdcut() {
         </div>
         <div className='d-flex justify-content-center' style={{ paddingTop:0 } } >
           <Link to="/admin/product">
-            <button type="button" className="btn btn-outline-success btn-lg">Lista de Productos</button>
+            <button type="button" className="btn btn-outline-info btn-lg">Lista de Productos</button>
           </Link>
         </div>
       </div>

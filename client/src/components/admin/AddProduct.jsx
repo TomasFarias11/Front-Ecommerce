@@ -4,7 +4,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {addProduct, getCategory} from "../../actions/actionAdmin"
 import {useState, useEffect} from "react";
 import swal from 'sweetalert';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import axios from "axios";
+
 
 function AddProdcut() {
 
@@ -82,6 +84,23 @@ function AddProdcut() {
     }
   }
 
+
+
+  const handelImagen = async(e)=>{
+    e.preventDefault()
+    const files=e.target.files;
+    const data =new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "group6");
+
+    const res= await axios.post(`https://api.cloudinary.com/v1_1/groupapple/image/upload`, data)
+
+    const file=res.data;
+     setInputBody({
+       ...inputBody,
+       [e.target.name]:file.url
+     })
+  }
 
 
 

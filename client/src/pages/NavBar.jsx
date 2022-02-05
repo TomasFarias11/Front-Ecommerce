@@ -105,7 +105,7 @@ useEffect(() => {
                                 </p>
                             </li>
                             <li className="nav-item"> 
-                                <a className="nav-link " aria-current="page" href="#!" onClick={() => handleLogout()}> Logout </a>
+                                <a className="nav-link " aria-current="page" href="/login" onClick={() => handleLogout()}> Logout </a>
                             </li>
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href=" " id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Admin </a>

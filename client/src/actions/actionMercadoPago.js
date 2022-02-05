@@ -31,3 +31,14 @@ export function pagar(preference) {
         }
     }
 };
+
+export function sendMail(cliente) {
+    return async (dispatch)=>{
+        try {
+            await axios.post('/mercadopago/callreception',cliente);
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+};

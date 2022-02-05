@@ -14,12 +14,13 @@ const CheckOut = () =>{
     const order = JSON.parse(window.localStorage.getItem('order'))
     const user = useSelector((state) => state.secondRed.userData)
     const userFull = JSON.parse(window.localStorage.getItem('usuario'))
+    console.log('apellido', userFull.lastName)
     const dispatch = useDispatch()
     const [payer, setPayer] = useState(
         {
-            name:userFull.name,
-            surname:userFull.lastName,
-            email:userFull.email,
+            name:'',
+            surname:'',
+            email:'',
             phone:{
                 area_code: '',
                 number:'',
@@ -39,9 +40,9 @@ const CheckOut = () =>{
     var todojunto = {
         items:items,
         payer:{
-            name:payer.name,
-            surname:payer.lastName,
-            email:payer.email,
+            name:userFull.name,
+            surname:userFull.lastName,
+            email:userFull.email,
             phone:{
                 area_code: payer.phone.area_code,
                 number:parseInt(payer.phone.number),
@@ -57,6 +58,7 @@ const CheckOut = () =>{
             }
         }
     }
+    console.log('TODO',todojunto)
     
     
     

@@ -12,12 +12,6 @@ function AdminCategory() {
 
     // 
 
-<<<<<<< HEAD
-
-    useEffect(() => {
-        dispatch(getCategory())
-    }, [])
-=======
     const handelDetele=(e)=>{
 
         Swal.fire({
@@ -44,7 +38,6 @@ function AdminCategory() {
 useEffect(() => {
     dispatch(getCategory())
   }, [])
->>>>>>> bb6ddaaa40354a4a553c563bea75116cad031103
 
   return (
     <div className="row">

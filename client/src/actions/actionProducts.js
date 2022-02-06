@@ -225,18 +225,36 @@ export function setProducts (payload) {
         }
     }
 }
-// SE CREA LA ACCIÓN PARA LA CREACIÓN DEL USUARIO
+// v                                                        SE CREA LA ACCIÓN PARA LA CREACIÓN DEL USUARIO
 
-export function postUserCreate (input){
+export function postUserCreate (input){   
     return async function(dispatch){
         try {
             let response = await axios.post("user", input)
-            console.log(input, "input de las acciones")
-            return response
+            console.log(response.status, "esto es lo que necesitas")
+            response.status === 202 ?
+            swal("este email ya esta registrado con una cuenta, puedes recuperar ti clave si tienes el correo aun", {
+                buttons: false,
+                icon: 'error',
+                timer: 4000,
+            })
+            : 
+            swal("este usuario email o username ya existen!", {
+                buttons: false,
+                icon: 'success',
+                timer: 3000,
+            })
+          
+            // return response
             // return dispatch({type: USER_CREATE, input})
             
         } catch (error) {
-            console.log(error)
+            swal(`estas agrgando valores extraños ${error}`, {
+                buttons: false,
+                icon: 'error',
+                timer: 4000,
+            })
+            // console.log(error)
         }
     }
 }
@@ -308,13 +326,21 @@ export function setCartUser (payload) {
 }
 export function listarUsers(){
     return function(dispatch){
+        try {
         axios.get("/users")
         .then(res => res.data)
         .then(data => {
             dispatch({type: LIST_USERS, payload: data})
         })
         .catch(error => alert(error, "algo salio mal"))
-    }
+    } catch (error){
+        swal("este usuario email o username ya existen!", {
+            buttons: false,
+            icon: 'error',
+            timer: 3000,
+          });
+    }  
+  }
 }
 
 export function editOrder (idUser, payload) {

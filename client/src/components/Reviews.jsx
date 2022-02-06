@@ -67,10 +67,10 @@ export default function Reviews ({id}) {
         <div className="col-6 mx-auto">{/*col-6 indica que es una columna y su tamaño es de 6. luego el margin auto para que se centre*/}
           <div>
             <form className="row" style={{justifyContent:"space-between"}} onSubmit={(e) => handleSubmit(e)}>
-              <textarea className="form-control" style={{marginBottom:20}} type='text' placeholder="comentario..." rows="3"  value={input.commentary} onChange={e => setInput({ ...input, commentary: e.target.value })}></textarea>
+              <textarea  className="form-control" style={{marginBottom:20}} type='text' placeholder="comentario..." rows="3"  value={input.commentary} onChange={e => setInput({ ...input, commentary: e.target.value })}></textarea>
               <div style={{marginBottom:20}} className="btn-group col-3" >{/*agrupa los botones*/}
                 <label style={{marginRight:20}}>Calificacion</label>
-                <input className="form-input" type='number' max={5} min={0} placeholder="1" value={input.calification} required="true" onChange={e => setInput({ ...input, calification: e.target.value })} />
+                <input className="form-input" type='number' max={5} min={1} placeholder="0" value={input.calification} required="true" onChange={e => setInput({ ...input, calification: e.target.value })} />
               </div>
               <div className="col-3 text-end" style={{marginLeft:50}} >
               <button className="btn btn-primary">Comentar</button>
@@ -93,11 +93,11 @@ export default function Reviews ({id}) {
                     </span>
                     <div>
                       <h6>Calificacion: {
-                             re.calification == 1? <i className="fas fa-star"></i>
-                           : re.calification == 2? <div><i className="fas fa-star"></i><i className="fas fa-star"></i></div>
-                           : re.calification == 3? <div><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i></div>
-                           : re.calification == 4? <div><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i></div>
-                           : re.calification == 5? <div><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i></div>
+                            parseInt(re.calification)  === 1? <div><i className="fas fa-star"></i></div>
+                           : parseInt(re.calification)  === 2? <div><i className="fas fa-star"></i><i className="fas fa-star"></i></div>
+                           : parseInt(re.calification)  === 3? <div><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i></div>
+                           : parseInt(re.calification)  === 4? <div><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i></div>
+                           : parseInt(re.calification)  === 5? <div><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i></div>
                            : <h1>1</h1>
                         }</h6>
                     </div>

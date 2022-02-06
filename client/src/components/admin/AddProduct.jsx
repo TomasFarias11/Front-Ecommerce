@@ -4,7 +4,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {addProduct, getCategory} from "../../actions/actionAdmin"
 import {useState, useEffect} from "react";
 import swal from 'sweetalert';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import axios from "axios";
+
 
 function AddProdcut() {
 
@@ -84,6 +86,23 @@ function AddProdcut() {
 
 
 
+  const handelImagen = async(e)=>{
+    e.preventDefault()
+    const files=e.target.files;
+    const data =new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "group6");
+
+    const res= await axios.post(`https://api.cloudinary.com/v1_1/groupapple/image/upload`, data)
+
+    const file=res.data;
+     setInputBody({
+       ...inputBody,
+       [e.target.name]:file.url
+     })
+  }
+
+
 
   return<div className="row">
     <div className="col-lg-3">
@@ -151,7 +170,7 @@ function AddProdcut() {
         </div>
          <div className="form-group" style={{marginTop:10, marginBottom:10}}>
           <label for="exampleFormControlFile1">Imagen</label>
-          <input name="image" accept="image/png,image/jpg" value={inputBody.image} onChange={e=>handelInput(e)} type="file" className="form-control-file" id="exampleFormControlFile1"/>
+          <input name="image" accept="image/png,image/jpg"  onChange={handelImagen} type="file" className="form-control-file" id="exampleFormControlFile1"/>
         </div>
         <button className="btn btn-primary" type="submit">Agregar</button>
       </form>

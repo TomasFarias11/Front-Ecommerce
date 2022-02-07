@@ -35,17 +35,17 @@ cart.length > 0 && cart.map((e) => {
             surname:'',
             email:'',
             phone:{
-                area_code: '',
-                number:'',
+                area_code: '11',
+                number:'55555555',
             },
             identification:{
-                type:'',
-                number:''
+                type:'dni',
+                number:'12345678'
             },
             address:{
-                street_name:'',
-                street_number:'',
-                zip_code:''
+                street_name:'Falsa',
+                street_number:'123',
+                zip_code:'1234'
             }
         }
     );

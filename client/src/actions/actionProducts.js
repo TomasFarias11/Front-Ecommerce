@@ -44,6 +44,7 @@ export const GET_ORDER_OPEN = "GET_ORDER_OPEN"
 export const GET_ORDER_USER = "GET_ORDER_USER"
 export const SET_CART_USER = "SET_CART_USER"
 export const PUT_ORDER = "PUT_ORDER"
+export const UPDATE_ORDER = 'UPDATE_ORDER'
 
 export function getProducts () {
     return async function (dispatch) {
@@ -344,12 +345,33 @@ export function listarUsers(){
 }
 
 export function editOrder (idUser, payload) {
+    console.log('?????',payload)
     return async function (dispatch) {
         try {
             await axios.put(`/order/${idUser}`, payload)
             const {data} = await axios.get(`/order/${idUser}`)
             console.log('la data de la orden', data[0])
             return dispatch({type: PUT_ORDER, payload:data[0]})
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}
+
+export function updateOrder (idUser, payload) {
+    console.log('?????',payload)
+    return async function (dispatch) {
+        try {
+            await axios.put(`/order/update/${idUser}`, payload)
+            const {data} = await axios.get(`/order/user/${idUser}`)
+            console.log('la data de la orden', data[0])
+            const newOrder = await axios.post(`/order/${idUser}`,{carrito:[]})
+            console.log('PUTO',newOrder)
+            return dispatch(
+                {
+                    type: UPDATE_ORDER, payload: newOrder[0]
+                }
+            )
         } catch (err) {
             console.log(err)
         }

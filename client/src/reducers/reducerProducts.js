@@ -28,6 +28,7 @@ import {
     POST_ORDER,
     SET_CART_USER,
     PUT_ORDER,
+    UPDATE_ORDER,
 
     // users
     LIST_USERS,
@@ -267,6 +268,12 @@ export default function reducerProducts(state=initialState2, action){
                 ...state,
                 order: [action.payload]
             }
+        case UPDATE_ORDER:
+                return {
+                    ...state,
+                    order: [action.payload],
+                    cart: []
+                }
 		default:
 			return state;
 	}

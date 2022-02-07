@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const PRE_PAGO = 'PRE_PAGO';
 export const PAGAR = 'PAGAR';
+export const PUT_ORDER = "PUT_ORDER"
 
 
 export function loadPrePago (producto) {
@@ -42,3 +43,21 @@ export function sendMail(cliente) {
         }
     }
 };
+
+export function updateOrder (idUser, payload) {
+    console.log('?????',payload)
+    return async function (dispatch) {
+        try {
+            await axios.put(`/order/update/${idUser}`, payload)
+            /* const {data} = await axios.get(`/order/${idUser}`)
+            console.log('la data de la orden', data[0]) */
+            return dispatch(
+                {
+                    type: PUT_ORDER, payload
+                }
+            )
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}

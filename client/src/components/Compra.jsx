@@ -17,7 +17,7 @@ export default function Boton () {
         items:compra.items,
         payer:compra.payer,
         back_urls:{
-				success: `${process.env.REACT_APP_API}/mercadopago/aceptado`,
+				success: `http://localhost:3000/mercadopago/aceptado`,
 				failure: "/mercadopago/rechazado",
 				pending: "/mercadopago/rechazado"
 		},

@@ -115,7 +115,7 @@ export function deleteCategory (name) {
             await axios.delete(`/category/delete/?name=${name}`);
             let allCategory=await axios.get("/category");
             return dispatch({
-                type: DELETE_CATEGORY, 
+                type: DELETE_CATEGORY,
                 payload: allCategory.data
             })
         } catch (err) {

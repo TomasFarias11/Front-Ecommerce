@@ -30,30 +30,6 @@ function AdminCategory() {
     });
   };
 
-    // 
-
-    const handelDetele=(e)=>{
-
-        Swal.fire({
-            title: 'Advertencia!!',
-            text: "Si elimina la categoria estará los productos asociados a esta categoria no perteneceran a ninguna categoria¿Estas seguro que deseas eliminar la categoria?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, Eliminar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    dispatch(deleteCategory(e.target.value))
-                    Swal.fire(
-                    'Eliminado',
-                    'La categoria ha sido eliminada.',
-                    'success'
-                    )
-                }
-            })
-    }
-
 
 useEffect(() => {
     dispatch(getCategory())

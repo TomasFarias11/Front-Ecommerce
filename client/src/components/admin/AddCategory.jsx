@@ -5,11 +5,7 @@ import {useState} from "react";
 import {addCategory} from "../../actions/actionAdmin";
 
 function AddCategory() {
-  const dispatch = useDispatch();
-  const [inputBody, setInputBody] = useState({
-    name: "",
-  });
-
+  
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [inputBody , setInputBody] = useState({

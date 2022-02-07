@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import CardCarrusel from "../components/CardCarrusel.jsx";
 import {getProductByCategory, createOrder, setCart} from '../actions/actionProducts.js'
 import {getUserId} from '../actions/actionUser.js'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import estilos from '../css/Home.module.css';
 import CarrouselMain from "../components/CarrouselMain.jsx"
 
@@ -28,7 +28,8 @@ export default function Home () {
         }
     },[cart])
 
-    
+    const h = useLocation()
+    console.log('WTH?', h)
 
     useEffect(()=> {  
         products > 0 ? window.localStorage.setItem('productos',JSON.stringify(products)) : window.localStorage.setItem('productos',JSON.stringify([]))

@@ -64,6 +64,7 @@ export default function Cart () {
               });
         } else {
             window.localStorage.setItem('order', JSON.stringify(order))
+            dispatch(setCartOff())
             Navigate("/mercadopago")
         }
     }

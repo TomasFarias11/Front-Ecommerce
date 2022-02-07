@@ -46,6 +46,7 @@ const initialState2={
     cart: [],
     cartNav: false,
     order: [],
+    orders: [],
     productsSearch:[],
     users: [],
     listUser:[],
@@ -211,7 +212,7 @@ export default function reducerProducts(state=initialState2, action){
         case GET_ORDER_USER:
             return {
                 ...state,
-                order: action.payload
+                orders: action.payload
             }
         case GET_ORDER_OPEN:
             return {

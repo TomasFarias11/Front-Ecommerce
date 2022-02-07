@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getCategory, editCategory, deleteCategory} from "../../actions/actionAdmin";
+import {
+  getCategory,
+  editCategory,
+  deleteCategory,
+} from "../../actions/actionAdmin";
 import swal from "sweetalert";
 import Swal from "sweetalert2";
 
@@ -26,10 +30,9 @@ function AdminCategory() {
     });
   };
 
-
-useEffect(() => {
-    dispatch(getCategory())
-  }, [])
+  useEffect(() => {
+    dispatch(getCategory());
+  }, []);
 
   return (
     <div className="row">
@@ -68,8 +71,8 @@ useEffect(() => {
                         Editar
                       </button>
                     </Link>
-                    <button className="btn btn-outline-danger" name="id" value={e.name} onClick={(e) => handelDetele(e)}>
-                      <i className="fas fa-trash-alt"></i>
+                    <button className="btn btn-danger" name="id" value={e.name} onClick={(e) => handelDetele(e)}>
+                      X
                     </button>
                   </div>
                 </td>

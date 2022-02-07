@@ -5,9 +5,14 @@ import { getUserId } from "../actions/actionUser.js";
 import { useNavigate } from "react-router-dom";
 import { loadPrePago } from "../actions/actionMercadoPago.js";
 import { Link } from "react-router-dom";
+import Swal from 'sweetalert2'
+
+
 const CheckOut = () => {
   const Navigate = useNavigate();
   const cart = useSelector((state) => state.firstRed.cart)
+
+  const [items, setItems] = useState([]);
 
   const formato = new Intl.NumberFormat('de-DE', {
     // style: 'currency',
@@ -21,76 +26,69 @@ cart.length > 0 && cart.map((e) => {
     totalQuantity = Number(totalQuantity) + Number(e.quantity)
 })
 
-  const [items, setItems] = useState([]);
 
-    // const order = useSelector((state) => state.firstRed.order)
-    const order = JSON.parse(window.localStorage.getItem('order'))
-    const user = useSelector((state) => state.secondRed.userData)
-    const userFull = JSON.parse(window.localStorage.getItem('usuario'))
-    console.log('apellido', userFull.lastName)
-    const dispatch = useDispatch()
-    const [payer, setPayer] = useState(
-        {
-            name:'',
-            surname:'',
-            email:'',
-            phone:{
-                area_code: '11',
-                number:'55555555',
-            },
-            identification:{
-                type:'dni',
-                number:'12345678'
-            },
-            address:{
-                street_name:'Falsa',
-                street_number:'123',
-                zip_code:'1234'
-            }
-        }
+
+  // const order = useSelector((state) => state.firstRed.order)
+  const order = JSON.parse(window.localStorage.getItem("order"));
+  const user = useSelector((state) => state.secondRed.userData);
+  const userFull = JSON.parse(window.localStorage.getItem("usuario"));
+  const dispatch = useDispatch();
+  const [payer, setPayer] = useState({
+    name: userFull.name,
+    surname: userFull.lastName,
+    email: userFull.email,
+    phone: {
+      area_code: "",
+      number: "",
+    },
+    identification: {
+      type: "",
+      number: "",
+    },
+    address: {
+      street_name: "",
+      street_number: "",
+      zip_code: "",
+    },
+  });
+
+  var todojunto = {
+    items: items,
+    payer: {
+      name: payer.name,
+      surname: payer.lastName,
+      email: payer.email,
+      phone: {
+        area_code: payer.phone.area_code,
+        number: parseInt(payer.phone.number),
+      },
+      identification: {
+        type: payer.identification.type,
+        number: payer.identification.number,
+      },
+      address: {
+        street_name: payer.address.street_name,
+        street_number: parseInt(payer.address.street_number),
+        zip_code: payer.address.zip_code,
+      },
+    },
+  };
+
+  var item = [];
+  const createItem = (order) => {
+    order[0]?.carrito.map((e) =>
+      item.push({
+        id: `${e.id}`,
+        title: e.name,
+        currency_id: "ARS",
+        description: "aqui iria una descrición",
+        category_id: `${e.idCategory}`,
+        quantity: e.quantity,
+        unit_price: e.price,
+      })
     );
-    
-    var todojunto = {
-        items:items,
-        payer:{
-            name:userFull.name,
-            surname:userFull.lastName,
-            email:userFull.email,
-            phone:{
-                area_code: payer.phone.area_code,
-                number:parseInt(payer.phone.number),
-            },
-            identification:{
-                type:payer.identification.type,
-                number:payer.identification.number
-            },
-            address:{
-                street_name:payer.address.street_name,
-                street_number:parseInt(payer.address.street_number),
-                zip_code:payer.address.zip_code
-            }
-        }
-    }
-    console.log('TODO',todojunto)
-    
-    
-    
-    var item = [];
-    const createItem = (order)=>{
-        
-         order[0]?.carrito.map(e=>item.push(
-            {
-            id:`${e.id}`,
-            title: e.name,
-            currency_id: "ARS",
-            description: 'aqui iria una descrición',
-            category_id: `${e.idCategory}`,
-            quantity: e.quantity,
-            unit_price: e.price
-            }))
-            return item
-    }
-    
+    return item;
+  };
 
   useEffect(() => {
     createItem(order);
@@ -100,6 +98,14 @@ cart.length > 0 && cart.map((e) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if(payer.identification.type === "" || payer.identification.number==="" || payer.phone.area_code==="" || payer.phone.number==="" || payer.address.street_name==="" || payer.address.street_number==="" || payer.address.zip_code===""){
+      Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Por favor, rellene los campos necesarios para realizar la compra',
+        })
+    }else{
     dispatch(loadPrePago(todojunto));
     Navigate("/mercadopago/compra");
     setPayer({
@@ -117,6 +123,7 @@ cart.length > 0 && cart.map((e) => {
         zip_code: "",
       },
     });
+  }
   };
 
   const handleChangePhone = (e) => {
@@ -289,6 +296,7 @@ cart.length > 0 && cart.map((e) => {
                             placeholder="12345678"
                             defaultValue=""
                             required=""
+                            disabled={payer.identification.type===""}
                             value={payer.identification.number}
                             name="number"
                             onChange={(e) => handleChangeDni(e)}
@@ -307,6 +315,7 @@ cart.length > 0 && cart.map((e) => {
                             placeholder="0387"
                             defaultValue=""
                             required=""
+                            disabled={payer.identification.number===""}
                             value={payer.phone.area_code}
                             name="area_code"
                             onChange={(e) => handleChangePhone(e)}
@@ -325,6 +334,7 @@ cart.length > 0 && cart.map((e) => {
                             placeholder="12345678"
                             defaultValue=""
                             required=""
+                            disabled={payer.phone.area_code===""}
                             value={payer.phone.number}
                             name="number"
                             onChange={(e) => handleChangePhone(e)}
@@ -343,6 +353,7 @@ cart.length > 0 && cart.map((e) => {
                             id="address"
                             placeholder="Calle 1234"
                             required=""
+                            disabled={payer.phone.number===""}
                             value={payer.address.street_name}
                             name="street_name"
                             onChange={(e) => handleChangeAddress(e)}
@@ -361,6 +372,7 @@ cart.length > 0 && cart.map((e) => {
                             placeholder="12345678"
                             defaultValue=""
                             required=""
+                            disabled={payer.address.street_name===""}
                             value={payer.address.street_number}
                             name="street_number"
                             onChange={(e) => handleChangeAddress(e)}
@@ -432,6 +444,7 @@ cart.length > 0 && cart.map((e) => {
                             className="form-control"
                             placeholder="AR1234"
                             required=""
+                            disabled={payer.address.street_number===""}
                             value={payer.address.zip_code}
                             name="zip_code"
                             onChange={(e) => handleChangeAddress(e)}

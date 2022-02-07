@@ -13,9 +13,6 @@ function AdminProduct() {
     const products = useSelector((state) => state.firstRed.products);
     const dispatch = useDispatch()
 
-    console.log(products)
-
-
     const handelDetele=(e)=>{
 
         Swal.fire({
@@ -89,7 +86,7 @@ function AdminProduct() {
                             <Link to={`/admin/edit/${e.id}`}>
                                 <button className="btn btn-outline-warning" style={{marginRight:10}}>Editar</button>
                             </Link>
-                            <button className="btn btn-outline-danger" name="id" value={e.id} onClick={(e)=>handelDetele(e)}><i className="fas fa-trash-alt"></i></button>
+                            <button className="btn btn-danger" name="id" value={e.id} onClick={(e)=>handelDetele(e)}>X</button>
                         </div>
                     </td>
                 </tr>

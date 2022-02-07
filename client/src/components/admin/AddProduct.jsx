@@ -31,7 +31,7 @@ function AddProdcut() {
     ram:[]
   })
 
-  console.log(inputBody)
+  
 
   function handelInput(e){
     e.preventDefault()
@@ -54,7 +54,7 @@ function AddProdcut() {
 
   function handelSubmit(e){
     e.preventDefault()
-
+    console.log(inputBody)
     if(inputBody.idCategory!== "" && inputBody.name!==""){
       dispatch(addProduct(inputBody))
       swal("Agregado a la DB!", {
@@ -96,6 +96,7 @@ function AddProdcut() {
     const res= await axios.post(`https://api.cloudinary.com/v1_1/groupapple/image/upload`, data)
 
     const file=res.data;
+    console.log(file)
      setInputBody({
        ...inputBody,
        [e.target.name]:file.url
@@ -228,7 +229,11 @@ function AddProdcut() {
                   <div className="card-body">
                     <div className="col-sm-11">
                       <label for="exampleFormControlFile1">Imagen</label>
-                      <input name="image" accept=".jpg, .jpeg, .png" value={inputBody.image} onChange={e=>handelInput(e)} type="file" className="form-control" id="exampleFormControlFile1"/>
+                      <input name="image" 
+                      accept="image/png,image/jpg"  
+                      onChange={handelImagen} 
+                      type="file" 
+                      className="form-control-file"/>
                     </div>
                   </div>
                   <div className="card-body">

@@ -9,7 +9,7 @@ function validate(input) {
     if (!input.name) {
         errors.name = "se requiere un nombre"
     }
-    if (!input.life) {
+    if(!input.lastName){
         errors.lastName = "Se requiere apellido"
     }
     if (!input.defense) {
@@ -77,7 +77,9 @@ const Formularios = () => {
 
                             </div>
                             <div className="container">
+                                
                                 <div className="row">
+                                    
                                     <div className="col-6">
                                         <div className="input-group px-3 mt-3">
                                             <input
@@ -142,11 +144,13 @@ const Formularios = () => {
                                         </div>
 
                                     </div>
-
+                                    <br/>
+                                    
                                 </div>
                             </div>
                             <br />
                         </div>
+                        
                     </div>
                 </div>
                 <button type='submit' className="btn " >Crear usuario</button>

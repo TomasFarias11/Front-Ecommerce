@@ -17,6 +17,19 @@ function EditProduct() {
   const productId = useSelector((state) => state.firstRed.productId)
   const allCategory = useSelector((state)=>state.fourthRed.category);
 
+  console.log(allCategory, "ESTE ES ALL CATEGORY")
+
+  function comparar(productId, allCategory ){
+    for (let i= 0; i < allCategory.length; i++) {
+      if(allCategory[i].idCategory === productId[0].idCategory) {
+          var prueba = allCategory[i].idCategory.name
+          return prueba
+      } 
+      
+  }
+
+  }
+
     useEffect(() => {
     dispatch(getProductById(id))
     dispatch(getCategory())
@@ -143,9 +156,12 @@ function EditProduct() {
     <div className=" card col-lg-6" style={{marginTop:20}}>
       <div className="form-group">
           <h2>Categoria</h2>
+
+          {/* AQUI VAMOS */}
+          <p >{() => comparar(productId, allCategory)} </p>
         {/*Array.isArray(allCategory) ? allCategory.map(e=> e.idCategory===productId.idCategory return(<p>{e.name}</p>)): null*/}
         </div>
-        <div className="form-group">
+        <div class="form-group" autofocus>
           <h2>Nombre del Producto</h2>
           <p>{productId.name}</p>
         </div>

@@ -52,49 +52,58 @@ const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts, 
         
         <div className="row">
             <div className="col-lg-2">
-                <div className="container-sm" style={{ padding: 20 } }>   
+                <div className="container-sm d-flex justify-content-center" style={{ padding:20, paddingTop:0 }}> 
+                    <div className="badge fs-4 bg-info text-wrap" style={{ width: "20rem" }}>
+                        Ordenar por
+                    </div>
+                </div>
+                <div className="d-flex justify-content-center" style={{ padding:20, paddingTop:0 }}>   
                     <div >
-                        <div className="dropdown">
-                        <button type="button" className="btn btn-outline-secondary" onClick={()=>orderAZ()}>Orden  A...Z</button>
+                        <div className="d-flex justify-content-center">
+                        <button type="button" className="btn btn-outline-secondary" onClick={()=>orderAZ()}>Nombre  <i class="fas fa-sort-alpha-down"></i></button>
                         </div>
                         <br/>
-                        <div className="dropdown">
-                        <button type="button" className="btn btn-outline-secondary" onClick={()=>orderZA()}>Orden  Z...A</button>
+                        <div className="d-flex justify-content-center">
+                        <button type="button" className="btn btn-outline-secondary" onClick={()=>orderZA()}>Nombre  <i class="fas fa-sort-alpha-up"></i></button>
                         </div>
                         <br/>
-                        <div className="dropdown">
-                        <button type="button" className="btn btn-outline-secondary" onClick={()=>minPrice()}>Precio min...max</button>
+                        <div className="d-flex justify-content-center">
+                        <button type="button" className="btn btn-outline-secondary" onClick={()=>minPrice()}>Precio <i class="fas fa-sort-numeric-down"></i></button>
                         </div>
                         <br/>
-                        <div className="dropdown">
-                        <button type="button" className="btn btn-outline-secondary" onClick={()=>maxPrice()}>Precio max...min</button>
+                        <div className="d-flex justify-content-center">
+                        <button type="button" className="btn btn-outline-secondary" onClick={()=>maxPrice()}>Precio <i class="fas fa-sort-numeric-up"></i></button>
                         </div>
                     </div>
                 </div>
+
             </div>
                 <div className=" card col-lg-9">
                     <div className="container-sm bg-image hover-overlay ripple" data-mdb-ripple-color="light" style={{ padding: 20 } } >
-                        <div className="row row-cols-0 row-cols-md-3 g-5 mask animate__animated animate__bounceIn" style={{backgroundColor: "#FAFAFA"}}    >
+                        <div className="row row-cols-0 mt-0 row-cols-md-3 g-5 mask animate__animated animate__bounceIn" style={{backgroundColor: "#fff"}}    >
                             {
                                 products.length < 0 ? <div><h1>Producto sin Stock</h1></div> :
                                 products.filter(p=>p.stock > 0).map(e =>
-                                    <div className="col" key={e.id}>
+                                    <div className="col mt-1 mb-3" key={e.id}>
                                         <div className="card animate__animated animate__bounceIn" >
-                                            <img src={e.image !== 'not found' ? e.image : "https://i.postimg.cc/SK600jXG/OIP.jpg"} className="img-fluid" alt="product"  />
+                                            <Link to={`/details/${e.id}`}>
+                                                <img src={e.image !== 'not found' ? e.image : "https://i.postimg.cc/SK600jXG/OIP.jpg"} className="img-fluid" alt="product"  />
+                                            </Link>
                                             <div className="card-body">
-                                                <h5 className="card-title">{e.name}</h5>
-                                                <p className="card-text">{e.category}  ${formato.format(e.price)}</p>
-                                                <Link to={`/details/${e.id}`}>
-                                                    <button className="btn btn-outline-secondary rounded-pill">Ver más...</button>
+                                                <Link style={{ textDecoration: "none", color: "black" }} to={`/details/${e.id}`}>
+                                                    <h5 className="card-title"><strong>{e.name}</strong></h5>
                                                 </Link>
+                                                <p className="card-text text-info"><strong>{e.category}  $ {formato.format(e.price)}</strong> </p>
                                                 <div>
                                                     {/* {console.log('products', products)} */}
                                                     {cart.some((c) => e.id === c.id) ? 
-                                                    <div className="alert alert-warning" role="alert">
+                                                    <div className="alert alert-info" role="alert">
                                                         Agregado al carrito
                                                     </div>
                                                     : 
-                                                    <button style={{margin: "10px 0px"}} type="button" value={e.id} className="btn btn-outline-secondary rounded-pill" onClick={(e) => handleClick(e)}>Añadir al carrito</button>
+                                                    <div className="d-flex justify-content-center">
+                                                    <button style={{margin: "10px 0px"}} type="button" value={e.id} className="btn btn-outline-secondary rounded-pill" onClick={(e) => handleClick(e)}><i class="fas fa-cart-plus"></i> Añadir al carrito</button>
+                                                    </div>
                                                     }
                                                 </div>
                                             </div>

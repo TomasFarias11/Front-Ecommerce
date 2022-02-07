@@ -46,7 +46,7 @@ export default function CartCard ({id, name, price, image, quantity, stock}) {
                 <div className="shopping-cart" >
                     <div className="item"> 
                         <div>
-                            <button className="button-X" onClick={(e) => handleOnClick(e)}><span> X </span></button>
+                            <button className="btn btn-outline-danger btn-sm" onClick={(e) => handleOnClick(e)}><i class="fas fa-trash-alt"></i></button>
                         </div>
                         <div className="cart-imagen">
                         <img src={image} alt="Not found" height="100px"/>
@@ -54,7 +54,7 @@ export default function CartCard ({id, name, price, image, quantity, stock}) {
                         <h4 className="name-cart">{name}</h4>        
                         <div className="quantity">
                         {/* <h3 className="price">US{formato.format(price)}</h3> */}
-                        <h5>${formato.format(price)} x <input type="number" min='1' max={stock} value={quantity} onChange={handleQuantity} className='price'/>u = ${formato.format((price * quantity))}</h5>
+                        <h6>${formato.format(price)} x <input type="number" min='1' max={stock} value={quantity} onChange={handleQuantity} className='price'/>u = ${formato.format((price * quantity))}</h6>
                         </div>
                     </div>
                 </div>

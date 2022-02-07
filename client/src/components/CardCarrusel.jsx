@@ -5,6 +5,7 @@ import {addToCart, getProducts, setCartOn, setCart, editOrder} from '../actions/
 import {Link} from "react-router-dom";
 import swal from 'sweetalert';
 import '../css/Carrousel.css'
+
 const CardCarrusel = () =>{
 
     useEffect(() => 
@@ -70,12 +71,13 @@ const CardCarrusel = () =>{
     return(<>
         <div className="container" style={{padding: "15px"}}>
             <div className="row animate__animated animate__slideInRight">
+
                 {currentProduct ? currentProduct.map((e)=>{
                     return(
-                    <div className="col-3 animate__animated animate__slideInRight img-fluid" key={e.id} >
+                    <div className="col animate__animated animate__slideInRight img-fluid" key={e.id} >
                         <div className="card2 ">
                             <Link to={`/details/${e.id}`}>
-                                <img src={e.image} alt="" className="card-img-top" height="310px"/>
+                                <img src={e.image} alt="products" className="img-fluid"/>
                             </Link>
                             <div className="card-body">
                                 <h5>{e.name}</h5>
@@ -84,12 +86,14 @@ const CardCarrusel = () =>{
                             </div>
                             <div>
                                 {cart.some((c) => e.id === c.id) ? 
-                                <div className="alert alert-warning" role="alert">
+                                <div className="alert alert-info" role="alert">
                                 Agregado al carrito
                                 </div>
                                 :
-                                <button type="button" value={e.id} className="btn btn-outline-primary" onClick={(e) => handleClick(e)}>Añadir al carrito</button>
-                                }
+                                <div className="d-flex justify-content-center">
+                                <button style={{margin: "10px 0px"}} type="button" value={e.id} className="btn btn-outline-secondary rounded-pill" onClick={(e) => handleClick(e)}><i class="fas fa-cart-plus"></i> Añadir al carrito</button>
+                            </div>
+                            }
                             </div>
                         </div>
                     </div>
@@ -113,7 +117,7 @@ const CardCarrusel = () =>{
                 ): null}  
             </nav>
         </div>
-    </>
+        </>
     )
 }
     

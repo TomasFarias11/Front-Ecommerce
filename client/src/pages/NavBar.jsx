@@ -117,7 +117,7 @@ useEffect(() => {
                                     </li>
                                     <li>
                                         <Link style={{ textDecoration: "none", color: "white" }} to="/admin/Category">
-                                            <span className="dropdown-item" href="#!"> Categoria </span>
+                                            <span className="dropdown-item" href="#!"> Categoría </span>
                                         </Link>
                                     </li>
                                     <li>

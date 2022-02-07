@@ -32,6 +32,7 @@ function CarrouselMain() {
           aria-label="Slide 4"
         />
       </div>
+      
       <div className="carousel-inner">
         <div className="carousel-item active">
           <img

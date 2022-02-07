@@ -138,7 +138,7 @@ function AddProdcut() {
                     <div className="card-body">
                       <div className="col-sm-10">
                         <label for="exampleInputName">Nombre del Producto</label>
-                        <input className="form-control" name="name" value={inputBody.name} onChange={e=>handelInput(e)} type="text" className="form-control" id="exampleInputName" aria-describedby="emailHelp" placeholder="Ingrese el nombre"/>
+                        <input className="form-control" name="name" value={inputBody.name} onChange={e=>handelInput(e)} type="text" id="exampleInputName" aria-describedby="emailHelp" placeholder="Ingrese el nombre"/>
                       </div>
                     </div>
                     <div className="card-body">

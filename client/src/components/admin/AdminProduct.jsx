@@ -13,9 +13,6 @@ function AdminProduct() {
     const products = useSelector((state) => state.firstRed.products);
     const dispatch = useDispatch()
 
-    console.log(products)
-
-
     const handelDetele=(e)=>{
 
         Swal.fire({
@@ -45,39 +42,59 @@ function AdminProduct() {
 
   return (
     <div className="row">
-    <div className="col-lg-3">
-        <div className="container-sm" style={{ padding: 20 } }>   
-            <div >
-                <div className="dropdown">
-                <Link to="/admin/addProduct">
-                <button type="button" className="btn btn-outline-secondary" >Agregar Productos</button>
-                </Link>
+        <div className="col-lg-3">
+            <div className="container-sm d-flex justify-content-center" style={{ padding:20, paddingTop:0 }}> 
+                <div className="badge fs-3 bg-dark text-wrap" style={{ width: "20rem" }}>
+                    Administración de Productos
                 </div>
             </div>
+            <div className='d-flex justify-content-center' style={{ paddingTop:0 } } >
+                <Link to="/admin/addProduct">
+                    <button type="button" className="btn btn-outline-success btn-lg">Añadir Producto</button>
+                </Link>
+            </div>
         </div>
-    </div>
-    <div className=" card col-lg-8">
-                    <div className="container-sm bg-image hover-overlay ripple" data-mdb-ripple-color="light" style={{ padding: 20 } } >
-                        <div className="row" Style="background-color: #FAFAFA"    >
-                            <ul className="list-group list-group-flush">
-                                {
-                                    products.map(e=>
-                                        <li className="list-group-item" key={e.id}><p><b>ID: </b>{e.id}</p> <p><b>Nombre: </b> {e.name}</p> <p><b>Categoria: </b> {e.idCategory}</p>
-                                            <Link to={`/details/${e.id}`}>
-                                                <button className="btn btn-primary" style={{marginRight:10}}>Ir al detalle</button>
-                                            </Link>
-                                            <Link to={`/admin/edit/${e.id}`}>
-                                                <button className="btn btn-warning" style={{marginRight:10}}>Editar</button>
-                                            </Link>
-                                            <button className="btn btn-danger" name="id" value={e.id} onClick={(e)=>handelDetele(e)}>X</button>
-                                        </li>
-                                    )
-                                }
-                            </ul>
+        <div className=" card col-lg-8"style={{ paddingTop:15 } }>
+            <table className="table table-hover table-bordered">
+                <thead className="table-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th  scope="col">Nombre</th>
+                        <th scope="col">Categoría</th>
+                        <th className="text-center" scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                { products.map((e)=>
+                <tr key={e.id}>
+                    <th scope="row">{e.id}</th>
+                    <td>{e.name}</td>
+                    <td className="text-center">
+                        {(e.idCategory)===1 ? "iPhone": 
+                        (e.idCategory)===2 ? "iPad"  :
+                        (e.idCategory)===3 ? "Watch"  :
+                        (e.idCategory)===4 ? "Airpods"  :
+                        (e.idCategory)===5 ? "Mac"  : 
+                        (e.idCategory)===6 ? "TV & Home" 
+                        :  "Nueva Categoria"}
+                    </td>
+                    <td>
+                        <div className="d-flex justify-content-center">
+                            <Link to={`/details/${e.id}`}>
+                                <button className="btn btn-outline-primary" style={{marginRight:10}}>Detalles</button>
+                            </Link>
+                            <Link to={`/admin/edit/${e.id}`}>
+                                <button className="btn btn-outline-warning" style={{marginRight:10}}>Editar</button>
+                            </Link>
+                            <button className="btn btn-danger" name="id" value={e.id} onClick={(e)=>handelDetele(e)}>X</button>
                         </div>
-                    </div>
+                    </td>
+                </tr>
+                )}
+                </tbody>
+            </table>
         </div>
-    </div>
+  </div>
   )
 
 }

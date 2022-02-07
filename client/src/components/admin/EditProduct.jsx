@@ -7,6 +7,7 @@ import { useParams } from "react-router";
 import { Link, useNavigate } from "react-router-dom";
 import swal from 'sweetalert';
 import Swal from 'sweetalert2'
+import axios from "axios";
 
 
 function EditProduct() {
@@ -61,7 +62,6 @@ function EditProduct() {
       image:""
   })
 
-  console.log("body",inputBody)
 
 
   function handelInput(e){
@@ -120,6 +120,23 @@ function EditProduct() {
           text: 'Por favor, rellene los campos necesarios para editar el producto',
         })
     }
+  }
+
+  const handelImagen = async(e)=>{
+    e.preventDefault()
+    const files=e.target.files;
+    const data =new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "group6");
+
+    const res= await axios.post(`https://api.cloudinary.com/v1_1/groupapple/image/upload`, data)
+
+    const file=res.data;
+    console.log(file)
+     setInputBody({
+       ...inputBody,
+       [e.target.name]:file.url
+     })
   }
 
 
@@ -247,7 +264,11 @@ function EditProduct() {
         </div>
          <div className="form-group" style={{marginTop:10, marginBottom:10}}>
           <label for="exampleFormControlFile1">Imagen</label>
-          <input name="image" value={inputBody.image} onChange={e=>handelInput(e)} type="file" className="form-control-file" id="exampleFormControlFile1"/>
+         <input name="image" 
+                      accept="image/png,image/jpg"  
+                      onChange={handelImagen} 
+                      type="file" 
+                      className="form-control-file"/>
         </div>
         <button className="btn btn-primary" type="submit">Editar</button>
       </form>

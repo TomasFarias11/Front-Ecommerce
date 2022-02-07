@@ -53,7 +53,7 @@ export default function Details() {
           <br />
             <h2 className="featurette-heading">{productId.name}</h2>
           <br />
-            <h3>Descripcion</h3>
+            <h3>Descripción</h3>
           <p className="lead">{productId.description}</p>
           {productId.model !== null ? (
           <p>

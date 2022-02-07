@@ -138,7 +138,7 @@ function AddProdcut() {
                     <div className="card-body">
                       <div className="col-sm-10">
                         <label for="exampleInputName">Nombre del Producto</label>
-                        <input className="form-control" name="name" value={inputBody.name} onChange={e=>handelInput(e)} type="text" className="form-control" id="exampleInputName" aria-describedby="emailHelp" placeholder="Ingrese el nombre"/>
+                        <input className="form-control" name="name" value={inputBody.name} onChange={e=>handelInput(e)} type="text" id="exampleInputName" aria-describedby="emailHelp" placeholder="Ingrese el nombre"/>
                       </div>
                     </div>
                     <div className="card-body">
@@ -229,11 +229,7 @@ function AddProdcut() {
                   <div className="card-body">
                     <div className="col-sm-11">
                       <label for="exampleFormControlFile1">Imagen</label>
-                      <input name="image" 
-                      accept="image/png,image/jpg"  
-                      onChange={handelImagen} 
-                      type="file" 
-                      className="form-control-file"/>
+                      <input name="image" accept=".jpg, .jpeg, .png" value={inputBody.image} onChange={e=>handelImagen(e)} type="file" className="form-control" id="exampleFormControlFile1"/>
                     </div>
                   </div>
                   <div className="card-body">

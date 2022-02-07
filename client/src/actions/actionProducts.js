@@ -369,7 +369,7 @@ export function updateOrder (idUser, payload) {
             console.log('PUTO',newOrder)
             return dispatch(
                 {
-                    type: UPDATE_ORDER, payload: newOrder[0]
+                    type: UPDATE_ORDER, payload: newOrder[0], payload2:[]
                 }
             )
         } catch (err) {

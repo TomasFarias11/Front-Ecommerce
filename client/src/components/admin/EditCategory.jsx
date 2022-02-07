@@ -46,11 +46,17 @@ function EditCategory() {
     <div className="row">
       <div className="col-lg-3">
         <div className="container-sm" style={{ padding: 20 }}>
+        <div className="container-sm d-flex justify-content-center" style={{ padding: 20, paddingTop: 0 }}>
+              <div className="badge fs-4 bg-dark text-wrap" style={{ width: "20rem" }}>
+                Formulario para editar Categoría existente
+              </div>
+            </div>
+
           <div>
-            <div className="dropdown">
+            <div className="d-flex justify-content-center">
               <Link to="/admin/Category">
-                <button type="button" className="btn btn-outline-secondary">
-                  Categorias
+                <button type="button" className="btn btn-outline-info btn-lg">
+                  Categorías
                 </button>
               </Link>
             </div>
@@ -60,11 +66,25 @@ function EditCategory() {
       </div>
       <div className=" card col-lg-8">
         <br />
-        <h1>Editar Categoria: {categorytId.name}</h1>
+        <div className="card-header d-flex align-items-center">
+          <div className="container-sm d-flex justify-content-center" style={{ padding: 0, paddingTop: 0 }}>
+            <div className="badge fs-5 bg-info text-wrap" style={{ width: "20rem" }}>
+              Editar Categoría
+            </div>
+          </div>
+        </div>
+
         <br />
+        <div className="row">
+        <div className=" card col-lg-10" >
+        <div className="form-group">
+        <div className="container">
+        <div className="row featurette">
+        <div className="col-md-10 order-md-2" style={{ paddingRight: 10, marginLeft:10, marginBottom:20 }}>
+
         <form onSubmit={(e) => handelSubmit(e)}>
           <div className="form-group">
-            <label for="exampleInputName">Edita la Categoria</label>
+            <label for="exampleInputName">Nombre de Categoría</label>
             <input
               name="name"
               value={inputBody.name}
@@ -77,14 +97,20 @@ function EditCategory() {
             />
           </div>
           <button
-            className="btn btn-warning"
+            className="btn btn-success"
             type="submit"
             style={{ marginTop: 10, marginBottom: 10 }}
           >
-            Editar Categoria
+            Editar Categoría
           </button>
         </form>
       </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
   );
 }

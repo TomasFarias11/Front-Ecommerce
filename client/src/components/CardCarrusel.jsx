@@ -86,7 +86,7 @@ const CardCarrusel = () =>{
                             </div>
                             <div>
                                 {cart.some((c) => e.id === c.id) ? 
-                                <div className="alert alert-warning" role="alert">
+                                <div className="alert alert-info" role="alert">
                                 Agregado al carrito
                                 </div>
                                 :

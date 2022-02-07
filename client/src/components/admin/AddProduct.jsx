@@ -229,7 +229,11 @@ function AddProdcut() {
                   <div className="card-body">
                     <div className="col-sm-11">
                       <label for="exampleFormControlFile1">Imagen</label>
-                      <input name="image" accept=".jpg, .jpeg, .png" value={inputBody.image} onChange={e=>handelImagen(e)} type="file" className="form-control" id="exampleFormControlFile1"/>
+                      <input name="image" 
+                      accept="image/png,image/jpg"  
+                      onChange={handelImagen} 
+                      type="file" 
+                      className="form-control-file"/>
                     </div>
                   </div>
                   <div className="card-body">

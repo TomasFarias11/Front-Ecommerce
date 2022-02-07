@@ -5,6 +5,8 @@ import { getCategory, editProduct } from "../../actions/actionAdmin";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+
 import Details from "..//..//pages/Details.jsx";
 import swal from "sweetalert";
 import Swal from "sweetalert2";
@@ -60,6 +62,23 @@ function EditProduct() {
       ...inputBody,
       [e.target.name]: e.target.value,
     });
+  }
+
+  const handelImagen = async(e)=>{
+    e.preventDefault()
+    const files=e.target.files;
+    const data =new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "group6");
+
+    const res= await axios.post('https://api.cloudinary.com/v1_1/groupapple/image/upload', data)
+
+    const file=res.data;
+    console.log(file)
+     setInputBody({
+       ...inputBody,
+       [e.target.name]:file.url
+     })
   }
 
   function handelArray(e) {
@@ -370,14 +389,11 @@ function EditProduct() {
                   style={{ marginTop: 10, marginBottom: 30 }}
                 >
                   <label for="exampleFormControlFile1">Imagen</label>
-                  <input
-                    name="image"
-                    value={inputBody.image}
-                    onChange={(e) => handelInput(e)}
-                    type="file"
-                    className="form-control"
-                    id="exampleFormControlFile1"
-                  />
+                  <input name="image" 
+                      accept="image/png,image/jpg"
+                      onChange={handelImagen} 
+                      type="file" 
+                      className="form-control-file"/>
                 </div>
                 <button className="btn btn-success" type="submit">
                   Confirmar Cambios

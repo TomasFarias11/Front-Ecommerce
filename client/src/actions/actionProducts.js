@@ -345,11 +345,10 @@ export function listarUsers(){
 }
 
 export function editOrder (idUser, payload) {
-    console.log('?????',payload)
     return async function (dispatch) {
         try {
             await axios.put(`/order/${idUser}`, payload)
-            const {data} = await axios.get(`/order/${idUser}`)
+            const {data} = await axios.get(`/order/user/${idUser}`)
             console.log('la data de la orden', data[0])
             return dispatch({type: PUT_ORDER, payload:data[0]})
         } catch (err) {
@@ -359,7 +358,6 @@ export function editOrder (idUser, payload) {
 }
 
 export function updateOrder (idUser, payload) {
-    console.log('?????',payload)
     return async function (dispatch) {
         try {
             await axios.put(`/order/update/${idUser}`, payload)
@@ -369,7 +367,7 @@ export function updateOrder (idUser, payload) {
             console.log('PUTO',newOrder)
             return dispatch(
                 {
-                    type: UPDATE_ORDER, payload: newOrder[0], payload2:[]
+                    type: UPDATE_ORDER, payload: newOrder[0]
                 }
             )
         } catch (err) {

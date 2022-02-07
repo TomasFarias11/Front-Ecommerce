@@ -33,8 +33,9 @@ export default function Home () {
 
     useEffect(()=> {  
         products > 0 ? window.localStorage.setItem('productos',JSON.stringify(products)) : window.localStorage.setItem('productos',JSON.stringify([]))
-        // dispatch(getUserId(users.id))
-        dispatch(getOrderUser(users.id))
+        if (users.length !== 0) {
+            dispatch(getOrderUser(users.id))
+        }
     })
 
     // useEffect(() => {

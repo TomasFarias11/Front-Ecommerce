@@ -70,18 +70,16 @@ export default function Cart () {
 
     // animate__slideOutRight
     return (
-        <div className = {cartNav === false ? "row animate__animated animate__slideOutRight" : "row animate__animated animate__slideInRight"} style={{position: 'absolute', right: '12px', top: '95px', background: '#E9E9E9', overflowY: "scroll", height: '90.5vh'}}>
+            
+        <div className = {cartNav === false ? "row animate__animated animate__slideOutRight" : "row animate__animated animate__slideInRight"} style={{position: 'absolute', right: '12px', top: '95px', background: '#fff', overflowY: "scroll", height: '90.5vh'}}>
                 <div className="container-sm">
                     <div>
                         <div>
-                            <button onClick={() => dispatch(setCartOff())} className="btn btn-warning btn-lg" style={{position: 'relative', left: 0, top: 0,margin: '5px 0 5px'}}>CERRAR</button>
-                        </div>
-                        <div>
-                            <button onClick = {(e) => handleDeleteAll(e)}className='btn btn-warning btn-lg' style={{position: 'absolute', right: 0, top: 0,margin: '5px 0 5px'}}>VACIAR CARRO</button>
+                            <button onClick={() => dispatch(setCartOff())} className="btn btn-info text-white" style={{position: 'relative', left: 0, top: 0,margin: '5px 0 5px'}}>Ocultar Carrito</button>
                         </div>
                         {cart ? cart?.map((e) => {
-                        return (
-                            <div key = {e.id}style={{margin: '5px',}}>
+                            return (
+                                <div key = {e.id}style={{margin: '5px',}}>
                                 <hr />
                                 <CartCard 
                                 key = {e.id}
@@ -98,12 +96,21 @@ export default function Cart () {
                     </div>
                     <div className='carrito_footer'>
                         <hr />
-                        <h1>TOTAL = ${formato.format(total)}</h1>
+                        <div className="container-sm d-flex justify-content-center" style={{ padding:20, paddingTop:0 }}> 
+                            <div className="badge fs-4 bg-info text-wrap" style={{ width: "20rem" }}>
+                                <h3>Subtotal =  ${formato.format(total)}</h3>
+                            </div>
+                        </div>
                         <div className='carrito_izq'>
-                            <div>
+                            <div className="d-flex justify-content-center" style={{paddingBottom:40, }}>
                                 <hr />
-                                    <button onClick={(e) => handleCheck(e)} className='btn btn-warning btn-lg' style={{margin: '5px 0'}}>CHECKOUT</button>
-                                
+                                <div className="d-flex justify-content-center">
+                                    <button onClick={(e) => handleCheck(e)} className='btn btn-success' style={{margin: '5px '}}>Realizar Pedido</button>
+                                </div>
+                                <div className="d-flex justify-content-center">
+                                    <button onClick = {(e) => handleDeleteAll(e)}className='btn btn-danger' style={{margin: '5px '}}>Vaciar Carrito</button>
+                                </div>
+                                <hr />                               
                             </div>
                         </div>
                     </div>

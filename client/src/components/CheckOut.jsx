@@ -279,7 +279,7 @@ cart.length > 0 && cart.map((e) => {
                             Nº de Documento
                           </label>
                           <input
-                            type="integer"
+                            type="number"
                             className="form-control"
                             placeholder="12345678"
                             defaultValue=""
@@ -297,7 +297,7 @@ cart.length > 0 && cart.map((e) => {
                             Código de Área
                           </label>
                           <input
-                            type="integer"
+                            type="number"
                             className="form-control"
                             placeholder="0387"
                             defaultValue=""
@@ -315,7 +315,7 @@ cart.length > 0 && cart.map((e) => {
                             Nº de Celular
                           </label>
                           <input
-                            type="integer"
+                            type="number"
                             className="form-control"
                             placeholder="12345678"
                             defaultValue=""
@@ -351,7 +351,7 @@ cart.length > 0 && cart.map((e) => {
                             Número
                           </label>
                           <input
-                            type="integer"
+                            type="number"
                             className="form-control"
                             placeholder="12345678"
                             defaultValue=""

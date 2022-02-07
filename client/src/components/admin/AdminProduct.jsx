@@ -51,13 +51,13 @@ function AdminProduct() {
                     Administración de Productos
                 </div>
             </div>
-            <div className='d-flex justify-content-center' style={{ paddingTop:0 } } >
+            <div className='d-flex justify-content-center' style={{ paddingTop:0, paddingBottom:10 } } >
                 <Link to="/admin/addProduct">
                     <button type="button" className="btn btn-outline-success btn-lg">Añadir Producto</button>
                 </Link>
             </div>
         </div>
-        <div className=" card col-lg-8"style={{ paddingTop:15 } }>
+        <div className="card col-lg-8"style={{ paddingTop:15 } }>
             <table className="table table-hover table-bordered">
                 <thead className="table-dark">
                     <tr>
@@ -89,7 +89,7 @@ function AdminProduct() {
                             <Link to={`/admin/edit/${e.id}`}>
                                 <button className="btn btn-outline-warning" style={{marginRight:10}}>Editar</button>
                             </Link>
-                            <button className="btn btn-outline-danger" name="id" value={e.id} onClick={(e)=>handelDetele(e)}><i className="fas fa-trash-alt"></i></button>
+                            <button className="btn btn-outline-danger fas fa-trash-alt" type='button' name="id" value={e.id} onClick={(e)=>handelDetele(e)}></button>
                         </div>
                     </td>
                 </tr>

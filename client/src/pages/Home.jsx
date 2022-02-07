@@ -67,36 +67,36 @@ export default function Home () {
             <CardCarrusel/>
         </div>
     <div className="container" style={{display: "flex", flexDirection: "column"  }} >
-        <div className="row" style={{padding:10}}>
+        <div className="row" style={{padding:20}}>
             <div className="col col-lg-4" >
                 <div className={estilos.styleCards}>
-                <img src="https://i.postimg.cc/3rf39xcy/IMG-6998.jpg" className="card-img-top" alt="Fissure in Sandstone" height='350px'/>
+                <img src="https://i.postimg.cc/RF0RDbPT/iphone.png" className="img-fluid" alt="Fissure in Sandstone" />
                     <div className="card-body">
-                        <h5 className="card-title">iPhone</h5>
+                    <h2 className="card-title"><strong>iPhone</strong> </h2>
                         <p className="card-text">Un salto al siguiente nivel.</p>
                         <div className={estilos.buttonCat}>
-                            <button value='iphone' className="btn btn-outline-secondary rounded-pill" onClick={(e) => handleClick(e)}>Ver mas...</button>
+                            <button value='iPhone' className="btn btn-outline-secondary rounded-pill" onClick={(e) => handleClick(e)}>Ver más  <i className="fas fa-angle-right"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="col col-lg-4">
                 <div className={estilos.styleCards}>
-                    <img src="https://i.postimg.cc/x1d3fn8y/New-i-Pad-Air-y-i-Pad-Mini-Photo-Room-2.png" className="card-img-top" alt="Fissure in Sandstone" height='350px'/>
+                    <img src="https://i.postimg.cc/KzsNSrwh/ipad.png" className="img-fluid" alt="Fissure in Sandstone"/>
                     <div className="card-body">
-                        <h5 className="card-title">iPad</h5>
+                        <h2 className="card-title"><strong>iPad</strong> </h2>
                         <p className="card-text">Tu mundo a todo color.</p>
-                        <button value='ipad' className="btn btn-outline-secondary rounded-pill" onClick={(e) => handleClick(e)}>Ver mas...</button>
+                        <button value='iPad' className="btn btn-outline-secondary rounded-pill" onClick={(e) => handleClick(e)}>Ver más  <i className="fas fa-angle-right"></i> </button>
                     </div>
                 </div>
             </div>
             <div className="col col-lg-4">
                 <div className={estilos.styleCards}>
-                    <img src="https://www.apple.com/newsroom/images/product/watch/lifestyle/Apple_announces-watch-se_09152020.jpg.landing-big_2x.jpg" className="card-img-top" alt="Fissure in Sandstone" height='350px'/>
+                    <img src="https://i.postimg.cc/MZnkcsWR/watch.png" className="img-fluid" alt="Fissure in Sandstone" />
                     <div className="card-body">
-                        <h5 className="card-title">Apple Watch</h5>
-                        <p className="card-text">Salud solo en tu muñeca.</p>
-                        <button value='watch' className="btn btn-outline-secondary rounded-pill" onClick={(e) => handleClick(e)}>Ver mas...</button>
+                    <h2 className="card-title"><strong>Watch</strong> </h2>
+                        <p className="card-text">Un futuro más saludable en tu muñeca.</p>
+                        <button value='Watch' className="btn btn-outline-secondary rounded-pill" onClick={(e) => handleClick(e)}>Ver más  <i className="fas fa-angle-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -105,31 +105,31 @@ export default function Home () {
         <div className="row" style={{padding:10}}>
             <div className="col col-lg-4">
                 <div className={estilos.styleCards}>
-                    <img src="https://cdn.ipadizate.com/2020/12/airpods-max-en-colores.jpg" className="card-img-top" alt="Fissure in Sandstone" height='350px'/>
+                    <img src="https://i.postimg.cc/TPfQrPgF/airpods.png" className="img-fluid" alt="Fissure in Sandstone" />
                     <div className="card-body">
-                        <h5 className="card-title">AirPods</h5>
+                    <h2 className="card-title"><strong>AirPods</strong> </h2>
                         <p className="card-text">Musica de calidad para tus oidos.</p>
-                        <button value='airpods' className="btn btn-outline-secondary rounded-pill" onClick={(e) => handleClick(e)}>Ver mas...</button>
+                        <button value='AirPods' className="btn btn-outline-secondary rounded-pill" onClick={(e) => handleClick(e)}>Ver más  <i className="fas fa-angle-right"></i></button>
                     </div>
                 </div>
             </div>
             <div className="col col-lg-4">
                 <div className={estilos.styleCards}>
-                    <img src="https://www.apple.com/v/mac/home/bj/images/meta/mac__bfa414svyuc2_og.png" className="card-img-top" alt="Fissure in Sandstone" height='350px'/>
+                    <img src="https://i.postimg.cc/nL22Tt1z/mac.png" className="img-fluid" alt="Fissure in Sandstone" />
                     <div className="card-body">
-                        <h5 className="card-title">Macbook</h5>
+                    <h2 className="card-title"><strong>MacBook</strong> </h2>
                         <p className="card-text">Velocidad para llevar a todas partes.</p>
-                        <button value='macbook' className="btn btn-outline-secondary rounded-pill" onClick={(e) => handleClick(e)}>Ver mas...</button>
+                        <button value='Mac' className="btn btn-outline-secondary rounded-pill" onClick={(e) => handleClick(e)}>Ver más  <i className="fas fa-angle-right"></i></button>
                     </div>
                 </div>
             </div>
             <div className="col col-lg-4">
                 <div className={estilos.styleCards}>
-                    <img src="https://ar.oneclickstore.com/wp-content/uploads/2021/11/Apple_TV_4K_PDP_Image_Position-1_USBC_LAES_R1_v1.jpg" className="card-img-top" alt="Fissure in Sandstone" height='350px'/>
+                    <img src="https://i.postimg.cc/SstpBCVB/tv.png" className="img-fluid" alt="Fissure in Sandstone" />
                     <div className="card-body">
-                        <h5 className="card-title">TV & Home</h5>
-                        <p className="card-text">Streaming en 4K.</p>
-                        <button value='tv' className="btn btn-outline-secondary rounded-pill" onClick={(e) => handleClick(e)}>Ver mas...</button>
+                    <h2 className="card-title"><strong>TV & Home</strong> </h2>
+                        <p className="card-text">El futuro llegó a casa.</p>
+                        <button value='TV & Home' className="btn btn-outline-secondary rounded-pill" onClick={(e) => handleClick(e)}>Ver más  <i className="fas fa-angle-right"></i></button>
                     </div>
                 </div>
             </div>

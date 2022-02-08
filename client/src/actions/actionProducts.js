@@ -349,7 +349,6 @@ export function editOrder (idUser, payload) {
         try {
             await axios.put(`/order/${idUser}`, payload)
             const {data} = await axios.get(`/order/user/${idUser}`)
-            console.log('la data de la orden', data[0])
             return dispatch({type: PUT_ORDER, payload:data[0]})
         } catch (err) {
             console.log(err)
@@ -361,8 +360,10 @@ export function updateOrder (idUser, payload) {
     return async function (dispatch) {
         try {
             await axios.put(`/order/update/${idUser}`, payload)
-            const {data} = await axios.get(`/order/user/${idUser}`)
             const newOrder = await axios.post(`/order/${idUser}`,{carrito:[]})
+            window.localStorage.setItem('carrito', JSON.stringify([]))
+            window.localStorage.setItem('todojunto', JSON.stringify([]))
+            window.localStorage.setItem('order', JSON.stringify([]))
             return dispatch(
                 {
                     type: UPDATE_ORDER, payload: newOrder[0]

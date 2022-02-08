@@ -285,7 +285,7 @@ export function createOrder (idUser, payload) {
     return async function (dispatch) {
         try {
             await axios.post(`/order/${idUser}`, payload)
-            const order = await axios.get(`/order/${idUser}`)
+            const order = await axios.get(`/order/user/${idUser}`)
             return dispatch({type: POST_ORDER, payload: order.data})
         } catch (err) {
             console.log(err);
@@ -349,7 +349,6 @@ export function editOrder (idUser, payload) {
         try {
             await axios.put(`/order/${idUser}`, payload)
             const {data} = await axios.get(`/order/user/${idUser}`)
-            console.log('la data de la orden', data[0])
             return dispatch({type: PUT_ORDER, payload:data[0]})
         } catch (err) {
             console.log(err)
@@ -362,7 +361,6 @@ export function updateOrder (idUser, payload) {
         try {
             await axios.put(`/order/update/${idUser}`, payload)
             const newOrder = await axios.post(`/order/${idUser}`,{carrito:[]})
-            console.log('PUTO',newOrder)
             window.localStorage.setItem('carrito', JSON.stringify([]))
             window.localStorage.setItem('todojunto', JSON.stringify([]))
             window.localStorage.setItem('order', JSON.stringify([]))

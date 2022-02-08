@@ -1,5 +1,5 @@
 import React from "react";
-import { orderAZ, orderZA, minPrice, maxPrice, setProducts, addToCart, setCartOn } from '../actions/actionProducts.js'
+import { orderAZ, orderZA, minPrice, maxPrice, setProducts, addToCart, setCartOn} from '../actions/actionProducts.js'
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
 import { useEffect } from "react";
@@ -7,11 +7,10 @@ import {useDispatch, useSelector} from "react-redux";
 import swal from 'sweetalert';
 
 
-const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts, addToCart, setCartOn}) => {
+const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts, addToCart, setCartOn }) => {
 
     // const dispatch = useDispatch()
     const cart = useSelector((state) => state.firstRed.cart)
-    // console.log('este es el carrito', cart);
     
     useEffect(()=>{
         products.length < JSON.parse(window.localStorage.getItem('productos')).length && products.length ===0 ? 

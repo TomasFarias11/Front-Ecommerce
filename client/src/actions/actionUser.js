@@ -36,24 +36,18 @@ export const googleLogin = () => {
               type: "LOGIN_GOOGLE",
               payload:{ username:response.data.username, admin:response.data.admin, id:response.data.id },
             },
-            // window.localStorage.setItem('usuario', JSON.stringify({
-            //   username: response.data.username,
-            //   id: response.data.id,
-            //   admin: response.data.admin
-            // })))
             window.localStorage.setItem('usuario', JSON.stringify(response.data)))
             : response.status === 202 ? 
+               response.data.banned === false ?
             dispatch({
               type: "LOGIN_GOOGLE",
               payload:{ username:response.data.username, admin:response.data.admin, id:response.data.id },
-            },
-            // console.log('respuesta del 202',response.data),
-            // window.localStorage.setItem('usuario', JSON.stringify({
-            //   username: response.data.username,
-            //   admin: response.data.admin,
-            //   id:response.data.id,
-            // })))
-            window.localStorage.setItem('usuario', JSON.stringify(response.data)))
+            }, window.localStorage.setItem('usuario', JSON.stringify(response.data)))
+               : swal("este usuario esta baniado tempralmente puede comunicarte con nuestro equipo si quieres!", {
+                buttons: false,
+                icon: 'error',
+                timer: 3000,
+              })
             : console.log("este cosole.log no deberia aparecer")
          
       } catch (error) {
@@ -68,6 +62,12 @@ export const localLoginUser = (datos) => {
     try {
     const { data } = await axios.post("/user/login", datos )
     console.log(data, "esta es la data ") 
+     data.banned === true ?
+     swal("este usuario se encuentra baniado temporalmente para mas informacion puedes estarte comunicando cun nuestro equipo!", {
+      buttons: false,
+      icon: 'error',
+      timer: 5000,
+    }):
     dispatch({
       type: LOCAL_LOGIN_USER,
       payload: data,

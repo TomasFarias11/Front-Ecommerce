@@ -67,7 +67,7 @@ export const localLoginUser = (datos) => {
   return async (dispatch) => {
     try {
     const { data } = await axios.post("/user/login", datos )
-    console.log(data, "esta es la data ") 
+    // console.log(data, "esta es la data ") 
     dispatch({
       type: LOCAL_LOGIN_USER,
       payload: data,

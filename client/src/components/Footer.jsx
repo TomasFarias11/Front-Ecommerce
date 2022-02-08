@@ -1,20 +1,20 @@
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+// import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { getProductByCategory } from "../actions/actionProducts.js";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
   const dispatch = useDispatch();
-  const Navigate = useNavigate();
+  // const Navigate = useNavigate();
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    dispatch(getProductByCategory(e.target.value));
-    Navigate(`/category/${e.target.value}`);
-  };
+  // const handleClick = (e) => {
+  //   e.preventDefault();
+  //   dispatch(getProductByCategory(e.target.value));
+  //   Navigate(`/category/${e.target.value}`);
+  // };
 
   const [input, setInput] = useState({
     name: '',
@@ -35,7 +35,7 @@ const handleSubmit =async (e) => {
 }
 
 
-console.log('INPUT',input)
+// console.log('INPUT',input)
 
 
   return (
@@ -78,7 +78,7 @@ console.log('INPUT',input)
               <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                 {/* Content */}
                 <h6 className="fw-bold mb-3">
-                  iGroup-6 | <i class="fab fa-apple"></i> Premium Reseller
+                  iGroup-6 | <i className="fab fa-apple"></i> Premium Reseller
                 </h6>
                 <div className="row">
                   <p>
@@ -87,7 +87,7 @@ console.log('INPUT',input)
                       "Es mejor ser un pirata que pertencer a la Marina"{" "}
                     </em>
                   </p>
-                  <figcaption class="blockquote-footer">
+                  <figcaption className="blockquote-footer">
                     <cite title="Source Title">Steve Jobs</cite>
                   </figcaption>
                 </div>
@@ -192,7 +192,7 @@ console.log('INPUT',input)
                     data-bs-target="#exampleModal"
                     data-bs-whatever="@igroup"
                   >
-                    <i class="far fa-comment-dots"></i> Mensaje Directo
+                    <i className="far fa-comment-dots"></i> Mensaje Directo
                   </button>
                   <div
                     className="modal fade"
@@ -218,7 +218,7 @@ console.log('INPUT',input)
                           <form>
                             <div className="mb-3">
                               <label
-                                htmlFor="recipient-name"
+                                // htmlFor="recipient-name"
                                 className="col-form-label"
                               >
                                 Nombre y Apellido:
@@ -234,7 +234,7 @@ console.log('INPUT',input)
                             </div>
                             <div className="mb-3">
                               <label
-                                htmlFor="recipient-name"
+                                // htmlFor="recipient-name"
                                 className="col-form-label"
                               >
                                 Email:
@@ -256,13 +256,14 @@ console.log('INPUT',input)
                                 Mensaje:
                               </label>
                               <textarea
+                                form="htmlFor"
                                 type="text" 
                                 value={input.message} 
                                 name="message" 
                                 onChange={handleInputChange}
                                 className="form-control"
                                 id="message-text"
-                                defaultValue={""}
+                                // defaultValue={""}
                               />
                             </div>
                           </form>
@@ -293,7 +294,7 @@ console.log('INPUT',input)
                   href="mailto: igroup6.apple@gmail.com"
                 >
                   <p>
-                    <i class="fas fa-envelope"></i>{" "}
+                    <i className="fas fa-envelope"></i>{" "}
                     <i>igroup6.apple@gmail.com</i>
                   </p>
                 </a>
@@ -311,7 +312,7 @@ console.log('INPUT',input)
         >
           © 2022 Copyright:
           <p>
-            iGroup-6 | <i class="fab fa-apple"></i> Premium Reseller
+            iGroup-6 | <i className="fab fa-apple"></i> Premium Reseller
           </p>
         </div>
         {/* Copyright */}

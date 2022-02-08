@@ -1,17 +1,17 @@
 import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {addToCart, delCart, quantity_item, editOrder, createOrder} from '../actions/actionProducts.js'
-import { useNavigate } from 'react-router-dom';
+import { delCart, quantity_item } from '../actions/actionProducts.js'
+// import { useNavigate } from 'react-router-dom';
 import '../css/CartCard.module.css'
 import swal from 'sweetalert';
 
 export default function CartCard ({id, name, price, image, quantity, stock}) {
 
     const dispatch = useDispatch()
-    const cartStorage = window.localStorage.getItem('carrito')
+    // const cartStorage = window.localStorage.getItem('carrito')
     const cart = useSelector((state) => state.firstRed.cart)
-    const user = useSelector((state) => state.secondRed.userData)
+    // const user = useSelector((state) => state.secondRed.userData)
     const formato = new Intl.NumberFormat('de-DE', {
         // style: 'currency',
         // currency: 'USD',
@@ -46,7 +46,7 @@ export default function CartCard ({id, name, price, image, quantity, stock}) {
                 <div className="shopping-cart" >
                     <div className="item"> 
                         <div>
-                            <button className="btn btn-outline-danger btn-sm" onClick={(e) => handleOnClick(e)}><i class="fas fa-trash-alt"></i></button>
+                            <button className="btn btn-outline-danger btn-sm" onClick={(e) => handleOnClick(e)}><i className="fas fa-trash-alt"></i></button>
                         </div>
                         <div className="cart-imagen">
                         <img src={image} alt="Not found" height="100px"/>

@@ -283,6 +283,7 @@ function EditProduct() {
                 <div className="form-group">
                   <label for="exampleFormControlTextarea1">Descripción</label>
                   <textarea
+                    form="htmlFor"
                     name="description"
                     value={inputBody.description}
                     onChange={(e) => handelInput(e)}

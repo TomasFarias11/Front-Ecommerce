@@ -55,7 +55,7 @@ const initialState2={
 }
 
 export default function reducerProducts(state=initialState2, action){
-    console.log('CCAARRTT',state.cart)
+    // console.log('CCAARRTT',state.cart)
     // let productsAux = state.products.map(p => p);
     let productsAux2 = state.products.map(p => p);
 	switch(action.type){

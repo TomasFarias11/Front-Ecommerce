@@ -29,8 +29,6 @@ export default function Home () {
         }
     },[cart])
 
-    const h = useLocation()
-    console.log('WTH?', h)
 
     useEffect(()=> {  
         products > 0 ? window.localStorage.setItem('productos',JSON.stringify(products)) : window.localStorage.setItem('productos',JSON.stringify([]))

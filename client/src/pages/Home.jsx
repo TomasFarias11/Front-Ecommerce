@@ -63,7 +63,7 @@ export default function Home () {
         <div>
           <CarrouselMain/>
         </div>
-        <div className="container" >
+        <div className="container">
             <CardCarrusel/>
         </div>
     <div className="container" style={{display: "flex", flexDirection: "column"  }} >

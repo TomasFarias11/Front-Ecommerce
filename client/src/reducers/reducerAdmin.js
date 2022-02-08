@@ -1,5 +1,5 @@
 
-import {GET_CATEGORY, EDIT_CATEGORY, DELETE_CATEGORY, GET_CATEGORY_ID, ADD_CATEGORY} from "../actions/actionAdmin"
+import {GET_CATEGORY, EDIT_CATEGORY, DELETE_CATEGORY, GET_CATEGORY_ID, ADD_CATEGORY, EDIT_USER_BANE} from "../actions/actionAdmin"
 import {GET_USERS} from "../actions/actionAdmin"
 import {DELETE_USER} from "../actions/actionAdmin"
 import { EDIT_USER } from "../actions/actionAdmin"
@@ -56,6 +56,11 @@ export default function reducerAdmin(state=initialState, action){
 				users:action.payload,				
 			}
 		case EDIT_USER:
+			return {
+				...state,
+				users:action.payload
+			}
+		case EDIT_USER_BANE:
 			return {
 				...state,
 				users:action.payload

@@ -63,7 +63,6 @@ const Formularios = () => {
 
     return (
         <div>
-
             <form onSubmit={(e) => handleSubmit(e)} style={{height: '55rem'}} >
                 <div>
                     <div>
@@ -155,7 +154,6 @@ const Formularios = () => {
                 </div>
                 <button type='submit' className="btn " >Crear usuario</button>
             </form>
-
 
         </div>
     )

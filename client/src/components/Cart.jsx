@@ -34,14 +34,23 @@ export default function Cart () {
 
     const handleDeleteAll = (e) =>  {
         e.preventDefault()
-        dispatch(delAllCart())
-        window.localStorage.setItem('carrito', JSON.stringify([]))
-        swal("Carrito vaciado con exito!", {
-            buttons: false,
-            icon: 'success',
-            timer: 2000,
-          });
-        dispatch(setCartOff())
+        if (user.admin === true) {
+            swal("El admin no puede realizar dicha accion!", {
+                buttons: false,
+                icon: 'error',
+                timer: 2000,
+              });
+        } else {
+
+            dispatch(delAllCart())
+            window.localStorage.setItem('carrito', JSON.stringify([]))
+            swal("Carrito vaciado con exito!", {
+                buttons: false,
+                icon: 'success',
+                timer: 2000,
+            });
+            dispatch(setCartOff())
+        }
     }
 
     useEffect(() => {

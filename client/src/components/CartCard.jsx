@@ -1,17 +1,17 @@
 import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {addToCart, delCart, quantity_item, editOrder, createOrder} from '../actions/actionProducts.js'
-import { useNavigate } from 'react-router-dom';
+import { delCart, quantity_item } from '../actions/actionProducts.js'
+// import { useNavigate } from 'react-router-dom';
 import '../css/CartCard.module.css'
 import swal from 'sweetalert';
 
 export default function CartCard ({id, name, price, image, quantity, stock}) {
 
     const dispatch = useDispatch()
-    const cartStorage = window.localStorage.getItem('carrito')
+    // const cartStorage = window.localStorage.getItem('carrito')
     const cart = useSelector((state) => state.firstRed.cart)
-    const user = useSelector((state) => state.secondRed.userData)
+    const user = JSON.parse(window.localStorage.getItem('usuario'))
     const formato = new Intl.NumberFormat('de-DE', {
         // style: 'currency',
         // currency: 'USD',
@@ -20,13 +20,21 @@ export default function CartCard ({id, name, price, image, quantity, stock}) {
 
     const handleOnClick = (e) => {
         e.preventDefault();
-        dispatch(delCart(Number(id)))
-        window.localStorage.setItem('carrito', JSON.stringify(cart))
-        swal("Articulo eliminado con exito!", {
-            buttons: false,
-            icon: 'success',
-            timer: 2000,
-          });
+        if (user.admin === true) {
+            swal("El admin no puede realizar dicha accion!", {
+                buttons: false,
+                icon: 'error',
+                timer: 2000,
+              });
+        } else {
+            dispatch(delCart(Number(id)))
+            window.localStorage.setItem('carrito', JSON.stringify(cart))
+            swal("Articulo eliminado con exito!", {
+                buttons: false,
+                icon: 'success',
+                timer: 2000,
+            });
+        }
     }
 
     useEffect(()=>{
@@ -46,7 +54,7 @@ export default function CartCard ({id, name, price, image, quantity, stock}) {
                 <div className="shopping-cart" >
                     <div className="item"> 
                         <div>
-                            <button className="btn btn-outline-danger btn-sm" onClick={(e) => handleOnClick(e)}><i class="fas fa-trash-alt"></i></button>
+                            <button className="btn btn-outline-danger btn-sm" onClick={(e) => handleOnClick(e)}><i className="fas fa-trash-alt"></i></button>
                         </div>
                         <div className="cart-imagen">
                         <img src={image} alt="Not found" height="100px"/>

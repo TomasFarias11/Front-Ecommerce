@@ -7,6 +7,7 @@ import reducerAdmin from "../reducers/reducerAdmin";
 import reducerUserData from "../reducers/reducerUserData";
 import reduceSearch from "../reducers/reduceSearch";
 import reducerMercadoPago from '../reducers/reducerMercadoPago'
+import reducerOrders from "../reducers/reducerOrders";
 // import reducerCart from "../reducers/reducerCart";
 
 const reducers = combineReducers({
@@ -14,7 +15,8 @@ const reducers = combineReducers({
     secondRed: reducerUserData,
     thirdRed: reduceSearch,
     fourthRed: reducerAdmin,
-    fifthRed: reducerMercadoPago
+    fifthRed: reducerMercadoPago,
+    sixRed: reducerOrders,
 })
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(Thunk)));
 

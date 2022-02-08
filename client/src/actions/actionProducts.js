@@ -297,7 +297,7 @@ export function getOrderUser (idUser) {
     return async function (dispatch) {
         try {
             const order = await axios.get(`/order/${idUser}`);
-            console.log('orden de la action', order)
+            // console.log('orden de la action', order)
             return dispatch({type: GET_ORDER_USER, payload: order.data})
         } catch (err) {
             console.log(err)

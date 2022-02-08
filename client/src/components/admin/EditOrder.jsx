@@ -6,55 +6,39 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { getOrderUserId } from "../../actions/actionOrder";
 
 import Details from "..//..//pages/Details.jsx";
 import swal from "sweetalert";
 import Swal from "sweetalert2";
 
-function EditProduct() {
+function EditOrder() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const productId = useSelector((state) => state.firstRed.productId);
-  const allCategory = useSelector((state) => state.fourthRed.category);
-  const formato = new Intl.NumberFormat("de-DE", {
-    // style: 'currency',
-    // currency: 'USD',
-    // minimumFractionDigits: 3,
-  });
+  const orderId = useSelector((state) => state.sixRed.order);
+  console.log(orderId, "order Id edit order")
 
   useEffect(() => {
     dispatch(getProductById(id));
     dispatch(getCategory());
     setInputBody({
-      idCategory: "",
-      name: productId.name,
-      description: productId.description,
-      color: productId.color,
-      price: productId.price,
-      stock: productId.stock,
-      storage: productId.storage,
-      connectivity: productId.connectivity,
-      model: productId.model,
-      ram: productId.ram,
+      id: "",
+      name: orderId.email,
+      description: orderId.description,
+      
     });
-  }, [productId.name]);
+  }, [orderId.name]);
 
   const [inputBody, setInputBody] = useState({
-    idCategory: "",
-    name: productId.name,
-    description: productId.description,
-    color: [productId.color],
-    price: productId.price,
-    stock: productId.stock,
-    storage: [productId.storage],
-    connectivity: [productId.connectivity],
-    model: [productId.model],
-    ram: [productId.ram],
-    image: "",
+    id: "",
+    name: orderId.email,
+    description: orderId.description,
+   
   });
 
-  console.log("body", inputBody);
+
+  console.log("body jhon", inputBody);
 
   function handelInput(e) {
     e.preventDefault();
@@ -94,7 +78,7 @@ function EditProduct() {
 
     if (inputBody.image === "") {
       setInputBody({
-        image: productId.image,
+        image: orderId.image,
       });
     }
 
@@ -128,25 +112,45 @@ function EditProduct() {
     }
   }
 
+//   function handelSubmit(e) {
+//     e.preventDefault();
+
+//     if (inputBody.image === "") {
+//       setInputBody({
+//         image: productId.image,
+//       });
+//     }
+
+
+
+
+  
+
+
   return (
+      
+
+
     <div className="row" style={{ paddingBottom: 30 }}>
+        <h1>Hola mundo</h1>
+        <div className="row" style={{ paddingBottom: 30 }}>
       <div className="col-lg-3">
         <div className="container-sm" style={{ padding: 20 }}>
             <div className="container-sm d-flex justify-content-center" style={{ padding: 20, paddingTop: 0 }}>
               <div className="badge fs-5 bg-dark text-wrap" style={{ width: "20rem" }}>
-                Formulario para editar información de Producto Existente
+                Formulario para editar la orden Existente
               </div>
             </div>
 
-            <div className="d-flex justify-content-center">
+            {/* <div className="d-flex justify-content-center">
               <Link to="/admin/product">
                 <button type="button" className="btn btn-lg btn-outline-info">
                   Lista de Productos
                 </button>
               </Link>
             </div>
-            <br />
-            <div className="d-flex justify-content-center">
+            <br /> */}
+            {/* <div className="d-flex justify-content-center">
               <Link to="/admin/addProduct">
                 <button
                   type="button"
@@ -155,7 +159,7 @@ function EditProduct() {
                   Añadir Producto
                 </button>
               </Link>
-            </div>
+            </div> */}
         </div>
       </div>
       <div className=" card col-lg-8">
@@ -163,9 +167,9 @@ function EditProduct() {
         <div className="card-header d-flex align-items-center">
           <div className="container-sm d-flex justify-content-center" style={{ padding: 0, paddingTop: 0 }}>
             <div className="badge fs-5 bg-info text-wrap" style={{ width: "20rem" }}>
-              Editar Producto
+              Editar Orden
               <br />
-              ID:<span>{productId.id}</span>
+              ID:<span>{orderId.id}</span>
             </div>
           </div>
         </div>
@@ -184,7 +188,7 @@ function EditProduct() {
                         alt="not found"
                         className="img-fluid"
                         src={
-                          inputBody.image ? inputBody.image : productId.image
+                          inputBody.image ? inputBody.image : orderId.image
                         }
                         aria-label="Placeholder: 500x500"
                         preserveAspectRatio="xMidYMid slice"
@@ -227,17 +231,10 @@ function EditProduct() {
                       </p>
                     ) : null}
                     <p>
-                      <b>Precio:</b> ${formato.format(inputBody.price)}
+                      {/* <b>Precio:</b> ${formato.format(inputBody.price)} */}
                     </p>
-                    {inputBody.stock > 0 ? (
-                      <p>
-                        <b>Stock:</b> {inputBody.stock}
-                      </p>
-                    ) : (
-                      <p>
-                        <b>Stock:</b> Exhausted
-                      </p>
-                    )}
+                    
+                    
                   </div>
                   {/* en este div se ingresa la img */}
                 </div>
@@ -253,18 +250,18 @@ function EditProduct() {
             <div className="container mt-4 mb-5 mx-1">
               <form onSubmit={(e) => handelSubmit(e)} className="row g-2">
                 <div className="form-group">
-                  <label>Categoría</label>
+                  <label>Estado</label>
                   <select
                     className="form-control"
                     name="idCategory"
                     onChange={(e) => handelInput(e)}
                   >
-                    <option>Seleccione una categoría</option>
-                    {allCategory.map((e) => (
+                    <option>Seleccione el estado</option>
+                    {/* {allCategory.map((e) => (
                       <option value={e.idCategory} key={e.idCategory}>
                         {e.name}
                       </option>
-                    ))}
+                    ))} */}
                   </select>
                 </div>
                 <div className="form-group">
@@ -283,7 +280,6 @@ function EditProduct() {
                 <div className="form-group">
                   <label for="exampleFormControlTextarea1">Descripción</label>
                   <textarea
-                    form="htmlFor"
                     name="description"
                     value={inputBody.description}
                     onChange={(e) => handelInput(e)}
@@ -292,7 +288,7 @@ function EditProduct() {
                     rows="4"
                   ></textarea>
                 </div>
-                <div className="form-group">
+                {/* <div className="form-group">
                   <label for="exampleInputColor">Color</label>
                   <input
                     name="color"
@@ -304,8 +300,8 @@ function EditProduct() {
                     aria-describedby="emailHelp"
                     placeholder="Ingrese el color"
                   />
-                </div>
-                <div className="form-group">
+                </div> */}
+                {/* <div className="form-group">
                   <label for="exampleInputPreci">Precio</label>
                   <input
                     name="price"
@@ -318,8 +314,8 @@ function EditProduct() {
                     aria-describedby="emailHelp"
                     placeholder="Ingrese el precio"
                   />
-                </div>
-                <div className="form-group">
+                </div> */}
+                {/* <div className="form-group">
                   <label for="exampleInputStock">Stock</label>
                   <input
                     name="stock"
@@ -332,8 +328,8 @@ function EditProduct() {
                     aria-describedby="emailHelp"
                     placeholder="Ingrese la cantidad de productos"
                   />
-                </div>
-                <div className="form-group">
+                </div> */}
+                {/* <div className="form-group">
                   <label for="exampleInputStorage">Almacenamiento</label>
                   <input
                     name="storage"
@@ -345,8 +341,8 @@ function EditProduct() {
                     aria-describedby="emailHelp"
                     placeholder="Ingrese el color"
                   />
-                </div>
-                <div className="form-group">
+                </div> */}
+                {/* <div className="form-group">
                   <label for="exampleInputConnectivity">Conectividad</label>
                   <input
                     name="connectivity"
@@ -358,8 +354,8 @@ function EditProduct() {
                     aria-describedby="emailHelp"
                     placeholder="Ingrese tipo de conectividad"
                   />
-                </div>
-                <div className="form-group">
+                </div> */}
+                {/* <div className="form-group">
                   <label for="exampleInputModel">Modelos</label>
                   <input
                     name="model"
@@ -371,8 +367,8 @@ function EditProduct() {
                     aria-describedby="emailHelp"
                     placeholder="Ingrese el modelo"
                   />
-                </div>
-                <div className="form-group">
+                </div> */}
+                {/* <div className="form-group">
                   <label for="exampleInputRam">Memoria RAM</label>
                   <input
                     name="ram"
@@ -384,8 +380,8 @@ function EditProduct() {
                     aria-describedby="emailHelp"
                     placeholder="Ingrese la memoria RAM"
                   />
-                </div>
-                <div
+                </div> */}
+                {/* <div
                   className="form-group"
                   style={{ marginTop: 10, marginBottom: 30 }}
                 >
@@ -395,7 +391,7 @@ function EditProduct() {
                       onChange={handelImagen} 
                       type="file" 
                       className="form-control-file"/>
-                </div>
+                </div> */}
                 <button className="btn btn-success" type="submit">
                   Confirmar Cambios
                 </button>
@@ -405,7 +401,8 @@ function EditProduct() {
         </div>
       </div>
     </div>
+    </div>
   );
 }
 
-export default EditProduct;
+export default EditOrder;

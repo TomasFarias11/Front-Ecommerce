@@ -13,6 +13,7 @@ export const GET_CATEGORY_ID = "GET_CATEGORY_ID"
 export const GET_USERS = "GET_USERS"
 export const DELETE_USER = "DELETE_USER"
 export const EDIT_USER = "EDIT_USER"
+export const EDIT_USER_BANE = "EDIT_USER_BANE"
 
 
 
@@ -177,6 +178,21 @@ export function editUser(id, admin){
             const allUsers=await axios.get("/user");
             return dispatch({
                 type: EDIT_USER,
+                payload: allUsers.data
+            })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}
+
+export function editUserbane(id, body){
+    return async (dispatch)=>{
+        try {
+            await axios.put(`/admin/user/editbane/${id}`,body);
+            const allUsers=await axios.get("/user");
+            return dispatch({
+                type: EDIT_USER_BANE,
                 payload: allUsers.data
             })
         } catch (err) {

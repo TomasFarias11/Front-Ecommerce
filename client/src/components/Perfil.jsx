@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserId } from "../actions/actionUser.js";
-import {getOrderUser} from "../actions/actionProducts.js";
+// import {getOrderUser} from "../actions/actionProducts.js";
 import EditProfile from "./EditProfile.jsx";
 
 const Perfil = () => {
@@ -11,7 +11,7 @@ const Perfil = () => {
   const userStorage = JSON.parse(window.localStorage.getItem("usuario"));
   const order = useSelector((state) => state.firstRed.orders);
   const [controlador, setControlador] = useState(false);
-  console.log('a ver que llega aca', order)
+  // console.log('a ver que llega aca', order)
 
   useEffect(() => {
     dispatch(getUserId(user.id))
@@ -155,7 +155,7 @@ const Perfil = () => {
                   <h6 className="d-flex align-items-center mb-3">Ordenes</h6>
                     {order && Array.isArray(order) && 
                       order.map((e) => (
-                        <div>
+                        <div key={e.id} >
                           <small>Numero de orden: {e.id}</small> <br />
                           <small>Estado de la orden: {e.status}</small> <br />
                           <small>ID de pago: {e.payment_id}</small> <br />

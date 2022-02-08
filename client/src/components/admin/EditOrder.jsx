@@ -15,8 +15,9 @@ function EditProduct() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const productId = useSelector((state) => state.firstRed.productId);
-  const allCategory = useSelector((state) => state.fourthRed.category);
+  const orderId = useSelector((state) => state.sixRedtRed.orderId);
+  console.log(orderId, "order Id edit order")
+//   const allCategory = useSelector((state) => state.fourthRed.category);
   const formato = new Intl.NumberFormat("de-DE", {
     // style: 'currency',
     // currency: 'USD',
@@ -28,29 +29,29 @@ function EditProduct() {
     dispatch(getCategory());
     setInputBody({
       idCategory: "",
-      name: productId.name,
-      description: productId.description,
-      color: productId.color,
-      price: productId.price,
-      stock: productId.stock,
-      storage: productId.storage,
-      connectivity: productId.connectivity,
-      model: productId.model,
-      ram: productId.ram,
+      name: orderId.name,
+      description: orderId.description,
+      color: orderId.color,
+      price: orderId.price,
+      stock: orderId.stock,
+      storage: orderId.storage,
+      connectivity: orderId.connectivity,
+      model: orderId.model,
+      ram: orderId.ram,
     });
-  }, [productId.name]);
+  }, [orderId.name]);
 
   const [inputBody, setInputBody] = useState({
     idCategory: "",
-    name: productId.name,
-    description: productId.description,
-    color: [productId.color],
-    price: productId.price,
-    stock: productId.stock,
-    storage: [productId.storage],
-    connectivity: [productId.connectivity],
-    model: [productId.model],
-    ram: [productId.ram],
+    name: orderId.name,
+    description: orderId.description,
+    color: [orderId.color],
+    price: orderId.price,
+    stock: orderId.stock,
+    storage: [orderId.storage],
+    connectivity: [orderId.connectivity],
+    model: [orderId.model],
+    ram: [orderId.ram],
     image: "",
   });
 
@@ -94,7 +95,7 @@ function EditProduct() {
 
     if (inputBody.image === "") {
       setInputBody({
-        image: productId.image,
+        image: orderId.image,
       });
     }
 
@@ -118,7 +119,7 @@ function EditProduct() {
         model: [],
         ram: [],
       });
-      navigate("/admin/product");
+      navigate("/order");
     } else {
       Swal.fire({
         icon: "error",
@@ -134,28 +135,19 @@ function EditProduct() {
         <div className="container-sm" style={{ padding: 20 }}>
             <div className="container-sm d-flex justify-content-center" style={{ padding: 20, paddingTop: 0 }}>
               <div className="badge fs-5 bg-dark text-wrap" style={{ width: "20rem" }}>
-                Formulario para editar información de Producto Existente
+                Formulario para editar información de orden Existente
               </div>
             </div>
 
             <div className="d-flex justify-content-center">
               <Link to="/admin/product">
                 <button type="button" className="btn btn-lg btn-outline-info">
-                  Lista de Productos
+                  Lista de Productos 
                 </button>
               </Link>
             </div>
             <br />
-            <div className="d-flex justify-content-center">
-              <Link to="/admin/addProduct">
-                <button
-                  type="button"
-                  className="btn btn-lg btn-outline-success"
-                >
-                  Añadir Producto
-                </button>
-              </Link>
-            </div>
+            
         </div>
       </div>
       <div className=" card col-lg-8">
@@ -165,7 +157,7 @@ function EditProduct() {
             <div className="badge fs-5 bg-info text-wrap" style={{ width: "20rem" }}>
               Editar Producto
               <br />
-              ID:<span>{productId.id}</span>
+              ID:<span>{orderId.id}</span>
             </div>
           </div>
         </div>
@@ -184,7 +176,7 @@ function EditProduct() {
                         alt="not found"
                         className="img-fluid"
                         src={
-                          inputBody.image ? inputBody.image : productId.image
+                          inputBody.image ? inputBody.image : orderId.image
                         }
                         aria-label="Placeholder: 500x500"
                         preserveAspectRatio="xMidYMid slice"
@@ -260,11 +252,11 @@ function EditProduct() {
                     onChange={(e) => handelInput(e)}
                   >
                     <option>Seleccione una categoría</option>
-                    {allCategory.map((e) => (
+                    {/* {allCategory.map((e) => (
                       <option value={e.idCategory} key={e.idCategory}>
                         {e.name}
                       </option>
-                    ))}
+                    ))} */}
                   </select>
                 </div>
                 <div className="form-group">

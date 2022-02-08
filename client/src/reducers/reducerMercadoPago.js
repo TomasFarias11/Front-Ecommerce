@@ -1,9 +1,10 @@
-import { PRE_PAGO, PAGAR } from "../actions/actionMercadoPago";
+import { PRE_PAGO, PAGAR, PUT_ORDER } from "../actions/actionMercadoPago";
 
 
 const initialState={
 	compra:[],
-	url:[]
+	url:[],
+	a:[]
 	
 }
 
@@ -19,7 +20,13 @@ export default function reducerMercadoPago(state=initialState, action){
 			return{
 				...state,
 				url:action.payload,
-			}	
+			}
+		case PUT_ORDER:
+			// console.log('action',action.payload)
+			return{
+				...state,
+				a:action.payload,
+			}
 		default:
 			return state;
 	} 

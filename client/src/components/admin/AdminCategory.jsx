@@ -14,7 +14,6 @@ function AdminCategory() {
   const dispatch = useDispatch();
 
   const handelDetele = (e) => {
-
     Swal.fire({
       title: "Advertencia!!",
       text: "Si elimina la categoria estará los productos asociados a esta categoria no perteneceran a ninguna categoria¿Estas seguro que deseas eliminar la categoria?",
@@ -87,4 +86,3 @@ function AdminCategory() {
 }
 
 export default AdminCategory;
-

@@ -11,13 +11,13 @@ export default function Boton () {
     const url = useSelector((state) => state.fifthRed.url);
     const dispatch = useDispatch();
     const [button, setButton] = useState(false)
-    console.log('uuu',url)
+    console.log('uuu',compra)
 
     const [ preference, setPreference] = useState({
         items:compra.items,
         payer:compra.payer,
         back_urls:{
-				success: "/mercadopago/aceptado",
+				success: `http://localhost:3000/mercadopago/aceptado`,
 				failure: "/mercadopago/rechazado",
 				pending: "/mercadopago/rechazado"
 		},

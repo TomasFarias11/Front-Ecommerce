@@ -27,7 +27,7 @@ const Footer = () =>{
         <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
           {/* Left */}
           <div className="me-5 d-none d-lg-block">
-            <span>Get connected with us on social networks:</span>
+            <span>Encuéntranos en nuestras redes sociales:</span>
           </div>
           {/* Left */}
           {/* Right */}
@@ -39,13 +39,7 @@ const Footer = () =>{
               <i className="fab fa-twitter" />
             </a>
             <a href="#!" className="me-4 text-reset">
-              <i className="fab fa-google" />
-            </a>
-            <a href="#!" className="me-4 text-reset">
               <i className="fab fa-instagram" />
-            </a>
-            <a href="#!" className="me-4 text-reset">
-              <i className="fab fa-linkedin" />
             </a>
             <a href="#!" className="me-4 text-reset">
               <i className="fab fa-github" />
@@ -62,15 +56,18 @@ const Footer = () =>{
               {/* Grid column */}
               <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                 {/* Content */}
-                <h6 className="text-uppercase fw-bold mb-4">
+                <h6 className="fw-bold mb-3">
                   
-                  <i className="fas fa-gem me-3" />Apple company
+                iGroup-6 | <i class="fab fa-apple"></i>  Premium Reseller 
                   
                 </h6>
                 <div className="row">
-                <p>
-                  Es mejor ser un pirata que pertencer a la marina <br/> Steve Jobs
-                </p>   
+                  <p>
+                    <em> "Es mejor ser un pirata que pertencer a la Marina" </em>
+                  </p>   
+                  <figcaption class="blockquote-footer">
+                  <cite title="Source Title">Steve Jobs</cite>
+                  </figcaption>
                 </div>
                 
               </div>
@@ -79,48 +76,38 @@ const Footer = () =>{
               <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                 {/* Links */}
                 <h6 className="text-uppercase fw-bold mb-4">
-                  Products
+                  Productos
                 </h6>
                 
                 <p>
-                  <Link to="/category/iphone" >
-                      <span href="#!" className="text-reset" onClick={() => dispatch(getProductByCategory("iphone"))}>iPhone</span>
+                  <Link style={{ textDecoration: "none", color: "gray" }} to="/category/iphone" >
+                      <span className="text-reset" onClick={() => dispatch(getProductByCategory("iPhone"))}>iPhone</span>
                   </Link>
                 </p>
                 <p>
-                  <Link to="/category/watch">
-                      <span href="#!" className="text-reset" onClick={() => dispatch(getProductByCategory("watch"))}>Watch</span>
+                  <Link style={{ textDecoration: "none", color: "gray" }} to="/category/iphone" >
+                      <span className="text-reset" onClick={() => dispatch(getProductByCategory("iPad"))}>iPad</span>
                   </Link>
                 </p>
                 <p>
-                  <Link to="/category/airpods">
-                      <span href="#!" className="text-reset" onClick={() => dispatch(getProductByCategory("airpods"))}>AirPods</span>
+                  <Link style={{ textDecoration: "none", color: "gray" }} to="/category/watch">
+                      <span className="text-reset" onClick={() => dispatch(getProductByCategory("Watch"))}>Watch</span>
                   </Link>
                 </p>
                 <p>
-                  <Link to="/category/tv">
-                      <span href="#!" className="text-reset" onClick={() => dispatch(getProductByCategory("tv"))}>TV & Home</span>
+                  <Link style={{ textDecoration: "none", color: "gray" }} to="/category/airpods">
+                      <span className="text-reset" onClick={() => dispatch(getProductByCategory("AirPods"))}>AirPods</span>
                   </Link>
                 </p>
-              </div>
-              {/* Grid column */}
-              {/* Grid column */}
-              <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                {/* Links */}
-                <h6 className="text-uppercase fw-bold mb-4">
-                  Useful links
-                </h6>
                 <p>
-                  <a href="/contactanos" className="text-reset">Contacto</a>
+                  <Link style={{ textDecoration: "none", color: "gray" }} to="/category/airpods">
+                      <span className="text-reset" onClick={() => dispatch(getProductByCategory("Mac"))}>Mac</span>
+                  </Link>
                 </p>
                 <p>
-                  <a href="#!" className="text-reset">Settings</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset">Orders</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset">Help</a>
+                  <Link style={{ textDecoration: "none", color: "gray" }} to="/category/tv">
+                      <span className="text-reset" onClick={() => dispatch(getProductByCategory("TV & Home"))}>TV & Home</span>
+                  </Link>
                 </p>
               </div>
               {/* Grid column */}
@@ -128,15 +115,16 @@ const Footer = () =>{
               <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                 {/* Links */}
                 <h6 className="text-uppercase fw-bold mb-4">
-                  Contact
+                  Contacto
                 </h6>
-                <p><i className="fas fa-home me-3" /> New York, NY 10012, US</p>
                 <p>
-                  <i className="fas fa-envelope me-3" />
-                  teamEcommerceApple@example.com
+                  <i className="fas fa-envelope me-3" /> 
+                  igroup6.apple@gmail.com
                 </p>
-                <p><i className="fas fa-phone me-3" /> + 01 234 567 88</p>
-                <p><i className="fas fa-print me-3" /> + 01 234 567 89</p>
+                <p><i className="fas fa-phone me-3" /> + 54 11 34567 88</p>
+                <Link style={{ textDecoration: "none", color: "gray" }} to={"/contactanos"}>
+                  <p><i class="far fa-comment-dots"></i>  <span>Mensaje Directo</span> </p>
+                </Link>
               </div>
               {/* Grid column */}
             </div>
@@ -146,8 +134,8 @@ const Footer = () =>{
         {/* Section: Links  */}
         {/* Copyright */}
         <div className="text-center p-4" style={{backgroundColor: 'rgba(0, 0, 0, 0.05)'}}>
-          © 2021 Copyright:
-          <a className="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+          © 2022 Copyright:
+          <p>iGroup-6 | <i class="fab fa-apple"></i>  Premium Reseller</p>
         </div>
         {/* Copyright */}
       </footer>

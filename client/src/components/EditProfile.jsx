@@ -35,7 +35,6 @@ const EditProfie = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(input)
     dispatch(editUser(userId.id, input));
     window.localStorage.setItem("usuario", JSON.stringify(input));
     swal("Perfil modificado con exito!", {

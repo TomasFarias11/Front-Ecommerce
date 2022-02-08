@@ -15,7 +15,7 @@ export default function Home () {
     const Navigate = useNavigate();
     const products = useSelector((state) => state.firstRed.productsByCategory);
     const cart = useSelector((state) => state.firstRed.cart);
-    const users = useSelector((state)=> state.secondRed.userData);
+    const users = JSON.parse(window.localStorage.getItem('usuario'))
     const order = useSelector((state) => state.firstRed.order)
     
     const orderAlert = useSelector((state) => state.firstRed.orderAlert)

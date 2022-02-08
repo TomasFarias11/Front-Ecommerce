@@ -2,7 +2,7 @@ import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import CardCarrusel from "../components/CardCarrusel.jsx";
-import {getProductByCategory, createOrder, setCart} from '../actions/actionProducts.js'
+import {getProductByCategory, getOrderUser, setCart, editOrder, createOrder} from '../actions/actionProducts.js'
 import {getUserId} from '../actions/actionUser.js'
 import { useNavigate, useLocation } from 'react-router-dom';
 import estilos from '../css/Home.module.css';
@@ -15,8 +15,9 @@ export default function Home () {
     const Navigate = useNavigate();
     const products = useSelector((state) => state.firstRed.productsByCategory);
     const cart = useSelector((state) => state.firstRed.cart);
-    const users = useSelector((state) => state.secondRed.userData)
+    const users = JSON.parse(window.localStorage.getItem('usuario'))
     const order = useSelector((state) => state.firstRed.order)
+    
     const orderAlert = useSelector((state) => state.firstRed.orderAlert)
     // console.log('esta es laorden', order)
     
@@ -28,31 +29,17 @@ export default function Home () {
         }
     },[cart])
 
-    const h = useLocation()
-    console.log('WTH?', h)
+    // const h = useLocation()
+    // console.log('WTH?', h)
 
     useEffect(()=> {  
         products > 0 ? window.localStorage.setItem('productos',JSON.stringify(products)) : window.localStorage.setItem('productos',JSON.stringify([]))
-        // dispatch(getUserId(users.id))
+        if (users.length !== 0) {
+            dispatch(getOrderUser(users.id))
+        }
     })
 
-    // useEffect(() => {
-    //     if (users && users.username) {
-    //         dispatch(createOrder(users.id, {carrito: cart}))
-    //     }
-    // },[users])
-
-    // useEffect(() => {
-    //     if (order && order[0]) {
-    //         dispatch(setCart(order[0]?.carrito))
-    //     }
-    // }, [orderAlert])
-
-
-  
-    
-
-
+   
     const handleClick = (e) => {
         e.preventDefault();
         dispatch(getProductByCategory(e.target.value))
@@ -64,7 +51,7 @@ export default function Home () {
         <div>
           <CarrouselMain/>
         </div>
-        <div className="container" >
+        <div className="container">
             <CardCarrusel/>
         </div>
     <div className="container" style={{display: "flex", flexDirection: "column"  }} >

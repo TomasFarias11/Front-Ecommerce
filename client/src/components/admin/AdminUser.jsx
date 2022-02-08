@@ -11,12 +11,7 @@ function AdminUser() {
     const userLoguer = JSON.parse(window.localStorage.getItem('usuario')).id;
     const users = useSelector((state) => state.fourthRed.users.filter(u=>u.id !== userLoguer));
   
-    console.log('USUARIO LOGUEADO', userLoguer)
-    console.log('USER',users)
     const dispatch = useDispatch()
-
-
-  
 
     const handelDetele=(e)=>{
 
@@ -31,7 +26,7 @@ function AdminUser() {
         }).then((result) => {
             if (result.isConfirmed) {
                 dispatch(deleteUser(e.target.value))
-                console.log('ID',e.target.value)
+                // console.log('ID',e.target.value)
                 Swal.fire(
                 'Eliminado',
                 'El usuario ha sido eliminado.',
@@ -95,7 +90,7 @@ function AdminUser() {
   },[]);
 
 return (
-  <div className="row">
+  <div className="row" >
     <div className="col-lg-3">
       <div className="container-sm d-flex justify-content-center" style={{ padding:20, paddingTop:0 } }> 
         <div className="badge fs-3 bg-dark text-wrap" style={{ width: "20rem" }}>

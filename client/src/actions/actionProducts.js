@@ -285,7 +285,7 @@ export function createOrder (idUser, payload) {
     return async function (dispatch) {
         try {
             await axios.post(`/order/${idUser}`, payload)
-            const order = await axios.get(`/order/${idUser}`)
+            const order = await axios.get(`/order/user/${idUser}`)
             return dispatch({type: POST_ORDER, payload: order.data})
         } catch (err) {
             console.log(err);
@@ -297,7 +297,7 @@ export function getOrderUser (idUser) {
     return async function (dispatch) {
         try {
             const order = await axios.get(`/order/${idUser}`);
-            console.log('orden de la action', order)
+            // console.log('orden de la action', order)
             return dispatch({type: GET_ORDER_USER, payload: order.data})
         } catch (err) {
             console.log(err)
@@ -345,12 +345,10 @@ export function listarUsers(){
 }
 
 export function editOrder (idUser, payload) {
-    console.log('?????',payload)
     return async function (dispatch) {
         try {
             await axios.put(`/order/${idUser}`, payload)
-            const {data} = await axios.get(`/order/${idUser}`)
-            console.log('la data de la orden', data[0])
+            const {data} = await axios.get(`/order/user/${idUser}`)
             return dispatch({type: PUT_ORDER, payload:data[0]})
         } catch (err) {
             console.log(err)
@@ -359,14 +357,13 @@ export function editOrder (idUser, payload) {
 }
 
 export function updateOrder (idUser, payload) {
-    console.log('?????',payload)
     return async function (dispatch) {
         try {
             await axios.put(`/order/update/${idUser}`, payload)
-            const {data} = await axios.get(`/order/user/${idUser}`)
-            console.log('la data de la orden', data[0])
             const newOrder = await axios.post(`/order/${idUser}`,{carrito:[]})
-            console.log('PUTO',newOrder)
+            window.localStorage.setItem('carrito', JSON.stringify([]))
+            window.localStorage.setItem('todojunto', JSON.stringify([]))
+            window.localStorage.setItem('order', JSON.stringify([]))
             return dispatch(
                 {
                     type: UPDATE_ORDER, payload: newOrder[0]

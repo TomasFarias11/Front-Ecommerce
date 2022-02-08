@@ -37,27 +37,10 @@ export function sendMail(cliente) {
     return async (dispatch)=>{
         try {
             await axios.post('/mercadopago/callreception',cliente);
+            await axios.post('/mercadopago/sendnotification',cliente);
         }
         catch (err) {
             console.log(err)
         }
     }
 };
-
-export function updateOrder (idUser, payload) {
-    console.log('?????',payload)
-    return async function (dispatch) {
-        try {
-            await axios.put(`/order/update/${idUser}`, payload)
-            /* const {data} = await axios.get(`/order/${idUser}`)
-            console.log('la data de la orden', data[0]) */
-            return dispatch(
-                {
-                    type: PUT_ORDER, payload
-                }
-            )
-        } catch (err) {
-            console.log(err)
-        }
-    }
-}

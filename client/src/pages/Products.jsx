@@ -1,5 +1,5 @@
 import React from "react";
-import { orderAZ, orderZA, minPrice, maxPrice, setProducts, addToCart, setCartOn } from '../actions/actionProducts.js'
+import { orderAZ, orderZA, minPrice, maxPrice, setProducts, addToCart, setCartOn} from '../actions/actionProducts.js'
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
 import { useEffect } from "react";
@@ -7,11 +7,10 @@ import {useDispatch, useSelector} from "react-redux";
 import swal from 'sweetalert';
 
 
-const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts, addToCart, setCartOn}) => {
+const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts, addToCart, setCartOn }) => {
 
     // const dispatch = useDispatch()
     const cart = useSelector((state) => state.firstRed.cart)
-    // console.log('este es el carrito', cart);
     
     useEffect(()=>{
         products.length < JSON.parse(window.localStorage.getItem('productos')).length && products.length ===0 ? 
@@ -60,19 +59,19 @@ const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts, 
                 <div className="d-flex justify-content-center" style={{ padding:20, paddingTop:0 }}>   
                     <div >
                         <div className="d-flex justify-content-center">
-                        <button type="button" className="btn btn-outline-secondary" onClick={()=>orderAZ()}>Nombre  <i class="fas fa-sort-alpha-down"></i></button>
+                        <button type="button" className="btn btn-outline-secondary" onClick={()=>orderAZ()}>Nombre  <i className="fas fa-sort-alpha-down"></i></button>
                         </div>
                         <br/>
                         <div className="d-flex justify-content-center">
-                        <button type="button" className="btn btn-outline-secondary" onClick={()=>orderZA()}>Nombre  <i class="fas fa-sort-alpha-up"></i></button>
+                        <button type="button" className="btn btn-outline-secondary" onClick={()=>orderZA()}>Nombre  <i className="fas fa-sort-alpha-up"></i></button>
                         </div>
                         <br/>
                         <div className="d-flex justify-content-center">
-                        <button type="button" className="btn btn-outline-secondary" onClick={()=>minPrice()}>Precio <i class="fas fa-sort-numeric-down"></i></button>
+                        <button type="button" className="btn btn-outline-secondary" onClick={()=>minPrice()}>Precio <i className="fas fa-sort-numeric-down"></i></button>
                         </div>
                         <br/>
                         <div className="d-flex justify-content-center">
-                        <button type="button" className="btn btn-outline-secondary" onClick={()=>maxPrice()}>Precio <i class="fas fa-sort-numeric-up"></i></button>
+                        <button type="button" className="btn btn-outline-secondary" onClick={()=>maxPrice()}>Precio <i className="fas fa-sort-numeric-up"></i></button>
                         </div>
                     </div>
                 </div>
@@ -102,7 +101,7 @@ const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts, 
                                                     </div>
                                                     : 
                                                     <div className="d-flex justify-content-center">
-                                                    <button style={{margin: "10px 0px"}} type="button" value={e.id} className="btn btn-outline-secondary rounded-pill" onClick={(e) => handleClick(e)}><i class="fas fa-cart-plus"></i> Añadir al carrito</button>
+                                                    <button style={{margin: "10px 0px"}} type="button" value={e.id} className="btn btn-outline-secondary rounded-pill" onClick={(e) => handleClick(e)}><i className="fas fa-cart-plus"></i> Añadir al carrito</button>
                                                     </div>
                                                     }
                                                 </div>

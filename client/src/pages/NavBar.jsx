@@ -27,7 +27,8 @@ function NavBar() {
         dispatch(getCategory())
     ,[])
 
-    const order = useSelector((state) => state.firstRed.order)
+    let order = useSelector((state) => state.firstRed.order)
+    order = order?.filter(e=>e?.status ==='open')
     const orderAlert = useSelector((state) => state.firstRed.orderAlert)
 
 
@@ -47,29 +48,29 @@ const handleLogout = () => {
     window.location.reload()
 }
 
-useEffect(() => {
-    if (userData && userData.username) {
-        dispatch(createOrder(userData.id, {carrito: cart}))
-    }
-},[userData])
+ useEffect(() => {
+     if (userData && userData.username) {
+         dispatch(createOrder(userData.id, {carrito: cart}))
+     }
+ },[userData])
 
-useEffect(() => {
-    if (order && order[0]) {
-        dispatch(setCart(order[0]?.carrito))
-    }
-}, [orderAlert])
+ useEffect(() => {
+     if (order && order[0]) {
+         dispatch(setCart(order[0]?.carrito))
+     }
+ }, [orderAlert])
 
-useEffect(()=>{
-    if (user && user.username) {
-        dispatch(editOrder(user.id, {carrito: cart}))
-    }
-},[cart])
+ useEffect(()=>{
+     if (user && user.username) {
+         dispatch(editOrder(user.id, {carrito: cart}))
+     }
+ },[cart])
 
-useEffect(() => {
-    if (order && order[0]) {
-        dispatch(setCart(order[0]?.carrito))
-    } 
-},[allProducts])
+// useEffect(() => {
+//     if (order && order[0]) {
+//         dispatch(setCart(order[0]?.carrito))
+//     } 
+// },[allProducts])
 
   return (
         <nav className="navbar navbar-expand-lg navbar-dark  h6 sticky-top" style={{background: "#111111"}}>
@@ -85,7 +86,7 @@ useEffect(() => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
                         {allCategory ? allCategory.map((e)=>{
-                            return(<li className="nav-item">
+                            return(<li className="nav-item " key={e.idCategory}>
                             <Link style={{ textDecoration: 'none', color: 'white' }} to={`/category/${e.name}`}>
                                 <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory(e.name))}>{e.name}</span>
                             </Link>

@@ -1,19 +1,20 @@
 import { React, useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserId, editUser } from "../actions/actionUser.js";
+import { getUserId } from "../actions/actionUser.js";
+// import {getOrderUser} from "../actions/actionProducts.js";
 import EditProfile from "./EditProfile.jsx";
 
 const Perfil = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.secondRed.userData);
-  const userId = useSelector((state) => state.secondRed.userId);
   const userStorage = JSON.parse(window.localStorage.getItem("usuario"));
-  const order = useSelector((state) => state.firstRed.order);
+  const order = useSelector((state) => state.firstRed.orders);
   const [controlador, setControlador] = useState(false);
+  // console.log('a ver que llega aca', order)
 
   useEffect(() => {
-    dispatch(getUserId(user.id));
+    dispatch(getUserId(user.id))
   }, []);
 
   const handleControl = (e) => {
@@ -152,15 +153,20 @@ const Perfil = () => {
               <div className="card h-100">
                 <div className="card-body">
                   <h6 className="d-flex align-items-center mb-3">Ordenes</h6>
-                  <small>Numero de orden: {order[0]?.id}</small> <br />
-                  <small>Estado de la orden: {order[0]?.status}</small>
-                  <div>
-                    {order[0] &&
-                      order[0].carrito.map((e) => (
-                        <div>
-                          <small>Nombre de producto: {e.name}</small> <br />
-                          <small>Precio: {e.price}</small> <br />
-                          <small>Cantidad: {e.quantity}</small>
+                    {order && Array.isArray(order) && 
+                      order.map((e) => (
+                        <div key={e.id} >
+                          <small>Numero de orden: {e.id}</small> <br />
+                          <small>Estado de la orden: {e.status}</small> <br />
+                          <small>ID de pago: {e.payment_id}</small> <br />
+                          {e.carrito?.map((el) => (
+                            <div>
+                              <small>Nombre de producto: {el.name}</small> <br />
+                              <small>Precio: {el.price}</small> <br />
+                              <small>Cantidad: {el.quantity}</small>
+                            </div>
+                          ))}
+                          <hr />
                         </div>
                       ))}
                   </div>
@@ -170,7 +176,6 @@ const Perfil = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

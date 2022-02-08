@@ -16,7 +16,7 @@ const CardCarrusel = () =>{
     const dispatch = useDispatch()
     const cart = useSelector((state) => state.firstRed.cart)
     // const order = useSelector((state) => state.firstRed.order)
-    // const user = useSelector((state) => state.secondRed.userData)
+    const user = JSON.parse(window.localStorage.getItem('usuario'))
     const formato = new Intl.NumberFormat('de-DE', {
         // style: 'currency',
         // currency: 'USD',
@@ -55,16 +55,23 @@ const CardCarrusel = () =>{
 
     const handleClick = (e) => {
         e.preventDefault();
-        dispatch(addToCart(Number(e.target.value)))
-        // dispatch(editOrder(user.id, {carrito: cart}))
-        window.localStorage.setItem('carrito', JSON.stringify(cart))
-        dispatch(setCartOn())
-        swal("Agregado al carrito!", {
-            buttons: false,
-            icon: 'success',
-            timer: 1500,
-        });
-        
+        if (user.admin === true) {
+            swal("El admin no puede realizar dicha accion!", {
+                buttons: false,
+                icon: 'error',
+                timer: 2000,
+              });
+        } else {
+            dispatch(addToCart(Number(e.target.value)))
+            // dispatch(editOrder(user.id, {carrito: cart}))
+            window.localStorage.setItem('carrito', JSON.stringify(cart))
+            dispatch(setCartOn())
+            swal("Agregado al carrito!", {
+                buttons: false,
+                icon: 'success',
+                timer: 1500,
+            });
+        }
       }
 
        

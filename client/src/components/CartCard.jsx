@@ -11,7 +11,7 @@ export default function CartCard ({id, name, price, image, quantity, stock}) {
     const dispatch = useDispatch()
     // const cartStorage = window.localStorage.getItem('carrito')
     const cart = useSelector((state) => state.firstRed.cart)
-    // const user = useSelector((state) => state.secondRed.userData)
+    const user = JSON.parse(window.localStorage.getItem('usuario'))
     const formato = new Intl.NumberFormat('de-DE', {
         // style: 'currency',
         // currency: 'USD',
@@ -20,13 +20,21 @@ export default function CartCard ({id, name, price, image, quantity, stock}) {
 
     const handleOnClick = (e) => {
         e.preventDefault();
-        dispatch(delCart(Number(id)))
-        window.localStorage.setItem('carrito', JSON.stringify(cart))
-        swal("Articulo eliminado con exito!", {
-            buttons: false,
-            icon: 'success',
-            timer: 2000,
-          });
+        if (user.admin === true) {
+            swal("El admin no puede realizar dicha accion!", {
+                buttons: false,
+                icon: 'error',
+                timer: 2000,
+              });
+        } else {
+            dispatch(delCart(Number(id)))
+            window.localStorage.setItem('carrito', JSON.stringify(cart))
+            swal("Articulo eliminado con exito!", {
+                buttons: false,
+                icon: 'success',
+                timer: 2000,
+            });
+        }
     }
 
     useEffect(()=>{

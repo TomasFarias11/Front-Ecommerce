@@ -25,6 +25,9 @@ import AdminUser from "./components/admin/AdminUser";
 import Compra from './components/Compra';
 import Profile from "./components/Perfil"
 import Contact from "./components/Contact";
+import Orders from "./components/admin/Orders";
+import DetailsOrden from "./pages/DetailsOrden";
+import EditOrder from "./components/admin/EditOrder";
 
 function App() {
   
@@ -64,6 +67,9 @@ function App() {
       <Route exact path= "/admin/user" element={<AdminUser/>}/>
       <Route exact path= "/profile" element={<Profile/>}/>
       <Route exact path= "/contactanos" element={<Contact/>}/>
+      <Route exact path= "/order" element={<Orders/>}/>
+      <Route exact path= "/order/details/:id" element={<DetailsOrden/>}/>
+      <Route exact path= "/order/edit/:id" element={<EditOrder/>} />
       </Routes>
       
       <Footer/>

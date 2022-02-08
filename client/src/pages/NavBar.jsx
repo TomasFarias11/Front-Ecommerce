@@ -14,7 +14,7 @@ import {getCategory} from "../actions/actionAdmin";
 
 function NavBar() {
     const dispatch = useDispatch()
-    const allProducts = useSelector((state) => state.firstRed.products)
+    // const allProducts = useSelector((state) => state.firstRed.products)
     const cartOnScreen = useSelector((state) => state.firstRed.cartNav)
     const user = JSON.parse(window.localStorage.getItem('usuario'))
     const userData = useSelector((state) => state.secondRed.userData)
@@ -39,7 +39,6 @@ const handleClick = (e) => {
     } else {
         dispatch(setCartOff())
     }
-    // dispatch(setCart(order[0].carrito))
 }
 
 const handleLogout = () => {
@@ -49,7 +48,7 @@ const handleLogout = () => {
 }
 
  useEffect(() => {
-     if (userData && userData.username) {
+     if (userData && userData.username && userData.admin === false) {
          dispatch(createOrder(userData.id, {carrito: cart}))
      }
  },[userData])
@@ -61,7 +60,7 @@ const handleLogout = () => {
  }, [orderAlert])
 
  useEffect(()=>{
-     if (user && user.username) {
+     if (user && user.username && user.admin === false) {
          dispatch(editOrder(user.id, {carrito: cart}))
      }
  },[cart])
@@ -106,7 +105,7 @@ const handleLogout = () => {
                                 </p>
                             </li>
                             <li className="nav-item"> 
-                                <a className="nav-link " aria-current="page" href="/login" onClick={() => handleLogout()}> Logout </a>
+                                <a className="nav-link " aria-current="page" href="/" onClick={() => handleLogout()}> Logout </a>
                             </li>
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href=" " id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Admin </a>
@@ -126,6 +125,11 @@ const handleLogout = () => {
                                             <span className="dropdown-item" href="#!"> Usuarios </span>
                                         </Link>
                                     </li>
+                                    <li>
+                                        <Link style={{ textDecoration: "none", color: "white" }} to="/order">
+                                            <span className="dropdown-item" href="#!"> Ordenes </span>
+                                        </Link>
+                                    </li>
                                 </ul>
                             </li> 
                         </ul>
@@ -142,7 +146,7 @@ const handleLogout = () => {
                             </li>
                             <ul className="nav-item">  
                                 <li className="nav-item list-unstyled">
-                                    <a className="nav-link " aria-current="page" href="/login" onClick={() => handleLogout()}> Logout </a>
+                                    <a className="nav-link " aria-current="page" href="/" onClick={() => handleLogout()}> Logout </a>
                                 </li>
                             </ul>
                         </ul>

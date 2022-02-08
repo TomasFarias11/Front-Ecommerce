@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
-import { updateOrder, createOrder, getOpenOrderUser} from "../actions/actionProducts";
+import { updateOrder} from "../actions/actionProducts";
 import { sendMail } from "../actions/actionMercadoPago";
 import { useEffect } from "react";
 
@@ -16,7 +16,6 @@ export default function Aceptado () {
     
     const userId = useSelector((state) => state.secondRed.userId);
     const carrito = useSelector((state) => state.firstRed.cart);
-    const order = useSelector((state) => state.firstRed.order)
     console.log('ID',userId)
 
 
@@ -30,10 +29,6 @@ export default function Aceptado () {
     useEffect(()=>{
         dispatch(sendMail(cliente, idUser))
         !!payment_id && !!status ? dispatch(updateOrder(idUser,{payment_id:payment_id, status:status})) : console.log(carrito)
-        // if (order.length > 0) {
-        //     dispatch(getOpenOrderUser(idUser))
-        //     dispatch(createOrder(idUser, {carrito: []}))
-        // }
     },[]);
 
     

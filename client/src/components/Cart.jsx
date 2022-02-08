@@ -13,13 +13,8 @@ export default function Cart () {
     const cartStorage = JSON.parse(window.localStorage.getItem('carrito'))
     const cartNav = useSelector((state) => state.firstRed.cartNav)
     const user = JSON.parse(window.localStorage.getItem('usuario'))
-    const order = useSelector((state) => state.firstRed.order)
-    const userData = useSelector((state) => state.secondRed.userData)
-    const allProducts = useSelector((state) => state.firstRed.products)
-    const orderAlert = useSelector((state) => state.firstRed.orderAlert)
-
-    // let order = useSelector((state) => state.firstRed.order)
-    // order = order.filter((e) => e.status === 'open')
+    let order = useSelector((state) => state.firstRed.order)
+    order = order.filter(e => e.status === 'open')
     // console.log('este es el carrito',cart)
 
     let total = 0;
@@ -34,11 +29,7 @@ export default function Cart () {
         // minimumFractionDigits: 3,
     })
 
-    // useEffect(()=> {
-    //     if (cart.length === 0) {
-            
-    //     }
-    // },[cart])
+
     
 
     const handleDeleteAll = (e) =>  {
@@ -57,30 +48,7 @@ export default function Cart () {
         if (cart.length === 0) {
             dispatch(setCartOff())
         }
-        // if (user && user.username) {
-        //     dispatch(editOrder(user.id, {carrito: cart}))
-        // }
     },[cart])
-
-    // useEffect(() => {
-    //     if (userData && userData.username && (order.length === 0 || order[0] === null)) {
-    //         dispatch(createOrder(userData.id, {carrito: cart}))
-    //     }
-    // },[userData])
-    
-    // useEffect(() => {
-    //     if (order && order[0]) {
-    //         dispatch(setCart(order[0]?.carrito))
-    //     }
-    // }, [orderAlert])
-    
-    
-    // useEffect(() => {
-    //     if (order && order[0]) {
-    //         dispatch(setCart(order[0]?.carrito))
-    //     } 
-    // },[allProducts])
-
 
     const handleCheck = (e) => {
         e.preventDefault()
@@ -97,7 +65,6 @@ export default function Cart () {
         }
     }
 
-    // animate__slideOutRight
     return (
             
         <div className = {cartNav === false ? "row animate__animated animate__slideOutRight" : "row animate__animated animate__slideInRight"} style={{position: 'absolute', right: '12px', top: '95px', background: '#fff', overflowY: "scroll", height: '90.5vh'}}>

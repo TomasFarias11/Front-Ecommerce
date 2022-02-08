@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getProductById, setCartOn } from "../actions/actionProducts.js";
+import { getProductById, setCartOn, setCart, editOrder, createOrder} from "../actions/actionProducts.js";
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import Reviews from "../components/Reviews.jsx"
@@ -12,6 +12,11 @@ export default function Details() {
   const dispatch = useDispatch()
   const productId = useSelector((state) => state.firstRed.productId)
   const cart = useSelector((state) => state.firstRed.cart)
+  const users = JSON.parse(window.localStorage.getItem('usuario'))
+  const userData = useSelector((state) => state.secondRed.userData)
+  const orderAlert = useSelector((state) => state.firstRed.orderAlert)
+  const allProducts = useSelector((state) => state.firstRed.products)
+  const order = useSelector((state) => state.firstRed.order)
   const formato = new Intl.NumberFormat('de-DE', {
     // style: 'currency',
     // currency: 'USD',
@@ -38,6 +43,30 @@ export default function Details() {
   useEffect(() => {
     dispatch(getProductById(id))
   }, [dispatch,id])
+
+  useEffect(() => {
+    if (userData && userData.username && (order.length === 0 || order[0] === null)) {
+        dispatch(createOrder(userData.id, {carrito: cart}))
+    }
+  },[userData])
+
+  useEffect(() => {
+      if (order && order[0]) {
+          dispatch(setCart(order[0]?.carrito))
+      }
+  }, [orderAlert])
+
+  useEffect(()=>{
+      if (users && users.username) {
+          dispatch(editOrder(users.id, {carrito: cart}))
+      }
+  },[cart])
+
+  useEffect(() => {
+      if (order && order[0]) {
+          dispatch(setCart(order[0]?.carrito))
+      } 
+  },[allProducts])
 
 
   useEffect(() =>

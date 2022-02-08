@@ -1,7 +1,7 @@
 import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {addToCart, delCart, delAllCart, setCartOff, editOrder} from '../actions/actionProducts.js'
+import {addToCart, delCart, delAllCart, setCartOff, editOrder, setCart, createOrder} from '../actions/actionProducts.js'
 import { Link, useNavigate } from 'react-router-dom';
 import CartCard from './CartCard.jsx'
 import swal from 'sweetalert';
@@ -14,6 +14,12 @@ export default function Cart () {
     const cartNav = useSelector((state) => state.firstRed.cartNav)
     const user = JSON.parse(window.localStorage.getItem('usuario'))
     const order = useSelector((state) => state.firstRed.order)
+    const userData = useSelector((state) => state.secondRed.userData)
+    const allProducts = useSelector((state) => state.firstRed.products)
+    const orderAlert = useSelector((state) => state.firstRed.orderAlert)
+
+    // let order = useSelector((state) => state.firstRed.order)
+    // order = order.filter((e) => e.status === 'open')
     // console.log('este es el carrito',cart)
 
     let total = 0;
@@ -51,7 +57,29 @@ export default function Cart () {
         if (cart.length === 0) {
             dispatch(setCartOff())
         }
+        // if (user && user.username) {
+        //     dispatch(editOrder(user.id, {carrito: cart}))
+        // }
     },[cart])
+
+    // useEffect(() => {
+    //     if (userData && userData.username && (order.length === 0 || order[0] === null)) {
+    //         dispatch(createOrder(userData.id, {carrito: cart}))
+    //     }
+    // },[userData])
+    
+    // useEffect(() => {
+    //     if (order && order[0]) {
+    //         dispatch(setCart(order[0]?.carrito))
+    //     }
+    // }, [orderAlert])
+    
+    
+    // useEffect(() => {
+    //     if (order && order[0]) {
+    //         dispatch(setCart(order[0]?.carrito))
+    //     } 
+    // },[allProducts])
 
 
     const handleCheck = (e) => {

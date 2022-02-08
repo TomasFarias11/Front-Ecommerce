@@ -38,17 +38,17 @@ cart.length > 0 && cart.map((e) => {
     surname: userFull.lastName,
     email: userFull.email,
     phone: {
-      area_code: "",
-      number: "",
+      area_code: "54",
+      number: "112321331",
     },
     identification: {
-      type: "",
-      number: "",
+      type: "DNI",
+      number: "41234414",
     },
     address: {
-      street_name: "",
-      street_number: "",
-      zip_code: "",
+      street_name: "Asd",
+      street_number: "111",
+      zip_code: "1111",
     },
   });
 

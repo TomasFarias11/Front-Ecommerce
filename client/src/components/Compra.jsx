@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { pagar } from "../actions/actionMercadoPago";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 
 export default function Boton () {

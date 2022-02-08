@@ -96,7 +96,7 @@ export default function Details() {
               type="button"  
               className="btn btn-outline-info rounded-pill btn-lg" 
               onClick={(e) => handleClick(e)}>
-                <i class="fas fa-cart-plus"></i>  
+                <i className="fas fa-cart-plus"></i>  
                  Añadir al carrito
                 </button>
 

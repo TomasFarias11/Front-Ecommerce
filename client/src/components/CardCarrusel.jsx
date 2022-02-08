@@ -1,7 +1,7 @@
 import React from "react";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {addToCart, getProducts, setCartOn, setCart, editOrder} from '../actions/actionProducts.js'
+import { addToCart, getProducts, setCartOn } from '../actions/actionProducts.js'
 import {Link} from "react-router-dom";
 import swal from 'sweetalert';
 import '../css/Carrousel.css'
@@ -15,8 +15,8 @@ const CardCarrusel = () =>{
     const allProducts = useSelector((state) => state.firstRed.products) // me traigo todo los productos
     const dispatch = useDispatch()
     const cart = useSelector((state) => state.firstRed.cart)
-    const order = useSelector((state) => state.firstRed.order)
-    const user = useSelector((state) => state.secondRed.userData)
+    // const order = useSelector((state) => state.firstRed.order)
+    // const user = useSelector((state) => state.secondRed.userData)
     const formato = new Intl.NumberFormat('de-DE', {
         // style: 'currency',
         // currency: 'USD',
@@ -71,7 +71,6 @@ const CardCarrusel = () =>{
     return(<>
         <div className="container cardisplay" style={{padding: "15px"}}>
             <div className="row animate__animated animate__slideInRight">
-
                 {currentProduct ? currentProduct.map((e)=>{
                     return(
                     <div className="col animate__animated animate__slideInRight" key={e.id} >
@@ -91,7 +90,7 @@ const CardCarrusel = () =>{
                                 </div>
                                 :
                                 <div className="d-flex justify-content-center">
-                                <button style={{margin: "10px 0px"}} type="button" value={e.id} className="btn btn-outline-secondary rounded-pill" onClick={(e) => handleClick(e)}><i class="fas fa-cart-plus"></i> Añadir al carrito</button>
+                                <button style={{margin: "10px 0px"}} type="button" value={e.id} className="btn btn-outline-secondary rounded-pill" onClick={(e) => handleClick(e)}><i className="fas fa-cart-plus"></i> Añadir al carrito</button>
                             </div>
                             }
                             </div>

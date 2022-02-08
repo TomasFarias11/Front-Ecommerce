@@ -86,7 +86,7 @@ const handleLogout = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
                         {allCategory ? allCategory.map((e)=>{
-                            return(<li className="nav-item">
+                            return(<li className="nav-item " key={e.idCategory}>
                             <Link style={{ textDecoration: 'none', color: 'white' }} to={`/category/${e.name}`}>
                                 <span className="nav-link" aria-current="page" href="#!" onClick={() => dispatch(getProductByCategory(e.name))}>{e.name}</span>
                             </Link>

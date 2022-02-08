@@ -17,9 +17,8 @@ export default function Home () {
     const cart = useSelector((state) => state.firstRed.cart);
     const users = JSON.parse(window.localStorage.getItem('usuario'))
     const order = useSelector((state) => state.firstRed.order)
-    const userData = useSelector((state) => state.secondRed.userData)
+    
     const orderAlert = useSelector((state) => state.firstRed.orderAlert)
-    const allProducts = useSelector((state) => state.firstRed.products)
     // console.log('esta es laorden', order)
     
 
@@ -40,35 +39,7 @@ export default function Home () {
         }
     })
 
-    useEffect(() => {
-        if (userData && userData.username && (order.length === 0 || order[0] === null)) {
-            dispatch(createOrder(userData.id, {carrito: cart}))
-        }
-    },[userData])
-    
-    useEffect(() => {
-        if (order && order[0]) {
-            dispatch(setCart(order[0]?.carrito))
-        }
-    }, [orderAlert])
-    
-    useEffect(()=>{
-        if (users && users.username) {
-            dispatch(editOrder(users.id, {carrito: cart}))
-        }
-    },[cart])
-    
-    useEffect(() => {
-        if (order && order[0]) {
-            dispatch(setCart(order[0]?.carrito))
-        } 
-    },[allProducts])
-
-
-  
-    
-
-
+   
     const handleClick = (e) => {
         e.preventDefault();
         dispatch(getProductByCategory(e.target.value))

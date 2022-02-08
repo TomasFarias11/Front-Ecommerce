@@ -46,6 +46,7 @@ const initialState2={
     cart: [],
     cartNav: false,
     order: [],
+    orders: [],
     productsSearch:[],
     users: [],
     listUser:[],
@@ -54,6 +55,7 @@ const initialState2={
 }
 
 export default function reducerProducts(state=initialState2, action){
+    console.log('CCAARRTT',state.cart)
     // let productsAux = state.products.map(p => p);
     let productsAux2 = state.products.map(p => p);
 	switch(action.type){
@@ -182,7 +184,7 @@ export default function reducerProducts(state=initialState2, action){
                 ...state,
                 cartNav: false
             }
-        case QUANTITY_ITEM: 
+        case QUANTITY_ITEM:
             return{
                 ...state,
                 cart: state.cart.map(el => {
@@ -211,7 +213,7 @@ export default function reducerProducts(state=initialState2, action){
         case GET_ORDER_USER:
             return {
                 ...state,
-                order: action.payload
+                orders: action.payload
             }
         case GET_ORDER_OPEN:
             return {

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
-import { updateOrder } from "../actions/actionProducts";
+import { updateOrder} from "../actions/actionProducts";
 import { sendMail } from "../actions/actionMercadoPago";
 import { useEffect } from "react";
 
@@ -30,6 +30,7 @@ export default function Aceptado () {
         dispatch(sendMail(cliente, idUser))
         !!payment_id && !!status ? dispatch(updateOrder(idUser,{payment_id:payment_id, status:status})) : console.log(carrito)
     },[]);
+
     
     
     

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getProductById, setCartOn, setCart, editOrder, createOrder} from "../actions/actionProducts.js";
+import { getProductById, setCartOn,} from "../actions/actionProducts.js";
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import Reviews from "../components/Reviews.jsx"
@@ -42,7 +42,7 @@ export default function Details() {
 
 
   useEffect(() =>
-    // window.localStorage.getItem('carrito') ? window.localStorage.getItem('carrito') :   
+     
     window.localStorage.setItem('carrito', JSON.stringify(cart))
     , [cart])
 

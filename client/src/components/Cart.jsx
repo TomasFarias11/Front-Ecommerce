@@ -13,7 +13,8 @@ export default function Cart () {
     const cartStorage = JSON.parse(window.localStorage.getItem('carrito'))
     const cartNav = useSelector((state) => state.firstRed.cartNav)
     const user = JSON.parse(window.localStorage.getItem('usuario'))
-    const order = useSelector((state) => state.firstRed.order)
+    let order = useSelector((state) => state.firstRed.order)
+    order = order.filter(e => e.status === 'open')
     // console.log('este es el carrito',cart)
 
     let total = 0;

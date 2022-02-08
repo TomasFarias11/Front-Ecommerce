@@ -27,7 +27,8 @@ function NavBar() {
         dispatch(getCategory())
     ,[])
 
-    const order = useSelector((state) => state.firstRed.order)
+    let order = useSelector((state) => state.firstRed.order)
+    order = order?.filter(e=>e?.status ==='open')
     const orderAlert = useSelector((state) => state.firstRed.orderAlert)
 
 

@@ -34,10 +34,6 @@ const handleSubmit =async (e) => {
     const mail = await axios.post('/mercadopago/sendemail',input);
 }
 
-
-console.log('INPUT',input)
-
-
   return (
     <div>
       {/* <h1>Soy el footer</h1> */}

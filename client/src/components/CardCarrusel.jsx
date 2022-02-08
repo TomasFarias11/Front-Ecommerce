@@ -69,7 +69,7 @@ const CardCarrusel = () =>{
 
        
     return(<>
-        <div className="container" style={{padding: "15px"}}>
+        <div className="container cardisplay" style={{padding: "15px"}}>
             <div className="row animate__animated animate__slideInRight">
 
                 {currentProduct ? currentProduct.map((e)=>{

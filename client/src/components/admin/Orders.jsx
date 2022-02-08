@@ -41,7 +41,7 @@ function Orders (){
     return(
         <div>
             
-            
+            <h1>HOLA</h1>
     <div className="row">
         <div className="col-lg-3">
             <div className="container-sm d-flex justify-content-center" style={{ padding:20, paddingTop:0 }}> 

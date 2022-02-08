@@ -1,4 +1,4 @@
-import { GET_ORDER_2, GET_ORDER_USER_2, ORDER_ASC, ORDER_DESC} from '../actions/actionOrder';
+import { GET_ORDER_2, GET_ORDER_USER_2, ORDER_ASC, ORDER_DESC, PUT_ORDER_2} from '../actions/actionOrder';
 
 
 
@@ -43,6 +43,12 @@ export default function reducerOrders(state=initialState2, action){
             return{
                 ...state,
                 order: orderDesc
+            }
+
+        case PUT_ORDER_2:
+            return {
+                ...state,
+                order: [action.payload]
             }
 		default:
 			return state;

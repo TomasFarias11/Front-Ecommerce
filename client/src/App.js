@@ -27,7 +27,7 @@ import Profile from "./components/Perfil"
 import Contact from "./components/Contact";
 import Orders from "./components/admin/Orders";
 import DetailsOrden from "./pages/DetailsOrden";
-import EditOrder from "./components/admin/EditProduct";
+import EditOrder from "./components/admin/EditOrder";
 
 function App() {
   

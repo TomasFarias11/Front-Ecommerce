@@ -12,42 +12,33 @@ import Details from "..//..//pages/Details.jsx";
 import swal from "sweetalert";
 import Swal from "sweetalert2";
 
-function EditProduct() {
+function EditOrder() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const orderId = useSelector((state) => state.sixRedtRed.orderId);
+  const orderId = useSelector((state) => state.sixRed.order);
   console.log(orderId, "order Id edit order")
-//   const allCategory = useSelector((state) => state.fourthRed.category);
-  const formato = new Intl.NumberFormat("de-DE", {
-    // style: 'currency',
-    // currency: 'USD',
-    // minimumFractionDigits: 3,
-  });
-
-//   useEffect(() => {
-//     dispatch(getProductById(id));
-//     dispatch(getCategory());
-//     setInputBody({
-//       idCategory: "",
-//       name: orderId.name,
-     
-//     });
-//   }, [orderId.name]);
 
   useEffect(() => {
-    dispatch(getOrderUserId(id))
-  }, [dispatch,id])
+    dispatch(getProductById(id));
+    dispatch(getCategory());
+    setInputBody({
+      id: "",
+      name: orderId.email,
+      description: orderId.description,
+      
+    });
+  }, [orderId.name]);
 
   const [inputBody, setInputBody] = useState({
-    idCategory: "",
-    name: orderId.name,
+    id: "",
+    name: orderId.email,
     description: orderId.description,
-    
    
   });
 
-  console.log("body edit product", inputBody);
+
+  console.log("body jhon", inputBody);
 
   function handelInput(e) {
     e.preventDefault();
@@ -57,30 +48,30 @@ function EditProduct() {
     });
   }
 
-//   const handelImagen = async(e)=>{
-//     e.preventDefault()
-//     const files=e.target.files;
-//     const data =new FormData();
-//     data.append("file", files[0]);
-//     data.append("upload_preset", "group6");
+  const handelImagen = async(e)=>{
+    e.preventDefault()
+    const files=e.target.files;
+    const data =new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "group6");
 
-//     const res= await axios.post('https://api.cloudinary.com/v1_1/groupapple/image/upload', data)
+    const res= await axios.post('https://api.cloudinary.com/v1_1/groupapple/image/upload', data)
 
-//     const file=res.data;
-//     console.log(file)
-//      setInputBody({
-//        ...inputBody,
-//        [e.target.name]:file.url
-//      })
-//   }
+    const file=res.data;
+    console.log(file)
+     setInputBody({
+       ...inputBody,
+       [e.target.name]:file.url
+     })
+  }
 
-//   function handelArray(e) {
-//     e.preventDefault();
-//     setInputBody({
-//       ...inputBody,
-//       [e.target.name]: [e.target.value],
-//     });
-//   }
+  function handelArray(e) {
+    e.preventDefault();
+    setInputBody({
+      ...inputBody,
+      [e.target.name]: [e.target.value],
+    });
+  }
 
   function handelSubmit(e) {
     e.preventDefault();
@@ -91,7 +82,7 @@ function EditProduct() {
       });
     }
 
-    if (inputBody.id !== "" && inputBody.name !== "") {
+    if (inputBody.idCategory !== "" && inputBody.name !== "") {
       dispatch(editProduct(id, inputBody));
       swal("Producto Editado Correctamente", {
         buttons: false,
@@ -102,9 +93,16 @@ function EditProduct() {
         idCategory: "",
         name: "",
         description: "",
-       
+        image: "",
+        color: [],
+        price: 0,
+        stock: 0,
+        storage: [],
+        connectivity: [],
+        model: [],
+        ram: [],
       });
-      navigate("/order");
+      navigate("/admin/product");
     } else {
       Swal.fire({
         icon: "error",
@@ -114,25 +112,54 @@ function EditProduct() {
     }
   }
 
+//   function handelSubmit(e) {
+//     e.preventDefault();
+
+//     if (inputBody.image === "") {
+//       setInputBody({
+//         image: productId.image,
+//       });
+//     }
+
+
+
+
+  
+
+
   return (
+      
+
+
     <div className="row" style={{ paddingBottom: 30 }}>
+        <h1>Hola mundo</h1>
+        <div className="row" style={{ paddingBottom: 30 }}>
       <div className="col-lg-3">
         <div className="container-sm" style={{ padding: 20 }}>
             <div className="container-sm d-flex justify-content-center" style={{ padding: 20, paddingTop: 0 }}>
               <div className="badge fs-5 bg-dark text-wrap" style={{ width: "20rem" }}>
-                Formulario para editar información de orden Existente
+                Formulario para editar la orden Existente
               </div>
             </div>
 
-            <div className="d-flex justify-content-center">
+            {/* <div className="d-flex justify-content-center">
               <Link to="/admin/product">
                 <button type="button" className="btn btn-lg btn-outline-info">
-                  Lista de Productos 
+                  Lista de Productos
                 </button>
               </Link>
             </div>
-            <br />
-            
+            <br /> */}
+            {/* <div className="d-flex justify-content-center">
+              <Link to="/admin/addProduct">
+                <button
+                  type="button"
+                  className="btn btn-lg btn-outline-success"
+                >
+                  Añadir Producto
+                </button>
+              </Link>
+            </div> */}
         </div>
       </div>
       <div className=" card col-lg-8">
@@ -140,7 +167,7 @@ function EditProduct() {
         <div className="card-header d-flex align-items-center">
           <div className="container-sm d-flex justify-content-center" style={{ padding: 0, paddingTop: 0 }}>
             <div className="badge fs-5 bg-info text-wrap" style={{ width: "20rem" }}>
-              Editar Producto
+              Editar Orden
               <br />
               ID:<span>{orderId.id}</span>
             </div>
@@ -171,7 +198,7 @@ function EditProduct() {
                     <br />
                     <h4 className="featurette-heading">{inputBody.name}</h4>
                     <br />
-                    <h5>asdjlkasjdlfkjksdjf</h5>
+                    <h5>Descripción</h5>
                     <small>{inputBody.description}</small>
                     {inputBody.model !== null ? (
                       <p>
@@ -196,10 +223,17 @@ function EditProduct() {
                           ))}
                       </p>
                     ) : null}
-                    
+                    {inputBody.ram !== null ? (
+                      <p>
+                        <b>Memoria RAM:</b>{" "}
+                        {Array.isArray(inputBody.ram) &&
+                          inputBody.ram.map((e) => <span key={e}> {e}. </span>)}
+                      </p>
+                    ) : null}
                     <p>
-                      <b>Precio:</b> ${formato.format(inputBody.price)}
+                      {/* <b>Precio:</b> ${formato.format(inputBody.price)} */}
                     </p>
+                    
                     
                   </div>
                   {/* en este div se ingresa la img */}
@@ -216,13 +250,13 @@ function EditProduct() {
             <div className="container mt-4 mb-5 mx-1">
               <form onSubmit={(e) => handelSubmit(e)} className="row g-2">
                 <div className="form-group">
-                  <label>Categoría</label>
+                  <label>Estado</label>
                   <select
                     className="form-control"
                     name="idCategory"
                     onChange={(e) => handelInput(e)}
                   >
-                    <option>Seleccione una categoría</option>
+                    <option>Seleccione el estado</option>
                     {/* {allCategory.map((e) => (
                       <option value={e.idCategory} key={e.idCategory}>
                         {e.name}
@@ -231,7 +265,7 @@ function EditProduct() {
                   </select>
                 </div>
                 <div className="form-group">
-                  <label for="exampleInputName">Número de la orden</label>
+                  <label for="exampleInputName">Nombre del Producto</label>
                   <input
                     name="name"
                     value={inputBody.name}
@@ -254,20 +288,20 @@ function EditProduct() {
                     rows="4"
                   ></textarea>
                 </div>
-                <div className="form-group">
+                {/* <div className="form-group">
                   <label for="exampleInputColor">Color</label>
                   <input
                     name="color"
                     value={inputBody.color}
-                    // onChange={(e) => handelArray(e)}
+                    onChange={(e) => handelArray(e)}
                     type="text"
                     className="form-control"
                     id="exampleInputColor"
                     aria-describedby="emailHelp"
                     placeholder="Ingrese el color"
                   />
-                </div>
-                <div className="form-group">
+                </div> */}
+                {/* <div className="form-group">
                   <label for="exampleInputPreci">Precio</label>
                   <input
                     name="price"
@@ -280,12 +314,84 @@ function EditProduct() {
                     aria-describedby="emailHelp"
                     placeholder="Ingrese el precio"
                   />
-                </div>
-               
-              
-               
-               
-                
+                </div> */}
+                {/* <div className="form-group">
+                  <label for="exampleInputStock">Stock</label>
+                  <input
+                    name="stock"
+                    min="1"
+                    value={inputBody.stock}
+                    onChange={(e) => handelInput(e)}
+                    type="number"
+                    className="form-control"
+                    id="exampleInputStock"
+                    aria-describedby="emailHelp"
+                    placeholder="Ingrese la cantidad de productos"
+                  />
+                </div> */}
+                {/* <div className="form-group">
+                  <label for="exampleInputStorage">Almacenamiento</label>
+                  <input
+                    name="storage"
+                    value={inputBody.storage}
+                    onChange={(e) => handelArray(e)}
+                    type="text"
+                    className="form-control"
+                    id="exampleInputStorage"
+                    aria-describedby="emailHelp"
+                    placeholder="Ingrese el color"
+                  />
+                </div> */}
+                {/* <div className="form-group">
+                  <label for="exampleInputConnectivity">Conectividad</label>
+                  <input
+                    name="connectivity"
+                    value={inputBody.connectivity}
+                    onChange={(e) => handelArray(e)}
+                    type="text"
+                    className="form-control"
+                    id="exampleInputConnectivity"
+                    aria-describedby="emailHelp"
+                    placeholder="Ingrese tipo de conectividad"
+                  />
+                </div> */}
+                {/* <div className="form-group">
+                  <label for="exampleInputModel">Modelos</label>
+                  <input
+                    name="model"
+                    value={inputBody.model}
+                    onChange={(e) => handelArray(e)}
+                    type="text"
+                    className="form-control"
+                    id="exampleInputModel"
+                    aria-describedby="emailHelp"
+                    placeholder="Ingrese el modelo"
+                  />
+                </div> */}
+                {/* <div className="form-group">
+                  <label for="exampleInputRam">Memoria RAM</label>
+                  <input
+                    name="ram"
+                    value={inputBody.ram}
+                    onChange={(e) => handelArray(e)}
+                    type="text"
+                    className="form-control"
+                    id="exampleInputRam"
+                    aria-describedby="emailHelp"
+                    placeholder="Ingrese la memoria RAM"
+                  />
+                </div> */}
+                {/* <div
+                  className="form-group"
+                  style={{ marginTop: 10, marginBottom: 30 }}
+                >
+                  <label for="exampleFormControlFile1">Imagen</label>
+                  <input name="image" 
+                      accept="image/png,image/jpg"
+                      onChange={handelImagen} 
+                      type="file" 
+                      className="form-control-file"/>
+                </div> */}
                 <button className="btn btn-success" type="submit">
                   Confirmar Cambios
                 </button>
@@ -295,7 +401,8 @@ function EditProduct() {
         </div>
       </div>
     </div>
+    </div>
   );
 }
 
-export default EditProduct;
+export default EditOrder;

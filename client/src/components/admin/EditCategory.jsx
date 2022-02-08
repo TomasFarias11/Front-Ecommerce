@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getCategoryById, editCategory } from "../../actions/actionAdmin";
+import Swal from 'sweetalert2'
+import swal from 'sweetalert';
 
 function EditCategory() {
   const { id } = useParams();
@@ -27,14 +29,22 @@ function EditCategory() {
   function handelSubmit(e) {
     e.preventDefault();
     if (inputBody.name !== "") {
-      alert("Categoria Editada");
+      swal("Categoria Editada Correctamente", {
+        buttons: false,
+        icon: 'success',
+        timer: 1500,
+      });
       dispatch(editCategory(id, inputBody));
       setInputBody({
         name: "",
       });
       navigate("/admin/Category");
     } else {
-      alert("ingrese el nombre de la nueva categoria");
+       Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Por favor, rellene los campos necesarios para editar la Categoria',
+        })
     }
   }
 

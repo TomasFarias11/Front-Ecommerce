@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUserId, editUser } from "../actions/actionUser.js";
 import swal from "sweetalert";
+import axios from "axios";
 
 const EditProfie = () => {
   const userId = useSelector((state) => state.secondRed.userData);
@@ -54,6 +55,23 @@ const EditProfie = () => {
     });
     Navigate("/profile");
   };
+
+  const handelImagen = async(e)=>{
+    e.preventDefault()
+    const files=e.target.files;
+    const data =new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "group6");
+
+    const res= await axios.post(`https://api.cloudinary.com/v1_1/groupapple/image/upload`, data)
+
+    const file=res.data;
+    console.log(file)
+     setInput({
+       ...input,
+       [e.target.name]:file.url
+     })
+  }
 
   return (
     <div className=" card col-lg-13 mt-4">
@@ -130,13 +148,10 @@ const EditProfie = () => {
                   <div className="card-body">
                     <div className="col-sm-10">
                       <label>Imagen:</label>
-                      <input
-                        className="form-control"
-                        type="text"
-                        value={input.image}
-                        name="image"
-                        onChange={(e) => handleChange(e)}
-                      />
+                      <input name="image" 
+                      accept="image/png,image/jpg"  
+                      onChange={handelImagen} type="file" 
+                      className="form-control-file"/>
                     </div>
                   </div>
                 </div>

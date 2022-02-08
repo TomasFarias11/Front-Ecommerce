@@ -47,29 +47,29 @@ const handleLogout = () => {
     window.location.reload()
 }
 
-useEffect(() => {
-    if (userData && userData.username) {
-        dispatch(createOrder(userData.id, {carrito: cart}))
-    }
-},[userData])
+// useEffect(() => {
+//     if (userData && userData.username) {
+//         dispatch(createOrder(userData.id, {carrito: cart}))
+//     }
+// },[userData])
 
-useEffect(() => {
-    if (order && order[0]) {
-        dispatch(setCart(order[0]?.carrito))
-    }
-}, [orderAlert])
+// useEffect(() => {
+//     if (order && order[0]) {
+//         dispatch(setCart(order[0]?.carrito))
+//     }
+// }, [orderAlert])
 
-useEffect(()=>{
-    if (user && user.username) {
-        dispatch(editOrder(user.id, {carrito: cart}))
-    }
-},[cart])
+// useEffect(()=>{
+//     if (user && user.username) {
+//         dispatch(editOrder(user.id, {carrito: cart}))
+//     }
+// },[cart])
 
-useEffect(() => {
-    if (order && order[0]) {
-        dispatch(setCart(order[0]?.carrito))
-    } 
-},[allProducts])
+// useEffect(() => {
+//     if (order && order[0]) {
+//         dispatch(setCart(order[0]?.carrito))
+//     } 
+// },[allProducts])
 
   return (
         <nav className="navbar navbar-expand-lg navbar-dark  h6 sticky-top" style={{background: "#111111"}}>
@@ -105,7 +105,7 @@ useEffect(() => {
                                 </p>
                             </li>
                             <li className="nav-item"> 
-                                <a className="nav-link " aria-current="page" href="#!" onClick={() => handleLogout()}> Logout </a>
+                                <a className="nav-link " aria-current="page" href="/login" onClick={() => handleLogout()}> Logout </a>
                             </li>
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href=" " id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Admin </a>

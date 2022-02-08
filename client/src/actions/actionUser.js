@@ -1,5 +1,6 @@
 import axios from "axios";
 import { firebase, googleAuthProvider } from "../firebase";
+import swal from 'sweetalert';
 // import {useNavigate} from 'react-router-dom'
 
 export const  LOGIN_GOOGLE = "LOGIN_GOOGLE";
@@ -13,7 +14,7 @@ export const googleLogin = () => {
 
   return async (dispatch) => {
     try {
-      console.log('algooooooooo')
+      // console.log('algooooooooo')
    const dataUser = await firebase.auth().signInWithPopup(googleAuthProvider)
           const userAuthGoogle =
              {
@@ -62,15 +63,26 @@ export const googleLogin = () => {
 }; // esta es la accion de la autenticacion con google 
 
 export const localLoginUser = (datos) => {
+ 
   return async (dispatch) => {
+    try {
     const { data } = await axios.post("/user/login", datos )
-    console.log('data del login', data)
+    console.log(data, "esta es la data ") 
     dispatch({
       type: LOCAL_LOGIN_USER,
       payload: data,
     },
     window.localStorage.setItem('usuario', JSON.stringify(data)))
-  }
+ 
+  }catch (error) {
+  //  console.log(error, "la concha de tu hermana")
+     swal("el usuario esta mal escrito o tu password es incorrecto ;( !", {
+      buttons: false,
+      icon: 'error',
+      timer: 3000,
+    });
+  } 
+}
 };
 
 export const getUserId = (idUser) => {

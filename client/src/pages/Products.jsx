@@ -1,5 +1,5 @@
 import React from "react";
-import { orderAZ, orderZA, minPrice, maxPrice, setProducts, addToCart, setCartOn } from '../actions/actionProducts.js'
+import { orderAZ, orderZA, minPrice, maxPrice, setProducts, addToCart, setCartOn, setCart, editOrder, createOrder} from '../actions/actionProducts.js'
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
 import { useEffect } from "react";
@@ -7,11 +7,15 @@ import {useDispatch, useSelector} from "react-redux";
 import swal from 'sweetalert';
 
 
-const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts, addToCart, setCartOn}) => {
+const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts, addToCart, setCartOn, setCart, editOrder, createOrder}) => {
 
     // const dispatch = useDispatch()
     const cart = useSelector((state) => state.firstRed.cart)
-    // console.log('este es el carrito', cart);
+    const userData = useSelector((state) => state.secondRed.userData)
+    const orderAlert = useSelector((state) => state.firstRed.orderAlert)
+    const allProducts = useSelector((state) => state.firstRed.products)
+    const order = useSelector((state) => state.firstRed.order)
+    const users = JSON.parse(window.localStorage.getItem('usuario'))
     
     useEffect(()=>{
         products.length < JSON.parse(window.localStorage.getItem('productos')).length && products.length ===0 ? 
@@ -35,6 +39,30 @@ const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts, 
     useEffect(()=> {
         window.localStorage.setItem('productos',JSON.stringify(products))
     })
+
+    useEffect(() => {
+        if (userData && userData.username && (order.length === 0 || order[0] === null)) {
+            createOrder(userData.id, {carrito: cart})
+        }
+    },[userData])
+    
+    useEffect(() => {
+        if (order && order[0]) {
+            setCart(order[0]?.carrito)
+        }
+    }, [orderAlert])
+    
+    useEffect(()=>{
+        if (users && users.username) {
+            editOrder(users.id, {carrito: cart})
+        }
+    },[cart])
+    
+    useEffect(() => {
+        if (order && order[0]) {
+            setCart(order[0]?.carrito)
+        } 
+    },[allProducts])
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -124,7 +152,7 @@ const mapStateToProps = (state) => {
     };
 };
 
-const wrapper = connect(mapStateToProps,{ orderAZ, orderZA, minPrice, maxPrice, setProducts, addToCart, setCartOn });
+const wrapper = connect(mapStateToProps,{ orderAZ, orderZA, minPrice, maxPrice, setProducts, addToCart, setCartOn, setCart, editOrder, createOrder });
 const component = wrapper(Products);
 
 export default component;

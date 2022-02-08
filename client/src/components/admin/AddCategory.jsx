@@ -1,17 +1,19 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { addCategory } from "../../actions/actionAdmin";
+import React from 'react';
+import { Link, useNavigate } from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {useState} from "react";
+import {addCategory} from "../../actions/actionAdmin";
 
 function AddCategory() {
-  const dispatch = useDispatch();
-  const [inputBody, setInputBody] = useState({
-    name: "",
-  });
+  
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const [inputBody , setInputBody] = useState({
+    name:"",
+  })
 
-  function handelInput(e) {
-    e.preventDefault();
+  function handelInput(e){
+    e.preventDefault()
     setInputBody({
       ...inputBody,
       [e.target.name]: e.target.value,
@@ -29,6 +31,7 @@ function AddCategory() {
     } else {
       alert("ingrese el nombre de la nueva categoria");
     }
+    navigate("/admin/Category")
   }
 
   return (

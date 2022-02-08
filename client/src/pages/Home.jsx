@@ -2,9 +2,9 @@ import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import CardCarrusel from "../components/CardCarrusel.jsx";
-import {getProductByCategory, createOrder, setCart} from '../actions/actionProducts.js'
+import {getProductByCategory, getOrderUser, setCart, editOrder, createOrder} from '../actions/actionProducts.js'
 import {getUserId} from '../actions/actionUser.js'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import estilos from '../css/Home.module.css';
 import CarrouselMain from "../components/CarrouselMain.jsx"
 
@@ -15,9 +15,11 @@ export default function Home () {
     const Navigate = useNavigate();
     const products = useSelector((state) => state.firstRed.productsByCategory);
     const cart = useSelector((state) => state.firstRed.cart);
-    const users = useSelector((state) => state.secondRed.userData)
+    const users = JSON.parse(window.localStorage.getItem('usuario'))
     const order = useSelector((state) => state.firstRed.order)
+    const userData = useSelector((state) => state.secondRed.userData)
     const orderAlert = useSelector((state) => state.firstRed.orderAlert)
+    const allProducts = useSelector((state) => state.firstRed.products)
     // console.log('esta es laorden', order)
     
 
@@ -28,24 +30,39 @@ export default function Home () {
         }
     },[cart])
 
-    
+    const h = useLocation()
+    console.log('WTH?', h)
 
     useEffect(()=> {  
         products > 0 ? window.localStorage.setItem('productos',JSON.stringify(products)) : window.localStorage.setItem('productos',JSON.stringify([]))
-        // dispatch(getUserId(users.id))
+        if (users.length !== 0) {
+            dispatch(getOrderUser(users.id))
+        }
     })
 
-    // useEffect(() => {
-    //     if (users && users.username) {
-    //         dispatch(createOrder(users.id, {carrito: cart}))
-    //     }
-    // },[users])
-
-    // useEffect(() => {
-    //     if (order && order[0]) {
-    //         dispatch(setCart(order[0]?.carrito))
-    //     }
-    // }, [orderAlert])
+    useEffect(() => {
+        if (userData && userData.username && (order.length === 0 || order[0] === null)) {
+            dispatch(createOrder(userData.id, {carrito: cart}))
+        }
+    },[userData])
+    
+    useEffect(() => {
+        if (order && order[0]) {
+            dispatch(setCart(order[0]?.carrito))
+        }
+    }, [orderAlert])
+    
+    useEffect(()=>{
+        if (users && users.username) {
+            dispatch(editOrder(users.id, {carrito: cart}))
+        }
+    },[cart])
+    
+    useEffect(() => {
+        if (order && order[0]) {
+            dispatch(setCart(order[0]?.carrito))
+        } 
+    },[allProducts])
 
 
   

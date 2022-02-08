@@ -13,9 +13,6 @@ function AdminProduct() {
     const products = useSelector((state) => state.firstRed.products);
     const dispatch = useDispatch()
 
-    console.log(products)
-
-
     const handelDetele=(e)=>{
 
         Swal.fire({

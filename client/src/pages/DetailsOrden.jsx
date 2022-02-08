@@ -2,16 +2,19 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router";
 import swal from 'sweetalert';
-import { getOrderUserId } from "../actions/actionOrder.js";
+import { getOrderUserId } from "../actions/actionOrder";
 import { Link } from "react-router-dom";
 
 export default function DetailsOrden() {
 
+    const { id } = useParams();
+    console.log(id, "este es el id que llega")
   
-  const ordersId = useSelector((state) => state.sixRed.orderId);
+  
+  const orderTotal = useSelector((state) => state.sixRed.order);
   const ordersTotal = useSelector((state) => state.sixRed.order);
   const dispatch = useDispatch();
-  console.log(ordersId, "order id")
+  console.log(orderTotal, "order detalle")
   console.log(ordersTotal, "probando")
   
 //   const cart = useSelector((state) => state.firstRed.cart)
@@ -33,10 +36,7 @@ export default function DetailsOrden() {
 //     });
 //   }
 
-  const { id } = useParams();
-  console.log(id, "este es el id que llega")
-
-
+ 
   // console.log('el carrito', cart)
 
   useEffect(() => {
@@ -83,11 +83,11 @@ export default function DetailsOrden() {
     							</div>
     							<div className="col-lg-6 col-md-6 col-sm-6">
     								<address className="text-right">
-                                        { ordersId[0].user.username }
+                                        { orderTotal[0].user.username }
     										<br/>
-                                        { ordersId[0].user.email }
+                                        { orderTotal[0].user.email }
                                         <br/>
-                                        { ordersId[0].user.address }
+                                        { orderTotal[0].user.address }
     								</address>
     							</div>
     						</div>
@@ -98,11 +98,11 @@ export default function DetailsOrden() {
     							<div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
     								<div className="invoice-details">
     									<address>
-                                            { ordersId[0].user.username }
+                                            { orderTotal[0].user.username }
     										<br/>
-                                            { ordersId[0].user.email }
+                                            { orderTotal[0].user.email }
                                             <br/>
-                                            { ordersId[0].user.address }
+                                            { orderTotal[0].user.address }
     										
     									</address>
     								</div>
@@ -110,9 +110,9 @@ export default function DetailsOrden() {
     							<div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
     								<div className="invoice-details">
     									<div className="invoice-num">
-    										<div>Orden - # {ordersId[0].id}</div>
+    										<div>Orden - # {orderTotal[0].id}</div>
     										<div>Fecha y hora de creación: 
-                                            { ordersId[0].user.createdAt }
+                                            { orderTotal[0].user.createdAt }
                                             </div>
     									</div>
     								</div>													
@@ -141,7 +141,7 @@ export default function DetailsOrden() {
     										<tbody>
     											<tr>
     												<td>
-                                                        {ordersId[0].carrito.map(el => 
+                                                        {orderTotal[0].carrito.map(el => 
                                                             
                                                             el.name + " || ")
                                                             
@@ -149,10 +149,10 @@ export default function DetailsOrden() {
     													
     													
     												</td>
-    												<td>{ordersId[0].userId}</td>
-    												<td>{ordersId[0].carrito.length}</td>
+    												<td>{orderTotal[0].userId}</td>
+    												<td>{orderTotal[0].carrito.length}</td>
     												<td>$5000.00</td>
-                                                    <td>{ordersId[0].status}</td>
+                                                    <td>{orderTotal[0].status}</td>
     											</tr>
     											<tr>
     												{/* <td>
@@ -181,7 +181,7 @@ export default function DetailsOrden() {
     												<td colspan="2">
     													<p >
     														
-                                                            {ordersId[0].carrito.map(el => 
+                                                            {orderTotal[0].carrito.map(el => 
                                                             <p>
                                                                 {el.name}
                                                             </p>
@@ -194,7 +194,7 @@ export default function DetailsOrden() {
     												<td>
     													<p >
     														
-                                                            {ordersId[0].carrito.map(el => 
+                                                            {orderTotal[0].carrito.map(el => 
                                                             <p>
                                                                 $ {el.price}
                                                             </p>

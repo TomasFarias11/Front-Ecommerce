@@ -10,9 +10,9 @@ import Swal from "sweetalert2";
 
 
 function Orders (){
-    const ordersTotal = useSelector((state) => state.sixRed.order);
+    const orderTotal = useSelector((state) => state.sixRed.order);
     const dispatch = useDispatch()
-    console.log(ordersTotal, "orders total")
+    console.log(orderTotal, "orders total")
     // const allOrders = useSelector((state) => state.firstProducts.order);
     // const dispatch = useDispatch();
     // console.log(allOrders, "estan son las ordenes")
@@ -71,7 +71,7 @@ function Orders (){
                 </thead>
                 <tbody>
                     {
-                       ordersTotal.map(el => 
+                       orderTotal.map(el => 
                         <tr className="text-center" key={el.id}>
                             <th>
                                 {el.id}
@@ -84,7 +84,7 @@ function Orders (){
                                 <Link to={`/order/details/${el.id}`}>
                                     <button className="btn btn-outline-primary" style={{marginRight:10}}>Detalles</button>
                                 </Link>
-                                <Link to={`/admin/edit/${el.id}`}>
+                                <Link to={`/order/edit/${el.id}`}>
                                     <button className="btn btn-outline-warning" style={{marginRight:10}}>Editar</button>
                                 </Link>
                             

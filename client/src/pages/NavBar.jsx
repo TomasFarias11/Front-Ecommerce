@@ -76,12 +76,6 @@ const handleLogout = () => {
      }
  },[cart])
 
-// useEffect(() => {
-//     if (order && order[0]) {
-//         dispatch(setCart(order[0]?.carrito))
-//     } 
-// },[allProducts])
-
   return (
         <nav className="navbar navbar-expand-lg navbar-dark  h6 sticky-top" style={{background: "#111111"}}>
             <div style={{position: "absolute", left: 0, top: 95}}>

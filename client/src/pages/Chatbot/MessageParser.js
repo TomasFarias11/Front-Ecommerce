@@ -25,11 +25,11 @@ class MessageParser {
             this.actionProvider.handleProducto('TV & Home')
         } else if (lowercase.includes('airpods')) {
             this.actionProvider.handleProducto('Airpods')
-        } else if (lowercase.includes('gracias') || lowercase.includes('perdon') || lowercase.includes('disculpe')) {
+        } else if (lowercase.includes('gracias') || lowercase.includes('perdon') || lowercase.includes('disculpe') || lowercase.includes('adios')) {
             this.actionProvider.handleAgradecer()
         } else if (lowercase.includes('orden') || lowercase.includes('ordenes')) {
             this.actionProvider.handleOrders()
-        } else if (lowercase.includes('pagos') || lowercase.includes('pago')) {
+        } else if (lowercase.includes('pagos') || lowercase.includes('pago') || lowercase.includes('pagar') || lowercase.includes('paga')) {
             this.actionProvider.handlePago()
         } else if (lowercase.includes('garantias') || lowercase.includes('garantia')) {
             this.actionProvider.handleGarantia()

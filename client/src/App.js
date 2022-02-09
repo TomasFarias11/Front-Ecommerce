@@ -70,7 +70,7 @@ function App() {
       <Route exact path= "/profile" element={<Profile/>}/>
       <Route exact path= "/contactanos" element={<Contact/>}/>
       <Route exact path= "/order" element={<Orders/>}/>
-      <Route exact path= "/order/details/:id" element={<DetailsOrden/>}/>
+      <Route exact path= "/order/user/:id/details/:idOrder" element={<DetailsOrden/>}/>
       <Route exact path= "/order/edit/:id" element={<EditOrder/>} />
       </Routes>
       

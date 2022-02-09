@@ -150,8 +150,12 @@ const handleSubmitMail =async (e) => {
                           >
                             Cerrar
                           </button>
-                          <button type="submit" value="Enviar Mensaje" onClick={handleSubmitMail} className="btn btn-success">
-                            Enviar Mensaje
+                          <button type="submit" 
+                          value="Enviar Mail"
+                          data-bs-dismiss="modal"
+                          onClick={handleSubmitMail} 
+                          className="btn btn-success">
+                            Enviar Mail
                           </button>
                         </div>
                       </div>

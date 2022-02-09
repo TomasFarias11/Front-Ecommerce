@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { postUserCreate } from "../actions/actionProducts";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../css/SigninScreen.css";
 
 function validate(input) {
@@ -21,6 +21,8 @@ function validate(input) {
 }
 
 const Formularios = () => {
+
+  const Navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [error, setError] = useState("");
@@ -60,6 +62,7 @@ const Formularios = () => {
         [e.target.name]: e.target.value,
       })
     );
+    Navigate('/login')
   };
 
   return (

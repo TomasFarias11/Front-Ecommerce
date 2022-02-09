@@ -50,7 +50,7 @@ const EditProfie = () => {
       address: input.address,
       image: input.image,
       admin: input.admin,
-      // password: '',
+      password: '',
       id: userStorage.id,
     });
     Navigate("/profile");
@@ -169,12 +169,14 @@ const EditProfie = () => {
                     </div>
                   </div>
                 </div>
-                {/* <div>
-                    <div>
-                        <label>Contraseña:</label>
-                    </div>
-                    <input type="password" value = {input.password} name="password" onChange={(e) => handleChange(e)}/>
-                </div> */}
+                <div className="card-group">
+                  <div className="card-body">
+                    <div className="col-sm-10"></div>
+                        <label>Nueva Contraseña:</label>
+                    
+                    <input className="form-control" type="password" value = {input.password} name="password" onChange={(e) => handleChange(e)}/>
+                  </div>
+                </div>
                 <div className="card-body">
                   <div className="col-sm-11">
                     <div className="form-group d-flex justify-content-center mt-2">

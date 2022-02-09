@@ -7,9 +7,6 @@ import { loadPrePago } from "../actions/actionMercadoPago.js";
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
 
-import { pagar } from "../actions/actionMercadoPago";
-
-
 
 const CheckOut = () => {
   const Navigate = useNavigate();
@@ -28,27 +25,6 @@ cart.length > 0 && cart.map((e) => {
     total = total + (e.price * e.quantity);
     totalQuantity = Number(totalQuantity) + Number(e.quantity)
 })
-//PAGO
-const compra = JSON.parse(window.localStorage.getItem('todojunto'))
-const url = useSelector((state) => state.fifthRed.url);
-const [button, setButton] = useState(false)
-
-const [ preference, setPreference] = useState({
-  items:compra.items,
-  payer:compra.payer,
-  back_urls:{
-  success: `http://localhost:3000/mercadopago/aceptado`,
-  failure: "/mercadopago/rechazado",
-  pending: "/mercadopago/rechazado"
-},
-auto_return:"approved",
-  //notification_url:'https://ecommerce-igroup-6.herokuapp.com/mercadopago/callreception'
-})
-const handleClick = (e) => {
-  e.preventDefault()
-  dispatch(pagar(preference))
-  setButton(true)
-}
 
 
 
@@ -131,7 +107,7 @@ const handleClick = (e) => {
         })
     }else{
     dispatch(loadPrePago(todojunto));
-    Navigate("/mercadopago");
+    Navigate("/mercadopago/compra");
     setPayer({
       phone: {
         area_code: "",
@@ -271,6 +247,18 @@ const handleClick = (e) => {
                         <strong>${formato.format(total)}</strong>
                       </li>
                     </ul>
+                    <form className="card p-2">
+                      <div className="input-group">
+                        <input
+                          type="text"
+                          className="form-control"
+                          placeholder="Promo code"
+                        />
+                        <button type="submit" className="btn btn-secondary">
+                          Redeem
+                        </button>
+                      </div>
+                    </form>
                   </div>
                   <div className="col-md-7 col-lg-8">
                     <h4 className="mb-3">Información de envío</h4>
@@ -484,33 +472,11 @@ const handleClick = (e) => {
                       <hr className="my-4" />
                       <button
                         className="w-100 btn btn-primary btn-lg"
-                        type="button"
+                        type="submit"
                         onClick={handleSubmit}
-                        data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop"
                       >
                         Continuar con el Pago
                       </button>
-                      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          ...
-                        </div>
-                        <div class="modal-footer">
-                        {button === false && url.length === 0 ? 
-            <button onClick={(e) => handleClick(e)} >Confirmar Compra</button>
-            :
-            <button><a href={url}>PAGAR</a></button>}
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-
                     </form>
                   </div>
                 </div>

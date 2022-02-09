@@ -31,6 +31,8 @@ class MessageParser {
             this.actionProvider.handleOrders()
         } else if (lowercase.includes('pagos') || lowercase.includes('pago')) {
             this.actionProvider.handlePago()
+        } else if (lowercase.includes('garantias') || lowercase.includes('garantia')) {
+            this.actionProvider.handleGarantia()
         }
         else {
             this.actionProvider.handleReformula()

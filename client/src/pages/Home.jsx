@@ -50,9 +50,9 @@ export default function Home () {
         <div>
           <CarrouselMain/>
         </div>
-            <div>
+        <div style={{position: 'absolute', zIndex:99}}>
             <Ibot/>
-            </div>
+        </div>
         <div className="container">
             <CardCarrusel/>
         </div>

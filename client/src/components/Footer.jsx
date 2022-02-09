@@ -276,7 +276,12 @@ const handleSubmit =async (e) => {
                           >
                             Cerrar
                           </button>
-                          <button type="submit" value="Enviar Mensaje" onClick={handleSubmit} className="btn btn-success">
+                          <button 
+                          type="submit" 
+                          value="Enviar Mensaje"
+                          data-bs-dismiss="modal" 
+                          onClick={handleSubmit} 
+                          className="btn btn-success">
                             Enviar Mensaje
                           </button>
                         </div>

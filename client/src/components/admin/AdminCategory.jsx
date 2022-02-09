@@ -71,8 +71,8 @@ function AdminCategory() {
                         Editar
                       </button>
                     </Link>
-                    <button className="btn btn-danger" name="id" value={e.name} onClick={(e) => handelDetele(e)}>
-                      X
+                    <button className="btn btn-danger fas fa-trash-alt" name="id" value={e.name} onClick={(e) => handelDetele(e)}>
+                      
                     </button>
                   </div>
                 </td>

@@ -84,7 +84,7 @@ const handleLogout = () => {
 
   return (
         <nav className="navbar navbar-expand-lg navbar-dark  h6 sticky-top" style={{background: "#111111"}}>
-            <div style={{position: "absolute", left: 0, top: 95}}>
+            {/* <div style={{position: "absolute", left: 0, top: 95}}>
             {showBot &&
             <Chatbot
                 config={config}
@@ -103,7 +103,7 @@ const handleLogout = () => {
                 <br/>¿Te puedo ayudar?
                 </small> 
             </button>
-            </div>
+            </div> */}
             <div className="container-fluid">
                 <Link to="/" >
                     <span className="navbar-brand h1 $headings-font-weight" href="#!">

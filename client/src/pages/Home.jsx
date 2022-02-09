@@ -7,6 +7,7 @@ import {getUserId} from '../actions/actionUser.js'
 import { useNavigate, useLocation } from 'react-router-dom';
 import estilos from '../css/Home.module.css';
 import CarrouselMain from "../components/CarrouselMain.jsx"
+import Ibot from "../components/Ibot.jsx";
 
 
 export default function Home () {
@@ -49,6 +50,9 @@ export default function Home () {
         <div>
           <CarrouselMain/>
         </div>
+            <div>
+            <Ibot/>
+            </div>
         <div className="container">
             <CardCarrusel/>
         </div>

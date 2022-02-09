@@ -48,10 +48,6 @@ const handleSubmit =async (e) => {
     )
 }
 
-
-// console.log('INPUT',input)
-
-
   return (
     <div>
       {/* <h1>Soy el footer</h1> */}

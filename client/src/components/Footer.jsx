@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getProductByCategory } from "../actions/actionProducts.js";
 import { Link } from "react-router-dom";
+import swal from "sweetalert";
 
 const Footer = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,20 @@ const handleInputChange = function(e) {
 
 const handleSubmit =async (e) => {
     e.preventDefault()
-    const mail = await axios.post('/mercadopago/sendemail',input);
+     await axios.post('/mercadopago/sendemail',input).then (res => {
+    swal("Mensaje enviado con exito!", {
+        buttons: false,
+        icon: "success",
+        timer: 2000,
+      });
+    }).catch(err => {
+      swal("Error al enviar el mensaje!", {
+        buttons: false,
+        icon: "error",
+        timer: 2000,
+      });
+    }
+    )
 }
 
 
@@ -276,7 +290,12 @@ const handleSubmit =async (e) => {
                           >
                             Cerrar
                           </button>
-                          <button type="submit" value="Enviar Mensaje" onClick={handleSubmit} className="btn btn-success">
+                          <button 
+                          type="submit" 
+                          value="Enviar Mensaje"
+                          data-bs-dismiss="modal" 
+                          onClick={(e)=>(handleSubmit(e))} 
+                          className="btn btn-success">
                             Enviar Mensaje
                           </button>
                         </div>

@@ -84,20 +84,26 @@ const handleLogout = () => {
 
   return (
         <nav className="navbar navbar-expand-lg navbar-dark  h6 sticky-top" style={{background: "#111111"}}>
-            <div style={{position: "absolute", left: 0, top: 95}}>
+            {/* <div style={{position: "absolute", left: 0, top: 95}}>
             {showBot &&
             <Chatbot
                 config={config}
                 messageParser={MessageParser}
-                headerText='Chatbot'
+                headerText='iBot en linea...'
                 placeholderText='Haga su consulta...'
                 // messageHistory={loadMessages()}
                 actionProvider={ActionProvider}
                 // saveMessages={saveMessages}
             />
             }
-            <button onClick={() => toggleBot((prev) => !prev)}>Bot</button>
-            </div>
+            <button className="btn btn-info" 
+            onClick={() => toggleBot((prev) => !prev)}>
+                <i class="fas fa-robot"></i> 
+                <small> <strong>Soy iBot</strong>  
+                <br/>¿Te puedo ayudar?
+                </small> 
+            </button>
+            </div> */}
             <div className="container-fluid">
                 <Link to="/" >
                     <span className="navbar-brand h1 $headings-font-weight" href="#!">

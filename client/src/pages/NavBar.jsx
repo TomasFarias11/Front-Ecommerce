@@ -1,4 +1,4 @@
-import {React, useEffect} from "react";
+import {React, useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import SearchAutocomplete from "./SearchAutocomplete";
 import {useDispatch, useSelector} from 'react-redux';
@@ -6,11 +6,11 @@ import {getProductByCategory, setCartOn, setCartOff, setCart, createOrder, editO
 import {getUserId} from '../actions/actionUser.js'
 import Cart from "../components/Cart.jsx"
 import {getCategory} from "../actions/actionAdmin";
-
-
-
-// import {useDispatch} from 'react-redux';
-// import {getProductByCategory, postUserCreate} from '../actions/actionProducts.js'
+import Chatbot from 'react-chatbot-kit'
+import 'react-chatbot-kit/build/main.css'
+import config from './Chatbot/config.js';
+import MessageParser from './Chatbot/MessageParser.js';
+import ActionProvider from './Chatbot/ActionProvider.js';
 
 function NavBar() {
     const dispatch = useDispatch()
@@ -20,6 +20,17 @@ function NavBar() {
     const userData = useSelector((state) => state.secondRed.userData)
     const cart = useSelector((state) => state.firstRed.cart)
     const allCategory = useSelector((state)=>state.fourthRed.category);
+
+    const [showBot, toggleBot] = useState(false);
+
+    // const saveMessages = (messages, HTMLString) => {
+    //     window.localStorage.setItem('chat_messages', JSON.stringify(messages));
+    // }
+
+    // const loadMessages = () => {
+    //     const messages = JSON.parse(window.localStorage.getItem('chat_messages'));
+    //     return messages;
+    // };
 
 
 
@@ -73,6 +84,20 @@ const handleLogout = () => {
 
   return (
         <nav className="navbar navbar-expand-lg navbar-dark  h6 sticky-top" style={{background: "#111111"}}>
+            <div style={{position: "absolute", left: 0, top: 95}}>
+            {showBot &&
+            <Chatbot
+                config={config}
+                messageParser={MessageParser}
+                headerText='Chatbot'
+                placeholderText='Haga su consulta...'
+                // messageHistory={loadMessages()}
+                actionProvider={ActionProvider}
+                // saveMessages={saveMessages}
+            />
+            }
+            <button onClick={() => toggleBot((prev) => !prev)}>Bot</button>
+            </div>
             <div className="container-fluid">
                 <Link to="/" >
                     <span className="navbar-brand h1 $headings-font-weight" href="#!">

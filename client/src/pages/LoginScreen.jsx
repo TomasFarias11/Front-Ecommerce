@@ -6,6 +6,7 @@ import { googleLogin, localLoginUser  } from "../actions/actionUser"
 import { useDispatch } from "react-redux";
 import "../css/LoginScreen.css"
 import { useState } from 'react';
+import swal from "sweetalert";
 
 const LoginScreen = () => {
   
@@ -23,7 +24,20 @@ const handleInputChangeMail = function(e) {
 }
 const handleSubmitMail =async (e) => {
   e.preventDefault()
-  const newPass = await axios.put('/user',mail);
+  await axios.put('/user',mail).then (res => {
+    swal("eMail enviado con exito!", {
+        buttons: false,
+        icon: "success",
+        timer: 2000,
+      });
+    }).catch(err => {
+      swal("Error, el usuario no existe!", {
+        buttons: false,
+        icon: "error",
+        timer: 2000,
+      });
+    }
+    )
 }
 
   const dispatch = useDispatch();

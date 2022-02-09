@@ -12,11 +12,6 @@ import config from './Chatbot/config.js';
 import MessageParser from './Chatbot/MessageParser.js';
 import ActionProvider from './Chatbot/ActionProvider.js';
 
-
-
-// import {useDispatch} from 'react-redux';
-// import {getProductByCategory, postUserCreate} from '../actions/actionProducts.js'
-
 function NavBar() {
     const dispatch = useDispatch()
     // const allProducts = useSelector((state) => state.firstRed.products)

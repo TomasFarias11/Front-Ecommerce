@@ -27,6 +27,10 @@ class MessageParser {
             this.actionProvider.handleProducto('Airpods')
         } else if (lowercase.includes('gracias') || lowercase.includes('perdon') || lowercase.includes('disculpe')) {
             this.actionProvider.handleAgradecer()
+        } else if (lowercase.includes('orden') || lowercase.includes('ordenes')) {
+            this.actionProvider.handleOrders()
+        } else if (lowercase.includes('pagos') || lowercase.includes('pago')) {
+            this.actionProvider.handlePago()
         }
         else {
             this.actionProvider.handleReformula()

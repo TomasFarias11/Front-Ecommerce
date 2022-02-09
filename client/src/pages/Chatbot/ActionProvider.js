@@ -6,7 +6,7 @@ class ActionProvider {
     }
 
     handleHola () {
-        const message = this.createChatbotMessage('Hola! Es un gusto conocerte. Bienvenido a iGroup6! En que puedo ayudarte?')
+        const message = this.createChatbotMessage('Hola! Es un gusto conocerle. Bienvenido a iGroup6! En que puedo ayudarle?')
         this.addMessageToState(message)
     }
 
@@ -16,12 +16,12 @@ class ActionProvider {
     }
 
     handleProducto (producto) {
-        const message = this.createChatbotMessage(`Tenemos una coleccion de los mejores ${producto}. Puede buscar en la categoria ${producto} que se encuentra en la barra de navegacion superior`)
+        const message = this.createChatbotMessage(`Tenemos una coleccion de los mejores ${producto}! Puede buscar en la categoria ${producto} que se encuentra en la barra de navegacion superior.`)
         this.addMessageToState(message)
     }
 
     handleReformula () {
-        const message = this.createChatbotMessage('Disculpa, no logro comprender lo que me pide. Podria reformular su pregunta?')
+        const message = this.createChatbotMessage('Disculpe, no logro comprender lo que me pide. Podria reformular su pregunta?')
         this.addMessageToState(message)
     }
 
@@ -36,9 +36,16 @@ class ActionProvider {
     }
 
     handlePago () {
-        const message = this.createChatbotMessage('Por el momento solo aceptamos MercadoPago')
+        const message = this.createChatbotMessage('Por el momento solo aceptamos MercadoPago.')
         this.addMessageToState(message)
     }
+
+    handleGarantia () {
+        const message = this.createChatbotMessage('Con la compra de su producto, obtiene una garantia de 6 meses por fallas de fabrica!')
+        this.addMessageToState(message)
+    }
+
+    
 
     addMessageToState = (message) => {
         this.setState(prevState => ({

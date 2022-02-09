@@ -4,7 +4,7 @@ import '../../css/Chatbot/BotAvatar.css'
 function BotAvatar () {
     return (
     <div className="crazy-bot-avatar">
-        C
+        <i className="fas fa-robot"></i>
     </div>
     )
 }

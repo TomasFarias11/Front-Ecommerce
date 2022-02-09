@@ -7,6 +7,7 @@ import {getUserId} from '../actions/actionUser.js'
 import { useNavigate, useLocation } from 'react-router-dom';
 import estilos from '../css/Home.module.css';
 import CarrouselMain from "../components/CarrouselMain.jsx"
+import Ibot from "../components/Ibot.jsx";
 
 
 export default function Home () {
@@ -29,8 +30,6 @@ export default function Home () {
         }
     },[cart])
 
-    // const h = useLocation()
-    // console.log('WTH?', h)
 
     useEffect(()=> {  
         products > 0 ? window.localStorage.setItem('productos',JSON.stringify(products)) : window.localStorage.setItem('productos',JSON.stringify([]))
@@ -50,6 +49,9 @@ export default function Home () {
         <div >
         <div>
           <CarrouselMain/>
+        </div>
+        <div style={{position: 'absolute', zIndex:99}}>
+            <Ibot/>
         </div>
         <div className="container">
             <CardCarrusel/>

@@ -1,161 +1,204 @@
 import React from "react";
 import { useState } from "react";
-import { postUserCreate } from '../actions/actionProducts'
+import { postUserCreate } from "../actions/actionProducts";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import "../css/SigninScreen.css";
 
 function validate(input) {
-    let errors = {}
-    if (!input.name) {
-        errors.name = "se requiere un nombre"
-    }
-    if(!input.lastName){
-        errors.lastName = "Se requiere apellido"
-    }
-    if (!input.defense) {
-        errors.email = "Se requiere email"
-    }
+  let errors = {};
+  if (!input.name) {
+    errors.name = "se requiere un nombre";
+  }
+  if (!input.lastName) {
+    errors.lastName = "Se requiere apellido";
+  }
+  if (!input.defense) {
+    errors.email = "Se requiere email";
+  }
 
-    return errors;
+  return errors;
 }
 
 const Formularios = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const [error, setError] = useState('')
+  const [error, setError] = useState("");
 
-    const [input, setInput] = useState({
-        username: "",
-        email: "",
-        password: "",
-        name: "",
-        lastName: "",
-        image: "",
-        address: ""
+  const [input, setInput] = useState({
+    username: "",
+    email: "",
+    password: "",
+    name: "",
+    lastName: "",
+    image: "",
+    address: "",
+  });
 
+  const handleChange = (e) => {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
     });
+  };
 
-    const handleChange = (e) => {
-        setInput({
-            ...input,
-            [e.target.name]: e.target.value,
-        })
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(postUserCreate(input));
+    setInput({
+      username: "",
+      email: "",
+      password: "",
+      name: "",
+      lastName: "",
+      image: "",
+      address: "",
+    });
+    setError(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
+  };
 
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        dispatch(postUserCreate(input))
-        setInput({
-            username: '',
-            email: '',
-            password: '',
-            name: '',
-            lastName: '',
-            image: '',
-            address: ''
-        })
-        setError(validate({
-            ...input,
-            [e.target.name]: e.target.value
-        }))
-    }
-
-    return (
-        <div>
-            <form onSubmit={(e) => handleSubmit(e)} style={{height: '55rem'}} >
-                <div>
-                    <div>
-                        <div>
-                            <h4>Crear cuenta</h4>
-                            <div>
-                                <span>
-                                    Already have an account?
-                                </span>
-                                <Link to="/login"><span>sign in</span></Link>
-
-                            </div>
-                            <div className="container">
-                                
-                                <div className="row">
-                                    
-                                    <div className="col-6">
-                                        <div className="input-group px-3 mt-3">
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                placeholder="Primer nombre"
-                                                aria-label="Username"
-                                                value={input.name}
-                                                name="name"
-                                                onChange={(e) => handleChange(e)}
-                                                required={true}
-                                            />
-                                            <span>
-                                            </span>
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                placeholder="Ultimo nombre"
-                                                value={input.lastName}
-                                                name="lastName"
-                                                onChange={(e) => handleChange(e)} required={true} aria-label="Server"
-                                            />
-                                        </div>
-
-                                        <div className="mt-3 px-3">
-                                            <input
-                                                className="form-control"
-                                                type="text" placeholder="nombre de usuario"
-                                                value={input.username}
-                                                name="username"
-                                                onChange={(e) => handleChange(e)} required={true}
-                                            />
-                                        </div>
-                                        <div className="mt-3 px-3">
-                                            <input type='password'
-                                                className="form-control"
-                                                placeholder="Password"
-                                                value={input.password}
-                                                name="password"
-                                                onChange={handleChange} required={true}
-                                            />
-                                        </div>
-                                        <div className="mt-3 px-3">
-                                            <input
-                                                className="form-control"
-                                                type="email"
-                                                placeholder="E-mail"
-                                                value={input.email}
-                                                name="email"
-                                                onChange={handleChange} required={true}
-                                            />
-                                        </div>
-                                        <div className="mt-3 px-3">
-                                            <input
-                                                className="form-control"
-                                                type="text"
-                                                placeholder="Dirección residencia"
-                                                value={input.address}
-                                                name="address"
-                                                onChange={handleChange} required={true}
-                                            />
-                                        </div>
-
-                                    </div>
-                                    <br/>
-                                    
-                                </div>
-                            </div>
-                            <br />
-                        </div>
-                        
-                    </div>
+  return (
+    <div>
+      <div style={{ marginBottom: 40 }}>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <div className="container w-75 bg-primary mt-4 rounded shadow">
+            <div className="row align-items-center align-items-stretch">
+              <div className="col d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded bg2"></div>
+              <div className="col bg-white p-5 col-lg-7 col-xl-6 rounded-end">
+                <div className="text-center">
+                  <img
+                    src="https://i.postimg.cc/WznK6qfm/igroup-log.png"
+                    alt="logo"
+                    style={{ width: 200 }}
+                  />
                 </div>
-                <button type='submit' className="btn " >Crear usuario</button>
-            </form>
+                <h4 className="fw-light text-center pt-1 mb-4">Regístrate</h4>
+                {/* Formulario de login */}
+                <div className="card-group">
+                  <div className="mb-3 me-5 col-sm-5">
+                    <label htmlFor="firstName" className="form-label">
+                      {" "}
+                      Nombre{" "}
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Ingrese su nombre"
+                      aria-label="Username"
+                      value={input.name}
+                      name="name"
+                      onChange={(e) => handleChange(e)}
+                      required={true}
+                    />
+                  </div>
 
-        </div>
-    )
-}
+                  <div className="mb-3 col-sm-5">
+                    <label htmlFor="lasName" className="form-label">
+                      {" "}
+                      Apellido{" "}
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Ingrese su apellido"
+                      value={input.lastName}
+                      name="lastName"
+                      onChange={(e) => handleChange(e)}
+                      required={true}
+                      aria-label="Server"
+                    />
+                  </div>
+                </div>
+                <div className="mb-3 col-sm-11">
+                  <label htmlFor="userName" className="form-label">
+                    {" "}
+                    Nombre de Usuario{" "}
+                  </label>
+                  <input
+                    className="form-control"
+                    type="text"
+                    placeholder="Ingrese su nombre de usuario"
+                    value={input.username}
+                    name="username"
+                    onChange={(e) => handleChange(e)}
+                    required={true}
+                  />
+                </div>
+                <div className="mb-3 col-sm-11">
+                  <label htmlFor="password" className="form-label">
+                    {" "}
+                    Contraseña{" "}
+                  </label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Ingrese su contraseña"
+                    value={input.password}
+                    name="password"
+                    onChange={handleChange}
+                    required={true}
+                  />
+                </div>
+                <div className="mb-4 col-sm-11">
+                  <label htmlFor="email" className="form-label">
+                    {" "}
+                    Correo electrónico{" "}
+                  </label>
+                  <input
+                    className="form-control"
+                    type="email"
+                    placeholder="Ingrese su correo electrónico"
+                    value={input.email}
+                    name="email"
+                    onChange={handleChange}
+                    required={true}
+                  />
+                </div>
+                <div className="mb-5 col-sm-11">
+                  <label htmlFor="email" className="form-label">
+                    {" "}
+                    Dirección{" "}
+                  </label>
+                  <input
+                    className="form-control"
+                    type="text"
+                    placeholder="Ingrese su dirección"
+                    value={input.address}
+                    name="address"
+                    onChange={handleChange}
+                    required={true}
+                  />
+                </div>
+                <div className="d-grid">
+                  <button
+                    type="submit"
+                    onSubmit={(e) => e}
+                    className="btn text-white btn-success"
+                  >
+                    {" "}
+                    Crear Usuario{" "}
+                  </button>
+                </div>
+                <div className="my-3">
+                  <span>
+                    {" "}
+                    ¿Ya tienes una cuenta?{" "}
+                    <Link to="/login">Inicia Sesión</Link>
+                  </span>
+                  <br />
+                  {/* <span> <a href="# "> Recuperar password </a> </span> */}
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
 export default Formularios;

@@ -28,6 +28,7 @@ import Contact from "./components/Contact";
 import Orders from "./components/admin/Orders";
 import DetailsOrden from "./pages/DetailsOrden";
 import EditOrder from "./components/admin/EditOrder";
+import Ibot from "./components/Ibot";
 
 function App() {
   
@@ -44,6 +45,7 @@ function App() {
 
   return (
     <div className="App">
+      <Ibot/>
       <NavBar />
       <Routes>
       <Route exact path='/login' element={<LoginScreen />} />      
@@ -68,7 +70,7 @@ function App() {
       <Route exact path= "/profile" element={<Profile/>}/>
       <Route exact path= "/contactanos" element={<Contact/>}/>
       <Route exact path= "/order" element={<Orders/>}/>
-      <Route exact path= "/order/details/:id" element={<DetailsOrden/>}/>
+      <Route exact path= "/order/user/:id/details/:idOrder" element={<DetailsOrden/>}/>
       <Route exact path= "/order/edit/:id" element={<EditOrder/>} />
       </Routes>
       

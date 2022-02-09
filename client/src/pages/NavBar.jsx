@@ -60,7 +60,7 @@ const handleLogout = () => {
 
  useEffect(() => {
      if (userData && userData.username && userData.admin === false) {
-         dispatch(createOrder(userData.id, {carrito: cart}))
+         dispatch(createOrder(userData.id, {carrito: cart, status: 'open'}))
      }
  },[userData])
 
@@ -72,7 +72,7 @@ const handleLogout = () => {
 
  useEffect(()=>{
      if (user && user.username && user.admin === false) {
-         dispatch(editOrder(user.id, {carrito: cart}))
+         dispatch(editOrder(user.id, {carrito: cart, status: 'open'}))
      }
  },[cart])
 

@@ -2,7 +2,6 @@ import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { delCart, quantity_item } from '../actions/actionProducts.js'
-// import { useNavigate } from 'react-router-dom';
 import '../css/CartCard.module.css'
 import swal from 'sweetalert';
 

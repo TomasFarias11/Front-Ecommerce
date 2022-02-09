@@ -1,4 +1,4 @@
-import {React, useEffect} from "react";
+import {React, useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import SearchAutocomplete from "./SearchAutocomplete";
 import {useDispatch, useSelector} from 'react-redux';
@@ -6,20 +6,31 @@ import {getProductByCategory, setCartOn, setCartOff, setCart, createOrder, editO
 import {getUserId} from '../actions/actionUser.js'
 import Cart from "../components/Cart.jsx"
 import {getCategory} from "../actions/actionAdmin";
-
-
-
-// import {useDispatch} from 'react-redux';
-// import {getProductByCategory, postUserCreate} from '../actions/actionProducts.js'
+import Chatbot from 'react-chatbot-kit'
+import 'react-chatbot-kit/build/main.css'
+import config from './Chatbot/config.js';
+import MessageParser from './Chatbot/MessageParser.js';
+import ActionProvider from './Chatbot/ActionProvider.js';
 
 function NavBar() {
     const dispatch = useDispatch()
-    const allProducts = useSelector((state) => state.firstRed.products)
+    // const allProducts = useSelector((state) => state.firstRed.products)
     const cartOnScreen = useSelector((state) => state.firstRed.cartNav)
     const user = JSON.parse(window.localStorage.getItem('usuario'))
     const userData = useSelector((state) => state.secondRed.userData)
     const cart = useSelector((state) => state.firstRed.cart)
     const allCategory = useSelector((state)=>state.fourthRed.category);
+
+    const [showBot, toggleBot] = useState(false);
+
+    // const saveMessages = (messages, HTMLString) => {
+    //     window.localStorage.setItem('chat_messages', JSON.stringify(messages));
+    // }
+
+    // const loadMessages = () => {
+    //     const messages = JSON.parse(window.localStorage.getItem('chat_messages'));
+    //     return messages;
+    // };
 
 
 
@@ -39,7 +50,6 @@ const handleClick = (e) => {
     } else {
         dispatch(setCartOff())
     }
-    // dispatch(setCart(order[0].carrito))
 }
 
 const handleLogout = () => {
@@ -49,7 +59,7 @@ const handleLogout = () => {
 }
 
  useEffect(() => {
-     if (userData && userData.username) {
+     if (userData && userData.username && userData.admin === false) {
          dispatch(createOrder(userData.id, {carrito: cart}))
      }
  },[userData])
@@ -61,7 +71,7 @@ const handleLogout = () => {
  }, [orderAlert])
 
  useEffect(()=>{
-     if (user && user.username) {
+     if (user && user.username && user.admin === false) {
          dispatch(editOrder(user.id, {carrito: cart}))
      }
  },[cart])
@@ -74,6 +84,20 @@ const handleLogout = () => {
 
   return (
         <nav className="navbar navbar-expand-lg navbar-dark  h6 sticky-top" style={{background: "#111111"}}>
+            <div style={{position: "absolute", left: 0, top: 95}}>
+            {showBot &&
+            <Chatbot
+                config={config}
+                messageParser={MessageParser}
+                headerText='Chatbot'
+                placeholderText='Haga su consulta...'
+                // messageHistory={loadMessages()}
+                actionProvider={ActionProvider}
+                // saveMessages={saveMessages}
+            />
+            }
+            <button onClick={() => toggleBot((prev) => !prev)}>Bot</button>
+            </div>
             <div className="container-fluid">
                 <Link to="/" >
                     <span className="navbar-brand h1 $headings-font-weight" href="#!">
@@ -106,7 +130,7 @@ const handleLogout = () => {
                                 </p>
                             </li>
                             <li className="nav-item"> 
-                                <a className="nav-link " aria-current="page" href="/login" onClick={() => handleLogout()}> Logout </a>
+                                <a className="nav-link " aria-current="page" href="/" onClick={() => handleLogout()}> Logout </a>
                             </li>
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href=" " id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Admin </a>
@@ -126,6 +150,11 @@ const handleLogout = () => {
                                             <span className="dropdown-item" href="#!"> Usuarios </span>
                                         </Link>
                                     </li>
+                                    <li>
+                                        <Link style={{ textDecoration: "none", color: "white" }} to="/order">
+                                            <span className="dropdown-item" href="#!"> Ordenes </span>
+                                        </Link>
+                                    </li>
                                 </ul>
                             </li> 
                         </ul>
@@ -142,7 +171,7 @@ const handleLogout = () => {
                             </li>
                             <ul className="nav-item">  
                                 <li className="nav-item list-unstyled">
-                                    <a className="nav-link " aria-current="page" href="/login" onClick={() => handleLogout()}> Logout </a>
+                                    <a className="nav-link " aria-current="page" href="/" onClick={() => handleLogout()}> Logout </a>
                                 </li>
                             </ul>
                         </ul>

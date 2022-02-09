@@ -38,6 +38,7 @@ import {
 import {DELETE_PRODUCT, ADD_PRODUCT, EDIT_PRODUCT} from "../actions/actionAdmin"
 
 
+
 const initialState2={
 	products:[],
     allProducts: [],
@@ -58,6 +59,8 @@ export default function reducerProducts(state=initialState2, action){
     // console.log('CCAARRTT',state.cart)
     // let productsAux = state.products.map(p => p);
     let productsAux2 = state.products.map(p => p);
+    // let ordersRed = state.order.map(el => el)
+    // console.log(ordersRed, "ordenes en el reducer")
 	switch(action.type){
         case GET_PRODUCTS:
             state.products.length = 0;
@@ -245,16 +248,17 @@ export default function reducerProducts(state=initialState2, action){
                     products: action.payload  
             }
 
-        case LIST_USERS:
-            return{
-                ...state,
-                listUser: action.payload
+            case LIST_USERS:
+                return{
+                    ...state,
+                    listUser: action.payload
+                }
+                
+            case DELETE_PRODUCT:
+                return{
+                    ...state,
+                    products: action.payload
             }
-        case DELETE_PRODUCT:
-            return{
-                ...state,
-                products: action.payload
-        }
         case ADD_PRODUCT:
             return {
                 ...state,

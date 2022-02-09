@@ -11,6 +11,7 @@ const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts, 
 
     // const dispatch = useDispatch()
     const cart = useSelector((state) => state.firstRed.cart)
+    const user = JSON.parse(window.localStorage.getItem('usuario'))
     
     useEffect(()=>{
         products.length < JSON.parse(window.localStorage.getItem('productos')).length && products.length ===0 ? 
@@ -37,14 +38,22 @@ const Products = ({products, orderAZ, orderZA, minPrice, maxPrice, setProducts, 
 
     const handleClick = (e) => {
         e.preventDefault();
-        addToCart(Number(e.target.value))
-        window.localStorage.setItem('carrito', JSON.stringify(cart))
-        setCartOn()
-        swal("Agregado al carrito!", {
-            buttons: false,
-            icon: 'success',
-            timer: 1500,
-        });
+        if (user.admin === true) {
+            swal("El admin no puede realizar dicha accion!", {
+                buttons: false,
+                icon: 'error',
+                timer: 2000,
+              });
+        } else {
+            addToCart(Number(e.target.value))
+            window.localStorage.setItem('carrito', JSON.stringify(cart))
+            setCartOn()
+            swal("Agregado al carrito!", {
+                buttons: false,
+                icon: 'success',
+                timer: 1500,
+            });
+        }
       }
     
     return (

@@ -12,6 +12,7 @@ export default function Details() {
   const dispatch = useDispatch()
   const productId = useSelector((state) => state.firstRed.productId)
   const cart = useSelector((state) => state.firstRed.cart)
+  const user = JSON.parse(window.localStorage.getItem('usuario'))
   const formato = new Intl.NumberFormat('de-DE', {
     // style: 'currency',
     // currency: 'USD',
@@ -20,14 +21,22 @@ export default function Details() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    dispatch(addToCart(Number(productId.id)))
-    window.localStorage.setItem('carrito', JSON.stringify(cart))
-    dispatch(setCartOn())
-    swal("Agregado al carrito!", {
-      buttons: false,
-      icon: 'success',
-      timer: 1500,
-    });
+    if (user.admin === true) {
+      swal("El admin no puede realizar dicha accion!", {
+        buttons: false,
+        icon: 'error',
+        timer: 2000,
+      });
+    } else {
+      dispatch(addToCart(Number(productId.id)))
+      window.localStorage.setItem('carrito', JSON.stringify(cart))
+      dispatch(setCartOn())
+      swal("Agregado al carrito!", {
+        buttons: false,
+        icon: 'success',
+        timer: 1500,
+      });
+    }
   }
 
   const { id } = useParams();

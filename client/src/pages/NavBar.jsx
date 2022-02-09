@@ -98,7 +98,7 @@ const handleLogout = () => {
             }
             <button className="btn btn-info" 
             onClick={() => toggleBot((prev) => !prev)}>
-                <i class="fas fa-robot"></i> 
+                <i className="fas fa-robot"></i> 
                 <small> <strong>Soy iBot</strong>  
                 <br/>¿Te puedo ayudar?
                 </small> 

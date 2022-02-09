@@ -4,7 +4,7 @@ import { createChatBotMessage } from 'react-chatbot-kit';
 import BotAvatar from './BotAvatar.jsx'
 import UserAvatar from './UserAvatar.jsx'
 
-const botName = 'LuisitoComunica';
+const botName = 'Alfred Botman';
 const user = JSON.parse(window.localStorage.getItem('usuario'))
 const config = {
     botName: botName,

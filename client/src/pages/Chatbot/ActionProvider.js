@@ -30,6 +30,16 @@ class ActionProvider {
         this.addMessageToState(message)
     }
 
+    handleOrders () {
+        const message = this.createChatbotMessage('Puede ver su historial de ordenes haciendo click en la parte superior donde dice su nombre de usuario (debe estar logueado para poder tener acceso). Alli podra ver su perfil con el historial de todas sus ordenes!')
+        this.addMessageToState(message)
+    }
+
+    handlePago () {
+        const message = this.createChatbotMessage('Por el momento solo aceptamos MercadoPago')
+        this.addMessageToState(message)
+    }
+
     addMessageToState = (message) => {
         this.setState(prevState => ({
             ...prevState,

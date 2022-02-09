@@ -89,14 +89,20 @@ const handleLogout = () => {
             <Chatbot
                 config={config}
                 messageParser={MessageParser}
-                headerText='Chatbot'
+                headerText='iBot en linea...'
                 placeholderText='Haga su consulta...'
                 // messageHistory={loadMessages()}
                 actionProvider={ActionProvider}
                 // saveMessages={saveMessages}
             />
             }
-            <button onClick={() => toggleBot((prev) => !prev)}>Bot</button>
+            <button className="btn btn-info" 
+            onClick={() => toggleBot((prev) => !prev)}>
+                <i class="fas fa-robot"></i> 
+                <small> <strong>Soy iBot</strong>  
+                <br/>¿Te puedo ayudar?
+                </small> 
+            </button>
             </div>
             <div className="container-fluid">
                 <Link to="/" >

@@ -161,7 +161,7 @@ const handleSubmitMail =async (e) => {
             </div>
 
             <div className="my-3">
-              <span> No tienes una cuenta? <Link to = "/user">Registrate</Link></span>
+              <span> ¿No tienes una cuenta? <Link to = "/user">Regístrate</Link></span>
               <br />
               {/* <span> <a href="# "> Recuperar password </a> </span> */}
             </div>

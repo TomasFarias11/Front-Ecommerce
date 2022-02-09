@@ -30,8 +30,6 @@ export default function Home () {
         }
     },[cart])
 
-    // const h = useLocation()
-    // console.log('WTH?', h)
 
     useEffect(()=> {  
         products > 0 ? window.localStorage.setItem('productos',JSON.stringify(products)) : window.localStorage.setItem('productos',JSON.stringify([]))
@@ -52,9 +50,9 @@ export default function Home () {
         <div>
           <CarrouselMain/>
         </div>
-            <div>
+        <div style={{position: 'absolute', zIndex:99}}>
             <Ibot/>
-            </div>
+        </div>
         <div className="container">
             <CardCarrusel/>
         </div>

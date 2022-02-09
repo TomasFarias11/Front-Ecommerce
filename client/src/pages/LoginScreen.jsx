@@ -1,10 +1,12 @@
 import React from 'react';
+import axios from "axios";
 import {Link} from "react-router-dom"
 import { useNavigate } from 'react-router-dom';
 import { googleLogin, localLoginUser  } from "../actions/actionUser"
 import { useDispatch } from "react-redux";
 import "../css/LoginScreen.css"
 import { useState } from 'react';
+import swal from "sweetalert";
 
 const LoginScreen = () => {
   
@@ -12,6 +14,32 @@ const LoginScreen = () => {
     email: '',
     password: '',
 });
+
+const [mail, setMail] = useState({name: ''});
+const handleInputChangeMail = function(e) {
+  setMail({
+    ...mail,
+    [e.target.name]: e.target.value
+  });
+}
+const handleSubmitMail =async (e) => {
+  e.preventDefault()
+  await axios.put('/user',mail).then (res => {
+    swal("eMail enviado con exito!", {
+        buttons: false,
+        icon: "success",
+        timer: 2000,
+      });
+    }).catch(err => {
+      swal("Error, el usuario no existe!", {
+        buttons: false,
+        icon: "error",
+        timer: 2000,
+      });
+    }
+    )
+}
+
   const dispatch = useDispatch();
   // const local = window.localStorage.getItem('login')
   const Navigate = useNavigate()
@@ -75,6 +103,81 @@ const LoginScreen = () => {
             <div className="d-grid">
               <button type="submit" onSubmit={e => handleLocalLogin(e)} className="btn btn-primary"> Iniciar sesión </button>
             </div>
+
+            <br />
+            <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <>
+                  <button
+                    type="button"
+                    className="btn btn-info text-white"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    data-bs-whatever="@igroup"
+                  >
+                    {/* <i class="far fa-comment-dots"></i> */} Restablecer contraseña
+                  </button>
+                  <div
+                    className="modal fade"
+                    id="exampleModal"
+                    tabIndex={-1}
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div className="modal-dialog">
+                      <div className="modal-content">
+                        <div className="modal-header">
+                          <h5 className="modal-title" id="exampleModalLabel">
+                            Ingrese su mail para restablecer la contraseña
+                          </h5>
+                          <button
+                            type="button"
+                            className="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          />
+                        </div>
+                        <div className="modal-body">
+                          <form>
+                            <div className="mb-3">
+                              <label
+                                htmlFor="recipient-name"
+                                className="col-form-label"
+                              >
+                                Email:
+                              </label>
+                              <input
+                                type="email"
+                                value={mail.email} 
+                                name="email" 
+                                onChange={handleInputChangeMail}
+                                className="form-control"
+                                id="recipient-name"
+                              />
+                            </div>
+                          </form>
+                        </div>
+                        <div className="modal-footer">
+                          <button
+                            type="button"
+                            className="btn btn-danger"
+                            data-bs-dismiss="modal"
+                          >
+                            Cerrar
+                          </button>
+                          <button type="submit" 
+                          value="Enviar Mail"
+                          data-bs-dismiss="modal"
+                          onClick={handleSubmitMail} 
+                          className="btn btn-success">
+                            Enviar Mail
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </>
+            </div>
+
             <div className="my-3">
               <span> ¿No tienes una cuenta? <Link to = "/user">Regístrate</Link></span>
               <br />

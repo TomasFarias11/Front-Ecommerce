@@ -1,8 +1,8 @@
 import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {addToCart, delCart, delAllCart, setCartOff, editOrder, setCart, createOrder} from '../actions/actionProducts.js'
-import { Link, useNavigate } from 'react-router-dom';
+import {delAllCart, setCartOff} from '../actions/actionProducts.js'
+import { useNavigate } from 'react-router-dom';
 import CartCard from './CartCard.jsx'
 import swal from 'sweetalert';
 
@@ -10,12 +10,10 @@ export default function Cart () {
     const dispatch = useDispatch()
     const Navigate = useNavigate()
     const cart = useSelector((state) => state.firstRed.cart)
-    const cartStorage = JSON.parse(window.localStorage.getItem('carrito'))
     const cartNav = useSelector((state) => state.firstRed.cartNav)
     const user = JSON.parse(window.localStorage.getItem('usuario'))
     let order = useSelector((state) => state.firstRed.order)
     order = order.filter(e => e.status === 'open')
-    // console.log('este es el carrito',cart)
 
     let total = 0;
     let totalQuantity = 0

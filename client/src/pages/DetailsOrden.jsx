@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router";
-import swal from 'sweetalert';
 import { getOrderUserId } from "../actions/actionOrder";
 import { Link } from "react-router-dom";
 

@@ -9,10 +9,8 @@ const initialState2={
 }
 
 export default function reducerOrders(state=initialState2, action){
-    // let productsAux = state.products.map(p => p);
-    // let productsAux2 = state.products.map(p => p);
+    
     let ordersRed = state.order.map(el => el)
-    console.log(ordersRed, "ordenes en el reducer de jhon")
 	switch(action.type){
         case GET_ORDER_2:
             return {

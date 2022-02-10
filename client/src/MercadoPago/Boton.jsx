@@ -15,11 +15,11 @@ export default function Boton () {
 		],
 		back_urls:{
 				success: `https://front-ecommerce-xi.vercel.app/mercadopago/aceptado`,
-				failure: "http://localhost:3000/mercadopago/rechazado",
-				pending: "http://localhost:3000/mercadopago/rechazado"
+// 				failure: "http://localhost:3000/mercadopago/rechazado",
+// 				pending: "http://localhost:3000/mercadopago/rechazado"
 		},
 		auto_return:"approved",
-		notification_url:'https://endrg8sjycslc.x.pipedream.net'
+// 		notification_url:'https://endrg8sjycslc.x.pipedream.net'
 	};
 	// console.log('AQUI',preference)
 

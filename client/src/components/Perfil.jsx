@@ -2,19 +2,22 @@ import { React, useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserId } from "../actions/actionUser.js";
-// import {getOrderUser} from "../actions/actionProducts.js";
+import {getOrderUser} from "../actions/actionProducts.js";
 import EditProfile from "./EditProfile.jsx";
 
 const Perfil = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.secondRed.userData);
   const userStorage = JSON.parse(window.localStorage.getItem("usuario"));
-  const order = useSelector((state) => state.firstRed.orders);
+  const orders = useSelector((state) => state.firstRed.orders);
+  const jaja = window.localStorage.setItem('orders',JSON.stringify(orders))
+  const order = JSON.parse(window.localStorage.getItem('orders'))
   const [controlador, setControlador] = useState(false);
   // console.log('a ver que llega aca', order)
 
   useEffect(() => {
-    dispatch(getUserId(user.id))
+    dispatch(getUserId(userStorage.id))
+    dispatch(getOrderUser(userStorage.id))
   }, []);
 
   const handleControl = (e) => {

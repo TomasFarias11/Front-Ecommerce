@@ -7,6 +7,7 @@ import CartCard from './CartCard.jsx'
 import swal from 'sweetalert';
 
 export default function Cart () {
+    
     const dispatch = useDispatch()
     const Navigate = useNavigate()
     const cart = useSelector((state) => state.firstRed.cart)

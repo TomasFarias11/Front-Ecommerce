@@ -40,6 +40,8 @@ function App() {
   // creacion u obtencion localStorage del usuario
   JSON.parse(window.localStorage.getItem('usuario'))?.username ? window.localStorage.getItem('usuario') : window.localStorage.setItem('usuario', JSON.stringify([]))
 
+  JSON.parse(window.localStorage.getItem('orders'))?.length > 0 ? window.localStorage.getItem('orders') : window.localStorage.setItem('orders',JSON.stringify([]))
+
 
 
   return (

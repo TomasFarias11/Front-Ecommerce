@@ -14,6 +14,11 @@ const Perfil = () => {
   const order = JSON.parse(window.localStorage.getItem('orders'))
   const [controlador, setControlador] = useState(false);
   // console.log('a ver que llega aca', order)
+  const formato = new Intl.NumberFormat('de-DE', {
+    // style: 'currency',
+    // currency: 'USD',
+    // minimumFractionDigits: 3,
+  })
 
   useEffect(() => {
     dispatch(getUserId(userStorage.id))
@@ -136,7 +141,7 @@ const Perfil = () => {
 
               <div className="row">
                 <div className="col-sm-3">
-                  <h6 className="mb-0">Address</h6>
+                  <h6 className="mb-0">Domicilio</h6>
                 </div>
                 <div className="col-sm-9 text-secondary">
                   {userStorage.address && userStorage.address === "null"
@@ -165,7 +170,7 @@ const Perfil = () => {
                           {e.carrito?.map((el) => (
                             <div key={el.id} >
                               <small>Nombre de producto: {el.name}</small> <br />
-                              <small>Precio: {el.price}</small> <br />
+                              <small>Precio: ${formato.format(el.price)}</small> <br />
                               <small>Cantidad: {el.quantity}</small>
                             </div>
                           ))}

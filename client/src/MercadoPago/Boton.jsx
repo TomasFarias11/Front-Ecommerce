@@ -14,7 +14,7 @@ export default function Boton () {
 			}
 		],
 		back_urls:{
-				success: "http://localhost:3000/mercadopago/aceptado",
+				success: `${process.env.REACT_APP_API}/mercadopago/aceptado`,
 				failure: "http://localhost:3000/mercadopago/rechazado",
 				pending: "http://localhost:3000/mercadopago/rechazado"
 		},

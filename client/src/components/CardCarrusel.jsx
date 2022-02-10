@@ -1,10 +1,11 @@
 import React from "react";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {addToCart, getProducts, setCartOn} from '../actions/actionProducts.js'
+import { addToCart, getProducts, setCartOn } from '../actions/actionProducts.js'
 import {Link} from "react-router-dom";
 import swal from 'sweetalert';
 import '../css/Carrousel.css'
+
 const CardCarrusel = () =>{
 
     useEffect(() => 
@@ -14,6 +15,8 @@ const CardCarrusel = () =>{
     const allProducts = useSelector((state) => state.firstRed.products) // me traigo todo los productos
     const dispatch = useDispatch()
     const cart = useSelector((state) => state.firstRed.cart)
+    // const order = useSelector((state) => state.firstRed.order)
+    const user = JSON.parse(window.localStorage.getItem('usuario'))
     const formato = new Intl.NumberFormat('de-DE', {
         // style: 'currency',
         // currency: 'USD',
@@ -24,11 +27,12 @@ const CardCarrusel = () =>{
 	const[productsPerPage, setProductsPerPage]=useState(4);
 	const indexOfLastProduct = currentPage * productsPerPage;
 	const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-	const currentProduct = allProducts.slice(indexOfFirstProduct,indexOfLastProduct);
+    const filtro=allProducts.filter(p=>p.idCategory !== null  && p.stock > 0); // le hacemos un filtro a todos los productos antes de enviarlos al carrusel
+	const currentProduct = filtro.slice(indexOfFirstProduct,indexOfLastProduct);
     // console.log('estos son los de jose', currentProduct)
 
     const handleprev=()=>{
-        var pagina=Math.ceil(allProducts.length / productsPerPage);
+        var pagina=Math.ceil(filtro.length / productsPerPage);
 		if(currentPage===1){
             setCurrentPage(pagina)
         }else{
@@ -38,7 +42,7 @@ const CardCarrusel = () =>{
 	};
 
     const handlenext=()=>{
-        var pagina=Math.ceil(allProducts.length / productsPerPage);
+        var pagina=Math.ceil(filtro.length / productsPerPage);
 		if(currentPage===pagina){
             pagina=1;
             setCurrentPage(pagina)
@@ -51,30 +55,35 @@ const CardCarrusel = () =>{
 
     const handleClick = (e) => {
         e.preventDefault();
-        dispatch(addToCart(Number(e.target.value)))
-        window.localStorage.setItem('carrito', JSON.stringify(cart))
-        dispatch(setCartOn())
-        swal("Agregado al carrito!", {
-            buttons: false,
-            icon: 'success',
-            timer: 1500,
-        });
-        // dispatch(setCartOn())
+        if (user.admin === true) {
+            swal("El admin no puede realizar dicha accion!", {
+                buttons: false,
+                icon: 'error',
+                timer: 2000,
+              });
+        } else {
+            dispatch(addToCart(Number(e.target.value)))
+            // dispatch(editOrder(user.id, {carrito: cart}))
+            window.localStorage.setItem('carrito', JSON.stringify(cart))
+            dispatch(setCartOn())
+            swal("Agregado al carrito!", {
+                buttons: false,
+                icon: 'success',
+                timer: 1500,
+            });
+        }
       }
 
-    useEffect(()=>{
-        cart.length > JSON.parse(window.localStorage.getItem('carrito')).length ? window.localStorage.setItem('carrito', JSON.stringify(cart)) : window.localStorage.getItem('carrito')
-    },[cart])
        
     return(<>
-        <div className="container" style={{padding: "15px"}}>
+        <div className="container cardisplay" style={{padding: "15px"}}>
             <div className="row animate__animated animate__slideInRight">
-                {currentProduct ? currentProduct.filter(p=>p.stock > 0).map((e)=>{
+                {currentProduct ? currentProduct.map((e)=>{
                     return(
-                    <div className="col-3 animate__animated animate__slideInRight img-fluid" key={e.id} >
+                    <div className="col col-lg-3 animate__animated animate__slideInRight" key={e.id} >
                         <div className="card2 ">
                             <Link to={`/details/${e.id}`}>
-                                <img src={e.image} alt="" className="card-img-top" height="310px"/>
+                                <img src={e.image} alt="products" className="img-fluid"  />
                             </Link>
                             <div className="card-body">
                                 <h5>{e.name}</h5>
@@ -83,38 +92,20 @@ const CardCarrusel = () =>{
                             </div>
                             <div>
                                 {cart.some((c) => e.id === c.id) ? 
-                                <div className="alert alert-warning" role="alert">
+                                <div className="alert alert-info" role="alert">
                                 Agregado al carrito
                                 </div>
                                 :
-                            <button type="button" value={e.id} className="btn btn-outline-primary" onClick={(e) => handleClick(e)}>Añadir al carrito</button>
-                                }
+                                <div className="d-flex justify-content-center">
+                                <button style={{margin: "10px 0px"}} type="button" value={e.id} className="btn btn-outline-secondary rounded-pill" onClick={(e) => handleClick(e)}><i className="fas fa-cart-plus"></i> Añadir al carrito</button>
+                            </div>
+                            }
                             </div>
                         </div>
                     </div>
                     )
                 })
-            : allProducts.filter(p=>p.stock > 0).map((e)=>{
-                <div className="card">
-                            <Link to={`/details/${e.id}`}>
-                                <img src={e.image} alt="" className="card-img-top" height="310px"/>
-                            </Link>
-                            <div className="card-body"  >
-                                <h5>{e.name}</h5>
-                                <p className="card-text">Price: {e.price}</p>
-                                <p className="card-text">Amount: {e.stock}</p>
-                            </div>
-                            <div>
-                                {cart.some((c) => e.name === c.name) ? 
-                                <div className="alert alert-warning" role="alert">
-                                Agregado al carrito
-                                </div>
-                                :
-                            <button type="button" value={e.id} className="btn btn-outline-primary" onClick={(e) => handleClick(e)}>Añadir al carrito</button>
-                            }
-                            </div>
-                        </div>
-            })}
+            : null}
             
             </div>
             <nav className="position-absolute start-50 translate-middle-x" aria-label="Page navigation example">
@@ -132,7 +123,7 @@ const CardCarrusel = () =>{
                 ): null}  
             </nav>
         </div>
-    </>
+        </>
     )
 }
     

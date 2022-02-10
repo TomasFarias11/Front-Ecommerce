@@ -1,17 +1,20 @@
 import React from "react";
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {addToCart, delCart, delAllCart, setCartOff} from '../actions/actionProducts.js'
+import {delAllCart, setCartOff} from '../actions/actionProducts.js'
 import { useNavigate } from 'react-router-dom';
 import CartCard from './CartCard.jsx'
 import swal from 'sweetalert';
 
 export default function Cart () {
+    
     const dispatch = useDispatch()
+    const Navigate = useNavigate()
     const cart = useSelector((state) => state.firstRed.cart)
-    const cartStorage = JSON.parse(window.localStorage.getItem('carrito'))
     const cartNav = useSelector((state) => state.firstRed.cartNav)
-    // console.log('este es el carrito',cart)
+    const user = JSON.parse(window.localStorage.getItem('usuario'))
+    let order = useSelector((state) => state.firstRed.order)
+    order = order.filter(e => e?.status === 'open')
 
     let total = 0;
     let totalQuantity = 0
@@ -24,18 +27,29 @@ export default function Cart () {
         // currency: 'USD',
         // minimumFractionDigits: 3,
     })
+
+
     
 
     const handleDeleteAll = (e) =>  {
         e.preventDefault()
-        dispatch(delAllCart())
-        window.localStorage.setItem('carrito', JSON.stringify([]))
-        swal("Carrito vaciado con exito!", {
-            buttons: false,
-            icon: 'success',
-            timer: 2000,
-          });
-        dispatch(setCartOff())
+        if (user.admin === true) {
+            swal("El admin no puede realizar dicha accion!", {
+                buttons: false,
+                icon: 'error',
+                timer: 2000,
+              });
+        } else {
+
+            dispatch(delAllCart())
+            window.localStorage.setItem('carrito', JSON.stringify([]))
+            swal("Carrito vaciado con exito!", {
+                buttons: false,
+                icon: 'success',
+                timer: 2000,
+            });
+            dispatch(setCartOff())
+        }
     }
 
     useEffect(() => {
@@ -43,17 +57,33 @@ export default function Cart () {
             dispatch(setCartOff())
         }
     },[cart])
-    // animate__slideOutRight
+
+    const handleCheck = (e) => {
+        e.preventDefault()
+        if (!user.username) {
+            swal("Debes iniciar sesion primero!", {
+                buttons: false,
+                icon: 'error',
+                timer: 2000,
+              });
+        } else {
+            window.localStorage.setItem('order', JSON.stringify(order))
+            dispatch(setCartOff())
+            Navigate("/mercadopago")
+        }
+    }
+
     return (
-        <div className = {cartNav === false ? "row animate__animated animate__slideOutRight" : "row animate__animated animate__slideInRight"} style={{position: 'absolute', right: '12px', top: '95px', background: '#E9E9E9', overflowY: "scroll", height: '90.5vh'}}>
+            
+        <div className = {cartNav === false ? "row animate__animated animate__slideOutRight" : "row animate__animated animate__slideInRight"} style={{position: 'absolute', right: '12px', top: '95px', background: '#fff', overflowY: "scroll", height: '90.5vh'}}>
                 <div className="container-sm">
                     <div>
                         <div>
-                            <button onClick = {(e) => handleDeleteAll(e)}className='btn btn-warning btn-lg' style={{margin: '5px 0 5px'}}>CLEAR CART</button>
+                            <button onClick={() => dispatch(setCartOff())} className="btn btn-info text-white" style={{position: 'relative', left: 0, top: 0,margin: '5px 0 5px'}}>Ocultar Carrito</button>
                         </div>
                         {cart ? cart?.map((e) => {
-                        return (
-                            <div key = {e.id}style={{margin: '5px',}}>
+                            return (
+                                <div key = {e.id}style={{margin: '5px',}}>
                                 <hr />
                                 <CartCard 
                                 key = {e.id}
@@ -70,11 +100,21 @@ export default function Cart () {
                     </div>
                     <div className='carrito_footer'>
                         <hr />
-                        <h1>TOTAL = ${formato.format(total)}</h1>
+                        <div className="container-sm d-flex justify-content-center" style={{ padding:20, paddingTop:0 }}> 
+                            <div className="badge fs-4 bg-info text-wrap" style={{ width: "20rem" }}>
+                                <h3>Subtotal =  ${formato.format(total)}</h3>
+                            </div>
+                        </div>
                         <div className='carrito_izq'>
-                            <div>
+                            <div className="d-flex justify-content-center" style={{paddingBottom:40, }}>
                                 <hr />
-                                <button className='btn btn-warning btn-lg' style={{margin: '5px 0'}}>CHECKOUT</button> 
+                                <div className="d-flex justify-content-center">
+                                    <button onClick={(e) => handleCheck(e)} className='btn btn-success' style={{margin: '5px '}}>Realizar Pedido</button>
+                                </div>
+                                <div className="d-flex justify-content-center">
+                                    <button onClick = {(e) => handleDeleteAll(e)}className='btn btn-danger' style={{margin: '5px '}}>Vaciar Carrito</button>
+                                </div>
+                                <hr />                               
                             </div>
                         </div>
                     </div>

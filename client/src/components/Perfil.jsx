@@ -7,7 +7,7 @@ import EditProfile from "./EditProfile.jsx";
 
 const Perfil = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.secondRed.userData);
+  // const user = useSelector((state) => state.secondRed.userData);
   const userStorage = JSON.parse(window.localStorage.getItem("usuario"));
   const orders = useSelector((state) => state.firstRed.orders);
   const jaja = window.localStorage.setItem('orders',JSON.stringify(orders))
@@ -163,7 +163,7 @@ const Perfil = () => {
                           <small>Estado de la orden: {e.status}</small> <br />
                           <small>ID de pago: {e.payment_id}</small> <br />
                           {e.carrito?.map((el) => (
-                            <div>
+                            <div key={el.id} >
                               <small>Nombre de producto: {el.name}</small> <br />
                               <small>Precio: {el.price}</small> <br />
                               <small>Cantidad: {el.quantity}</small>

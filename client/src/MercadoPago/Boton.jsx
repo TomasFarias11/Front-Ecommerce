@@ -14,7 +14,7 @@ export default function Boton () {
 			}
 		],
 		back_urls:{
-				success: `http://localhost:3000/mercadopago/aceptado`,
+				success: `${process.env.REACT_APP_API}/mercadopago/aceptado`,
 				failure: "http://localhost:3000/mercadopago/rechazado",
 				pending: "http://localhost:3000/mercadopago/rechazado"
 		},
@@ -24,7 +24,7 @@ export default function Boton () {
 	// console.log('AQUI',preference)
 
 	const handleClick = async () => {
-		const mp = await axios.post(`/mercadopago/sale/`, preference)
+		 await axios.post(`/mercadopago/sale/`, preference)
 		// console.log('url',mp.data.response.init_point)
 		//Navigate(mp.data.response.init_point, )
 	  }

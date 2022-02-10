@@ -9,7 +9,6 @@ function Orders (){
 
     const orderTotal = useSelector((state) => state.sixRed.orderAdmin);
     const dispatch = useDispatch()
-    console.log(orderTotal)
 
 
     useEffect(() => {
@@ -18,22 +17,13 @@ function Orders (){
 
 
     return(
-        <div>
+        <div style={{margin: 40}} >
     <div className="row">
         <div className="col-lg-3">
             <div className="container-sm d-flex justify-content-center" style={{ padding:20, paddingTop:0 }}> 
                 <div className="badge fs-3 bg-dark text-wrap" style={{ width: "20rem" }}>
                     Administración de Ordenes
                 </div>
-            </div>
-            <div className='d-flex justify-content-center' style={{ paddingTop:0, paddingBottom:10 } } >
-                
-                    <button type="button" className="btn btn-outline-success btn-lg" >Orden Ascendente</button>
-                
-                
-            </div>
-            <div className='d-flex justify-content-center' style={{ paddingTop:0, paddingBottom:10 }}>
-                <button type="button" className="btn btn-outline-success btn-lg" >Orden Descendente</button>
             </div>
         </div>
         <div className="card col-lg-8"style={{ paddingTop:15 } }>

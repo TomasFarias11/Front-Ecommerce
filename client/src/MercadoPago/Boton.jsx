@@ -1,10 +1,10 @@
 import axios from "axios";
-import { resolvePath, useNavigate, useNavigationType } from "react-router";
+// import { useNavigate } from "react-router";
 
 
 export default function Boton () {
 	
-	const Navigate = useNavigate()
+	// const Navigate = useNavigate()
 	var preference = {
 		items: [
 			{
@@ -14,18 +14,18 @@ export default function Boton () {
 			}
 		],
 		back_urls:{
-				success: `${process.env.REACT_APP_API}/mercadopago/aceptado`,
-				failure: "http://localhost:3000/mercadopago/rechazado",
-				pending: "http://localhost:3000/mercadopago/rechazado"
+				success: `https://front-ecommerce-xi.vercel.app/mercadopago/aceptado`,
+// 				failure: "http://localhost:3000/mercadopago/rechazado",
+// 				pending: "http://localhost:3000/mercadopago/rechazado"
 		},
 		auto_return:"approved",
-		notification_url:'https://endrg8sjycslc.x.pipedream.net'
+// 		notification_url:'https://endrg8sjycslc.x.pipedream.net'
 	};
-	console.log('AQUI',preference)
+	// console.log('AQUI',preference)
 
 	const handleClick = async () => {
-		const mp = await axios.post(`/mercadopago/sale/`, preference)
-		console.log('url',mp.data.response.init_point)
+		 await axios.post(`/mercadopago/sale/`, preference)
+		// console.log('url',mp.data.response.init_point)
 		//Navigate(mp.data.response.init_point, )
 	  }
     

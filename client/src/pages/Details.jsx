@@ -19,7 +19,7 @@ export default function Details() {
     // minimumFractionDigits: 3,
   })
 
-  console.log("este es el detalle", productId)
+  // console.log("este es el detalle", productId)
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -89,6 +89,11 @@ export default function Details() {
           <p>
             <b>Ram:</b> {Array.isArray(productId.ram) && productId.ram.map((e) => <span key={e}> {e}. </span>)}
           </p>) : null}
+          {productId.connectivity !== null ? (
+          <p>
+            <b>Conectividad: </b> {Array.isArray(productId.connectivity) && productId.connectivity.map((e) => <span key={e}> {e}. </span>)}
+          </p>) : null}
+          
           {productId.stock > 0 ? (
           <p>
             <b>Stock:</b> {productId.stock} 

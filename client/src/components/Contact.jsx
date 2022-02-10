@@ -23,7 +23,7 @@ export default function Contact () {
     }
 
 
-    console.log('INPUT',input)
+    // console.log('INPUT',input)
 
 
     return (

@@ -54,7 +54,7 @@ function AddProdcut() {
 
   function handelSubmit(e){
     e.preventDefault()
-    console.log(inputBody)
+    // console.log(inputBody)
     if(inputBody.idCategory!== "" && inputBody.name!==""){
       dispatch(addProduct(inputBody))
       swal("Agregado a la DB!", {
@@ -96,7 +96,7 @@ function AddProdcut() {
     const res= await axios.post(`https://api.cloudinary.com/v1_1/groupapple/image/upload`, data)
 
     const file=res.data;
-    console.log(file)
+    // console.log(file)
      setInputBody({
        ...inputBody,
        [e.target.name]:file.url
@@ -137,7 +137,7 @@ function AddProdcut() {
                   <div className='card-group'>
                     <div className="card-body">
                       <div className="col-sm-10">
-                        <label for="exampleInputName">Nombre del Producto</label>
+                        <label htmlFor="exampleInputName">Nombre del Producto</label>
                         <input className="form-control" name="name" value={inputBody.name} onChange={e=>handelInput(e)} type="text" id="exampleInputName" aria-describedby="emailHelp" placeholder="Ingrese el nombre"/>
                       </div>
                     </div>
@@ -164,13 +164,13 @@ function AddProdcut() {
                   <div className='card-group'>
                     <div className="card-body">
                       <div className="col-sm-10">
-                        <label for="exampleInputColor">Color</label>
+                        <label htmlFor="exampleInputColor">Color</label>
                         <input name="color" value={inputBody.color} onChange={e=>handelArray(e)} type="text" className="form-control" id="exampleInputColor" aria-describedby="emailHelp" placeholder="Ingrese el color"/>
                       </div>
                     </div>
                     <div className="card-body">
                       <div className="col-sm-10">
-                        <label for="exampleInputPreci">Precio</label>
+                        <label htmlFor="exampleInputPreci">Precio</label>
                         <input name="price" min="1" value={inputBody.price} onChange={e=>handelInput(e)} type="number" className="form-control" id="exampleInputPreci" aria-describedby="emailHelp" placeholder="Ingrese el precio"/>
                       </div>
                     </div>
@@ -178,13 +178,13 @@ function AddProdcut() {
                   <div className='card-group'>
                     <div className="card-body">
                       <div className="col-sm-10">
-                        <label for="exampleInputStorage">Almacenamiento</label>
+                        <label htmlFor="exampleInputStorage">Almacenamiento</label>
                         <input name="storage" value={inputBody.storage} onChange={e=>handelArray(e)} type="text" className="form-control" id="exampleInputStorage" aria-describedby="emailHelp" placeholder="Ingrese el almacenamiento"/>
                       </div>
                     </div>
                     <div className="card-body">
                       <div className="col-sm-10">
-                        <label for="exampleInputStock">Cantidad</label>
+                        <label htmlFor="exampleInputStock">Cantidad</label>
                         <input name="stock" min="1" value={inputBody.stock} onChange={e=>handelInput(e)} type="number" className="form-control" id="exampleInputStock" aria-describedby="emailHelp" placeholder="Ingrese la cantidad de productos"/>
                       </div>
                     </div>
@@ -192,13 +192,13 @@ function AddProdcut() {
                   <div className='card-group'>
                     <div className="card-body">
                       <div className="col-sm-10">
-                        <label for="exampleInputConnectivity">Conectividad</label>
+                        <label htmlFor="exampleInputConnectivity">Conectividad</label>
                         <input name="connectivity" value={inputBody.connectivity} onChange={e=>handelArray(e)} type="text" className="form-control" id="exampleInputConnectivity" aria-describedby="emailHelp" placeholder="Ingrese tipo de conectividad"/>
                       </div>
                     </div>
                     <div className="card-body">
                       <div className="col-sm-10">
-                        <label for="exampleInputModel">Modelo</label>
+                        <label htmlFor="exampleInputModel">Modelo</label>
                         <input name="model" value={inputBody.model} onChange={e=>handelArray(e)} type="text" className="form-control" id="exampleInputModel" aria-describedby="emailHelp" placeholder="Ingrese el modelo"/>
                       </div>
                     </div>
@@ -206,7 +206,7 @@ function AddProdcut() {
                   <div className='card-group'>
                     <div className="card-body">
                       <div className="col-sm-5">
-                        <label for="exampleInputRam">Memoria RAM</label>
+                        <label htmlFor="exampleInputRam">Memoria RAM</label>
                         <input name="ram" value={inputBody.ram} onChange={e=>handelArray(e)} type="text" className="form-control" id="exampleInputRam" aria-describedby="emailHelp" placeholder="Ingrese memoria RAM"/>
                       </div>
                     </div>
@@ -214,7 +214,7 @@ function AddProdcut() {
                   <div className='card-group'>
                     <div className="card-body">
                       <div className="col-sm-11">
-                        <label for="exampleFormControlTextarea1">Descripción</label>
+                        <label htmlFor="exampleFormControlTextarea1">Descripción</label>
                         <textarea name="description" 
                           value={inputBody.description} 
                           onChange={e=>handelInput(e)} 

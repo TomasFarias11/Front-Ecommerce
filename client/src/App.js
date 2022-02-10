@@ -20,14 +20,13 @@ import Formulario from "./pages/Formulario"
 import Boton from "./MercadoPago/Boton";
 import CheckOut from './components/CheckOut'
 import Aceptado from "./MercadoPago/Aceptado";
-import Rechazado from "./MercadoPago/Rechazado";
 import AdminUser from "./components/admin/AdminUser";
 import Compra from './components/Compra';
 import Profile from "./components/Perfil"
 import Contact from "./components/Contact";
 import Orders from "./components/admin/Orders";
 import DetailsOrden from "./pages/DetailsOrden";
-import EditOrder from "./components/admin/EditOrder";
+
 import Ibot from "./components/Ibot";
 
 function App() {
@@ -40,6 +39,8 @@ function App() {
   JSON.parse(window.localStorage.getItem('productos'))?.length > 0 ? window.localStorage.getItem('productos') : window.localStorage.setItem('productos',JSON.stringify([]))
   // creacion u obtencion localStorage del usuario
   JSON.parse(window.localStorage.getItem('usuario'))?.username ? window.localStorage.getItem('usuario') : window.localStorage.setItem('usuario', JSON.stringify([]))
+
+  JSON.parse(window.localStorage.getItem('orders'))?.length > 0 ? window.localStorage.getItem('orders') : window.localStorage.setItem('orders',JSON.stringify([]))
 
 
 
@@ -71,7 +72,6 @@ function App() {
       <Route exact path= "/contactanos" element={<Contact/>}/>
       <Route exact path= "/order" element={<Orders/>}/>
       <Route exact path= "/order/user/:id/details/:idOrder" element={<DetailsOrden/>}/>
-      <Route exact path= "/order/edit/:id" element={<EditOrder/>} />
       </Routes>
       
       <Footer/>

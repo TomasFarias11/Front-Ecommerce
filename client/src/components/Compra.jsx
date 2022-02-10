@@ -13,13 +13,13 @@ export default function Boton () {
     const cart = useSelector((state) => state.firstRed.cart);
     const dispatch = useDispatch();
     const [button, setButton] = useState(false)
-    console.log('uuu',compra)
+    // console.log('uuu',compra)
 
     const [ preference, setPreference] = useState({
         items:compra.items,
         payer:compra.payer,
         back_urls:{
-				success: `http://localhost:3000/mercadopago/aceptado`,
+				success: `https://front-ecommerce-xi.vercel.app/mercadopago/aceptado`,
 				failure: "/mercadopago/rechazado",
 				pending: "/mercadopago/rechazado"
 		},
@@ -75,7 +75,7 @@ export default function Boton () {
                         >
                             <div className="d-flex justify-content-center card-header"><i class="fas fa-user-check"></i></div>
                             <div className="card-body">
-                                <p className="card-text">
+                                <span className="card-text">
                                     <li className="list-unstyled">
                                         <h5>Nombre:</h5>
                                         <h6>{preference.payer.name}</h6>
@@ -86,7 +86,7 @@ export default function Boton () {
                                         <h5>Email:</h5>
                                         <h6>{preference.payer.email}</h6>
                                     </li>
-                                </p>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -112,7 +112,7 @@ export default function Boton () {
                         >
                             <div className="d-flex justify-content-center card-header"><i class="fas fa-home"></i></div>
                             <div className="card-body">
-                                <p className="card-text">
+                                <span className="card-text">
                                     <li className="list-unstyled">
                                         <h5>Calle:</h5>
                                         <h6>{preference.payer.address.street_name}</h6>
@@ -123,7 +123,7 @@ export default function Boton () {
                                         <h5>Código Postal:</h5>
                                         <h6>{preference.payer.address.zip_code}</h6>
                                     </li>
-                                </p>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -161,13 +161,13 @@ export default function Boton () {
                     </h4>
                     <ul className="list-group mb-3">
                       {order[0]?.carrito.map((e) => (
-                        <li className="list-group-item d-flex justify-content-between lh-sm">
+                        <li className="list-group-item d-flex justify-content-between lh-sm" key={e.id}>
                           <div>
                             <h6 className="my-0">{e.name}</h6>
                             <small className="text-muted">
                               {e.idCategory === 1
                                 ? "iPhone"
-                                : e.idCategory === 2
+                                : e.idCategory === 2 
                                 ? "iPad"
                                 : e.idCategory === 3
                                 ? "Watch"

@@ -51,7 +51,7 @@ function AdminUser() {
                     const id=parseInt(a[0])
                     const admin=a[1]==='true'
                     dispatch(editUser(id,admin))
-                    console.log('????',a[1])
+                    // console.log('????',a[1])
                     Swal.fire(
                     'Modificado',
                     'El usuario ha sido modificado.',

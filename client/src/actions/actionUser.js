@@ -61,7 +61,7 @@ export const localLoginUser = (datos) => {
   return async (dispatch) => {
     try {
     const { data } = await axios.post("/user/login", datos )
-    console.log(data, "esta es la data ") 
+    // console.log(data, "esta es la data ") 
      data.banned === true ?
      swal("este usuario se encuentra baniado temporalmente para mas informacion puedes estarte comunicando cun nuestro equipo!", {
       buttons: false,

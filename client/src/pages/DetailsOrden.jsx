@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router";
-import { Link} from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { getOrderUserId2, editOrder2} from "../actions/actionOrder";
-
+import Swal from 'sweetalert2'
 
 
 export default function DetailsOrden() {
 
 
     const {id, idOrder}=useParams();
+    const navigate = useNavigate();
     const orderId = useSelector((state) => state.sixRed.orderId);
     let maps = orderId.filter((e) => Number(e.id) === Number(idOrder))
     const ordenStore=window.localStorage.setItem("orderId", JSON.stringify(maps))
@@ -34,16 +35,34 @@ export default function DetailsOrden() {
   
     const handleEdit = (e) => {
         e.preventDefault();
-        dispatch(editOrder2(id,{[e.target.name]:e.target.value}))
+        Swal.fire({
+            title: '¿Cancelar?',
+            text: "¿Estas seguro que deseas cancelar la Orden?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    dispatch(editOrder2(id,{[e.target.name]:e.target.value}))
+                    Swal.fire(
+                    'Cancelada',
+                    'La orden ha sido cancelada.',
+                    'success'
+                    )
+                    navigate("/order");
+                }
+            }) 
     }
 
 
 
   return (
-<div className="container">
-    <div className="row gutters">
-        <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-            <div className="card">
+<div className="container" >
+    <div className="row gutters" style={{margin: "40px 0"}}>
+        <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"  >
+            <div className="card" style={{padding: 30}}>
                 <div className="card-body p-0">
                     <div className="invoice-container">
                         <div className="invoice-header">
@@ -58,33 +77,25 @@ export default function DetailsOrden() {
                                             <br/>
                                         <span>Email: {order[0] && order[0].user.email}</span>
                                         <br/>
-                                        {/* orderId[0].user.address */}
                                     </address>
                                 </div>
                             </div>
                             
-    
-                            
                             <div className="row gutters">
-
                                 <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
                                     <div className="invoice-details">
                                         <div className="invoice-num">
                                             <div>Orden - # {order[0] && order[0].id}</div>
-                                            <div>Fecha y hora de creación: {order[0] && order[0].createdAt}
-                                            
-                                            </div>
+                                            <div>Fecha y hora de creación: {order[0] && order[0].createdAt}</div>
+                                            {order[0] && order[0].payment_id ? <div>Numero de Pago: {order[0].payment_id}</div> : null }
                                         </div>
                                     </div>                                                  
                                 </div>
                             </div>
                             
-    
                         </div>
     
                         <div className="invoice-body">
-    
-                            
                             <div className="row gutters">
                                 <div className="col-lg-12 col-md-12 col-sm-12">
                                     <div className="table-responsive">
@@ -108,80 +119,33 @@ export default function DetailsOrden() {
                                                     <td>{order[0] && order[0].status}</td>
                                                 </tr>
                                                 )}
-                                                    {/* <td>
-                                                        Maxwell Admin Template
-                                                        <p className="m-0 text-muted"></p>
-                                                            As well as a random Lipsum generator.
-                                                        </p>
-                                                    </td> */}
-                                                    {/* <td>#50000126</td>
-                                                    <td>5</td>
-                                                    <td>$100.00</td> */}
-                                                <tr>
-                                                    {/* <td>
-                                                        Unify Admin Template
-                                                        <p className="m-0 text-muted">
-                                                            Lorem ipsum has become the industry standard.
-                                                        </p>
-                                                    </td> */}
-                                                    {/* <td>#50000821</td>
-                                                    <td>6</td>
-                                                    <td>$49.99</td> */}
-                                                </tr>
+                                                
                                                 <tr>
                                                     <td>&nbsp;</td>
                                                     <td colSpan="2">
-                                                        <p >
-                                                            
-                                                            {/*orderTotal[0].carrito.map(el => 
-                                                            <p>
-                                                                {el.name}
-                                                            </p>
-                                                             )
-                                                            
-                                                            */}
-                                                        </p>
                                                         <h5 className="text-success"><strong>Total</strong></h5>
                                                     </td>           
                                                     <td>
                                                         <p>
                                                             ${formato.format(total)}
                                                         </p>
-                                                        <h5 className="text-success">
-                                                            <strong> 
-                                                                <script>
-                                                            
-                                                                </script>
-                                                                
-                                                            
-                                                            
-                                                             
-                                                            
-                                                            </strong></h5>
                                                     </td>
+                                                    {order[0] && order[0].status==="open" ? 
                                                     <td>
-                                                        <div>
-                                                            {/* <button name="status" value="processing" >Despachar</button> */}
-                                                            <button name="status" value="cancelled" onClick = {(e) => handleEdit(e)}>Cancelar</button>
-                                                        </div>
-                                                    </td>
+                                                        <button className="btn btn-danger" name="status" value="cancelled" onClick = {(e) => handleEdit(e)}>Cancelar</button>
+                                                    </td> : null }
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
-                            
-    
                         </div>
-    
                         <div className="invoice-footer">
                             <Link to="/order">
-                                 <button className="btn btn-secondary active">Regresar</button>
+                                 <button className="btn btn-primary">Regresar</button>
                             </Link>
-                            
                         </div>
-    
                     </div>
                 </div>
             </div>

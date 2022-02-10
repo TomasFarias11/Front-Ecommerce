@@ -14,16 +14,13 @@ export default function Aceptado() {
   const { search } = useLocation();
   const query = new URLSearchParams(search);
 
-  const userId = useSelector((state) => state.secondRed.userId);
-  const carrito = useSelector((state) => state.firstRed.cart);
-  console.log("ID", userId);
-
-  const payment_id = parseInt(query.get("payment_id"));
-  const status = query.get("status");
-  console.log("pay", payment_id);
-  console.log("status", status);
-
-  //Object.defineProperty(cliente, 'payment_id', {value: payment_id});
+    const userId = useSelector((state) => state.secondRed.userId);
+    const carrito = useSelector((state) => state.firstRed.cart);
+    // console.log('ID',userId)
+    const payment_id = parseInt(query.get('payment_id'));
+    const status = query.get('status');
+    // console.log('pay',payment_id)
+    // console.log('status',status)
 
   useEffect(() => {
     dispatch(sendMail(cliente, idUser));

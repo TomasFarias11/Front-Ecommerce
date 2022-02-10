@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router";
 import { Link} from "react-router-dom";
-import { getOrderUserId2} from "../actions/actionOrder";
+import { getOrderUserId2, editOrder2} from "../actions/actionOrder";
 
 
 
@@ -11,15 +11,31 @@ export default function DetailsOrden() {
 
     const {id, idOrder}=useParams();
     const orderId = useSelector((state) => state.sixRed.orderId);
-    const ordenStore=window.localStorage.setItem("orderId", JSON.stringify(orderId))
+    let maps = orderId.filter((e) => Number(e.id) === Number(idOrder))
+    const ordenStore=window.localStorage.setItem("orderId", JSON.stringify(maps))
     const dispatch = useDispatch()
     const order=JSON.parse(window.localStorage.getItem("orderId"))
-    console.log(orderId)
+    const formato = new Intl.NumberFormat('de-DE', {
+        // style: 'currency',
+        // currency: 'USD',
+        // minimumFractionDigits: 3,
+    })
+
+    let total = 0;
+    let totalQuantity = 0
+    order[0] && order[0].carrito.map((e) => {
+        total = total + (e.price * e.quantity);
+        totalQuantity = Number(totalQuantity) + Number(e.quantity)
+    })
 
     useEffect(() => {
         dispatch(getOrderUserId2(id));
     }, [])
   
+    const handleEdit = (e) => {
+        e.preventDefault();
+        dispatch(editOrder2(id,{[e.target.name]:e.target.value}))
+    }
 
 
 
@@ -75,32 +91,32 @@ export default function DetailsOrden() {
                                         <table className="table custom-table m-0">
                                             <thead>
                                                 <tr>
-                                                    <th>Productos</th>
                                                     <th>Usuario</th>
+                                                    <th>Productos</th>
                                                     <th>Cantidad</th>
                                                     <th>Sub Total</th>
                                                     <th>Estado</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>
-                                                       {} 
-                                                    </td>
+                                                {order[0] && order[0].carrito.map(e=> 
+                                                <tr key={e.id}>
                                                     <td>{order[0] && order[0].userId}</td>
-                                                    <td></td>
+                                                    <td>{e.name}</td>
+                                                    <td>{e.quantity}</td>
+                                                    <td>${formato.format(e.quantity * e.price)}</td>
+                                                    <td>{order[0] && order[0].status}</td>
                                                 </tr>
-                                                <tr>
+                                                )}
                                                     {/* <td>
                                                         Maxwell Admin Template
-                                                        <p className="m-0 text-muted">
+                                                        <p className="m-0 text-muted"></p>
                                                             As well as a random Lipsum generator.
                                                         </p>
                                                     </td> */}
                                                     {/* <td>#50000126</td>
                                                     <td>5</td>
                                                     <td>$100.00</td> */}
-                                                </tr>
                                                 <tr>
                                                     {/* <td>
                                                         Unify Admin Template
@@ -114,7 +130,7 @@ export default function DetailsOrden() {
                                                 </tr>
                                                 <tr>
                                                     <td>&nbsp;</td>
-                                                    <td colspan="2">
+                                                    <td colSpan="2">
                                                         <p >
                                                             
                                                             {/*orderTotal[0].carrito.map(el => 
@@ -129,7 +145,7 @@ export default function DetailsOrden() {
                                                     </td>           
                                                     <td>
                                                         <p>
-                                                            $
+                                                            ${formato.format(total)}
                                                         </p>
                                                         <h5 className="text-success">
                                                             <strong> 
@@ -145,8 +161,8 @@ export default function DetailsOrden() {
                                                     </td>
                                                     <td>
                                                         <div>
-                                                            <button name="status" value="processing" >Despachar</button>
-                                                            <button name="status" value="cancelled" >Cancelar</button>
+                                                            {/* <button name="status" value="processing" >Despachar</button> */}
+                                                            <button name="status" value="cancelled" onClick = {(e) => handleEdit(e)}>Cancelar</button>
                                                         </div>
                                                     </td>
                                                 </tr>

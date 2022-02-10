@@ -22,13 +22,13 @@ function AddProdcut() {
     name:"",
     description:"",
     image:"",
-    color:[],
+    color:null,
     price:0,
     stock:0,
-    storage:[],
-    connectivity:[],
-    model:[],
-    ram:[]
+    storage:null,
+    connectivity:null,
+    model:null,
+    ram:null
   })
 
   
@@ -67,13 +67,13 @@ function AddProdcut() {
         name:"",
         description:"",
         image:"",
-        color:[],
+        color:null,
         price:0,
         stock:0,
-        storage:[],
-        connectivity:[],
-        model:[],
-        ram:[]
+        storage:null,
+        connectivity:null,
+        model:null,
+        ram:null
       })
     }else{
       Swal.fire({

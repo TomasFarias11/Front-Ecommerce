@@ -37,6 +37,8 @@ export default function DetailsOrden() {
         dispatch(editOrder2(id,{[e.target.name]:e.target.value}))
     }
 
+
+
   return (
 <div className="container">
     <div className="row gutters">

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { resolvePath, useNavigate, useNavigationType } from "react-router";
+import { useNavigate } from "react-router";
 
 
 export default function Boton () {

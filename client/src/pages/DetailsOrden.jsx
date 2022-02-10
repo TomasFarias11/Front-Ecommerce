@@ -21,6 +21,8 @@ export default function DetailsOrden() {
     }, [])
   
 
+
+
   return (
 <div className="container">
     <div className="row gutters">
@@ -84,18 +86,8 @@ export default function DetailsOrden() {
                                                 <tr>
                                                     <td>
                                                        {} 
-                                                        
-                                                        
                                                     </td>
                                                     <td>{order[0] && order[0].userId}</td>
-                                                    {order[0] && order[0].carrito.map(e=>
-                                                        <div>
-                                                        <td>{e.quantity}</td>
-                                                         <td>$</td>
-                                                         </div>
-                                                        )}
-                                                    
-                                                   
                                                     <td></td>
                                                 </tr>
                                                 <tr>

@@ -56,11 +56,11 @@ export default function Boton () {
                 <div className="col-lg-3">
                     <div
                     className="container-sm d-flex justify-content-center"
-                    style={{ padding: 20, paddingTop: 0 }}
+                    style={{ padding: 20, paddingTop: 30 }}
                     >
                         <div
-                        className="badge fs-3 bg-dark text-wrap"
-                        style={{ width: "20rem" }}
+                        className="badge fs-5 bg-info text-wrap"
+                        style={{ width: "15rem" }}
                         >
                             Datos del Comprador
                         </div>
@@ -70,10 +70,10 @@ export default function Boton () {
                     style={{ paddingTop: 0 }}
                     >
                         <div
-                        className="card text-dark bg-light mb-3"
+                        className=" card text-dark bg-light mb-3"
                         style={{ maxWidth: "19rem" }}
                         >
-                            <div className="card-header">Info de Usuario</div>
+                            <div className="d-flex justify-content-center card-header"><i class="fas fa-user-check"></i></div>
                             <div className="card-body">
                                 <p className="card-text">
                                     <li className="list-unstyled">
@@ -90,17 +90,16 @@ export default function Boton () {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="col-lg-3">
+
                     <div
                     className="container-sm d-flex justify-content-center"
-                    style={{ padding: 20, paddingTop: 0 }}
+                    style={{ padding: 20, paddingTop: 30  }}
                     >
                         <div
-                        className="badge fs-3 bg-dark text-wrap"
-                        style={{ width: "20rem" }}
+                        className="badge fs-5 bg-info text-wrap"
+                        style={{ width: "15rem" }}
                         >
-                            Domicilio de entrga
+                            Domicilio de Entrega
                         </div>
                     </div>
                     <div
@@ -111,28 +110,53 @@ export default function Boton () {
                         className="card text-dark bg-light mb-3"
                         style={{ maxWidth: "19rem" }}
                         >
-                            <div className="card-header">Info de Domicilio</div>
+                            <div className="d-flex justify-content-center card-header"><i class="fas fa-home"></i></div>
                             <div className="card-body">
                                 <p className="card-text">
                                     <li className="list-unstyled">
                                         <h5>Calle:</h5>
                                         <h6>{preference.payer.address.street_name}</h6>
                                         <hr className="my-2" />
-                                        <h5>nro:</h5>
+                                        <h5>Número:</h5>
                                         <h6>{preference.payer.address.street_number}</h6>
                                         <hr className="my-2" />
-                                        <h5>C.P.:</h5>
+                                        <h5>Código Postal:</h5>
                                         <h6>{preference.payer.address.zip_code}</h6>
                                     </li>
                                 </p>
                             </div>
                         </div>
                     </div>
+
+
+
+
+
+
                 </div>
+                <div className="col-lg-8">
+                    <div className="container-sm d-flex justify-content-center"
+                    style={{ padding: 15, paddingTop: 30 }}
+                    >
+                     <div className=" card col-lg-10">
+                     <div className="d-flex justify-content-center container mt-3 mb-1 mx-1">
+
+
+                        <div
+                        className="badge fs-5 bg-info text-wrap"
+                        style={{ width: "15rem" }}
+                        >
+                            Resumen de Carrito
+                        </div>
+                    </div>
+                    <div
+                    className="d-flex justify-content-center"
+                    style={{ paddingTop: 30 }}
+                    >
                 <div className="row g-3">
-                  <div className="col-md-5 col-lg-4 order-md-last">
-                    <h4 className="d-flex justify-content-between align-items-center mb-3">
-                      <span className="text-muted">Tu Carrito</span>
+                  <div className="col-md-5 col-lg-12 order-md-last">
+                    <h4 className="d-flex justify-content-between align-items-center mb-4">
+                      <span className="text-muted"><i class="fas fa-shopping-cart"></i></span>
                       <span className="badge bg-secondary rounded-pill">{cart.length}</span>
                     </h4>
                     <ul className="list-group mb-3">
@@ -161,8 +185,8 @@ export default function Boton () {
                           <span className="text-muted">${formato.format(e.price)}</span>
                         </li>
                       ))}
-                      <li className="list-group-item d-flex justify-content-between">
-                        <span>Total ($ ARG)</span>
+                      <li className="list-group-item mb-5 d-flex justify-content-between">
+                        <span>Total: (ARG)</span>
                         <strong>${formato.format(total)}</strong>
                       </li>
                     </ul>
@@ -170,9 +194,13 @@ export default function Boton () {
                     </div>
             </div>
             {button === false && url.length === 0 ? 
-            <button onClick={(e) => handleClick(e)} >Confirmar Compra</button>
+            <button className="btn btn-lg btn-success" onClick={(e) => handleClick(e)} >Click para pagar con Mercado Pago</button>
             :
-            <button><a href={url}>PAGAR</a></button>}
+            <button className="btn btn-lg btn-primary text-white"><a className="text-white" style={{ textDecoration: "none", color: "white" }} href={url}>CONFIRMAR PAGO</a></button>}
+            </div>
+                </div>
+                </div>
+                </div>
         </div>
     )
 };

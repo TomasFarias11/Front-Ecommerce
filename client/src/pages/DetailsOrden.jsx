@@ -87,6 +87,7 @@ export default function DetailsOrden() {
                                         <div className="invoice-num">
                                             <div>Orden - # {order[0] && order[0].id}</div>
                                             <div>Fecha y hora de creación: {order[0] && order[0].createdAt}</div>
+                                            {order[0] && order[0].payment_id ? <div>Numero de Pago: {order[0].payment_id}</div> : null }
                                         </div>
                                     </div>                                                  
                                 </div>

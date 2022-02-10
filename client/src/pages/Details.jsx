@@ -19,6 +19,8 @@ export default function Details() {
     // minimumFractionDigits: 3,
   })
 
+  console.log("este es el detalle", productId)
+
   const handleClick = (e) => {
     e.preventDefault();
     if (user.admin === true) {
@@ -69,13 +71,16 @@ export default function Details() {
           <br />
             <h3>Descripción</h3>
           <p className="lead">{productId.description}</p>
+
           {productId.model !== null ? (
           <p>
             <b>Model:</b> {Array.isArray(productId.model) && productId.model.map((e) => <span key={e}> {e}. </span>)}
           </p>) : null}
+
+          {productId.model !== null ? (
           <p>
             <b>Color:</b>{Array.isArray(productId.color) && productId.color.map((e) => <span key={e}> {e}. </span>)}
-          </p>
+          </p>) : null}
           {productId.storage !== null ? (
           <p>
             <b>Almacenamiento:</b> {Array.isArray(productId.storage) && productId.storage.map((e) => <span key={e}> {e}. </span>)}

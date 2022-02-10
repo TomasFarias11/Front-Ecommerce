@@ -19,7 +19,7 @@ export default function Boton () {
         items:compra.items,
         payer:compra.payer,
         back_urls:{
-				success: `http://localhost:3000/mercadopago/aceptado`,
+				success: `https://front-ecommerce-xi.vercel.app/mercadopago/aceptado`,
 				failure: "/mercadopago/rechazado",
 				pending: "/mercadopago/rechazado"
 		},

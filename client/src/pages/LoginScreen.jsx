@@ -105,8 +105,9 @@ const handleSubmitMail =async (e) => {
             </div>
 
             <br />
-            <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                <>
+            <div className="col-md-4 col-lg-3 col-xl-12 mx-auto mb-md-0 mb-4">
+                
+                <div className='d-grid'>
                   <button
                     type="button"
                     className="btn btn-info text-white"
@@ -114,8 +115,9 @@ const handleSubmitMail =async (e) => {
                     data-bs-target="#exampleModal"
                     data-bs-whatever="@igroup"
                   >
-                    {/* <i class="far fa-comment-dots"></i> */} Restablecer contraseña
+                    {/* <i class="far fa-comment-dots"></i> */} ¿Olvidaste tu contraseña?
                   </button>
+                  </div>
                   <div
                     className="modal fade"
                     id="exampleModal"
@@ -175,7 +177,7 @@ const handleSubmitMail =async (e) => {
                       </div>
                     </div>
                   </div>
-                </>
+                
             </div>
 
             <div className="my-3">

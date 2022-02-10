@@ -18,6 +18,8 @@ export default function Home () {
     const cart = useSelector((state) => state.firstRed.cart);
     const users = JSON.parse(window.localStorage.getItem('usuario'))
     const order = useSelector((state) => state.firstRed.order)
+    const user = useSelector((state)=> state.secondRed.userData)
+    const orders = useSelector((state) => state.firstRed.orders);
     
     const orderAlert = useSelector((state) => state.firstRed.orderAlert)
     // console.log('esta es laorden', order)
@@ -33,10 +35,14 @@ export default function Home () {
 
     useEffect(()=> {  
         products > 0 ? window.localStorage.setItem('productos',JSON.stringify(products)) : window.localStorage.setItem('productos',JSON.stringify([]))
+    })
+
+    useEffect(()=>{
         if (users.length !== 0) {
             dispatch(getOrderUser(users.id))
+            window.localStorage.getItem('orders')
         }
-    })
+    },[user])
 
    
     const handleClick = (e) => {

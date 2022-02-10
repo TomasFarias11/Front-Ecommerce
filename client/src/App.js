@@ -20,14 +20,13 @@ import Formulario from "./pages/Formulario"
 import Boton from "./MercadoPago/Boton";
 import CheckOut from './components/CheckOut'
 import Aceptado from "./MercadoPago/Aceptado";
-import Rechazado from "./MercadoPago/Rechazado";
 import AdminUser from "./components/admin/AdminUser";
 import Compra from './components/Compra';
 import Profile from "./components/Perfil"
 import Contact from "./components/Contact";
 import Orders from "./components/admin/Orders";
 import DetailsOrden from "./pages/DetailsOrden";
-import EditOrder from "./components/admin/EditOrder";
+
 import Ibot from "./components/Ibot";
 
 function App() {
@@ -71,7 +70,6 @@ function App() {
       <Route exact path= "/contactanos" element={<Contact/>}/>
       <Route exact path= "/order" element={<Orders/>}/>
       <Route exact path= "/order/user/:id/details/:idOrder" element={<DetailsOrden/>}/>
-      <Route exact path= "/order/edit/:id" element={<EditOrder/>} />
       </Routes>
       
       <Footer/>

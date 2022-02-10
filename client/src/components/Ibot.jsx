@@ -11,7 +11,7 @@ function Ibot() {
     const [showBot, toggleBot] = useState(false);
 
   return(
-    <div style={{position: "fixed", left: 20, bottom:20}}>
+    <div style={{position: "fixed", zIndex: 99, left: 20, bottom:20}}>
     {showBot &&
     <Chatbot
         config={config}

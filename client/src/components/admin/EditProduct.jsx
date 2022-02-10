@@ -54,7 +54,7 @@ function EditProduct() {
     image: "",
   });
 
-  console.log("body", inputBody);
+  // console.log("body", inputBody);
 
   function handelInput(e) {
     e.preventDefault();
@@ -74,7 +74,7 @@ function EditProduct() {
     const res= await axios.post('https://api.cloudinary.com/v1_1/groupapple/image/upload', data)
 
     const file=res.data;
-    console.log(file)
+    // console.log(file)
      setInputBody({
        ...inputBody,
        [e.target.name]:file.url
@@ -268,7 +268,7 @@ function EditProduct() {
                   </select>
                 </div>
                 <div className="form-group">
-                  <label for="exampleInputName">Nombre del Producto</label>
+                  <label htmlFor="exampleInputName">Nombre del Producto</label>
                   <input
                     name="name"
                     value={inputBody.name}
@@ -281,7 +281,7 @@ function EditProduct() {
                   />
                 </div>
                 <div className="form-group">
-                  <label for="exampleFormControlTextarea1">Descripción</label>
+                  <label htmlFor="exampleFormControlTextarea1">Descripción</label>
                   <textarea
                     form="htmlFor"
                     name="description"
@@ -293,7 +293,7 @@ function EditProduct() {
                   ></textarea>
                 </div>
                 <div className="form-group">
-                  <label for="exampleInputColor">Color</label>
+                  <label htmlFor="exampleInputColor">Color</label>
                   <input
                     name="color"
                     value={inputBody.color}
@@ -306,7 +306,7 @@ function EditProduct() {
                   />
                 </div>
                 <div className="form-group">
-                  <label for="exampleInputPreci">Precio</label>
+                  <label htmlFor="exampleInputPreci">Precio</label>
                   <input
                     name="price"
                     min="1"
@@ -320,7 +320,7 @@ function EditProduct() {
                   />
                 </div>
                 <div className="form-group">
-                  <label for="exampleInputStock">Stock</label>
+                  <label htmlFor="exampleInputStock">Stock</label>
                   <input
                     name="stock"
                     min="1"
@@ -334,7 +334,7 @@ function EditProduct() {
                   />
                 </div>
                 <div className="form-group">
-                  <label for="exampleInputStorage">Almacenamiento</label>
+                  <label htmlFor="exampleInputStorage">Almacenamiento</label>
                   <input
                     name="storage"
                     value={inputBody.storage}
@@ -347,7 +347,7 @@ function EditProduct() {
                   />
                 </div>
                 <div className="form-group">
-                  <label for="exampleInputConnectivity">Conectividad</label>
+                  <label htmlFor="exampleInputConnectivity">Conectividad</label>
                   <input
                     name="connectivity"
                     value={inputBody.connectivity}
@@ -360,7 +360,7 @@ function EditProduct() {
                   />
                 </div>
                 <div className="form-group">
-                  <label for="exampleInputModel">Modelos</label>
+                  <label htmlFor="exampleInputModel">Modelos</label>
                   <input
                     name="model"
                     value={inputBody.model}
@@ -373,7 +373,7 @@ function EditProduct() {
                   />
                 </div>
                 <div className="form-group">
-                  <label for="exampleInputRam">Memoria RAM</label>
+                  <label htmlFor="exampleInputRam">Memoria RAM</label>
                   <input
                     name="ram"
                     value={inputBody.ram}
@@ -389,7 +389,7 @@ function EditProduct() {
                   className="form-group"
                   style={{ marginTop: 10, marginBottom: 30 }}
                 >
-                  <label for="exampleFormControlFile1">Imagen</label>
+                  <label htmlFor="exampleFormControlFile1">Imagen</label>
                   <input name="image" 
                       accept="image/png,image/jpg"
                       onChange={handelImagen} 

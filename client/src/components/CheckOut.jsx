@@ -176,7 +176,7 @@ cart.length > 0 && cart.map((e) => {
             >
               <div className="card-header">Info de Usuario</div>
               <div className="card-body">
-                <p className="card-text">
+                <span className="card-text">
                   <li className="list-unstyled">
                     <h5>Nombre:</h5>
                     <h6>{userFull.name}</h6>
@@ -187,7 +187,7 @@ cart.length > 0 && cart.map((e) => {
                     <h5>Email:</h5>
                     <h6>{userFull.email}</h6>
                   </li>
-                </p>
+                </span>
               </div>
             </div>
           </div>
@@ -218,7 +218,7 @@ cart.length > 0 && cart.map((e) => {
                     </h4>
                     <ul className="list-group mb-3">
                       {order[0]?.carrito.map((e) => (
-                        <li className="list-group-item d-flex justify-content-between lh-sm">
+                        <li className="list-group-item d-flex justify-content-between lh-sm" key={e.id} >
                           <div>
                             <h6 className="my-0">{e.name}</h6>
                             <small className="text-muted">
@@ -264,8 +264,8 @@ cart.length > 0 && cart.map((e) => {
                             type="text"
                             className="form-control"
                             placeholder="DNI/RUC/PASAPORTE"
-                            defaultValue=""
-                            required=""
+                            // defaultValue=""
+                            // required=""
                             value={payer.identification.type}
                             name="type"
                             onChange={(e) => handleChangeDni(e)}
@@ -282,8 +282,8 @@ cart.length > 0 && cart.map((e) => {
                             type="number"
                             className="form-control"
                             placeholder="12345678"
-                            defaultValue=""
-                            required=""
+                            // defaultValue=""
+                            // required=""
                             disabled={payer.identification.type===""}
                             value={payer.identification.number}
                             name="number"
@@ -301,8 +301,8 @@ cart.length > 0 && cart.map((e) => {
                             type="number"
                             className="form-control"
                             placeholder="0387"
-                            defaultValue=""
-                            required=""
+                            // defaultValue=""
+                            // required=""
                             disabled={payer.identification.number===""}
                             value={payer.phone.area_code}
                             name="area_code"
@@ -320,8 +320,8 @@ cart.length > 0 && cart.map((e) => {
                             type="number"
                             className="form-control"
                             placeholder="12345678"
-                            defaultValue=""
-                            required=""
+                            // defaultValue=""
+                            // required=""
                             disabled={payer.phone.area_code===""}
                             value={payer.phone.number}
                             name="number"
@@ -340,7 +340,7 @@ cart.length > 0 && cart.map((e) => {
                             className="form-control"
                             id="address"
                             placeholder="Calle 1234"
-                            required=""
+                            // required=""
                             disabled={payer.phone.number===""}
                             value={payer.address.street_name}
                             name="street_name"
@@ -358,8 +358,8 @@ cart.length > 0 && cart.map((e) => {
                             type="number"
                             className="form-control"
                             placeholder="12345678"
-                            defaultValue=""
-                            required=""
+                            // defaultValue=""
+                            // required=""
                             disabled={payer.address.street_name===""}
                             value={payer.address.street_number}
                             name="street_number"

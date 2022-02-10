@@ -139,7 +139,7 @@ const handleSubmitMail =async (e) => {
                           />
                         </div>
                         <div className="modal-body">
-                          <form>
+                          {/* <form> */}
                             <div className="mb-3">
                               <label
                                 htmlFor="recipient-name"
@@ -156,7 +156,7 @@ const handleSubmitMail =async (e) => {
                                 id="recipient-name"
                               />
                             </div>
-                          </form>
+                          {/* </form> */}
                         </div>
                         <div className="modal-footer">
                           <button
@@ -205,7 +205,7 @@ const handleSubmitMail =async (e) => {
               </div>
             </div>
           </div>
-          {/* */}
+        
         </div>
       </div>
     </div>

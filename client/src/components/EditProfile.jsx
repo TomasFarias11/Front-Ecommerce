@@ -66,7 +66,7 @@ const EditProfie = () => {
     const res= await axios.post(`https://api.cloudinary.com/v1_1/groupapple/image/upload`, data)
 
     const file=res.data;
-    console.log(file)
+    
      setInput({
        ...input,
        [e.target.name]:file.url

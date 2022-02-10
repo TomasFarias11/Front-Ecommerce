@@ -1,10 +1,10 @@
 import axios from "axios";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 
 
 export default function Boton () {
 	
-	const Navigate = useNavigate()
+	// const Navigate = useNavigate()
 	var preference = {
 		items: [
 			{
@@ -21,11 +21,11 @@ export default function Boton () {
 		auto_return:"approved",
 		notification_url:'https://endrg8sjycslc.x.pipedream.net'
 	};
-	console.log('AQUI',preference)
+	// console.log('AQUI',preference)
 
 	const handleClick = async () => {
 		const mp = await axios.post(`/mercadopago/sale/`, preference)
-		console.log('url',mp.data.response.init_point)
+		// console.log('url',mp.data.response.init_point)
 		//Navigate(mp.data.response.init_point, )
 	  }
     

@@ -19,7 +19,7 @@ export default function Details() {
     // minimumFractionDigits: 3,
   })
 
-  console.log("este es el detalle", productId)
+  // console.log("este es el detalle", productId)
 
   const handleClick = (e) => {
     e.preventDefault();

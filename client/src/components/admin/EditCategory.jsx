@@ -16,7 +16,7 @@ function EditCategory() {
     name: "",
   });
 
-  console.log(categorytId);
+  // console.log(categorytId);
 
   function handelInput(e) {
     e.preventDefault();
@@ -92,9 +92,9 @@ function EditCategory() {
         <div className="row featurette">
         <div className="col-md-10 order-md-2" style={{ paddingRight: 10, marginLeft:10, marginBottom:20 }}>
 
-        <form onSubmit={(e) => handelSubmit(e)}>
+        <form onSubmit={(e) => handelSubmit(e)}  >
           <div className="form-group">
-            <label for="exampleInputName">Nombre de Categoría</label>
+            <label htmlFor="htmlFor">Nombre de Categoría</label>
             <input
               name="name"
               value={inputBody.name}

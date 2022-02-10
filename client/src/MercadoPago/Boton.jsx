@@ -14,7 +14,7 @@ export default function Boton () {
 			}
 		],
 		back_urls:{
-				success: `${process.env.REACT_APP_API}/mercadopago/aceptado`,
+				success: `https://front-ecommerce-xi.vercel.app/mercadopago/aceptado`,
 				failure: "http://localhost:3000/mercadopago/rechazado",
 				pending: "http://localhost:3000/mercadopago/rechazado"
 		},

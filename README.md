@@ -1,4 +1,4 @@
-# Front-ecommerce
+# Front-Ecommerce
 
 This is the link for the deployed app: https://front-ecommerce-xi.vercel.app/
 

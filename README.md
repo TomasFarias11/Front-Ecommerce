@@ -2,7 +2,7 @@
 
 This is the link for the deployed app: https://front-ecommerce-xi.vercel.app/
 
-You can click on the code button for you to clone this repository in your computer. Once you did this, you should write NPM INSTALL in the terminal, located on the client path, so you can install all the necessary dependecies for the correct functionality of the app.
+You can click on the code button for you to clone this repository in your computer. Once you done this, you should write NPM INSTALL in the terminal, located on the client path, so you can install all the necessary dependecies for the correct functionality of the app.
 
 Development of a SPA using React for the Front End, and Redux as stage management. All the styles on the components were developed with Bootstrap and external libraries (SweetAlert, React-Chatbot, etc). 
 It consumes data from an JSON file made by our team through Back End developed in NodeJS using Express.

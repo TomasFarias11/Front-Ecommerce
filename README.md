@@ -4,7 +4,7 @@
 
 # https://front-ecommerce-xi.vercel.app/
 
-You can click on the code button for you to clone this repository in your computer. Once you done this, you should write NPM INSTALL in the terminal, located on the client path, so you can install all the necessary dependecies for the correct functionality of the app.
+🔸 You can click on the code button for you to clone this repository in your computer. Once you done this, you should write NPM INSTALL in the terminal, located on the client path, so you can install all the necessary dependecies for the correct functionality of the app.🔸
 
 Development of a SPA using React for the Front End, and Redux as stage management. All the styles on the components were developed with Bootstrap and external libraries (SweetAlert, React-Chatbot, etc). 
 It consumes data from an JSON file made by our team through Back End developed in NodeJS using Express.
@@ -14,7 +14,7 @@ This project is about en E-Commerce of Apple products, where you can search for 
 # Este es el link the la aplicacion desplegada: 
 # https://front-ecommerce-xi.vercel.app/
 
-Puedes darle al boton code para poder clonarte el repositorio en tu equipo. Una vez hecho esto, deberas escribir NPM INSTALL en la terminal, parado en la carpeta client para poder instalar todas las dependencias necesarias para que la aplicacion funcione correctamente.
+🔸 Puedes darle al boton code para poder clonarte el repositorio en tu equipo. Una vez hecho esto, deberas escribir NPM INSTALL en la terminal, parado en la carpeta client para poder instalar todas las dependencias necesarias para que la aplicacion funcione correctamente.🔸
 
 Desarrollo de una aplicación utilizando React para la parte de Front-End, y Redux para el manejo de los estados. Todos los estilos en los componentes fueron desarrollados utilizando Bootstrap y otras librerias externas (SweetAlert, React-Chatbot, etc).
 Consume data de un archivo JSON creado por nuestro equipo a través de Back-End con Node.JS utilizando Express.

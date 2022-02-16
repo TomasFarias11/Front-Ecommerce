@@ -11,7 +11,8 @@ It consumes data from an JSON file made by our team through Back End developed i
 Management of the Data Base with Sequelize
 This project is about en E-Commerce of Apple products, where you can search for the item you want and buy it using MercadoPago payment method. Using FireBase for the authentication for Google and local login. Deployed Back-End using Heroku and Front-End using Vercel. Added a ChatBot for a better user experience.
 
-Este es el link the la aplicacion desplegada: https://front-ecommerce-xi.vercel.app/
+# Este es el link the la aplicacion desplegada: 
+# https://front-ecommerce-xi.vercel.app/
 
 Puedes darle al boton code para poder clonarte el repositorio en tu equipo. Una vez hecho esto, deberas escribir NPM INSTALL en la terminal, parado en la carpeta client para poder instalar todas las dependencias necesarias para que la aplicacion funcione correctamente.
 

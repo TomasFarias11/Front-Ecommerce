@@ -1,6 +1,6 @@
 # Front-Ecommerce
 
-This is the link for the deployed app: https://front-ecommerce-xi.vercel.app/
+# This is the link for the deployed app: https://front-ecommerce-xi.vercel.app/
 
 You can click on the code button for you to clone this repository in your computer. Once you done this, you should write NPM INSTALL in the terminal, located on the client path, so you can install all the necessary dependecies for the correct functionality of the app.
 
